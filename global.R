@@ -1,5 +1,6 @@
 library(shiny)
 library(shinydashboard)
+library(plyr)
 library(tidyverse)
 library(readxl)
 library(shinythemes)

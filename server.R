@@ -13,8 +13,6 @@ shinyServer(function(input, output,session) {
   #Create a list of all the indicators 
   Indicators1 <- unique(CPPdtaCurrent$Indicator)
   
-  
-  ##########
   #Create a loop that creates a plot for the indicators selected 
   
   for(i in seq_along(Indicators1)){
@@ -221,7 +219,7 @@ shinyServer(function(input, output,session) {
   })
   
   
-##=====Create Plot Outputs for page 2 & 3 ====###    
+##Create Plot Outputs for page 2 & 3 ========================  
   ##Render all Plots for Page 2
   output$CompCPP <- renderPlot({
     dta <- filter(CPPdta, Year %in% c("2016/17", "2014-2016"))
@@ -282,20 +280,20 @@ shinyServer(function(input, output,session) {
                }
   )
   
-#  observe({
-#    if(input$IndiClear >0){
-#      updateCheckboxGroupInput(session = session, 
-#                               inputId = "Indi4",
-#                               selected = character(0))
-#    }
-#  })  
+  observe({
+    if(input$IndiClear >0){
+      updateCheckboxGroupInput(session = session, 
+                               inputId = "Indi4",
+                               selected = character(0))
+    }
+  })  
   
   ######Create table output 
   output$MyCommunitiesTbl <- DT::renderDataTable({
     
     
     ###Create rankings for outcomes
-    IGZBest <- filter(IGZ1617, CPP %in% input$LA4 & Indicator %in% input$Indi4)
+    IGZBest <- filter(IGZ1617, CPP %in% input$LA1 & Indicator %in% input$Indi4)
     
     #Calculate combined CPP score and combined Type score by grouping by individial IGZ and summing scores
     #IGZBest <- ddply(IGZBest,. (InterZone), transform, CombinedCPPScore = (sum(CPPScore)))
@@ -315,7 +313,7 @@ shinyServer(function(input, output,session) {
     
     
     ###Create rankingsfor improvement 
-    IGZImprovement <- filter(IGZChange, CPP %in% input$LA4 & Indicator %in% input$Indi4)
+    IGZImprovement <- filter(IGZChange, CPP %in% input$LA1 & Indicator %in% input$Indi4)
     
     #Calculate combined CPP score and combined Type score by grouping by individial IGZ and summing scores
     #IGZImprovement <- ddply(IGZImprovement,. (InterZone), transform, CombinedCPPChangeScore = (sum(CPPChangeScore)))
@@ -395,15 +393,15 @@ shinyServer(function(input, output,session) {
     #This will keep the order of the original column but match the colour references to the IGZ name
     colours2 <- MyCommunitiesDta[,c(1,5)]
     colnames(colours2) <- c("Variable2", "Helper2")
-    MyCommunitiesDta <- join(MyCommunitiesDta, colours2, by = "Variable2")
+    MyCommunitiesDta <- left_join(MyCommunitiesDta, colours2, by = "Variable2")
     
     colours3 <- MyCommunitiesDta[,c(1,5)]
     colnames(colours3) <- c("Variable3", "Helper3")
-    MyCommunitiesDta <- join(MyCommunitiesDta, colours3, by = "Variable3")
+    MyCommunitiesDta <- left_join(MyCommunitiesDta, colours3, by = "Variable3")
     
     colours4 <- MyCommunitiesDta[,c(1,5)]
     colnames(colours4) <- c("Variable4", "Helper4")
-    MyCommunitiesDta <- join(MyCommunitiesDta, colours4, by = "Variable4")
+    MyCommunitiesDta <- left_join(MyCommunitiesDta, colours4, by = "Variable4")
     
     #Store unique colour reference to use as intervals in styling
     Store_unique1 <- unique(MyCommunitiesDta$Helper1)
@@ -415,7 +413,7 @@ shinyServer(function(input, output,session) {
     ColourPal <- brewer.pal(Clrs,"RdYlGn")
     
     #Call CPP Name to be used in variable names
-    CPPName <- input$LA4
+    CPPName <- input$LA
     
     #Rename variables
     colnames(MyCommunitiesDta)[1] <- paste("Within ", CPPName, " which communities have the poorest outcomes?")
@@ -757,11 +755,10 @@ shinyServer(function(input, output,session) {
     
   })
   
-  
-  ##Create Ui ouputs for page 5 - Community Profile=============    
+##Create Ui ouputs for page 5 - Community Profile=============    
   #Create reactive selection for community, filter to only show communities within the CPP
   output$Comm5 <- renderUI({
-    IGZsubset <- filter(IGZdta, CPP == input$LA5)
+    IGZsubset <- filter(IGZdta, CPP == input$LA1)
     selectInput("Community5", "Select a Community", sort(unique(IGZsubset$InterZone_Name)))
   })
   
@@ -878,7 +875,7 @@ shinyServer(function(input, output,session) {
     #This will keep the order of the original column but match the colour references to the IGZ name
     colours2 <- CommunityProfileDta[,c(1,3)]
     colnames(colours2) <- c("Variable2", "Helper2")
-    CommunityProfileDta <- join(CommunityProfileDta, colours2, by = "Variable2")
+    CommunityProfileDta <- left_join(CommunityProfileDta, colours2, by = "Variable2")
     
     #Store unique colour reference to use as intervals in styling
     Store_unique1 <- unique(CommunityProfileDta$Helper1)
@@ -888,7 +885,7 @@ shinyServer(function(input, output,session) {
     ColourPal <- brewer.pal(Clrs,"RdYlGn")
     
     #Call CPP Name to be used in variable names
-    CPPName <-  input$LA5
+    CPPName <-  input$LA1
     
     ###Create helper column to determine which IGZ should be bold
     #call Community name
@@ -992,7 +989,7 @@ shinyServer(function(input, output,session) {
   
   #Create ui output for checkbox selection
   output$LineChoices5 <- renderUI({
-    Choices <- c(input$Community5, input$LA5, "Scotland", "Group Average")
+    Choices <- c(input$Community5, input$LA1, "Scotland", "Group Average")
     checkboxGroupInput("Choices5", "Select lines to plot", Choices, selected = Choices)
   })
   
@@ -1007,8 +1004,8 @@ shinyServer(function(input, output,session) {
     Community <- select(Community, c(-InterZone, -InterZone_Name, -CPP, -Typology_Group, -Typology_Name) )
     
     Indicators <- unique(IGZdta$Indicator)
-    LA <- filter(CPPdta, CPP == input$LA5 & Indicator %in% Indicators)
-    LA$Identifier <- input$LA5
+    LA <- filter(CPPdta, CPP == input$LA1 & Indicator %in% Indicators)
+    LA$Identifier <- input$LA1
     LA$Colours <- "green"
     LA <- select(LA, c(-CPP, -FG))
     
@@ -1089,26 +1086,26 @@ shinyServer(function(input, output,session) {
   }
   
   
-  ##All communities per indicator==================================
+##All communities per indicator==================================
   ##Firstly render all of the plots for filling in the UI rendered below 
   myheight <- function(){
-    nrow(unique(IGZdta[IGZdta$CPP== input$`CPP-AllC`,"InterZone_Name"]))*60
+    nrow(unique(IGZdta[IGZdta$CPP== input$LA1,"InterZone_Name"]))*60
   }
   output$AllCPlots <- renderPlot({
-    dta <- IGZdta[IGZdta$CPP== input$`CPP-AllC` & IGZdta$Indicator==input$`Indi-AllC`&IGZdta$Type != "Projected",c(2,8,9)]
+    dta <- IGZdta[IGZdta$CPP== input$LA1 & IGZdta$Indicator==input$`Indi-AllC`&IGZdta$Type != "Projected",c(2,8,9)]
     nComs <- length(unique(dta$InterZone_Name))
     comList <- unique(dta$InterZone_Name)
-    dta2 <- CPPdta[CPPdta$CPP %in% input$`CPP-AllC`& CPPdta$Indicator==input$`Indi-AllC`&CPPdta$Type != "Projected",c(1,4,5)]
+    dta2 <- CPPdta[CPPdta$CPP %in% input$LA1& CPPdta$Indicator==input$`Indi-AllC`&CPPdta$Type != "Projected",c(1,4,5)]
     dta3 <- CPPdta[CPPdta$CPP %in% "Scotland"& CPPdta$Indicator==input$`Indi-AllC`&CPPdta$Type != "Projected",c(1,4,5)]
     colnames(dta2) <- colnames(dta)
     colnames(dta3) <- colnames(dta)
     dta <- rbind(dta, dta2, dta3)
-    dta$colourscheme <-ifelse(dta$InterZone_Name == "Scotland","Scot",ifelse(dta$InterZone_Name == input$`CPP-AllC`,"CPP","Com"))
+    dta$colourscheme <-ifelse(dta$InterZone_Name == "Scotland","Scot",ifelse(dta$InterZone_Name == input$LA1,"CPP","Com"))
     yrs <- c(dta$Year[[1]], dta$Year[[length(dta$Year)]])
     ##lapply to generate plots
     plts <- list()
     plts <-lapply(1:nComs, FUN = function(.x){
-      ggplot(data = dta[dta$InterZone_Name %in% c(comList[.x], input$`CPP-AllC`, "Scotland"),])+
+      ggplot(data = dta[dta$InterZone_Name %in% c(comList[.x], input$LA1, "Scotland"),])+
         geom_line(aes(x = Year, y = value, group = colourscheme, colour = colourscheme), size = 1.5)+
         theme_bw()+
         ggtitle(comList[.x])+
@@ -1120,5 +1117,4 @@ shinyServer(function(input, output,session) {
     })
     do.call("plot_grid", c(plts, ncol = 4))
   }, height = myheight)
-  
 })
