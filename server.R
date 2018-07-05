@@ -6,6 +6,7 @@ shinyServer(function(input, output,session) {
   
   #Create a reactive function to store data for both LA's selected  
   selectedDta1 <- reactive({
+    req(input$LA1)
     CPPdtaCurrent$colourscheme <- ifelse(CPPdtaCurrent$CPP == input$LA1,"A","B")
     dta <- filter(CPPdtaCurrent, CPP %in% c(input$LA1, input$CompLA1))
   })

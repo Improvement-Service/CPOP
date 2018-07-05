@@ -19,6 +19,9 @@ body <- dashboardBody(
   tabItems(
 ###====First tab: all CPPs over time===###    
     tabItem(tabName = "P1",
+            conditionalPanel(condition = "input.LA1 == ``",
+                          h1("Please select a CPP using the drop down on the left")),
+            conditionalPanel(condition = "input.LA1 != ``",
             fluidRow(
               column(4,
                      selectInput("CompLA1", "Select Comparator", unique(CPPdta$CPP), selected = "Scotland")
@@ -32,7 +35,7 @@ body <- dashboardBody(
               ),
               column(2, tags$hr(style="border-color: #48CCCD;")
               )
-            ),
+            )),
             hr(),
             conditionalPanel(
               condition = "input.Indi1 == 'All'",
@@ -215,7 +218,6 @@ body <- dashboardBody(
 
 ))
 
-  
 dashboardPage(
   dashboardHeader(title = "CPOP"),
   sidebar,
