@@ -1,4 +1,4 @@
-shinyServer(function(input, output) {
+shinyServer(function(input, output, session) {
   
   
   # Create Ui ouputs for CPP over time page - PAGE1------------------------------------------------------
