@@ -324,15 +324,10 @@ shinyServer(function(input, output) {
   output$CompCPP <- renderPlot({
     dta <- filter(CPP_Imp, Year %in% c("2016/17", "2014-2016"))
     dta$colourscheme <-ifelse(dta$CPP == input$LA1,"Sel1","Other")
-    cmp <- filter(dta, CPP == "Scotland")$value
     
     #filter so that the Scotland value isn't a bar on the plot
     
     dtaNoScot <- filter(dta, CPP != "Scotland")
-    
-    # store direction so that right hand side of plot always shows best outcome
-    
-    direction <- first(dta$`High is Positive?`)
   
     #lapply to generate plots
     plts <- list()
@@ -382,17 +377,12 @@ shinyServer(function(input, output) {
     dta$colourscheme <-ifelse(dta$CPP == input$LA1,"Sel1","Other")
     #lapply to generate plots
     plts <- list()
-    cmp <- filter(CPP_Imp,Year %in% c("2016/17", "2014-2016") & CPP == "Scotland")$value
     indi <- indis
-    
-    # store direction so that right hand side of plot always shows best outcome
-    
-    direction <- first(dta$`High is Positive?`)
     
     plts <-lapply(1:18, FUN = function(.x){
       ggplot(data = filter(dta, Indicator == indi[[.x]])) +
         geom_bar(aes(
-          x = if(direction == "Yes"){reorder(CPP, value)}else{reorder(CPP, -value)}, 
+          x = if(first(`High is Positive?`)== "Yes"){reorder(CPP, value)}else{reorder(CPP, -value)}, 
           y = value, 
           fill = colourscheme
         ), 
@@ -405,7 +395,15 @@ shinyServer(function(input, output) {
         ggtitle(indi[[.x]])+
         xlab("")+
         ylab("")+
-        geom_hline(aes(yintercept = cmp[[.x]])) +
+        geom_hline(
+          aes(
+            yintercept = filter(
+            CPP_Imp,
+            Year %in% c("2016/17", "2014-2016") & 
+              Indicator == indi[[.x]] &
+              CPP == "Scotland")$value
+          )
+        ) +
         theme_bw()+
         theme(axis.text.x = element_text(angle =90, hjust =1, vjust = 0))
     })
