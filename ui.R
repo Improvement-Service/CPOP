@@ -19,51 +19,46 @@ body <- dashboardBody(
   tabItems(
 ###====First tab: all CPPs over time===###    
     tabItem(tabName = "P1",
-            conditionalPanel(condition = "input.LA1 == ``",
-                          h1("Please select a CPP using the drop down on the left")),
+            conditionalPanel(
+              condition = "input.LA1 == ``",
+              h1("Please select a CPP using the drop down on the left")
+            ),
             conditionalPanel(condition = "input.LA1 != ``",
             fluidRow(
-              column(4,
-                     selectInput("CompLA1", "Select Comparator", unique(CPPdta$CPP), selected = "Scotland")
+              column(
+                6,
+                selectInput(
+                  "CompLA1", 
+                  "Select Comparator", 
+                  unique(CPPdta$CPP), 
+                  selected = "Scotland"
+                )
               ),
-              column(4,
-                     selectInput("Indi1", "Select Indicator", c("All", unique(CPPdta$Indicator)), selected = "All")
-              ),
-              column(2, tags$hr(style="border-color: red;")
-              ),
-              column(2
-              ),
-              column(2, tags$hr(style="border-color: #48CCCD;")
-              )
-            )),
-            hr(),
-            conditionalPanel(
-              condition = "input.Indi1 == 'All'",
-              fluidRow(
-                column(3, plotOutput("plot_1"),
-                plotOutput("plot_2"),
-                plotOutput("plot_3"),
-                plotOutput("plot_4"),
-                plotOutput("plot_17")),
-                column(3, plotOutput("plot_5"),
-                plotOutput("plot_6"),
-                plotOutput("plot_7"),
-                plotOutput("plot_8"),
-                plotOutput("plot_13")),
-                column(3, plotOutput("plot_9"),
-                plotOutput("plot_10"),
-                plotOutput("plot_11"),
-                plotOutput("plot_12")),
-                column(3, plotOutput("plot_14"),
-                plotOutput("plot_15"),
-                plotOutput("plot_16"),
-                plotOutput("plot_18"))
-              )
+              column(6, tags$img(src = "Lgnd1.PNG"))
             ),
-            conditionalPanel(
-              condition = "input.Indi1 != 'All'",
-              mainPanel(
-                plotOutput("Indi1Plot")
+              fluidRow(
+                column(2, plotOutput("plot_1", height = "225px")),
+                column(2, plotOutput("plot_2", height = "225px")),
+                column(2, plotOutput("plot_3", height = "225px")),
+                column(2, plotOutput("plot_4", height = "225px")),
+                column(2, plotOutput("plot_5", height = "225px")),
+                column(2, plotOutput("plot_6", height = "225px"))
+              ),
+              fluidRow(
+                column(2, plotOutput("plot_7", height = "225px")),
+                column(2, plotOutput("plot_8", height = "225px")),
+                column(2, plotOutput("plot_9", height = "225px")),
+                column(2, plotOutput("plot_10",height = "225px")),
+                column(2, plotOutput("plot_11",height = "225px")),
+                column(2, plotOutput("plot_12",height = "225px"))
+              ),
+              fluidRow(
+                column(2, plotOutput("plot_13",height = "225px")),
+                column(2, plotOutput("plot_14",height = "225px")),
+                column(2, plotOutput("plot_15",height = "225px")),
+                column(2, plotOutput("plot_16",height = "225px")),
+                column(2, plotOutput("plot_17",height = "225px")),
+                column(2, plotOutput("plot_18",height = "225px"))
               )
             )
     ),
@@ -139,84 +134,134 @@ body <- dashboardBody(
                               }
                               
                               "))
-              
-              ),
-            fluidRow(
-              column(6,
-                       radioButtons("View","Select Display",c("All", "Top/bottom 10", "Top/bottom 5"),inline = TRUE)),
-              column(5,
-                     tags$div(class = "multicol",checkboxGroupInput("Indi4","Select Indicators", unique(IGZdta$Indicator),selected = unique(IGZdta$Indicator)))),
-              column(1,
-                     actionButton("IndiAll","Select All"),
-                     actionButton("IndiClear", "Clear All"))
             ),
-            fluidPage(
-              fluidRow(
-                column(1,
-                       tags$img(src = "Arrow1.png")),
-                column(10,
-                       DT::dataTableOutput("MyCommunitiesTbl")
+            fluidRow(
+              column(
+                6,
+                radioButtons(
+                  "View","Select Display",
+                  c("All", "Top/bottom 10", "Top/bottom 5"),
+                  inline = TRUE)
                 ),
-                column(1,
-                       tags$img(src = "Arrow2.png"))
+              column(
+                5,
+                tags$div(
+                  class = "multicol",
+                  checkboxGroupInput(
+                    "IndiMyCom",
+                    "Select Indicators", 
+                    unique(IGZdta$Indicator),
+                    selected = unique(IGZdta$Indicator)
+                  )
+                )
+              ),
+              column(
+                1,
+                actionButton("IndiAll","Select All"),
+                actionButton("IndiClear", "Clear All")
               )
-              
-            )
-            
-              )        
-          
           ),
+          fluidPage(
+            fluidRow(
+              column(1,tags$img(src = "Arrow1.png")),
+              column(10,DT::dataTableOutput("MyCommunitiesTbl")),
+              column(1,tags$img(src = "Arrow2.png"))
+            )
+          )
+        )
+      ),
 
 ##====Tab7: Community profile==========##
     tabItem(tabName = "CP",
             fluidPage(
               fluidRow(
                 column(3,
-                       uiOutput("Comm5"),
-                       h3(textOutput("Descrip")),
-                       h3(textOutput("GrpSize"))
+                       uiOutput("CommCP"),
+                       tags$style("#Descrip{
+                            font-size: 12px;
+                            font-style: bold}"),
+                       div(textOutput("Descrip")),
+                       tags$style("#GrpSize{
+                            font-size: 12px;
+                            font-style: bold}"),
+                       div(textOutput("GrpSize"))
                 ),
-                column(3,
-                       checkboxGroupInput("Indi5", "Select Indicators",unique(IGZdta$Indicator),selected = unique(IGZdta$Indicator)),
-                       radioButtons("View5", "Select Display", c("All", "Top/bottom 10", "Top/bottom 5"),inline = TRUE)
+                column(
+                  3,
+                  checkboxGroupInput(
+                    "IndiCP", 
+                    "Select Indicators",
+                    unique(IGZdta$Indicator),
+                    selected = unique(IGZdta$Indicator)
+                  ),
+                  radioButtons(
+                    "ViewCP", 
+                    "Select Display", 
+                    c("All", "Top/bottom 10", "Top/bottom 5"),
+                    inline = TRUE
+                  )
+               ),
+               column(3, plotOutput("CPplot_1", height = "225px")),
+               column(3, plotOutput("CPplot_2", height = "225px"))
+              ),
+              fluidRow(
+                column(1,tags$img(src="Arrow3.png")),
+                column(4, DT::dataTableOutput("CommunityProfileTbl")),
+                column(1, tags$img(src="Arrow4.png")),
+                column(
+                  3,
+                  plotOutput("CPplot_3", height = "225px"),
+                  plotOutput("CPplot_5", height = "225px"),
+                  plotOutput("CPplot_7", height = "225px")
                 ),
-                column(3,
-                       uiOutput("LineChoices5"),
-                       radioButtons("Projections5", "Show projections?", c("Yes","No"), selected = "Yes", inline = TRUE)
-                ),
-                column(3,
-                       plotOutput("5plot_1")
+                column(
+                  3,
+                  plotOutput("CPplot_4", height = "225px"),
+                  plotOutput("CPplot_6", height = "225px"),
+                  plotOutput("CPplot_8", height = "225px")
                 )
               ),
               fluidRow(
-                column(1,
-                       tags$img(src="Arrow3.png")),
-                column(4,
-                       DT::dataTableOutput("CommunityProfileTbl")),
-                column(1,
-                       tags$img(src="Arrow4.png")),
-                column(3, 
-                       plotOutput("5plot_2"),
-                       plotOutput("5plot_4"),
-                       plotOutput("5plot_6")),
-                column(3,
-                       plotOutput("5plot_3"),
-                       plotOutput("5plot_5"),
-                       plotOutput("5plot_7"))
+                column(6),
+                column(2, uiOutput("LineChoicesCP")),
+                column(1, tags$img(src = "ComPrflLgnd.PNG")),
+                column(1),
+                column(
+                  1,
+                  radioButtons(
+                    "ProjectionsCP", 
+                    "Show projections?", 
+                    c("Yes","No"), 
+                    selected = "Yes", 
+                    inline = TRUE
+                  )
+                ),
+                column(
+                  1,
+                  tags$img(src = "DashedLine.PNG")
+                )
               )
-              
-            )     
-            ),
-
+            )   
+    ),            
 ##===tab8: All Communities===##
   tabItem(tabName = "allCom",
           fluidPage(
-            fluidRow(column(6,selectInput("Indi-AllC", "Select Indicator", unique(IGZdta$Indicator)))),
+            fluidRow(
+              column(
+                6,
+                selectInput(
+                  "IndiAllC", 
+                  "Select Indicator", 
+                  unique(IGZdta$Indicator)
+                )
+              )
+            ),
             hr(),
             plotOutput("AllCPlots")
-          ))
-
-))
+          )
+        )
+  )
+)
 
 dashboardPage(
   dashboardHeader(title = "CPOP"),

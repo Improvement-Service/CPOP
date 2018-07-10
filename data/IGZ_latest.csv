@@ -744,7 +744,7 @@ S02001670,Granton West and Salvesen,"Edinburgh, City of",7,"Large Urban, Dep - C
 S02001842,Darnley East,Glasgow City,7,"Large Urban, Dep - Child,HH Inc 40-70%",Child Poverty,Imputed,2016/17,24.147211070748586,No,0.31505593912852436,-0.11911922740858727
 S02001863,Pollokshields West,Glasgow City,7,"Large Urban, Dep - Child,HH Inc 40-70%",Child Poverty,Imputed,2016/17,27.37131643912672,No,0.0272312808142371,-0.6818909960898496
 S02001864,Pollokshields East,Glasgow City,7,"Large Urban, Dep - Child,HH Inc 40-70%",Child Poverty,Imputed,2016/17,30.269474860308577,No,-0.2314952066941294,-1.1877683028937134
-S02001880,Carmunnock South,Glasgow City,7,"Large Urban, Dep - Child,HH Inc 40-70%",Child Poverty,Imputed,2016/17,26.6369357781174,No,0.0927914405102452,-0.5537039003655461
+S02001880,Carmunnock South,Glasgow City,7,"Large Urban, Dep - Child,HH Inc 40-70%",Child Poverty,Imputed,2016/17,26.6369357781174,No,0.0927914405102452,-0.5537039003655462
 S02001906,"Garthamlock, Auchinlea and Gartloch",Glasgow City,7,"Large Urban, Dep - Child,HH Inc 40-70%",Child Poverty,Imputed,2016/17,28.709318720811286,No,-0.0922158232806655,-0.9154410276578239
 S02001962,Scotstoun North and East,Glasgow City,7,"Large Urban, Dep - Child,HH Inc 40-70%",Child Poverty,Imputed,2016/17,15.626945833333329,No,1.0756831986339364,1.368104107263548
 S02002405,Whitlawburn and Greenlees,South Lanarkshire,7,"Large Urban, Dep - Child,HH Inc 40-70%",Child Poverty,Imputed,2016/17,16.336674999999993,No,0.15681624314957998,1.2442199618112546
@@ -987,7 +987,7 @@ S02001673,Cramond,"Edinburgh, City of",8,"Large Urban, Dep - Child,HH Inc 70-100
 S02001678,Corstorphine North,"Edinburgh, City of",8,"Large Urban, Dep - Child,HH Inc 70-100%",S4 Tariff Score,Imputed,2016/17,253.8788081,Yes,1.4075436982132843,0.13161507096034994
 S02001844,Darnley West,Glasgow City,8,"Large Urban, Dep - Child,HH Inc 70-100%",S4 Tariff Score,Imputed,2016/17,271.9902164,Yes,2.660892295292173,0.5717681711982404
 S02001958,Kelvinside and Jordanhill,Glasgow City,8,"Large Urban, Dep - Child,HH Inc 70-100%",S4 Tariff Score,Imputed,2016/17,259.3380702,Yes,2.259299132041942,0.2642889690098032
-S02002193,Cardowan and Millerston,North Lanarkshire,8,"Large Urban, Dep - Child,HH Inc 70-100%",S4 Tariff Score,Imputed,2016/17,213.4519267,Yes,0.7225276156834598,-0.8508605535972104
+S02002193,Cardowan and Millerston,North Lanarkshire,8,"Large Urban, Dep - Child,HH Inc 70-100%",S4 Tariff Score,Imputed,2016/17,213.4519267,Yes,0.7225276156834597,-0.8508605535972104
 S02002272,Paisley Dykebar,Renfrewshire,8,"Large Urban, Dep - Child,HH Inc 70-100%",S4 Tariff Score,Imputed,2016/17,217.0649555,Yes,0.6691752093262727,-0.7630548014863278
 S02002402,"Halfway, Hallside and Drumsagard",South Lanarkshire,8,"Large Urban, Dep - Child,HH Inc 70-100%",S4 Tariff Score,Imputed,2016/17,196.7468209,Yes,0.3172357431781386,-1.256836940738345
 S02002403,Westburn and Newton,South Lanarkshire,8,"Large Urban, Dep - Child,HH Inc 70-100%",S4 Tariff Score,Imputed,2016/17,187.9069172,Yes,0.023802962275475698,-1.471668993271741
@@ -3127,7 +3127,7 @@ S02001885,Kingspark North,Glasgow City,22,"Large Urban, Dep - Average,HH Inc 60-
 S02001960,Victoria Park,Glasgow City,22,"Large Urban, Dep - Average,HH Inc 60-100%",Crime Rate,Raw data,2016/17,230.26998973614783,No,0.5598388288408428,0.5533750121418473
 S02002194,Stepps,North Lanarkshire,22,"Large Urban, Dep - Average,HH Inc 60-100%",Crime Rate,Raw data,2016/17,268.4775226068987,No,0.719208965454118,0.30846626183318543
 S02002407,"Burgh, Eastfield and Silverbank",South Lanarkshire,22,"Large Urban, Dep - Average,HH Inc 60-100%",Crime Rate,Raw data,2016/17,336.850518982001,No,0.32098543909759425,-0.1298018973209472
-S02002413,High Crosshill,South Lanarkshire,22,"Large Urban, Dep - Average,HH Inc 60-100%",Crime Rate,Raw data,2016/17,243.53176789074976,No,0.6985268433269703,0.46836754710343687
+S02002413,High Crosshill,South Lanarkshire,22,"Large Urban, Dep - Average,HH Inc 60-100%",Crime Rate,Raw data,2016/17,243.53176789074976,No,0.6985268433269702,0.46836754710343687
 S02002466,Duntocher,West Dunbartonshire,22,"Large Urban, Dep - Average,HH Inc 60-100%",Crime Rate,Raw data,2016/17,275.33233907513915,No,1.103378576732586,0.26452716373671575
 S02001242,"Braeside, Mannofield, Broomhill and Seafield North",Aberdeen City,22,"Large Urban, Dep - Average,HH Inc 60-100%",Depopulation,Imputed,2016/17,87.131473523408,No,0.45634503814260785,0.8667860028475465
 S02001243,Hazlehead,Aberdeen City,22,"Large Urban, Dep - Average,HH Inc 60-100%",Depopulation,Imputed,2016/17,91.19038218890474,No,0.11438556949833872,0.43466779420189294
@@ -3323,7 +3323,7 @@ S02001877,Merrylee and Millbrae,Glasgow City,22,"Large Urban, Dep - Average,HH I
 S02001878,Muirend and Old Cathcart,Glasgow City,22,"Large Urban, Dep - Average,HH Inc 60-100%",S4 Tariff Score,Imputed,2016/17,248.3667634,Yes,1.9110576769439318,0.7458736380678405
 S02001885,Kingspark North,Glasgow City,22,"Large Urban, Dep - Average,HH Inc 60-100%",S4 Tariff Score,Imputed,2016/17,224.5765359,Yes,1.155929450859442,0.001209364400748628
 S02001960,Victoria Park,Glasgow City,22,"Large Urban, Dep - Average,HH Inc 60-100%",S4 Tariff Score,Imputed,2016/17,202.7223073,Yes,0.46225197866364537,-0.6828556899150874
-S02002194,Stepps,North Lanarkshire,22,"Large Urban, Dep - Average,HH Inc 60-100%",S4 Tariff Score,Imputed,2016/17,218.8244269,Yes,0.9534091342342352,-0.17883893780817134
+S02002194,Stepps,North Lanarkshire,22,"Large Urban, Dep - Average,HH Inc 60-100%",S4 Tariff Score,Imputed,2016/17,218.8244269,Yes,0.9534091342342351,-0.17883893780817134
 S02002407,"Burgh, Eastfield and Silverbank",South Lanarkshire,22,"Large Urban, Dep - Average,HH Inc 60-100%",S4 Tariff Score,Imputed,2016/17,176.6142123,Yes,-0.3510483839807217,-1.5000721541126854
 S02002413,High Crosshill,South Lanarkshire,22,"Large Urban, Dep - Average,HH Inc 60-100%",S4 Tariff Score,Imputed,2016/17,231.7189811,Yes,1.4781056541998452,0.22477695185089
 S02002466,Duntocher,West Dunbartonshire,22,"Large Urban, Dep - Average,HH Inc 60-100%",S4 Tariff Score,Imputed,2016/17,205.7455515,Yes,0.984663601979596,-0.5882243146450844
@@ -3512,7 +3512,7 @@ S02002111,Saltcoats Central,North Ayrshire,23,"Other Urban, Dep - OP, HH Inc 0-3
 S02002117,Stevenston North West,North Ayrshire,23,"Other Urban, Dep - OP, HH Inc 0-30%",S4 Tariff Score,Imputed,2016/17,196.7168555,Yes,-0.1627338764206047,0.21141264387496095
 S02002127,Largs South,North Ayrshire,23,"Other Urban, Dep - OP, HH Inc 0-30%",S4 Tariff Score,Imputed,2016/17,213.198458,Yes,0.39491979113403247,0.967073252279769
 S02002128,Largs Central and Cumbrae,North Ayrshire,23,"Other Urban, Dep - OP, HH Inc 0-30%",S4 Tariff Score,Imputed,2016/17,194.7502649,Yes,-0.2292733079272489,0.12124695462968328
-S02002155,Motherwell South,North Lanarkshire,23,"Other Urban, Dep - OP, HH Inc 0-30%",S4 Tariff Score,Imputed,2016/17,192.9694732,Yes,-0.15769942790523164,0.03959990972223454
+S02002155,Motherwell South,North Lanarkshire,23,"Other Urban, Dep - OP, HH Inc 0-30%",S4 Tariff Score,Imputed,2016/17,192.9694732,Yes,-0.15769942790523162,0.03959990972223454
 S02002299,Galashiels South,Scottish Borders,23,"Other Urban, Dep - OP, HH Inc 0-30%",S4 Tariff Score,Imputed,2016/17,182.3653362,Yes,-0.7584437053537139,-0.44658634656127627
 S02002317,Hawick Central,Scottish Borders,23,"Other Urban, Dep - OP, HH Inc 0-30%",S4 Tariff Score,Imputed,2016/17,204.0904885,Yes,0.034666708571119906,0.5494843816767776
 S02002318,Hawick West End,Scottish Borders,23,"Other Urban, Dep - OP, HH Inc 0-30%",S4 Tariff Score,Imputed,2016/17,203.090073,Yes,-0.001855012443550352,0.5036165975588435
@@ -3751,7 +3751,7 @@ S02002052,Penicuik Southeast,Midlothian,25,"Other Urban, Dep - OP, HH Inc 50-70%
 S02002061,Bonnyrigg North,Midlothian,25,"Other Urban, Dep - OP, HH Inc 50-70%",S4 Tariff Score,Imputed,2016/17,207.2157209,Yes,0.3715717973877858,-1.0992143042850577
 S02002087,Elgin Central West,Moray,25,"Other Urban, Dep - OP, HH Inc 50-70%",S4 Tariff Score,Imputed,2016/17,249.7116584,Yes,1.0301670683709043,0.6057991638348041
 S02002113,Ardrossan North West,North Ayrshire,25,"Other Urban, Dep - OP, HH Inc 50-70%",S4 Tariff Score,Imputed,2016/17,238.8595864,Yes,1.2631619639355236,0.17039451093106636
-S02002199,Condorrat,North Lanarkshire,25,"Other Urban, Dep - OP, HH Inc 50-70%",S4 Tariff Score,Imputed,2016/17,199.1053728,Yes,0.10598894149177569,-1.424616061609281
+S02002199,Condorrat,North Lanarkshire,25,"Other Urban, Dep - OP, HH Inc 50-70%",S4 Tariff Score,Imputed,2016/17,199.1053728,Yes,0.10598894149177567,-1.424616061609281
 S02002240,Gannochy and Walnut Grove,Perth and Kinross,25,"Other Urban, Dep - OP, HH Inc 50-70%",S4 Tariff Score,Imputed,2016/17,236.6716734,Yes,0.8470288188297429,0.08261150503610178
 S02002337,Belmont,South Ayrshire,25,"Other Urban, Dep - OP, HH Inc 50-70%",S4 Tariff Score,Imputed,2016/17,276.7524339,Yes,2.0714173784460574,1.6907237267040345
 S02002338,Holmston and Forehill,South Ayrshire,25,"Other Urban, Dep - OP, HH Inc 50-70%",S4 Tariff Score,Imputed,2016/17,245.0550217,Yes,0.8512048246516027,0.4189665215465562
@@ -3866,7 +3866,7 @@ S02001791,Kirkcaldy Dunnikier,Fife,26,"Other Urban, Dep - OP, HH Inc 70-100%",S4
 S02001994,Inverness Lochardil and Holm Mains,Highland,26,"Other Urban, Dep - OP, HH Inc 70-100%",S4 Tariff Score,Imputed,2016/17,220.6574283,Yes,0.5687285578493794,-0.6246641866222346
 S02001999,Inverness Crown and Haugh,Highland,26,"Other Urban, Dep - OP, HH Inc 70-100%",S4 Tariff Score,Imputed,2016/17,243.1330293,Yes,1.1935877898198424,0.25189479573540785
 S02002063,Eskbank,Midlothian,26,"Other Urban, Dep - OP, HH Inc 70-100%",S4 Tariff Score,Imputed,2016/17,265.8217407,Yes,2.8616092401575335,1.1367651836636437
-S02002156,Ladywell,North Lanarkshire,26,"Other Urban, Dep - OP, HH Inc 70-100%",S4 Tariff Score,Imputed,2016/17,262.6440793,Yes,2.836545013592444,1.0128348984151563
+S02002156,Ladywell,North Lanarkshire,26,"Other Urban, Dep - OP, HH Inc 70-100%",S4 Tariff Score,Imputed,2016/17,262.6440793,Yes,2.8365450135924437,1.0128348984151563
 S02002232,Burghmuir and Oakbank,Perth and Kinross,26,"Other Urban, Dep - OP, HH Inc 70-100%",S4 Tariff Score,Imputed,2016/17,245.7871749,Yes,1.1797671919426693,0.3554077192013924
 S02002335,Alloway and Doonfoot,South Ayrshire,26,"Other Urban, Dep - OP, HH Inc 70-100%",S4 Tariff Score,Imputed,2016/17,269.306417,Yes,1.7847781020339064,1.2726691940335457
 S02002399,Bothwell South,South Lanarkshire,26,"Other Urban, Dep - OP, HH Inc 70-100%",S4 Tariff Score,Imputed,2016/17,231.6364134,Yes,1.4753648924623914,-0.1964786174543298
@@ -4072,8 +4072,8 @@ S02002105,Irvine Castlepark North,North Ayrshire,27,"Other Urban, Dep - Child, H
 S02002106,Irvine Castlepark South,North Ayrshire,27,"Other Urban, Dep - Child, HH Inc 10-20%",S4 Tariff Score,Imputed,2016/17,169.5355048,Yes,-1.0824126459421861,0.07516678207058874
 S02002110,Stevenston Ardeer,North Ayrshire,27,"Other Urban, Dep - Child, HH Inc 10-20%",S4 Tariff Score,Imputed,2016/17,179.6938147,Yes,-0.738707064407164,0.5270641232423912
 S02002118,Stevenston Hayocks,North Ayrshire,27,"Other Urban, Dep - Child, HH Inc 10-20%",S4 Tariff Score,Imputed,2016/17,155.8203607,Yes,-1.5464634206411485,-0.5349580530240906
-S02002139,Craigneuk Wishaw,North Lanarkshire,27,"Other Urban, Dep - Child, HH Inc 10-20%",S4 Tariff Score,Imputed,2016/17,162.9358892,Yes,-1.4483833224246383,-0.21842031772796788
-S02002202,Cumbernauld Central,North Lanarkshire,27,"Other Urban, Dep - Child, HH Inc 10-20%",S4 Tariff Score,Imputed,2016/17,165.7813264,Yes,-1.3261015472323596,-0.09183966427188948
+S02002139,Craigneuk Wishaw,North Lanarkshire,27,"Other Urban, Dep - Child, HH Inc 10-20%",S4 Tariff Score,Imputed,2016/17,162.9358892,Yes,-1.448383322424638,-0.21842031772796788
+S02002202,Cumbernauld Central,North Lanarkshire,27,"Other Urban, Dep - Child, HH Inc 10-20%",S4 Tariff Score,Imputed,2016/17,165.7813264,Yes,-1.3261015472323594,-0.09183966427188948
 S02002300,Langlee,Scottish Borders,27,"Other Urban, Dep - Child, HH Inc 10-20%",S4 Tariff Score,Imputed,2016/17,174.1040175,Yes,-1.0600359705422058,0.2783992845796538
 S02002316,Burnfoot,Scottish Borders,27,"Other Urban, Dep - Child, HH Inc 10-20%",S4 Tariff Score,Imputed,2016/17,170.8920586,Yes,-1.1772935168880854,0.13551373559053467
 S02002343,"Lochside, Braehead and Whitletts",South Ayrshire,27,"Other Urban, Dep - Child, HH Inc 0-10%",S4 Tariff Score,Imputed,2016/17,179.8440889,Yes,-1.6591325601525257,0.533749143890041
@@ -4320,10 +4320,10 @@ S02002101,Irvine Broomlands,North Ayrshire,28,"Other Urban, Dep - Child, HH Inc 
 S02002102,Irvine Bourtreehill,North Ayrshire,28,"Other Urban, Dep - Child, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,175.261809,Yes,-0.888663613427689,-0.1679921852854416
 S02002116,Saltcoats North East,North Ayrshire,28,"Other Urban, Dep - Child, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,196.5006284,Yes,-0.17004990259825958,0.551282985316513
 S02002120,Kilwinning Pennyburn,North Ayrshire,28,"Other Urban, Dep - Child, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,179.9387501,Yes,-0.7304196952557745,-0.009602608904478217
-S02002140,Pather,North Lanarkshire,28,"Other Urban, Dep - Child, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,175.7989685,Yes,-0.8955965059582464,-0.1498007084558509
-S02002170,Kirkshaws,North Lanarkshire,28,"Other Urban, Dep - Child, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,159.469799,Yes,-1.5973374664952076,-0.7028053720719807
-S02002174,Townhead,North Lanarkshire,28,"Other Urban, Dep - Child, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,215.1814013,Yes,0.7968512465961206,1.1839271950329844
-S02002183,Petersburn,North Lanarkshire,28,"Other Urban, Dep - Child, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,152.5168528,Yes,-1.8961381584072978,-0.9382742778526475
+S02002140,Pather,North Lanarkshire,28,"Other Urban, Dep - Child, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,175.7989685,Yes,-0.8955965059582462,-0.1498007084558509
+S02002170,Kirkshaws,North Lanarkshire,28,"Other Urban, Dep - Child, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,159.469799,Yes,-1.5973374664952074,-0.7028053720719807
+S02002174,Townhead,North Lanarkshire,28,"Other Urban, Dep - Child, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,215.1814013,Yes,0.7968512465961205,1.1839271950329844
+S02002183,Petersburn,North Lanarkshire,28,"Other Urban, Dep - Child, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,152.5168528,Yes,-1.8961381584072976,-0.9382742778526475
 S02002234,Letham,Perth and Kinross,28,"Other Urban, Dep - Child, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,180.8379714,Yes,-1.1910395385011145,0.020850475223465656
 S02002235,"Hillyland, Tulloch and Inveralmond",Perth and Kinross,28,"Other Urban, Dep - Child, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,199.4447301,Yes,-0.5118467789208769,0.6509881154678144
 S02002342,Dalmilling,South Ayrshire,28,"Other Urban, Dep - Child, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,187.1188032,Yes,-1.3790876890406805,0.23355751318938905
@@ -4448,10 +4448,10 @@ S02002065,Thornybank,Midlothian,29,"Other Urban, Dep - Child, HH Inc 40-60%",S4 
 S02002068,Easthouses,Midlothian,29,"Other Urban, Dep - Child, HH Inc 40-60%",S4 Tariff Score,Imputed,2016/17,143.20456,Yes,-2.348117885346118,-1.8235100839221015
 S02002085,New Elgin East,Moray,29,"Other Urban, Dep - Child, HH Inc 40-60%",S4 Tariff Score,Imputed,2016/17,185.1565224,Yes,-0.692537762410639,-0.14231173923539756
 S02002114,Ardrossan North East,North Ayrshire,29,"Other Urban, Dep - Child, HH Inc 40-60%",S4 Tariff Score,Imputed,2016/17,206.8015995,Yes,0.1784826089272023,0.7251010278759709
-S02002137,Muirhouse,North Lanarkshire,29,"Other Urban, Dep - Child, HH Inc 40-60%",S4 Tariff Score,Imputed,2016/17,218.5074979,Yes,0.9397892094191974,1.1942074984030975
-S02002153,Clydesdale and New Stevenston,North Lanarkshire,29,"Other Urban, Dep - Child, HH Inc 40-60%",S4 Tariff Score,Imputed,2016/17,187.2370257,Yes,-0.4040495692812339,-0.05893688609443388
-S02002157,Motherwell West,North Lanarkshire,29,"Other Urban, Dep - Child, HH Inc 40-60%",S4 Tariff Score,Imputed,2016/17,216.8719431,Yes,0.869501752585411,1.1286636748225256
-S02002180,Chapelhall West,North Lanarkshire,29,"Other Urban, Dep - Child, HH Inc 40-60%",S4 Tariff Score,Imputed,2016/17,214.7935519,Yes,0.7801835397357271,1.0453734627524602
+S02002137,Muirhouse,North Lanarkshire,29,"Other Urban, Dep - Child, HH Inc 40-60%",S4 Tariff Score,Imputed,2016/17,218.5074979,Yes,0.9397892094191973,1.1942074984030975
+S02002153,Clydesdale and New Stevenston,North Lanarkshire,29,"Other Urban, Dep - Child, HH Inc 40-60%",S4 Tariff Score,Imputed,2016/17,187.2370257,Yes,-0.40404956928123387,-0.05893688609443388
+S02002157,Motherwell West,North Lanarkshire,29,"Other Urban, Dep - Child, HH Inc 40-60%",S4 Tariff Score,Imputed,2016/17,216.8719431,Yes,0.8695017525854107,1.1286636748225256
+S02002180,Chapelhall West,North Lanarkshire,29,"Other Urban, Dep - Child, HH Inc 40-60%",S4 Tariff Score,Imputed,2016/17,214.7935519,Yes,0.780183539735727,1.0453734627524602
 S02002483,Dedridge East,West Lothian,29,"Other Urban, Dep - Child, HH Inc 40-60%",S4 Tariff Score,Imputed,2016/17,190.7354174,Yes,-1.0147435288398934,0.08125894739309987
 S02002488,Howden,West Lothian,29,"Other Urban, Dep - Child, HH Inc 40-60%",S4 Tariff Score,Imputed,2016/17,179.1978104,Yes,-1.386015538809591,-0.38110335177900484
 S02002511,Broxburn Kirkhill,West Lothian,29,"Other Urban, Dep - Child, HH Inc 40-60%",S4 Tariff Score,Imputed,2016/17,204.9817418,Yes,-0.5563069141529515,0.6521713822104477
@@ -4575,9 +4575,9 @@ S02001702,High Bonnybridge and Greenhill,Falkirk,30,"Other Urban, Dep - Child, H
 S02001726,Maddiston and Rumford,Falkirk,30,"Other Urban, Dep - Child, HH Inc 60-80%",S4 Tariff Score,Imputed,2016/17,187.9085414,Yes,-0.64224295010513,-0.5111441086270069
 S02001792,Kirkcaldy Chapel,Fife,30,"Other Urban, Dep - Child, HH Inc 60-80%",S4 Tariff Score,Imputed,2016/17,182.4008425,Yes,-0.47074784510200646,-0.679155198351915
 S02002089,Elgin Bishopmill West and Newfield,Moray,30,"Other Urban, Dep - Child, HH Inc 60-80%",S4 Tariff Score,Imputed,2016/17,180.2618207,Yes,-0.8231567462173597,-0.744405566988323
-S02002152,Carfin North,North Lanarkshire,30,"Other Urban, Dep - Child, HH Inc 60-80%",S4 Tariff Score,Imputed,2016/17,195.3610379,Yes,-0.054922681680367534,-0.2838074148698243
-S02002154,Carfin and Cleekhimin,North Lanarkshire,30,"Other Urban, Dep - Child, HH Inc 60-80%",S4 Tariff Score,Imputed,2016/17,205.9170516,Yes,0.3987187109991141,0.03820135813845757
-S02002158,Motherwell North,North Lanarkshire,30,"Other Urban, Dep - Child, HH Inc 60-80%",S4 Tariff Score,Imputed,2016/17,203.4074341,Yes,0.29086868255581944,-0.038353947193811785
+S02002152,Carfin North,North Lanarkshire,30,"Other Urban, Dep - Child, HH Inc 60-80%",S4 Tariff Score,Imputed,2016/17,195.3610379,Yes,-0.05492268168036752,-0.2838074148698243
+S02002154,Carfin and Cleekhimin,North Lanarkshire,30,"Other Urban, Dep - Child, HH Inc 60-80%",S4 Tariff Score,Imputed,2016/17,205.9170516,Yes,0.39871871099911405,0.03820135813845757
+S02002158,Motherwell North,North Lanarkshire,30,"Other Urban, Dep - Child, HH Inc 60-80%",S4 Tariff Score,Imputed,2016/17,203.4074341,Yes,0.2908686825558194,-0.038353947193811785
 S02002361,Carluke East,South Lanarkshire,30,"Other Urban, Dep - Child, HH Inc 60-80%",S4 Tariff Score,Imputed,2016/17,178.8675765,Yes,-0.276249953360656,-0.7869366660258229
 S02002416,Nerston and EK Landward Area,South Lanarkshire,30,"Other Urban, Dep - Child, HH Inc 60-80%",S4 Tariff Score,Imputed,2016/17,197.7091185,Yes,0.3491783604742929,-0.2121797555640636
 S02002491,Knightsridge,West Lothian,30,"Other Urban, Dep - Child, HH Inc 60-80%",S4 Tariff Score,Imputed,2016/17,217.5650112,Yes,-0.15138622980929256,0.3935196899862112
@@ -4742,7 +4742,7 @@ S02001993,Inverness Slackbuie,Highland,31,"Other Urban, Dep - Child, HH Inc 80-1
 S02002056,Pentland,Midlothian,31,"Other Urban, Dep - Child, HH Inc 80-100%",S4 Tariff Score,Imputed,2016/17,203.5602596,Yes,0.21625950116534534,-0.6300804522232927
 S02002062,Newbattle and Dalhousie,Midlothian,31,"Other Urban, Dep - Child, HH Inc 80-100%",S4 Tariff Score,Imputed,2016/17,218.4411618,Yes,0.8485154330072605,0.0039962244098565615
 S02002178,Greenend and Carnbroe,North Lanarkshire,31,"Other Urban, Dep - Child, HH Inc 80-100%",S4 Tariff Score,Imputed,2016/17,189.7149203,Yes,-0.29756282256007716,-1.2200316939028686
-S02002181,Chapelhall East,North Lanarkshire,31,"Other Urban, Dep - Child, HH Inc 80-100%",S4 Tariff Score,Imputed,2016/17,225.579658,Yes,1.2437130814596684,0.3081682353417177
+S02002181,Chapelhall East,North Lanarkshire,31,"Other Urban, Dep - Child, HH Inc 80-100%",S4 Tariff Score,Imputed,2016/17,225.579658,Yes,1.2437130814596682,0.3081682353417177
 S02002207,Carrickstone,North Lanarkshire,31,"Other Urban, Dep - Child, HH Inc 80-100%",S4 Tariff Score,Imputed,2016/17,248.5536017,Yes,2.2310111384343396,1.2870901901176233
 S02002388,Little Earnock,South Lanarkshire,31,"Other Urban, Dep - Child, HH Inc 80-100%",S4 Tariff Score,Imputed,2016/17,205.9764288,Yes,0.6236044101510829,-0.5271272497945191
 S02002429,Crosshouse and Lindsayfield,South Lanarkshire,31,"Other Urban, Dep - Child, HH Inc 80-100%",S4 Tariff Score,Imputed,2016/17,197.8009159,Yes,0.35222549393589836,-0.875486642238039
@@ -4908,11 +4908,11 @@ S02002041,"Lower Bow and Larkfield, Fancy Farm, Mallard Bowl",Inverclyde,32,"Oth
 S02002050,Port Glasgow Upper East,Inverclyde,32,"Other Urban, Dep -Student, HH Inc 0-30%",S4 Tariff Score,Imputed,2016/17,169.4067526,Yes,-1.10136914123135,-0.10659212549676159
 S02002121,Kilwinning West and Blacklands,North Ayrshire,32,"Other Urban, Dep -Student, HH Inc 0-30%",S4 Tariff Score,Imputed,2016/17,180.6934794,Yes,-0.7048834913486637,0.37795392851959875
 S02002162,Orbiston,North Lanarkshire,32,"Other Urban, Dep -Student, HH Inc 0-30%",S4 Tariff Score,Imputed,2016/17,184.4158603,Yes,-0.5252882714472962,0.5377580071157834
-S02002163,Bellshill South,North Lanarkshire,32,"Other Urban, Dep -Student, HH Inc 0-30%",S4 Tariff Score,Imputed,2016/17,182.6075515,Yes,-0.6029997774892559,0.4601262092518486
-S02002167,Viewpark,North Lanarkshire,32,"Other Urban, Dep -Student, HH Inc 0-30%",S4 Tariff Score,Imputed,2016/17,132.8306195,Yes,-2.7421478875179366,-1.6768277907015035
-S02002187,Thrashbush,North Lanarkshire,32,"Other Urban, Dep -Student, HH Inc 0-30%",S4 Tariff Score,Imputed,2016/17,198.1307756,Yes,0.06410593113631112,1.1265476719620708
+S02002163,Bellshill South,North Lanarkshire,32,"Other Urban, Dep -Student, HH Inc 0-30%",S4 Tariff Score,Imputed,2016/17,182.6075515,Yes,-0.6029997774892558,0.4601262092518486
+S02002167,Viewpark,North Lanarkshire,32,"Other Urban, Dep -Student, HH Inc 0-30%",S4 Tariff Score,Imputed,2016/17,132.8306195,Yes,-2.742147887517936,-1.6768277907015035
+S02002187,Thrashbush,North Lanarkshire,32,"Other Urban, Dep -Student, HH Inc 0-30%",S4 Tariff Score,Imputed,2016/17,198.1307756,Yes,0.0641059311363111,1.1265476719620708
 S02002188,Airdrie North,North Lanarkshire,32,"Other Urban, Dep -Student, HH Inc 0-30%",S4 Tariff Score,Imputed,2016/17,173.3596018,Yes,-1.0004275282071042,0.06310609755066157
-S02002201,Seafar,North Lanarkshire,32,"Other Urban, Dep -Student, HH Inc 0-30%",S4 Tariff Score,Imputed,2016/17,187.6470454,Yes,-0.38642910070093833,0.6764747509286541
+S02002201,Seafar,North Lanarkshire,32,"Other Urban, Dep -Student, HH Inc 0-30%",S4 Tariff Score,Imputed,2016/17,187.6470454,Yes,-0.3864291007009383,0.6764747509286541
 S02002239,Central and South Inch,Perth and Kinross,32,"Other Urban, Dep -Student, HH Inc 0-30%",S4 Tariff Score,Imputed,2016/17,168.4539314,Yes,-1.64308765918492,-0.14749731978596345
 S02002298,Galashiels West,Scottish Borders,32,"Other Urban, Dep -Student, HH Inc 0-30%",S4 Tariff Score,Imputed,2016/17,173.373637,Yes,-1.0866996446411727,0.06370863723270012
 S02002340,"Ayr North Harbour, Wallacetown and Newton South",South Ayrshire,32,"Other Urban, Dep -Student, HH Inc 0-30%",S4 Tariff Score,Imputed,2016/17,228.6855717,Yes,0.22105217172586594,2.4382836733623603
@@ -5036,10 +5036,10 @@ S02001351,Arbroath Kirkton,Angus,33,"Other Urban, Dep -Student, HH Inc 30-70%",S
 S02001401,Sauchie,Clackmannanshire,33,"Other Urban, Dep -Student, HH Inc 30-70%",S4 Tariff Score,Imputed,2016/17,153.1746864,Yes,-1.2229442060778568,-1.9066572796767298
 S02001498,Dean and New Farm Loch North,East Ayrshire,33,"Other Urban, Dep -Student, HH Inc 30-70%",S4 Tariff Score,Imputed,2016/17,195.1110737,Yes,0.2928472144363078,0.14529311256400362
 S02002044,"Bow Farm, Barrs Cottage, Cowdenknowes and Overton",Inverclyde,33,"Other Urban, Dep -Student, HH Inc 30-70%",S4 Tariff Score,Imputed,2016/17,201.1705458,Yes,0.33608853484189455,0.44178351035196073
-S02002169,Kirkwood and Bargeddie,North Lanarkshire,33,"Other Urban, Dep -Student, HH Inc 30-70%",S4 Tariff Score,Imputed,2016/17,170.3117288,Yes,-1.1314089186945187,-1.0681405847842713
-S02002172,Drumpellier and Langloan,North Lanarkshire,33,"Other Urban, Dep -Student, HH Inc 30-70%",S4 Tariff Score,Imputed,2016/17,218.6989066,Yes,0.9480149385350057,1.299447442192295
-S02002184,Gartlea,North Lanarkshire,33,"Other Urban, Dep -Student, HH Inc 30-70%",S4 Tariff Score,Imputed,2016/17,171.8634778,Yes,-1.0647229899476667,-0.9922133966259064
-S02002200,Greenfaulds,North Lanarkshire,33,"Other Urban, Dep -Student, HH Inc 30-70%",S4 Tariff Score,Imputed,2016/17,182.18382,Yes,-0.6212095063930908,-0.48723832393173083
+S02002169,Kirkwood and Bargeddie,North Lanarkshire,33,"Other Urban, Dep -Student, HH Inc 30-70%",S4 Tariff Score,Imputed,2016/17,170.3117288,Yes,-1.1314089186945184,-1.0681405847842713
+S02002172,Drumpellier and Langloan,North Lanarkshire,33,"Other Urban, Dep -Student, HH Inc 30-70%",S4 Tariff Score,Imputed,2016/17,218.6989066,Yes,0.9480149385350055,1.299447442192295
+S02002184,Gartlea,North Lanarkshire,33,"Other Urban, Dep -Student, HH Inc 30-70%",S4 Tariff Score,Imputed,2016/17,171.8634778,Yes,-1.0647229899476665,-0.9922133966259064
+S02002200,Greenfaulds,North Lanarkshire,33,"Other Urban, Dep -Student, HH Inc 30-70%",S4 Tariff Score,Imputed,2016/17,182.18382,Yes,-0.6212095063930907,-0.48723832393173083
 S02002362,Carluke South,South Lanarkshire,33,"Other Urban, Dep -Student, HH Inc 30-70%",S4 Tariff Score,Imputed,2016/17,204.5783758,Yes,0.5771972779512928,0.6085288729213713
 S02002421,St Leonards South,South Lanarkshire,33,"Other Urban, Dep -Student, HH Inc 30-70%",S4 Tariff Score,Imputed,2016/17,201.6503352,Yes,0.4800035612534623,0.4652596395778781
 S02002431,Greenhills,South Lanarkshire,33,"Other Urban, Dep -Student, HH Inc 30-70%",S4 Tariff Score,Imputed,2016/17,171.1594184,Yes,-0.532115440551472,-1.0266630727903285
@@ -5163,10 +5163,10 @@ S02001708,Carron,Falkirk,34,"Other Urban, Dep -Student, HH Inc 70-100%",S4 Tarif
 S02001712,Falkirk - Merchiston and New Carron Village,Falkirk,34,"Other Urban, Dep -Student, HH Inc 70-100%",S4 Tariff Score,Imputed,2016/17,222.5510286,Yes,0.5908727871447287,-0.481247740180373
 S02001837,St Andrews North and Strathkinness,Fife,34,"Other Urban, Dep -Student, HH Inc 70-100%",S4 Tariff Score,Imputed,2016/17,254.5624628,Yes,2.066283772315131,1.7987999386704385
 S02002104,Irvine Perceton and Lawthorn,North Ayrshire,34,"Other Urban, Dep -Student, HH Inc 70-100%",S4 Tariff Score,Imputed,2016/17,231.4023969,Yes,1.0108485693900033,0.1492001685568337
-S02002168,Birkenshaw,North Lanarkshire,34,"Other Urban, Dep -Student, HH Inc 70-100%",S4 Tariff Score,Imputed,2016/17,226.8961376,Yes,1.3002883812035606,-0.17176283463359843
-S02002182,Craigneuk Airdrie,North Lanarkshire,34,"Other Urban, Dep -Student, HH Inc 70-100%",S4 Tariff Score,Imputed,2016/17,225.423656,Yes,1.2370089442207424,-0.2766418673334376
-S02002198,Westfield,North Lanarkshire,34,"Other Urban, Dep -Student, HH Inc 70-100%",S4 Tariff Score,Imputed,2016/17,215.6572453,Yes,0.817300493915511,-0.9722646222563869
-S02002208,Balloch West,North Lanarkshire,34,"Other Urban, Dep -Student, HH Inc 70-100%",S4 Tariff Score,Imputed,2016/17,244.7233849,Yes,2.0664087674260165,1.098001386885237
+S02002168,Birkenshaw,North Lanarkshire,34,"Other Urban, Dep -Student, HH Inc 70-100%",S4 Tariff Score,Imputed,2016/17,226.8961376,Yes,1.3002883812035604,-0.17176283463359843
+S02002182,Craigneuk Airdrie,North Lanarkshire,34,"Other Urban, Dep -Student, HH Inc 70-100%",S4 Tariff Score,Imputed,2016/17,225.423656,Yes,1.2370089442207421,-0.2766418673334376
+S02002198,Westfield,North Lanarkshire,34,"Other Urban, Dep -Student, HH Inc 70-100%",S4 Tariff Score,Imputed,2016/17,215.6572453,Yes,0.8173004939155109,-0.9722646222563869
+S02002208,Balloch West,North Lanarkshire,34,"Other Urban, Dep -Student, HH Inc 70-100%",S4 Tariff Score,Imputed,2016/17,244.7233849,Yes,2.066408767426016,1.098001386885237
 S02002283,Erskine East and Inchinnan,Renfrewshire,34,"Other Urban, Dep -Student, HH Inc 70-100%",S4 Tariff Score,Imputed,2016/17,232.6623636,Yes,1.1569339262147855,0.23894260658119024
 S02002381,Eddlewood,South Lanarkshire,34,"Other Urban, Dep -Student, HH Inc 70-100%",S4 Tariff Score,Imputed,2016/17,210.3141707,Yes,0.7675919140596382,-1.3528306651129334
 S02002393,Low Blantyre and Bardykes,South Lanarkshire,34,"Other Urban, Dep -Student, HH Inc 70-100%",S4 Tariff Score,Imputed,2016/17,208.1620697,Yes,0.6961548257559039,-1.5061162960860857
@@ -5612,7 +5612,7 @@ S02001807,Glenrothes Balgeddie and Town Park,Fife,37,"Other Urban, Dep - Adult, 
 S02001810,Glenrothes Balfarg Pitcairn and Coul,Fife,37,"Other Urban, Dep - Adult, HH Inc 70-100%",S4 Tariff Score,Imputed,2016/17,204.0765254,Yes,0.2913178155329446,-0.8998719633836079
 S02001997,Inverness Drakies,Highland,37,"Other Urban, Dep - Adult, HH Inc 70-100%",S4 Tariff Score,Imputed,2016/17,179.8253152,Yes,-0.5664723576410255,-2.017099233224759
 S02002037,"West Braeside, East Inverkip and West Gourock",Inverclyde,37,"Other Urban, Dep - Adult, HH Inc 70-100%",S4 Tariff Score,Imputed,2016/17,227.830594,Yes,1.5425782852402392,0.19445252561023985
-S02002209,Balloch East,North Lanarkshire,37,"Other Urban, Dep - Adult, HH Inc 70-100%",S4 Tariff Score,Imputed,2016/17,209.0719954,Yes,0.5343014356840479,-0.669736012903357
+S02002209,Balloch East,North Lanarkshire,37,"Other Urban, Dep - Adult, HH Inc 70-100%",S4 Tariff Score,Imputed,2016/17,209.0719954,Yes,0.5343014356840478,-0.669736012903357
 S02002359,Carluke West,South Lanarkshire,37,"Other Urban, Dep - Adult, HH Inc 70-100%",S4 Tariff Score,Imputed,2016/17,222.3218171,Yes,1.166175110757568,-0.05933092376792701
 S02002363,"Crossford, Braidwood and Yieldshields",South Lanarkshire,37,"Other Urban, Dep - Adult, HH Inc 70-100%",S4 Tariff Score,Imputed,2016/17,241.4575086,Yes,1.8013674569525229,0.8222298806107149
 S02002389,Earnock,South Lanarkshire,37,"Other Urban, Dep - Adult, HH Inc 70-100%",S4 Tariff Score,Imputed,2016/17,222.716292,Yes,1.1792693559927623,-0.04115788778690749
@@ -5869,10 +5869,10 @@ S02002066,Dalkeith,Midlothian,38,"Other Urban, Dep - Average, HH Inc 0-20%",S4 T
 S02002107,Irvine East,North Ayrshire,38,"Other Urban, Dep - Average, HH Inc 0-20%",S4 Tariff Score,Imputed,2016/17,173.7269723,Yes,-0.9405946871720324,-0.19580034731129436
 S02002109,Irvine Fullarton,North Ayrshire,38,"Other Urban, Dep - Average, HH Inc 0-20%",S4 Tariff Score,Imputed,2016/17,170.1329012,Yes,-1.0621997877905638,-0.31872662398633606
 S02002112,Ardrossan Central,North Ayrshire,38,"Other Urban, Dep - Average, HH Inc 0-20%",S4 Tariff Score,Imputed,2016/17,188.6131279,Yes,-0.4369228345030333,0.3133436376013348
-S02002165,Bellshill Central,North Lanarkshire,38,"Other Urban, Dep - Average, HH Inc 0-20%",S4 Tariff Score,Imputed,2016/17,198.6726954,Yes,0.0873947653287671,0.6574061626126672
-S02002176,Cliftonville,North Lanarkshire,38,"Other Urban, Dep - Average, HH Inc 0-20%",S4 Tariff Score,Imputed,2016/17,180.6148329,Yes,-0.6886362371049063,0.0397818196120918
-S02002177,Shawhead and Whifflet,North Lanarkshire,38,"Other Urban, Dep - Average, HH Inc 0-20%",S4 Tariff Score,Imputed,2016/17,144.5816025,Yes,-2.237153062295901,-1.1926453434581976
-S02002203,Kildrum,North Lanarkshire,38,"Other Urban, Dep - Average, HH Inc 0-20%",S4 Tariff Score,Imputed,2016/17,187.0678541,Yes,-0.4113196659679989,0.2604913847125449
+S02002165,Bellshill Central,North Lanarkshire,38,"Other Urban, Dep - Average, HH Inc 0-20%",S4 Tariff Score,Imputed,2016/17,198.6726954,Yes,0.08739476532876708,0.6574061626126672
+S02002176,Cliftonville,North Lanarkshire,38,"Other Urban, Dep - Average, HH Inc 0-20%",S4 Tariff Score,Imputed,2016/17,180.6148329,Yes,-0.6886362371049062,0.0397818196120918
+S02002177,Shawhead and Whifflet,North Lanarkshire,38,"Other Urban, Dep - Average, HH Inc 0-20%",S4 Tariff Score,Imputed,2016/17,144.5816025,Yes,-2.2371530622959006,-1.1926453434581976
+S02002203,Kildrum,North Lanarkshire,38,"Other Urban, Dep - Average, HH Inc 0-20%",S4 Tariff Score,Imputed,2016/17,187.0678541,Yes,-0.41131966596799885,0.2604913847125449
 S02002319,Hawick North,Scottish Borders,38,"Other Urban, Dep - Average, HH Inc 0-20%",S4 Tariff Score,Imputed,2016/17,210.8931646,Yes,0.283008961042583,1.0753769640189113
 S02002382,Low Waters,South Lanarkshire,38,"Other Urban, Dep - Average, HH Inc 0-20%",S4 Tariff Score,Imputed,2016/17,146.8210018,Yes,-1.3400076425565173,-1.1160522515915134
 S02002391,High Blantyre,South Lanarkshire,38,"Other Urban, Dep - Average, HH Inc 0-20%",S4 Tariff Score,Imputed,2016/17,141.4444963,Yes,-1.5184759849665672,-1.2999422705279455
@@ -6083,11 +6083,11 @@ S02001802,Glenrothes Caskieberran and Rimbleton,Fife,39,"Other Urban, Dep - Aver
 S02001809,Glenrothes Cadham and Pitcoudie,Fife,39,"Other Urban, Dep - Average, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,151,Yes,-1.5747270781741307,-1.3964685098416365
 S02002043,Greenock West and Central,Inverclyde,39,"Other Urban, Dep - Average, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,197.1567689,Yes,0.15444667681120805,0.328619738023103
 S02002122,Kilwinning Central and North,North Ayrshire,39,"Other Urban, Dep - Average, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,199.4821295,Yes,-0.06917105764169734,0.4155290329912722
-S02002159,Forgewood,North Lanarkshire,39,"Other Urban, Dep - Average, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,187.3963071,Yes,-0.39720450085128894,-0.036173083185678016
-S02002161,Milnwood,North Lanarkshire,39,"Other Urban, Dep - Average, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,196.57167,Yes,-0.0028961451984676596,0.3067519327091012
-S02002171,Dundyvan,North Lanarkshire,39,"Other Urban, Dep - Average, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,181.2103827,Yes,-0.6630426704082298,-0.2673691945889558
-S02002204,Abronhill South,North Lanarkshire,39,"Other Urban, Dep - Average, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,193.2492268,Yes,-0.14567710429730613,0.18257712898885786
-S02002206,Village and Castlecary,North Lanarkshire,39,"Other Urban, Dep - Average, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,174.2155261,Yes,-0.9636444486739459,-0.5287987791056288
+S02002159,Forgewood,North Lanarkshire,39,"Other Urban, Dep - Average, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,187.3963071,Yes,-0.3972045008512889,-0.036173083185678016
+S02002161,Milnwood,North Lanarkshire,39,"Other Urban, Dep - Average, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,196.57167,Yes,-0.002896145198467659,0.3067519327091012
+S02002171,Dundyvan,North Lanarkshire,39,"Other Urban, Dep - Average, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,181.2103827,Yes,-0.6630426704082297,-0.2673691945889558
+S02002204,Abronhill South,North Lanarkshire,39,"Other Urban, Dep - Average, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,193.2492268,Yes,-0.1456771042973061,0.18257712898885786
+S02002206,Village and Castlecary,North Lanarkshire,39,"Other Urban, Dep - Average, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,174.2155261,Yes,-0.9636444486739457,-0.5287987791056288
 S02002236,North Muirton and Old Scone,Perth and Kinross,39,"Other Urban, Dep - Average, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,187.9370528,Yes,-0.9319054913362664,-0.015962958552075343
 S02002297,Galashiels North,Scottish Borders,39,"Other Urban, Dep - Average, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,155.977184,Yes,-1.7217841701316536,-1.210448521214131
 S02002374,Hareleeshill,South Lanarkshire,39,"Other Urban, Dep - Average, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,162.151339,Yes,-0.8311306649971855,-0.9796922857837228
@@ -6253,12 +6253,12 @@ S02002038,Gourock Upper and West Central and Upper Larkfield,Inverclyde,40,"Othe
 S02002048,"Port Glasgow Upper, West and Central",Inverclyde,40,"Other Urban, Dep - Average, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,203.8106283,Yes,0.4555644057240789,0.1293363506850428
 S02002100,Dreghorn,North Ayrshire,40,"Other Urban, Dep - Average, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,225.153782,Yes,0.7994271972193324,1.0424089089252933
 S02002136,Netherton and Kirkhill,North Lanarkshire,40,"Other Urban, Dep - Average, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,210.0986048,Yes,0.5784196540938868,0.3983396512145978
-S02002141,Wishaw South,North Lanarkshire,40,"Other Urban, Dep - Average, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,200.0031364,Yes,0.14457005187826003,-0.033550372546118305
-S02002142,Wishaw North,North Lanarkshire,40,"Other Urban, Dep - Average, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,210.3743598,Yes,0.5902701391153616,0.4101366108784147
-S02002143,Coltness,North Lanarkshire,40,"Other Urban, Dep - Average, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,176.9102781,Yes,-0.8478383229007465,-1.0214763136435943
-S02002145,Newmains,North Lanarkshire,40,"Other Urban, Dep - Average, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,181.1947726,Yes,-0.6637135095815313,-0.8381831410942501
-S02002173,Coatbridge West,North Lanarkshire,40,"Other Urban, Dep - Average, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,219.926678,Yes,1.0007780310827208,0.8187903524292194
-S02002175,Sunnyside and Cliftonville,North Lanarkshire,40,"Other Urban, Dep - Average, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,188.7339582,Yes,-0.33971936250562396,-0.5156523858179083
+S02002141,Wishaw South,North Lanarkshire,40,"Other Urban, Dep - Average, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,200.0031364,Yes,0.14457005187826,-0.033550372546118305
+S02002142,Wishaw North,North Lanarkshire,40,"Other Urban, Dep - Average, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,210.3743598,Yes,0.5902701391153615,0.4101366108784147
+S02002143,Coltness,North Lanarkshire,40,"Other Urban, Dep - Average, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,176.9102781,Yes,-0.8478383229007463,-1.0214763136435943
+S02002145,Newmains,North Lanarkshire,40,"Other Urban, Dep - Average, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,181.1947726,Yes,-0.6637135095815312,-0.8381831410942501
+S02002173,Coatbridge West,North Lanarkshire,40,"Other Urban, Dep - Average, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,219.926678,Yes,1.0007780310827206,0.8187903524292194
+S02002175,Sunnyside and Cliftonville,North Lanarkshire,40,"Other Urban, Dep - Average, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,188.7339582,Yes,-0.3397193625056239,-0.5156523858179083
 S02002344,Newton North,South Ayrshire,40,"Other Urban, Dep - Average, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,201.1428907,Yes,-0.8392212950575187,0.015208980879066681
 S02002471,Dumbarton,West Dunbartonshire,40,"Other Urban, Dep - Average, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,209.0719954,Yes,1.1971007010159027,0.35442070257433667
 S02002500,Armadale,West Lothian,40,"Other Urban, Dep - Average, HH Inc 20-40%",S4 Tariff Score,Imputed,2016/17,254.0358495,Yes,1.0222194789759746,2.2780005946794275
@@ -6420,7 +6420,7 @@ S02001798,Thornton and Kinglassie,Fife,41,"Other Urban, Dep - Average, HH Inc 40
 S02001821,Kennoway and Bonnybank,Fife,41,"Other Urban, Dep - Average, HH Inc 40-60%",S4 Tariff Score,Imputed,2016/17,194.0147277,Yes,-0.06243115499779385,-0.2346788059740138
 S02001996,Inverness Hilton,Highland,41,"Other Urban, Dep - Average, HH Inc 40-60%",S4 Tariff Score,Imputed,2016/17,169.0084938,Yes,-0.8671980518000236,-1.21568318484835
 S02002070,Newtongrange,Midlothian,41,"Other Urban, Dep - Average, HH Inc 40-60%",S4 Tariff Score,Imputed,2016/17,206.5934744,Yes,0.34513394870056835,0.2587903682646181
-S02002151,Newarthill,North Lanarkshire,41,"Other Urban, Dep - Average, HH Inc 40-60%",S4 Tariff Score,Imputed,2016/17,201.7184972,Yes,0.21828714664290552,0.06754309771451185
+S02002151,Newarthill,North Lanarkshire,41,"Other Urban, Dep - Average, HH Inc 40-60%",S4 Tariff Score,Imputed,2016/17,201.7184972,Yes,0.2182871466429055,0.06754309771451185
 S02002189,Drumgelloch,North Lanarkshire,41,"Other Urban, Dep - Average, HH Inc 40-60%",S4 Tariff Score,Imputed,2016/17,184.6760435,Yes,-0.514106979668582,-0.6010390555725985
 S02002348,Prestwick Airport and Monkton,South Ayrshire,41,"Other Urban, Dep - Average, HH Inc 40-60%",S4 Tariff Score,Imputed,2016/17,199.3922782,Yes,-0.9066122648897347,-0.023715387443490582
 S02002397,Burnbank South and Chantinghall,South Lanarkshire,41,"Other Urban, Dep - Average, HH Inc 40-60%",S4 Tariff Score,Imputed,2016/17,205.539271,Yes,0.6090933438204295,0.21743355476923643
@@ -6589,10 +6589,10 @@ S02001735,Bo'ness - Newtown,Falkirk,42,"Other Urban, Dep - Average, HH Inc 40-60
 S02001979,Fort William North,Highland,42,"Other Urban, Dep - Average, HH Inc 40-60%",S4 Tariff Score,Imputed,2016/17,231.5609356,Yes,0.8718642647549404,0.7961489686276676
 S02001980,Fort William South,Highland,42,"Other Urban, Dep - Average, HH Inc 40-60%",S4 Tariff Score,Imputed,2016/17,227.1676263,Yes,0.7497229313593755,0.6102211156963729
 S02002004,Inverness Kinmylies and South West,Highland,42,"Other Urban, Dep - Average, HH Inc 40-60%",S4 Tariff Score,Imputed,2016/17,171.4695703,Yes,-0.7987760162063793,-1.7469586905437704
-S02002138,Muirhouse and Knowetop,North Lanarkshire,42,"Other Urban, Dep - Average, HH Inc 40-60%",S4 Tariff Score,Imputed,2016/17,247.795485,Yes,2.198431309971104,1.4832061975027306
-S02002160,Holytown,North Lanarkshire,42,"Other Urban, Dep - Average, HH Inc 40-60%",S4 Tariff Score,Imputed,2016/17,168.6398148,Yes,-1.203258900795273,-1.8667158777819914
-S02002166,Fallside,North Lanarkshire,42,"Other Urban, Dep - Average, HH Inc 40-60%",S4 Tariff Score,Imputed,2016/17,219.5756311,Yes,0.9856919001683762,0.2889226887905567
-S02002186,Coatdyke and Whinhall,North Lanarkshire,42,"Other Urban, Dep - Average, HH Inc 40-60%",S4 Tariff Score,Imputed,2016/17,198.3306342,Yes,0.07269479206616866,-0.6101801035279846
+S02002138,Muirhouse and Knowetop,North Lanarkshire,42,"Other Urban, Dep - Average, HH Inc 40-60%",S4 Tariff Score,Imputed,2016/17,247.795485,Yes,2.1984313099711037,1.4832061975027306
+S02002160,Holytown,North Lanarkshire,42,"Other Urban, Dep - Average, HH Inc 40-60%",S4 Tariff Score,Imputed,2016/17,168.6398148,Yes,-1.2032589007952728,-1.8667158777819914
+S02002166,Fallside,North Lanarkshire,42,"Other Urban, Dep - Average, HH Inc 40-60%",S4 Tariff Score,Imputed,2016/17,219.5756311,Yes,0.985691900168376,0.2889226887905567
+S02002186,Coatdyke and Whinhall,North Lanarkshire,42,"Other Urban, Dep - Average, HH Inc 40-60%",S4 Tariff Score,Imputed,2016/17,198.3306342,Yes,0.07269479206616865,-0.6101801035279846
 S02002205,Abronhill North,North Lanarkshire,42,"Other Urban, Dep - Average, HH Inc 40-60%",S4 Tariff Score,Imputed,2016/17,208.8847185,Yes,0.5262532693830988,-0.16352404096601408
 S02002230,Moncrieffe and Friarton,Perth and Kinross,42,"Other Urban, Dep - Average, HH Inc 40-60%",S4 Tariff Score,Imputed,2016/17,198.7590732,Yes,-0.5368749533355981,-0.5920482721583993
 S02002284,Erskine Central,Renfrewshire,42,"Other Urban, Dep - Average, HH Inc 40-60%",S4 Tariff Score,Imputed,2016/17,199.8646387,Yes,0.13129068398363397,-0.545259984411412
@@ -6845,8 +6845,8 @@ S02002060,Bonnyrigg South,Midlothian,43,"Other Urban, Dep - Average, HH Inc 60-1
 S02002086,New Elgin West,Moray,43,"Other Urban, Dep - Average, HH Inc 60-100%",S4 Tariff Score,Imputed,2016/17,218.6688169,Yes,0.2017643056033411,0.4432157688077588
 S02002115,Saltcoats North West,North Ayrshire,43,"Other Urban, Dep - Average, HH Inc 60-100%",S4 Tariff Score,Imputed,2016/17,230.020331,Yes,0.9640864831221656,0.8391645669599263
 S02002144,Wishaw East,North Lanarkshire,43,"Other Urban, Dep - Average, HH Inc 60-100%",S4 Tariff Score,Imputed,2016/17,199.6970394,Yes,0.13141562888096808,-0.21853317796360894
-S02002164,Hattonrigg,North Lanarkshire,43,"Other Urban, Dep - Average, HH Inc 60-100%",S4 Tariff Score,Imputed,2016/17,185.6934714,Yes,-0.4703833333543525,-0.7069874819971255
-S02002185,Cairnhill,North Lanarkshire,43,"Other Urban, Dep - Average, HH Inc 60-100%",S4 Tariff Score,Imputed,2016/17,209.1000563,Yes,0.5355073440996315,0.10945066698968435
+S02002164,Hattonrigg,North Lanarkshire,43,"Other Urban, Dep - Average, HH Inc 60-100%",S4 Tariff Score,Imputed,2016/17,185.6934714,Yes,-0.47038333335435245,-0.7069874819971255
+S02002185,Cairnhill,North Lanarkshire,43,"Other Urban, Dep - Average, HH Inc 60-100%",S4 Tariff Score,Imputed,2016/17,209.1000563,Yes,0.5355073440996314,0.10945066698968435
 S02002231,"Viewlands, Craigie and Wellshill",Perth and Kinross,43,"Other Urban, Dep - Average, HH Inc 60-100%",S4 Tariff Score,Imputed,2016/17,228.3824172,Yes,0.5444504448034488,0.7820329812636311
 S02002285,Erskine West,Renfrewshire,43,"Other Urban, Dep - Average, HH Inc 60-100%",S4 Tariff Score,Imputed,2016/17,203.5380217,Yes,0.2461639095370563,-0.08455701302110577
 S02002371,Ashgill and Netherburn,South Lanarkshire,43,"Other Urban, Dep - Average, HH Inc 60-100%",S4 Tariff Score,Imputed,2016/17,187.4396832,Yes,0.00829354310021017,-0.6460783858679023
@@ -7451,8 +7451,8 @@ S02001774,Lochore and Crosshill,Fife,47,"Accessible Small Town, Dep - Child, HH 
 S02002071,North Gorebridge,Midlothian,47,"Accessible Small Town, Dep - Child, HH Inc 0-50%",S4 Tariff Score,Imputed,2016/17,168.4693262,Yes,-1.274675019996924,-0.7852186304907196
 S02002072,Gorebridge and Middleton,Midlothian,47,"Accessible Small Town, Dep - Child, HH Inc 50-100%",S4 Tariff Score,Imputed,2016/17,184.5510872,Yes,-0.5913973094079811,-0.3622613364242575
 S02002131,Kilbirnie North,North Ayrshire,47,"Accessible Small Town, Dep - Child, HH Inc 0-50%",S4 Tariff Score,Imputed,2016/17,159.515606,Yes,-1.421435099271365,-1.0207053578223986
-S02002150,Cleland,North Lanarkshire,47,"Accessible Small Town, Dep - Child, HH Inc 50-100%",S4 Tariff Score,Imputed,2016/17,200.4545235,Yes,0.16396827155673155,0.05600594063615523
-S02002197,Moodiesburn East,North Lanarkshire,47,"Accessible Small Town, Dep - Child, HH Inc 50-100%",S4 Tariff Score,Imputed,2016/17,205.4901727,Yes,0.380373723563043,0.18844570015626888
+S02002150,Cleland,North Lanarkshire,47,"Accessible Small Town, Dep - Child, HH Inc 50-100%",S4 Tariff Score,Imputed,2016/17,200.4545235,Yes,0.16396827155673152,0.05600594063615523
+S02002197,Moodiesburn East,North Lanarkshire,47,"Accessible Small Town, Dep - Child, HH Inc 50-100%",S4 Tariff Score,Imputed,2016/17,205.4901727,Yes,0.38037372356304294,0.18844570015626888
 S02002294,Peebles South,Scottish Borders,47,"Accessible Small Town, Dep - Child, HH Inc 50-100%",S4 Tariff Score,Imputed,2016/17,268.10271,Yes,2.371532236096705,1.8351826060861252
 S02002455,Dunblane East,Stirling,47,"Accessible Small Town, Dep - Child, HH Inc 50-100%",S4 Tariff Score,Imputed,2016/17,278.6338588,Yes,2.0170167174223375,2.112156390229495
 S02001361,Brechin East,Angus,48,"Accessible Small Town, Dep - Student & Adult, HH Inc 0-60%",Child Poverty,Imputed,2016/17,21.438154901226497,No,-1.2370004795157818,-0.6204025866683888
@@ -7526,7 +7526,7 @@ S02001491,Galston,East Ayrshire,48,"Accessible Small Town, Dep - Student & Adult
 S02001741,Valleyfield Culross and Torryburn,Fife,48,"Accessible Small Town, Dep - Student & Adult, HH Inc 0-60%",S4 Tariff Score,Imputed,2016/17,184.4401903,Yes,-0.3990492077099898,-0.43426790161360357
 S02001840,Tayport,Fife,48,"Accessible Small Town, Dep - Student & Adult, HH Inc 0-60%",S4 Tariff Score,Imputed,2016/17,173.9858073,Yes,-0.7666005473462514,-0.6250096411063628
 S02002133,Beith West,North Ayrshire,48,"Accessible Small Town, Dep - Student & Adult, HH Inc 0-60%",S4 Tariff Score,Imputed,2016/17,280.2818087,Yes,2.664679454959743,1.3143763760465148
-S02002211,Kilsyth Bogside,North Lanarkshire,48,"Accessible Small Town, Dep - Student & Adult, HH Inc 0-60%",S4 Tariff Score,Imputed,2016/17,186.1840933,Yes,-0.4492990103968087,-0.4024501375498
+S02002211,Kilsyth Bogside,North Lanarkshire,48,"Accessible Small Town, Dep - Student & Adult, HH Inc 0-60%",S4 Tariff Score,Imputed,2016/17,186.1840933,Yes,-0.44929901039680864,-0.4024501375498
 S02001237,"Cults, Bieldside and Milltimber West",Aberdeen City,49,"Accessible Small Town, Dep - Student & Adult, HH Inc 60-100%",Child Poverty,Imputed,2016/17,0.8355447916666666,No,1.3819812300819794,1.5129308384776092
 S02001294,Portlethen,Aberdeenshire,49,"Accessible Small Town, Dep - Student & Adult, HH Inc 60-100%",Child Poverty,Imputed,2016/17,2.137790277777778,No,1.324522990685276,1.2458061472456978
 S02001433,Heathhall,Dumfries and Galloway,49,"Accessible Small Town, Dep - Student & Adult, HH Inc 60-100%",Child Poverty,Imputed,2016/17,7.806378125000002,No,1.172189992817679,0.08303016179605115
@@ -7643,7 +7643,7 @@ S02001826,Cupar West and Springfield,Fife,49,"Accessible Small Town, Dep - Stude
 S02002035,"Kilmacolm, Quarriers, Greenock Upper East/Central",Inverclyde,49,"Accessible Small Town, Dep - Student & Adult, HH Inc 60-100%",S4 Tariff Score,Imputed,2016/17,234.7619425,Yes,1.856253671681925,0.34334953428830306
 S02002036,Inverkip and Wemyss Bay,Inverclyde,49,"Accessible Small Town, Dep - Student & Adult, HH Inc 60-100%",S4 Tariff Score,Imputed,2016/17,206.3009664,Yes,0.5682636540576395,-0.38242100785347494
 S02002091,Lossiemouth West,Moray,49,"Accessible Small Town, Dep - Student & Adult, HH Inc 60-100%",S4 Tariff Score,Imputed,2016/17,167.4556017,Yes,-1.164900822712627,-1.3729991699992938
-S02002210,Kilsyth East and Croy,North Lanarkshire,49,"Accessible Small Town, Dep - Student & Adult, HH Inc 60-100%",S4 Tariff Score,Imputed,2016/17,197.7343705,Yes,0.0470705457399052,-0.600873914345762
+S02002210,Kilsyth East and Croy,North Lanarkshire,49,"Accessible Small Town, Dep - Student & Adult, HH Inc 60-100%",S4 Tariff Score,Imputed,2016/17,197.7343705,Yes,0.04707054573990519,-0.600873914345762
 S02002289,Houston South,Renfrewshire,49,"Accessible Small Town, Dep - Student & Adult, HH Inc 60-100%",S4 Tariff Score,Imputed,2016/17,251.4988783,Yes,1.7459852725550542,0.7701506013591589
 S02002290,Houston North,Renfrewshire,49,"Accessible Small Town, Dep - Student & Adult, HH Inc 60-100%",S4 Tariff Score,Imputed,2016/17,257.1794369,Yes,1.9236264521780968,0.9150079695781683
 S02002378,Strathaven North,South Lanarkshire,49,"Accessible Small Town, Dep - Student & Adult, HH Inc 60-100%",S4 Tariff Score,Imputed,2016/17,225.0446477,Yes,1.2565570630954503,0.09555317304026172
@@ -7789,12 +7789,12 @@ S02001827,Cupar Central,Fife,50,"Accessible Small Town, Dep - Average, HH Inc 0 
 S02001986,Nairn East,Highland,50,"Accessible Small Town, Dep - Average, HH Inc 0 -50%",S4 Tariff Score,Imputed,2016/17,200.3887455,Yes,0.005225336402223237,0.8773577667977744
 S02002095,Forres South West and Mannachie,Moray,50,"Accessible Small Town, Dep - Average, HH Inc 0 -50%",S4 Tariff Score,Imputed,2016/17,186.0032141,Yes,-0.6699431251416128,0.1817562881657775
 S02002132,Kilbirnie South and Longbar,North Ayrshire,50,"Accessible Small Town, Dep - Average, HH Inc 0 -50%",S4 Tariff Score,Imputed,2016/17,196.1853447,Yes,-0.18071750070500928,0.6741055037800232
-S02002135,Overtown,North Lanarkshire,50,"Accessible Small Town, Dep - Average, HH Inc 0 -50%",S4 Tariff Score,Imputed,2016/17,163.8367417,Yes,-1.409669467525151,-0.8900867010682082
-S02002147,Shotts,North Lanarkshire,50,"Accessible Small Town, Dep - Average, HH Inc 0 -50%",S4 Tariff Score,Imputed,2016/17,199.3486795,Yes,0.11644497095261763,0.8270661628689224
-S02002148,Stane,North Lanarkshire,50,"Accessible Small Town, Dep - Average, HH Inc 0 -50%",S4 Tariff Score,Imputed,2016/17,202.7999002,Yes,0.2647601029036356,0.9939473266753114
-S02002149,Harthill and Salsburgh,North Lanarkshire,50,"Accessible Small Town, Dep - Average, HH Inc 0 -50%",S4 Tariff Score,Imputed,2016/17,202.2611979,Yes,0.24160953976902802,0.967898784845119
-S02002196,Moodiesburn West,North Lanarkshire,50,"Accessible Small Town, Dep - Average, HH Inc 0 -50%",S4 Tariff Score,Imputed,2016/17,194.8805971,Yes,-0.07556947504442463,0.6110154214907059
-S02002212,Balmalloch,North Lanarkshire,50,"Accessible Small Town, Dep - Average, HH Inc 0 -50%",S4 Tariff Score,Imputed,2016/17,179.4433278,Yes,-0.7389813029790747,-0.13544204695709422
+S02002135,Overtown,North Lanarkshire,50,"Accessible Small Town, Dep - Average, HH Inc 0 -50%",S4 Tariff Score,Imputed,2016/17,163.8367417,Yes,-1.4096694675251509,-0.8900867010682082
+S02002147,Shotts,North Lanarkshire,50,"Accessible Small Town, Dep - Average, HH Inc 0 -50%",S4 Tariff Score,Imputed,2016/17,199.3486795,Yes,0.11644497095261762,0.8270661628689224
+S02002148,Stane,North Lanarkshire,50,"Accessible Small Town, Dep - Average, HH Inc 0 -50%",S4 Tariff Score,Imputed,2016/17,202.7999002,Yes,0.26476010290363555,0.9939473266753114
+S02002149,Harthill and Salsburgh,North Lanarkshire,50,"Accessible Small Town, Dep - Average, HH Inc 0 -50%",S4 Tariff Score,Imputed,2016/17,202.2611979,Yes,0.241609539769028,0.967898784845119
+S02002196,Moodiesburn West,North Lanarkshire,50,"Accessible Small Town, Dep - Average, HH Inc 0 -50%",S4 Tariff Score,Imputed,2016/17,194.8805971,Yes,-0.07556947504442461,0.6110154214907059
+S02002212,Balmalloch,North Lanarkshire,50,"Accessible Small Town, Dep - Average, HH Inc 0 -50%",S4 Tariff Score,Imputed,2016/17,179.4433278,Yes,-0.7389813029790746,-0.13544204695709422
 S02002332,Maybole,South Ayrshire,50,"Accessible Small Town, Dep - Average, HH Inc 0 -50%",S4 Tariff Score,Imputed,2016/17,187.9096658,Yes,-1.3486429175004184,0.27394131662155485
 S02002365,Lanark North East,South Lanarkshire,50,"Accessible Small Town, Dep - Average, HH Inc 0 -50%",S4 Tariff Score,Imputed,2016/17,158.9275995,Yes,-0.9381398450169588,-1.1274645551205604
 S02002478,Fauldhouse,West Lothian,50,"Accessible Small Town, Dep - Average, HH Inc 0 -50%",S4 Tariff Score,Imputed,2016/17,170.7846287,Yes,-1.6567457586896128,-0.5541268858772282
@@ -7847,7 +7847,7 @@ S02002220,Kinross,Perth and Kinross,51,"Accessible Small Town, Dep - Average, HH
 S02002291,Bridge of Weir,Renfrewshire,51,"Accessible Small Town, Dep - Average, HH Inc 50-100%",Crime Rate,Raw data,2016/17,160.4837629348118,No,0.7168580814856487,0.8312044223926969
 S02002295,Tweeddale East Area,Scottish Borders,51,"Accessible Small Town, Dep - Average, HH Inc 50-100%",Crime Rate,Raw data,2016/17,86.79964975374037,No,0.9738620643536657,1.25908373581513
 S02002358,Law,South Lanarkshire,51,"Accessible Small Town, Dep - Average, HH Inc 50-100%",Crime Rate,Raw data,2016/17,200.83267577291386,No,0.8712753532349493,0.5969006576166591
-S02002366,Lanark South,South Lanarkshire,51,"Accessible Small Town, Dep - Average, HH Inc 50-100%",Crime Rate,Raw data,2016/17,850.048181449251,No,-1.7552678740833572,-3.17305561707389
+S02002366,Lanark South,South Lanarkshire,51,"Accessible Small Town, Dep - Average, HH Inc 50-100%",Crime Rate,Raw data,2016/17,850.048181449251,No,-1.7552678740833572,-3.1730556170738904
 S02002369,Lesmahagow,South Lanarkshire,51,"Accessible Small Town, Dep - Average, HH Inc 50-100%",Crime Rate,Raw data,2016/17,475.00168227475325,No,-0.23793528771823394,-0.9951826450002405
 S02002370,Kirkmuirhill and Blackwood,South Lanarkshire,51,"Accessible Small Town, Dep - Average, HH Inc 50-100%",Crime Rate,Raw data,2016/17,287.1022128191048,No,0.5222530851723561,0.09593852769476664
 S02002376,Stonehouse,South Lanarkshire,51,"Accessible Small Town, Dep - Average, HH Inc 50-100%",Crime Rate,Raw data,2016/17,212.0381931805454,No,0.8259409833712003,0.5318308767924234
@@ -8010,7 +8010,7 @@ S02001686,Queensferry West,"Edinburgh, City of",51,"Accessible Small Town, Dep -
 S02001773,Kelty East,Fife,51,"Accessible Small Town, Dep - Average, HH Inc 50-100%",S4 Tariff Score,Imputed,2016/17,183.1415084,Yes,-0.4447077867104313,-0.8227663675483998
 S02002090,Lossiemouth East and Seatown,Moray,51,"Accessible Small Town, Dep - Average, HH Inc 50-100%",S4 Tariff Score,Imputed,2016/17,204.4860244,Yes,-0.17671472283093018,0.07960980112655366
 S02002124,Dalry West,North Ayrshire,51,"Accessible Small Town, Dep - Average, HH Inc 50-100%",S4 Tariff Score,Imputed,2016/17,227.6314713,Yes,0.8832596112825809,1.0581234247613822
-S02002195,Chryston and Muirhead,North Lanarkshire,51,"Accessible Small Town, Dep - Average, HH Inc 50-100%",S4 Tariff Score,Imputed,2016/17,206.7763164,Yes,0.43564534747671346,0.1764358392577025
+S02002195,Chryston and Muirhead,North Lanarkshire,51,"Accessible Small Town, Dep - Average, HH Inc 50-100%",S4 Tariff Score,Imputed,2016/17,206.7763164,Yes,0.4356453474767134,0.1764358392577025
 S02002220,Kinross,Perth and Kinross,51,"Accessible Small Town, Dep - Average, HH Inc 50-100%",S4 Tariff Score,Imputed,2016/17,233.4807056,Yes,0.7305505938601417,1.3054098770433702
 S02002291,Bridge of Weir,Renfrewshire,51,"Accessible Small Town, Dep - Average, HH Inc 50-100%",S4 Tariff Score,Imputed,2016/17,242.6738442,Yes,1.4700107464340524,1.6940656417356135
 S02002295,Tweeddale East Area,Scottish Borders,51,"Accessible Small Town, Dep - Average, HH Inc 50-100%",S4 Tariff Score,Imputed,2016/17,217.9049275,Yes,0.5389842517641031,0.6469170367274207
@@ -8842,8 +8842,8 @@ S02001723,Braes Villages,Falkirk,57,"Accessible Rural, Dep -Child, HH Inc 0-80%"
 S02001779,Aberdour and Auchtertool,Fife,57,"Accessible Rural, Dep -Child, HH Inc 0-80%",S4 Tariff Score,Imputed,2016/17,268.7595875,Yes,2.5654210434929765,1.3979048532331622
 S02001782,Kinghorn,Fife,57,"Accessible Rural, Dep -Child, HH Inc 0-80%",S4 Tariff Score,Imputed,2016/17,218.3914006,Yes,0.7945949153374849,0.3177128364839904
 S02001838,Leuchars and Guardbridge,Fife,57,"Accessible Rural, Dep -Child, HH Inc 0-80%",S4 Tariff Score,Imputed,2016/17,184.1144989,Yes,-0.41049974576450854,-0.4173867939384043
-S02002190,Caldercruix and Plains,North Lanarkshire,57,"Accessible Rural, Dep -Child, HH Inc 0-80%",S4 Tariff Score,Imputed,2016/17,174.4948425,Yes,-0.951640913599506,-0.6236891583213094
-S02002191,Glenmavis and Greengairs,North Lanarkshire,57,"Accessible Rural, Dep -Child, HH Inc 0-80%",S4 Tariff Score,Imputed,2016/17,233.6517955,Yes,1.5906106700257263,0.6449860173937397
+S02002190,Caldercruix and Plains,North Lanarkshire,57,"Accessible Rural, Dep -Child, HH Inc 0-80%",S4 Tariff Score,Imputed,2016/17,174.4948425,Yes,-0.9516409135995058,-0.6236891583213094
+S02002191,Glenmavis and Greengairs,North Lanarkshire,57,"Accessible Rural, Dep -Child, HH Inc 0-80%",S4 Tariff Score,Imputed,2016/17,233.6517955,Yes,1.590610670025726,0.6449860173937397
 S02002441,Cowie,Stirling,57,"Accessible Rural, Dep -Child, HH Inc 0-80%",S4 Tariff Score,Imputed,2016/17,156.1362685,Yes,-1.241634311532043,-1.017405634816097
 S02002442,Fallin,Stirling,57,"Accessible Rural, Dep -Child, HH Inc 0-80%",S4 Tariff Score,Imputed,2016/17,131.7014938,Yes,-1.891642230246371,-1.5414318145633894
 S02002506,"Blackridge, Westfield and Torphichen",West Lothian,57,"Accessible Rural, Dep -Child, HH Inc 0-80%",S4 Tariff Score,Imputed,2016/17,216.7663754,Yes,-0.17708576340406293,0.2828626789521886
@@ -8964,7 +8964,7 @@ S02001345,Monikie,Angus,58,"Accessible Rural, Dep -Child, HH Inc 80-100%",S4 Tar
 S02002067,Pathhead and Rural East Midlothian,Midlothian,58,"Accessible Rural, Dep -Child, HH Inc 80-100%",S4 Tariff Score,Imputed,2016/17,199.6636101,Yes,0.05069966295312806,0.12825506190390432
 S02002082,"Heldon West, Fogwatt to Inchberry",Moray,58,"Accessible Rural, Dep -Child, HH Inc 80-100%",S4 Tariff Score,Imputed,2016/17,207.0856684,Yes,-0.10734116784202465,0.5548347422888212
 S02002093,"Findhorn, Kinloss and Pluscarden Valley",Moray,58,"Accessible Rural, Dep -Child, HH Inc 80-100%",S4 Tariff Score,Imputed,2016/17,183.5278377,Yes,-0.7360005009990915,-0.7991416729285024
-S02002192,Gartcosh and Marnock,North Lanarkshire,58,"Accessible Rural, Dep -Child, HH Inc 80-100%",S4 Tariff Score,Imputed,2016/17,200.9106216,Yes,0.18356894498921056,0.19992652359348997
+S02002192,Gartcosh and Marnock,North Lanarkshire,58,"Accessible Rural, Dep -Child, HH Inc 80-100%",S4 Tariff Score,Imputed,2016/17,200.9106216,Yes,0.18356894498921053,0.19992652359348997
 S02002243,Errol and Inchture,Perth and Kinross,58,"Accessible Rural, Dep -Child, HH Inc 80-100%",S4 Tariff Score,Imputed,2016/17,165.8946536,Yes,-1.73650763520226,-1.8126015156713695
 S02002302,Lauder and Area,Scottish Borders,58,"Accessible Rural, Dep -Child, HH Inc 80-100%",S4 Tariff Score,Imputed,2016/17,213.7787492,Yes,0.3883517068571252,0.9395167473404951
 S02001356,Lunan,Angus,59,"Accessible Rural, Dep - not OP or Child, HH Inc 0-60%",Child Poverty,Imputed,2016/17,11.471804166666667,No,0.2372642491003543,1.2934876607982744
@@ -9074,7 +9074,7 @@ S02001505,Kilmaurs,East Ayrshire,59,"Accessible Rural, Dep - not OP or Child, HH
 S02001797,Wemyss,Fife,59,"Accessible Rural, Dep - not OP or Child, HH Inc 0-60%",S4 Tariff Score,Imputed,2016/17,183.9859263,Yes,-0.41502005378943185,-0.9431731253864472
 S02001824,Auchtermuchty and Gateside,Fife,59,"Accessible Rural, Dep - not OP or Child, HH Inc 0-60%",S4 Tariff Score,Imputed,2016/17,184,Yes,-0.41452525583830996,-0.9426005544323114
 S02002098,Springside and Rural,North Ayrshire,59,"Accessible Rural, Dep - not OP or Child, HH Inc 0-60%",S4 Tariff Score,Imputed,2016/17,218.670385,Yes,0.5800619919692522,0.4679208734570353
-S02002179,Calderbank and Brownsburn,North Lanarkshire,59,"Accessible Rural, Dep - not OP or Child, HH Inc 0-60%",S4 Tariff Score,Imputed,2016/17,193.9523457,Yes,-0.11546078911620115,-0.5377017663856143
+S02002179,Calderbank and Brownsburn,North Lanarkshire,59,"Accessible Rural, Dep - not OP or Child, HH Inc 0-60%",S4 Tariff Score,Imputed,2016/17,193.9523457,Yes,-0.11546078911620114,-0.5377017663856143
 S02002245,Coupar Angus and Meigle,Perth and Kinross,59,"Accessible Rural, Dep - not OP or Child, HH Inc 0-60%",S4 Tariff Score,Imputed,2016/17,223.2458172,Yes,0.3569518274940386,0.6540666333023583
 S02002349,"Annbank, Mossblown and Tarbolton - the Coalfields",South Ayrshire,59,"Accessible Rural, Dep - not OP or Child, HH Inc 0-60%",S4 Tariff Score,Imputed,2016/17,235.679792,Yes,0.490299243386309,1.1599274101364236
 S02002495,Seafield,West Lothian,59,"Accessible Rural, Dep - not OP or Child, HH Inc 0-60%",S4 Tariff Score,Imputed,2016/17,267.1949413,Yes,1.4456697197374915,2.442082003769633
@@ -9567,7 +9567,7 @@ S02001742,Cairneyhill and Crombie,Fife,61,"Accessible Rural, Dep - not OP or Chi
 S02001988,Inverness East Rural,Highland,61,"Accessible Rural, Dep - not OP or Child, HH Inc 80-100%",S4 Tariff Score,Imputed,2016/17,192.3407223,Yes,-0.21852314514594354,-0.9327940233185105
 S02002019,Black Isle North,Highland,61,"Accessible Rural, Dep - not OP or Child, HH Inc 80-100%",S4 Tariff Score,Imputed,2016/17,220.3841024,Yes,0.5611296414977482,0.20379886436052777
 S02002051,Rural South Midlothian,Midlothian,61,"Accessible Rural, Dep - not OP or Child, HH Inc 80-100%",S4 Tariff Score,Imputed,2016/17,209.8234092,Yes,0.48236658482142303,-0.22422403221178647
-S02002146,Allanton - Newmains Rural,North Lanarkshire,61,"Accessible Rural, Dep - not OP or Child, HH Inc 80-100%",S4 Tariff Score,Imputed,2016/17,192.2489794,Yes,-0.18866242398858635,-0.9365123456913212
+S02002146,Allanton - Newmains Rural,North Lanarkshire,61,"Accessible Rural, Dep - not OP or Child, HH Inc 80-100%",S4 Tariff Score,Imputed,2016/17,192.2489794,Yes,-0.1886624239885863,-0.9365123456913212
 S02002219,"Powmill, Cleish and Scotlandwell",Perth and Kinross,61,"Accessible Rural, Dep - not OP or Child, HH Inc 80-100%",S4 Tariff Score,Imputed,2016/17,276.3630399,Yes,2.2958619648545575,2.4726146060952217
 S02002221,Milnathort and Crook of Devon,Perth and Kinross,61,"Accessible Rural, Dep - not OP or Child, HH Inc 80-100%",S4 Tariff Score,Imputed,2016/17,246.9536435,Yes,1.2223461838117744,1.2806573363232538
 S02002222,"Muthill, Greenloaning and Gleneagles",Perth and Kinross,61,"Accessible Rural, Dep - not OP or Child, HH Inc 80-100%",S4 Tariff Score,Imputed,2016/17,242.1342574,Yes,1.046426659217647,1.0853285298560469
@@ -9638,7 +9638,7 @@ S02001381,Bute,Argyll and Bute,62,"Remote Rural, Dep - OP, HH Inc 0-30%",Early M
 S02001383,Cowal South,Argyll and Bute,62,"Remote Rural, Dep - OP, HH Inc 0-30%",Early Mortality,Raw data,2016/17,306.1,No,0.8085272137274386,1.0077559797245674
 S02001384,Cowal North,Argyll and Bute,62,"Remote Rural, Dep - OP, HH Inc 30-60%",Early Mortality,Raw data,2016/17,299.2,No,0.8777099758013833,1.0938743017011854
 S02001411,Machars South,Dumfries and Galloway,62,"Remote Rural, Dep - OP, HH Inc 0-30%",Early Mortality,Raw data,2016/17,367.1,No,0.16991720866651336,0.24642008978635385
-S02001420,Thornhill,Dumfries and Galloway,62,"Remote Rural, Dep - OP, HH Inc 30-60%",Early Mortality,Raw data,2016/17,342.5,No,0.36825473337333353,0.5534506290073385
+S02001420,Thornhill,Dumfries and Galloway,62,"Remote Rural, Dep - OP, HH Inc 30-60%",Early Mortality,Raw data,2016/17,342.5,No,0.36825473337333353,0.5534506290073387
 S02001482,New Cumnock,East Ayrshire,62,"Remote Rural, Dep - OP, HH Inc 0-30%",Early Mortality,Raw data,2016/17,608.1,No,-0.8152095906325839,-2.761480721281014
 S02001687,Barra and South Uist,Eilean Siar,62,"Remote Rural, Dep - OP, HH Inc 30-60%",Early Mortality,Raw data,2016/17,485.7,No,-0.5557217571648838,-1.2338165749131886
 S02001689,Harris,Eilean Siar,62,"Remote Rural, Dep - OP, HH Inc 30-60%",Early Mortality,Raw data,2016/17,416.1,No,0.18984283629856302,-0.365144805409916

@@ -1,4 +1,4 @@
-CPP,Indicator,Type,Year,value,FG,Grouping,Improvement_Rate,High is Positive?
+CPP,Indicator,Type,Year,value,FG,LineType,Improvement_Rate,High is Positive?
 Aberdeen City,Healthy Birthweight,Raw data,2006/07,90.05498743601004,1,Aberdeen City Raw data,0.33250353133649213,Yes
 Aberdeenshire,Healthy Birthweight,Raw data,2006/07,89.54271919421727,1,Aberdeenshire Raw data,1.6533336622025274,Yes
 Angus,Healthy Birthweight,Raw data,2006/07,89.82822945410078,2,Angus Raw data,0.6645328557744135,Yes

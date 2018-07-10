@@ -15,10 +15,10 @@ library(cowplot)
 SpPolysDF<-read_rds("data/Shapes_decs.rds")
 SpPolysIZ <- read_rds("data/IZshapes_decs.rds")
 CPPdta <- read_csv("data/CPPcleandata.csv")
+CPP_Imp <- read_csv("data/Imp_rate_CPP.csv")
 IGZdta <- read_csv("data/IGZcleandata.csv")
-IGZ1617 <- read_csv("data/IGZ1617Typology.csv")
-IGZChange <- read_csv("data/IGZChangeTypology.csv")
-CPPdtaCurrent <- read_csv("data/ImpRateCPP.csv")
+IGZ_latest <- read_csv("data/IGZ_latest.csv")
+IGZ_change <- read_csv("data/IGZ_change.csv")
 
 #rename Edinburgh
 SpPolysIZ@data[SpPolysIZ@data$council == "Edinburgh","council"] <- "Edinburgh, City of" 
@@ -32,11 +32,11 @@ CPPMapDta[[14]] <- as.numeric(CPPMapDta[[14]])
 
 #family groups=========================
 #read in family group data
-FGdta <- read_excel("data/Family Groups.xlsx")
-FGdta[FGdta$X__1 == "Edinburgh City",1] <- "Edinburgh, City of"
+#FGdta <- read_excel("data/Family Groups.xlsx")
+#FGdta[FGdta$X__1 == "Edinburgh City",1] <- "Edinburgh, City of"
 
 ##match all FGs to CPP data
-CPPdta <- left_join(CPPdta, FGdta, by = c("CPP" = "X__1"))
-CPPdta <- CPPdta[c(1:5,7)]
-colnames(CPPdta)[[6]] <- "FG"
+#CPPdta <- left_join(CPPdta, FGdta, by = c("CPP" = "X__1"))
+#CPPdta <- CPPdta[c(1:5,7)]
+#colnames(CPPdta)[[6]] <- "FG"
 
