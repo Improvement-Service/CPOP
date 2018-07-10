@@ -8,11 +8,11 @@ library(Unicode)
 library(leaflet)
 library(cowplot)
 
-SpPolysDF <- read_rds("Files for Maps/Shapes.rds")
-SpPolysIZ <- read_rds("Files for Maps/IZshapes.rds")
-CPPdta <- read_csv("CPPcleandata.csv")
-IGZdta <- read_csv("IGZcleandata.csv")
-DZdta <- read_csv("DZcleandata.csv")
+SpPolysDF <- read_rds("data/Shapes.rds")
+SpPolysIZ <- read_rds("data/IZshapes.rds")
+CPPdta <- read_csv("data/CPPcleandata.csv")
+IGZdta <- read_csv("data/IGZcleandata.csv")
+DZdta <- read_csv("data/DZcleandata.csv")
 
 
 #Calculate percentiles for map colours------------
@@ -230,10 +230,10 @@ decs <- ddply(IGZ_latest,.(InterZone, CPP), summarise, combCPP = sum(CPPScore)) 
 SpPolysIZ@data <- left_join(SpPolysIZ@data, decs, by = "InterZone") %>% select(-rank_decs, -`rank-min`)
 names(SpPolysIZ@data)[c(13,14)] <- c("rank_decs", "rank-min")
 
-saveRDS(SpPolysDF, "Files for Maps/Shapes_decs.rds")
-saveRDS(SpPolysIZ, "Files for Maps/IZshapes_decs.rds")
-write_csv(IGZ_change,"IGZ_change.csv")
-write_csv(IGZ_latest,"IGZ_latest.csv")
+saveRDS(SpPolysDF, "data/Shapes_decs.rds")
+saveRDS(SpPolysIZ, "data/IZshapes_decs.rds")
+write_csv(IGZ_change,"data/IGZ_change.csv")
+write_csv(IGZ_latest,"data/IGZ_latest.csv")
 
 
 # Compute CPP improvement rates and store data for plots on CPP over time page--------
@@ -253,9 +253,9 @@ CPP_dta_current$`High is Positive?`[CPP_dta_current$Indicator %in% c("Dwelling F
                                                                      "Unplanned Hospital Attendances",
                                                                      "Fuel Poverty", "Fragility", 
                                                                      "Carbon Emissions", "Child Poverty",
-                                                                     "Out Of Work Benefits", "Crime Rate",
+                                                                     "Out of Work Benefits", "Crime Rate",
                                                                      "Emergency Admissions",
                                                                      "Early Mortality")
                                     ] <- "No"
 
-write_csv(CPP_dta_current, "Imp_rate_CPP.csv")
+write_csv(CPP_dta_current, "data/Imp_rate_CPP.csv")

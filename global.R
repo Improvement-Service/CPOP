@@ -12,7 +12,7 @@ library(leaflet)
 library(cowplot)
 
 
-SpPolysDF<-read_rds("data/Shapes_decs.rds")
+SpPolysDF <- read_rds("data/Shapes_decs.rds")
 SpPolysIZ <- read_rds("data/IZshapes_decs.rds")
 CPPdta <- read_csv("data/CPPcleandata.csv")
 CPP_Imp <- read_csv("data/Imp_rate_CPP.csv")
