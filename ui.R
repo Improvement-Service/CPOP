@@ -16,6 +16,8 @@ sidebar <- dashboardSidebar(
 
 body <- dashboardBody(
   
+  includeCSS("www/background.css"),
+  
   tabItems(
 ###====First tab: all CPPs over time===###    
     tabItem(tabName = "P1",
@@ -178,13 +180,19 @@ body <- dashboardBody(
                 column(3,
                        uiOutput("CommCP"),
                        tags$style("#Descrip{
-                            font-size: 12px;
+                            font-size: 13px;
                             font-style: bold}"),
                        div(textOutput("Descrip")),
                        tags$style("#GrpSize{
-                            font-size: 12px;
+                            font-size: 13px;
                             font-style: bold}"),
-                       div(textOutput("GrpSize"))
+                       div(textOutput("GrpSize")),
+                       radioButtons(
+                         "ViewCP", 
+                         "Select Display", 
+                         c("All", "Top/bottom 10", "Top/bottom 5"),
+                         inline = TRUE
+                       )
                 ),
                 column(
                   3,
@@ -193,13 +201,8 @@ body <- dashboardBody(
                     "Select Indicators",
                     unique(IGZdta$Indicator),
                     selected = unique(IGZdta$Indicator)
-                  ),
-                  radioButtons(
-                    "ViewCP", 
-                    "Select Display", 
-                    c("All", "Top/bottom 10", "Top/bottom 5"),
-                    inline = TRUE
                   )
+                
                ),
                column(3, plotOutput("CPplot_1", height = "225px")),
                column(3, plotOutput("CPplot_2", height = "225px"))
