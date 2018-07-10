@@ -328,7 +328,7 @@ shinyServer(function(input, output) {
     
     #filter so that the Scotland value isn't a bar on the plot
     
-    dta <- filter(dta, CPP != "Scotland")
+    dtaNoScot <- filter(dta, CPP != "Scotland")
     
     # store direction so that right hand side of plot always shows best outcome
     
@@ -338,9 +338,9 @@ shinyServer(function(input, output) {
     plts <- list()
     indi <- indis
     plts <-lapply(1:18, FUN = function(.x){
-      ggplot(data = filter(dta, Indicator == indi[[.x]])) +
+      ggplot(data = filter(dtaNoScot, Indicator == indi[[.x]])) +
         geom_bar(aes(
-          x = if(direction == "Yes"){reorder(CPP, value)}else{reorder(CPP, -value)}, 
+          x = if((first(`High is Positive?`))== "Yes"){reorder(CPP, value)}else{reorder(CPP, -value)}, 
           y = value, 
           fill = colourscheme
           ), 
@@ -353,7 +353,10 @@ shinyServer(function(input, output) {
         ggtitle(indi[[.x]])+
         xlab("")+
         ylab("")+
-        geom_hline(aes(yintercept = cmp[[.x]])) +
+        geom_hline(aes(
+          yintercept = filter(dta, CPP == "Scotland" & Indicator == indi[[.x]])$value
+          )
+        ) +
         theme_bw()+
         theme(axis.text.x = element_text(angle =90, hjust =1, vjust = 0))
     })
