@@ -129,8 +129,10 @@ body <- dashboardBody(
           fluidPage(
             tags$head(
               tags$style(HTML("
-                              
+
                               .multicol {
+
+                              height:75px;
                               
                               -webkit-column-count: 3; /* Chrome, Safari, Opera */
                               
