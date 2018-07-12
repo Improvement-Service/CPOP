@@ -20,6 +20,7 @@ CPP_Imp <- read_csv("data/Imp_rate_CPP.csv")
 IGZdta <- read_csv("data/IGZcleandata.csv")
 IGZ_latest <- read_csv("data/IGZ_latest.csv")
 IGZ_change <- read_csv("data/IGZ_change.csv")
+Metadata <- read_csv("data/Metadata.csv")
 
 #rename Edinburgh
 SpPolysIZ@data[SpPolysIZ@data$council == "Edinburgh","council"] <- "Edinburgh, City of" 
@@ -41,3 +42,7 @@ CPPMapDta[[14]] <- as.numeric(CPPMapDta[[14]])
 #CPPdta <- CPPdta[c(1:5,7)]
 #colnames(CPPdta)[[6]] <- "FG"
 
+HealthyBW <- filter(Metadata, Indicator == "Healthy Birthweight")
+DefHBW <- HealthyBW[[1,2]]
+TimeHBW <- HealthyBW[[1,3]]
+SourceHBW <- HealthyBW[[1,4]]
