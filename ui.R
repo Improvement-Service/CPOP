@@ -10,8 +10,7 @@ sidebar <- dashboardSidebar(
   menuItem("Data Zone Maps", tabName = "Map2", icon = icon("globe")),
   menuItem("My Communities", tabName = "MyCom", icon = icon("table")),
   menuItem("Community Profile", tabName = "CP", icon = icon("anchor")),
-  menuItem("All Communities", tabName = "allCom", icon = icon("heart")),
-  menuItem("Testtt", tabName = "Test", icon = icon("heart"))
+  menuItem("All Communities", tabName = "allCom", icon = icon("heart"))
   )
 )
 
@@ -184,89 +183,84 @@ body <- dashboardBody(
             fluidPage(
               fluidRow(
                 column(
-                  6,
+                  width = 6,
                   fluidRow(
-                    column(
-                      6,
-                      box(
-                    width = 6,
-                      uiOutput("CommCP"),
-                       tags$style("#Descrip{
-                                 font-size: 13px;
-                                 font-style: bold}"),
-                      div(textOutput("Descrip")),
-                       tags$style("#GrpSize{
-                                font-size: 13px;
-                                font-style: bold}"),
-                      div(textOutput("GrpSize")),
-                      radioButtons(
-                        "ViewCP", 
-                        "Select Display", 
-                        c("All", "Top/bottom 10", "Top/bottom 5"),
-                        inline = TRUE
-                      )
-                    ,
-                    column(
-                      6,
-                      checkboxGroupInput(
-                        "IndiCP", 
-                        "Select Indicators",
-                        unique(IGZdta$Indicator),
-                        selected = unique(IGZdta$Indicator)
-                      )
-                    )
-                  ))),
-                  fluidRow(
-                    column(
-                      6,
-                    
-                  box(
-                    column(2,tags$img(src="Arrow3.png")),
-                    column(8, DT::dataTableOutput("CommunityProfileTbl")),
-                    column(2, tags$img(src="Arrow4.png")) 
-                  )
-                ))),
-                column(
-                  6,
-                  box(
-                    column(
-                      6, 
-                      plotOutput("CPplot_1"),
-                      plotOutput("CPplot_3"),
-                      plotOutput("CPplot_5"),
-                      plotOutput("CPplot_7")
+                    box(
+                      width = 12, 
+                      column(
+                        width = 6,
+                        uiOutput("CommCP"),
+                        tags$style("#Descrip{
+                                   font-size: 13px;
+                                   font-style: bold}"),
+                        div(textOutput("Descrip")),
+                        tags$style("#GrpSize{
+                                   font-size: 13px;
+                                   font-style: bold}"),
+                        div(textOutput("GrpSize")),
+                        radioButtons(
+                          "ViewCP", 
+                          "Select Display", 
+                          c("All", "Top/bottom 10", "Top/bottom 5"),
+                          inline = TRUE
+                        )
                       ),
-                    column(
-                      6,
-                      plotOutput("CPplot_2"),
-                      plotOutput("CPplot_4"),
-                      plotOutput("CPplot_6"),
-                      plotOutput("CPplot_8")
+                      column(
+                        width = 6,
+                        checkboxGroupInput(
+                          "IndiCP", 
+                          "Select Indicators",
+                          unique(IGZdta$Indicator),
+                          selected = unique(IGZdta$Indicator)
+                        )
+                      )
                     )
-                  )
-                )
-              ),
-             fluidRow(
-                column(6),
-                column(2, uiOutput("LineChoicesCP")),
-                column(1, tags$img(src = "ComPrflLgnd.PNG")),
-                column(1),
-                column(
-                  1,
-                  radioButtons(
-                    "ProjectionsCP", 
-                    "Show projections?", 
-                    c("Yes","No"), 
-                    selected = "Yes", 
-                    inline = TRUE
+                  ),
+                  fluidRow(
+                    box(
+                      width = 12,
+                      column(width = 2,tags$img(src="Arrow3.png")),
+                      column(width = 8, DT::dataTableOutput("CommunityProfileTbl")),
+                      column(width = 2, tags$img(src="Arrow4.png"))
+                    )
                   )
                 ),
-                column(
-                  1,
-                  tags$img(src = "DashedLine.PNG")
+                box(
+                  width = 6, 
+                  column(
+                    width = 6,
+                    plotOutput("CPplot_1", height = "175px"),
+                    plotOutput("CPplot_3", height = "175px"),
+                    plotOutput("CPplot_5", height = "175px"),
+                    plotOutput("CPplot_7", height = "175px")
+                  ),
+                  column(
+                    width = 6,
+                    plotOutput("CPplot_2", height = "175px"),
+                    plotOutput("CPplot_4", height = "175px"),
+                    plotOutput("CPplot_6", height = "175px"),
+                    plotOutput("CPplot_8", height = "175px")
+                  ),
+                  fluidRow(
+                    column(7,uiOutput("LineChoicesCP")),
+                    column(5,tags$img(src = "ComPrflLgnd.PNG"))
+                  ),
+                  fluidRow(
+                    column(
+                      7,
+                      radioButtons(
+                        "ProjectionsCP", 
+                        "Show projections?", 
+                        c("Yes","No"), 
+                        selected = "Yes", 
+                        inline = TRUE
+                      )
+                    ),
+                    column(5,tags$img(src = "DashedLine.PNG"))
+                  )
                 )
-              )
-            )   
+            )
+              )     
     ),            
 ##===tab8: All Communities===##
   tabItem(tabName = "allCom",
@@ -284,27 +278,7 @@ body <- dashboardBody(
             hr(),
             plotOutput("AllCPlots")
           )
-        ),
-tabItem(tabName = "Test",
-        fluidPage(
-         fluidRow(
-            box(
-              column(3,
-                     selectInput(
-                       "test", 
-                       "Select Indicator", 
-                       unique(IGZdta$Indicator)
-                     )),
-                     column(3, 
-                            selectInput(
-                              "test", 
-                              "Select Indicator", 
-                              unique(IGZdta$Indicator)))
-            )
-          )
         )
-  
-)
   )
 )
 
