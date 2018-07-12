@@ -269,13 +269,14 @@ body <- dashboardBody(
           fluidPage(
             fluidRow(
               column(
-                6,
+                4,
                 selectInput(
                   "IndiAllC", 
                   "Select Indicator", 
                   unique(IGZdta$Indicator)
                 )
-              )
+              ),
+              column(3, tags$img(src = "allComLgnd.PNG"))
             ),
             hr(),
             plotOutput("AllCPlots")
