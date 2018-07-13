@@ -42,7 +42,94 @@ CPPMapDta[[14]] <- as.numeric(CPPMapDta[[14]])
 #CPPdta <- CPPdta[c(1:5,7)]
 #colnames(CPPdta)[[6]] <- "FG"
 
+# Create Methodology Popup Notes ---------------------------------------------------------------------
+
 HealthyBW <- filter(Metadata, Indicator == "Healthy Birthweight")
-DefHBW <- HealthyBW[[1,2]]
-TimeHBW <- HealthyBW[[1,3]]
+DefHBW    <- HealthyBW[[1,2]]
+TimeHBW   <- HealthyBW[[1,3]]
 SourceHBW <- HealthyBW[[1,4]]
+
+BMI       <- filter(Metadata, Indicator == "Primary 1 Body Mass Index")
+DefBMI    <- BMI[[1,2]]
+TimeBMI   <- BMI[[1,3]]
+SourceBMI <- BMI[[1,4]]
+
+CPov       <- filter(Metadata, Indicator == "Child Poverty")
+DefCPov    <- CPov[[1,2]]
+TimeCPov   <- CPov[[1,3]]
+SourceCPov <- CPov[[1,4]]
+
+S4T       <- filter(Metadata, Indicator == "S4 Tariff")
+DefS4T    <- S4T[[1,2]]
+TimeS4T   <- S4T[[1,3]]
+SourceS4T <- S4T[[1,4]]
+
+PosDes       <- filter(Metadata, Indicator == "Positive Destinations")
+DefPosDes    <- PosDes[[1,2]]
+TimePosDes   <- PosDes[[1,3]]
+SourcePosDes <- PosDes[[1,4]]
+
+EmpRt       <- filter(Metadata, Indicator == "Employment Rate")
+DefEmpRt    <- EmpRt[[1,2]]
+TimeEmpRt   <- EmpRt[[1,3]]
+SourceEmpRt <- EmpRt[[1,4]]
+
+MedEarn       <- filter(Metadata, Indicator == "Median Earnings")
+DefMedEarn    <- MedEarn[[1,2]]
+TimeMedEarn   <- MedEarn[[1,3]]
+SourceMedEarn <- MedEarn[[1,4]]
+
+OWB       <- filter(Metadata, Indicator == "Out of Work Benefits")
+DefOWB    <- OWB[[1,2]]
+TimeOWB   <- OWB[[1,3]]
+SourceOWB <- OWB[[1,4]]
+
+BusSurv       <- filter(Metadata, Indicator == "Business Survival")
+DefBusSurv    <- BusSurv[[1,2]]
+TimeBusSurv   <- BusSurv[[1,3]]
+SourceBusSurv <- BusSurv[[1,4]]
+
+Crime       <- filter(Metadata, Indicator == "Crime Rate")
+DefCrime    <- Crime[[1,2]]
+TimeCrime   <- Crime[[1,3]]
+SourceCrime <- Crime[[1,4]]
+
+Fire       <- filter(Metadata, Indicator == "Dwelling Fires")
+DefFire    <- Fire[[1,2]]
+TimeFire   <- Fire[[1,3]]
+SourceFire <- Fire[[1,4]]
+
+Emiss       <- filter(Metadata, Indicator == "Carbon Emissions")
+DefEmiss    <- Emiss[[1,2]]
+TimeEmiss   <- Emiss[[1,3]]
+SourceEmiss <- Emiss[[1,4]]
+
+EmAd       <- filter(Metadata, Indicator == "Emergency Admissions")
+DefEmAd    <- EmAd[[1,2]]
+TimeEmAd   <- EmAd[[1,3]]
+SourceEmAd <- EmAd[[1,4]]
+
+HospAtt       <- filter(Metadata, Indicator == "Unplanned Hospital Attendances")
+DefHospAtt    <- HospAtt[[1,2]]
+TimeHospAtt   <- HospAtt[[1,3]]
+SourceHospAtt <- HospAtt[[1,4]]
+
+Mort       <- filter(Metadata, Indicator == "Early Mortality")
+DefMort    <- Mort[[1,2]]
+TimeMort   <- Mort[[1,3]]
+SourceMort <- Mort[[1,4]]
+
+Frag       <- filter(Metadata, Indicator == "Fragility")
+DefFrag    <- Frag[[1,2]]
+TimeFrag   <- Frag[[1,3]]
+SourceFrag <- Frag[[1,4]]
+
+WellB       <- filter(Metadata, Indicator == "Well-being")
+DefWellB    <- WellB[[1,2]]
+TimeWellB   <- WellB[[1,3]]
+SourceWellB <- WellB[[1,4]]
+
+FuelPov       <- filter(Metadata, Indicator == "Fuel Poverty")
+DefFuelPov    <- FuelPov[[1,2]]
+TimeFuelPov   <- FuelPov[[1,3]]
+SourceFuelPov <- FuelPov[[1,4]]
