@@ -736,7 +736,11 @@ shinyServer(function(input, output, session) {
         layerId = ~InterZone, 
         fillColor = ~communityPal(`rank_decs`), 
         color = "black"
-      )
+      ) %>%
+      addLegend("bottomright", colors = clrs,
+          labels = c("Poorest outcomes", "","","","","","Best outcomes"),
+          opacity = 1,
+    title = "")
   })
   
   # Add click function
