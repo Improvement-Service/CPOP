@@ -3,10 +3,10 @@ sidebar <- dashboardSidebar(
                  choices = unique(CPPdta$CPP), options = list(placeholder = "Select a CPP",
                   onInitialize = I('function() { this.setValue(""); }'))),
   sidebarMenu(
+  menuItem("Community Maps", tabName = "Map1", icon = icon("map")),
   menuItem("CPP Over Time", tabName = "P1", icon = icon("chart-line")),
   menuItem("Compare All CPPs", tabName = "P2", icon = icon("chart-bar")),
   menuItem("Compare Similar CPPS", tabName = "P3", icon = icon("fort-awesome")),
-  menuItem("Community Maps", tabName = "Map1", icon = icon("map")),
   menuItem("Data Zone Maps", tabName = "Map2", icon = icon("globe")),
   menuItem("My Communities", tabName = "MyCom", icon = icon("table")),
   menuItem("Community Profile", tabName = "CP", icon = icon("anchor")),
@@ -17,13 +17,15 @@ sidebar <- dashboardSidebar(
 body <- dashboardBody(
   
   tabItems(
+    ##Cover Tab
+    tabItem(tabName = "Cov",
+        tags$head(
+         tags$link(rel = "stylesheet", type = "text/css", href = "plain.css")
+            ),
+          uiOutput("CovPg")
+    ),
 ###====First tab: all CPPs over time===###    
     tabItem(tabName = "P1",
-            conditionalPanel(
-              condition = "input.LA1 == ``",
-              h1("Please select a CPP using the drop down on the left")
-            ),
-            conditionalPanel(condition = "input.LA1 != ``",
             fluidRow(
               column(
                 6,
@@ -60,7 +62,6 @@ body <- dashboardBody(
                 column(2, plotOutput("plot_17",height = "225px")),
                 column(2, plotOutput("plot_18",height = "225px"))
               )
-            )
     ),
 ###====Tab2: Show all Councils for all indicators===###
   tabItem(tabName = "P2",
