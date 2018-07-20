@@ -743,6 +743,18 @@ shinyServer(function(input, output, session) {
     title = "")
   })
   
+  output$scotMap <- renderLeaflet({
+    leaflet(SpPolysLA) %>%
+      addTiles() %>%
+      addPolygons(
+        smoothFactor = 0.5, 
+        weight = 1.5, 
+        fillOpacity = 0.7,
+        fillColor = "grey", 
+        color = "black"
+      )
+  })
+  
   # Add click function
   
   showIZPopup <- function(group, lat, lng){

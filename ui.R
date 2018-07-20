@@ -79,6 +79,9 @@ body <- dashboardBody(
 ###====Tab4: Show Community maps===###
   tabItem(tabName = "Map1",
         fluidRow(div(class = "row-fluid", 
+              conditionalPanel("input.LA1 == ''",
+                               leafletOutput("scotMap")
+              ),
               conditionalPanel("input.LA1 != ''",       
                      leafletOutput("communityMap", height = 900))))
   ),
