@@ -10,6 +10,7 @@ library(data.table)
 library(Unicode)
 library(leaflet)
 library(cowplot)
+library(shinycssloaders)
 
 
 SpPolysDF <- read_rds("data/Shapes_decs.rds")

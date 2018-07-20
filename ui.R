@@ -83,7 +83,7 @@ body <- dashboardBody(
                                leafletOutput("scotMap", height = 850)
               ),
               conditionalPanel("input.LA1 != ''",       
-                     leafletOutput("communityMap", height = 850))))
+                     leafletOutput("communityMap", height = 850) %>% withSpinner(type = 6))))
   ),
 ###===Tab5: Show Data Zone Maps ===###
   tabItem(tabName = "Map2",
@@ -263,14 +263,19 @@ body <- dashboardBody(
               )
             ),
             hr(),
-            plotOutput("AllCPlots")
+            plotOutput("AllCPlots") %>% withSpinner(type = 6)
           )
         )
   )
 )
 
 dashboardPage(
-  dashboardHeader(title = "CPOP"),
+  dashboardHeader(title = "CPOP",
+                  dropdownMenu(type = "notifications",
+                  icon = icon("question-circle"), badgeStatus = NULL,
+                  headerText = "Help!!",
+                  notificationItem(text = "click here for help", icon = icon("child"),
+                                   href = "http://www.improvementservice.org.uk/community-planning-outcomes-profile.html"))),
   sidebar,
   body
   )
