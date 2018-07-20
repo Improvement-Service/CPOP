@@ -80,10 +80,10 @@ body <- dashboardBody(
   tabItem(tabName = "Map1",
         fluidRow(div(class = "row-fluid", 
               conditionalPanel("input.LA1 == ''",
-                               leafletOutput("scotMap")
+                               leafletOutput("scotMap", height = 850)
               ),
               conditionalPanel("input.LA1 != ''",       
-                     leafletOutput("communityMap", height = 900))))
+                     leafletOutput("communityMap", height = 850))))
   ),
 ###===Tab5: Show Data Zone Maps ===###
   tabItem(tabName = "Map2",

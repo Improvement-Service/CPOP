@@ -750,9 +750,23 @@ shinyServer(function(input, output, session) {
         smoothFactor = 0.5, 
         weight = 1.5, 
         fillOpacity = 0.7,
+        layerId = ~NAME,
         fillColor = "grey", 
-        color = "black"
+        color = "black",
+        label = SpPolysLA@data$NAME,
+        highlightOptions = highlightOptions(color = "white", weight = 3,bringToFront = TRUE)
       )
+  })
+  
+  ##Click to select the CPP
+  observe({
+    event <- input$scotMap_shape_click
+    if(is.null(event)){
+      return()} 
+      isolate({
+        
+      updateSelectizeInput(session,"LA1", label = NULL, choices = NULL, selected = event$id)
+    })
   })
   
   # Add click function
