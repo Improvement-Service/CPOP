@@ -1,6 +1,6 @@
 sidebar <- dashboardSidebar(
   selectizeInput("LA1", "",
-                 choices = unique(CPPdta$CPP), options = list(placeholder = "Select a CPP",
+                 choices =unique(CPPMapDta$council), options = list(placeholder = "Select a CPP",
                   onInitialize = I('function() { this.setValue(""); }'))),
   sidebarMenu(
   menuItem("Community Maps", tabName = "Map1", icon = icon("map")),
@@ -15,7 +15,24 @@ sidebar <- dashboardSidebar(
 )
 
 body <- dashboardBody(
-  
+  tags$head(tags$style(
+    ".leaflet{height:39vh !important; border-style:solid; border-width:1px; margin-top:6px}",
+    "#communityMap{height:92vh !important;border-style:solid;border-width:1px; margin-left:3px}",
+    "#scotMap{height:92vh !important;border-style:solid;border-width:1px; margin-left:3px}",
+    ".content{padding-top:1px}",
+    HTML(" h5{height: 18px;
+         margin-top:2px;
+         margin-bottom:0px;
+         text-align:center;
+         font-weight: bold;}
+         h4 {
+         font-size:12px;
+         height: 18px;
+         margin-top:2px;
+         margin-bottom:0px;
+         text-align:center;
+         font-weight: bold
+         }"))),
   includeCSS("www/background.css"),
   
   tabItems(
@@ -31,12 +48,13 @@ body <- dashboardBody(
             fluidRow(
               column(
                 6,
+                div(style = "margin-top:5px",
                 selectInput(
                   "CompLA1", 
                   "Select Comparator", 
                   unique(CPPdta$CPP), 
                   selected = "Scotland"
-                )
+                ))
               ),
               column(6, tags$img(src = "Lgnd1.PNG"))
             ),
@@ -375,35 +393,31 @@ body <- dashboardBody(
   tabItem(tabName = "P2",
           fluidPage(
             fluidRow(
+              div(style = "margin-top:5px",
             plotOutput("CompCPP")
-          )
+          ))
     )),
 ###===Tab3: Show only similar councils===###
   tabItem(tabName = "P3",
         fluidPage(
+          div(style = "margin-top:5px",
           plotOutput("SimCPP")
-        )
+        ))
     ),
 ###====Tab4: Show Community maps===###
   tabItem(tabName = "Map1",
         fluidRow(div(class = "row-fluid", 
               conditionalPanel("input.LA1 == ''",
-                               leafletOutput("scotMap", height = 850)
+                               leafletOutput("scotMap")
               ),
               conditionalPanel("input.LA1 != ''",       
-                     leafletOutput("communityMap", height = 850) %>% withSpinner(type = 6))))
+                     leafletOutput("communityMap") %>% withSpinner(type = 6))))
   ),
 ###===Tab5: Show Data Zone Maps ===###
   tabItem(tabName = "Map2",
           fluidPage(
-            absolutePanel(fixed = FALSE,
-                          draggable = FALSE, top = "28px", left = 0, right = 0, bottom = 0,
-                          width = "100%", height = "0px", style = "opacity:1",
-                          wellPanel(
-                                div(class = "span4",
-                                    uiOutput("IZUI"))
-                          )),
-            conditionalPanel("input.CPP != 'Select a CPP'", div(class = "row-fluid",
+                                    uiOutput("IZUI"),
+            conditionalPanel("input.CPP != ' '", div(class = "row-fluid",
                            fluidRow(splitLayout(cellWidths = c("33%", "33%", "33%"),
                         h4("Percentage of Children in Poverty"), 
                         h4("S4 Average Tariff Score"), 
