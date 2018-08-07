@@ -11,10 +11,13 @@ library(Unicode)
 library(leaflet)
 library(cowplot)
 library(shinyBS)
+library(shinycssloaders)
+
 
 
 SpPolysDF <- read_rds("data/Shapes_decs.rds")
 SpPolysIZ <- read_rds("data/IZshapes_decs.rds")
+SpPolysLA <- read_rds("data/LAShps.rds")
 CPPdta <- read_csv("data/CPPcleandata.csv")
 CPP_Imp <- read_csv("data/Imp_rate_CPP.csv")
 IGZdta <- read_csv("data/IGZcleandata.csv")

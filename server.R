@@ -1,5 +1,15 @@
 shinyServer(function(input, output, session) {
   
+  ##get the right HTML for the first page
+  output$CovPg <- renderUI({
+    if(input$LA1 == ""){
+      includeHTML("CoverPage.html")
+    }else{
+       htmPg <- paste0(input$LA1, ".html")
+       includeHTML(htmPg)
+    }
+  })
+  
   
   # Create Ui ouputs for CPP over time page - PAGE1------------------------------------------------------
   
@@ -26,7 +36,7 @@ shinyServer(function(input, output, session) {
       my.i <- i
       plotname <- paste("plot", my.i, sep ="_")
       output[[plotname]] <- renderPlot({
-        
+        req(input$LA1)
         dta <- selected_dta_1()
         
         # Y Axis Range for each plot, based on range of full data set
@@ -170,7 +180,7 @@ shinyServer(function(input, output, session) {
   
   # create single plot based on what indicator is selected  
   output$Indi1Plot <- renderPlot({
-    
+    req(input$LA1)
     selected_dta_1 <- selected_dta_1()
     dta<- selected_dta_1
     dtasubset <- dta[dta$Indicator == input$Indi1,]
@@ -322,6 +332,7 @@ shinyServer(function(input, output, session) {
              "Early Mortality", "Fragility", "Well-being", "Fuel Poverty")
   
   output$CompCPP <- renderPlot({
+    req(input$LA1)
     dta <- filter(CPP_Imp, Year %in% c("2016/17", "2014-2016"))
     dta$colourscheme <-ifelse(dta$CPP == input$LA1,"Sel1","Other")
     
@@ -372,6 +383,7 @@ shinyServer(function(input, output, session) {
              "Early Mortality", "Fragility", "Well-being", "Fuel Poverty")
   
   output$SimCPP <- renderPlot({
+    req(input$LA1)
     FGroup <- filter(CPP_Imp, CPP == input$LA1)[[1,6]]
     dta <- filter(CPP_Imp, Year %in% c("2016/17", "2014-2016") & FG %in% FGroup)
     dta$colourscheme <-ifelse(dta$CPP == input$LA1,"Sel1","Other")
@@ -724,7 +736,37 @@ shinyServer(function(input, output, session) {
         layerId = ~InterZone, 
         fillColor = ~communityPal(`rank_decs`), 
         color = "black"
+      ) %>%
+      addLegend("bottomright", colors = clrs,
+          labels = c("Poorest outcomes", "","","","","","Best outcomes"),
+          opacity = 1,
+    title = "")
+  })
+  
+  output$scotMap <- renderLeaflet({
+    leaflet(SpPolysLA) %>%
+      addTiles() %>%
+      addPolygons(
+        smoothFactor = 0.5, 
+        weight = 1.5, 
+        fillOpacity = 0.7,
+        layerId = ~NAME,
+        fillColor = "grey", 
+        color = "black",
+        label = SpPolysLA@data$NAME,
+        highlightOptions = highlightOptions(color = "white", weight = 3,bringToFront = TRUE)
       )
+  })
+  
+  ##Click to select the CPP
+  observe({
+    event <- input$scotMap_shape_click
+    if(is.null(event)){
+      return()} 
+      isolate({
+        
+      updateSelectizeInput(session,"LA1", label = NULL, choices = NULL, selected = event$id)
+    })
   })
   
   # Add click function
@@ -776,7 +818,7 @@ shinyServer(function(input, output, session) {
   # Table output 
   
   output$MyCommunitiesTbl <- DT::renderDataTable({
-    
+    req(input$LA1)
     
     # rankings for outcomes
     
@@ -1032,12 +1074,14 @@ shinyServer(function(input, output, session) {
   })
   
   output$Descrip <- renderText({
+    req(input$LA1)
     IGZsubset <- filter(IGZdta, InterZone_Name == input$CommunityCP)
     txt <- first(IGZsubset$Typology_Name)
     txt <- paste("Group Description: ", txt)
   })
   
   output$GrpSize <- renderText({
+    req(input$LA1)
     IGZsubset <- filter(IGZdta, InterZone_Name == input$CommunityCP)
     Typology <- first(IGZsubset$Typology_Group)
     Indi <- first(IGZsubset$Indicator)
@@ -1054,7 +1098,7 @@ shinyServer(function(input, output, session) {
   # create table output
   
   output$CommunityProfileTbl <- DT::renderDataTable({
-    
+    req(input$LA1)
     IGZsubset <- filter(IGZdta, InterZone_Name == input$CommunityCP)
     Typology <- first(IGZsubset$Typology_Group)
     
@@ -1296,7 +1340,7 @@ shinyServer(function(input, output, session) {
   IndicatorsCP <- unique(IGZdta$Indicator)
   
   LineChoiceDta <- reactive({
-    
+    req(input$LA1)
     # need to filter to selected CPP to avoid cases where the 
     #IGZ name has a duplicate in another CPP
     
@@ -1347,7 +1391,7 @@ shinyServer(function(input, output, session) {
       my.i <- i
       plotname <- paste("CPplot", my.i, sep ="_")
       output[[plotname]]<- renderPlot({
-        
+        req(input$LA1)
         LineChoiceDta <- LineChoiceDta()
         
         # Y axis 
@@ -1457,11 +1501,12 @@ shinyServer(function(input, output, session) {
   # render plots
   
   myheight <- function(){
+    req(input$LA1)
     nrow(unique(IGZdta[IGZdta$CPP == input$LA1,"InterZone_Name"]))*60
   }
   
   output$AllCPlots <- renderPlot({
-    
+    req(input$LA1)
     # Y axis range 
     y_rnge_dta <- filter(
       IGZdta, 
