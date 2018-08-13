@@ -441,12 +441,21 @@ shinyServer(function(input, output, session) {
   })
   
   clrs      <- brewer.pal(7, "RdYlGn")
+  clrsCB    <- brewer.pal(7, "YlGnBu")
   povPal    <- colorBin(rev(clrs), SpPolysDF@data$povDecs)
+  povPalCB  <- colorBin(rev(clrsCB), SpPolysDF@data$povDecs)
   tariffPal <- colorBin(clrs, SpPolysDF@data$tariffDecs)
+  tariffPalCB <- colorBin(clrsCB, SpPolysDF@data$tariffDecs)
   posPal    <- colorBin(clrs, SpPolysDF@data$posDecs)
+  posPalCB  <- colorBin(clrsCB, SpPolysDF@data$posDecs)
   benPal    <- colorBin(rev(clrs), SpPolysDF@data$benDecs)
+  benPalCB    <- colorBin(rev(clrsCB), SpPolysDF@data$benDecs)
   crimePal  <- colorBin(rev(clrs), SpPolysDF@data$crimeDecs)
+  crimePalCB  <- colorBin(rev(clrsCB), SpPolysDF@data$crimeDecs)
   admisPal  <- colorBin(rev(clrs), SpPolysDF@data$admisDecs)
+  admisPalCB  <- colorBin(rev(clrsCB), SpPolysDF@data$admisDecs)
+  
+  
   
   plydata <- reactive({
     desIZ <- which(CPPMapDta$council %in% input$LA1 & CPPMapDta$IZname %in% input$IZ)
@@ -456,6 +465,7 @@ shinyServer(function(input, output, session) {
   # create the map
   
   output$newplot<-renderLeaflet({
+    mapCols <- if(input$CBCols){~povPalCB(`povDecs`)}else{~povPal(`povDecs`)}
     p <- leaflet(plydata())%>%
       
       # addProviderTiles("OpenStreetMap.HOT")%>% #Humanitarian OpenStreetMap if desired
@@ -466,14 +476,15 @@ shinyServer(function(input, output, session) {
         weight = 1.5, 
         fillOpacity = 0.7,
         layerId = ~DataZone, 
-        fillColor = ~povPal(`povDecs`), 
+        fillColor = mapCols, 
         color = "black"
       )
-    
     return(p)
   })
   
   output$newplot2 <- renderLeaflet({
+    mapCols <- if(input$CBCols){~tariffPalCB(`tariffDecs`)}else{~tariffPal(`tariffDecs`)}
+    
     p <- leaflet(plydata())%>%
       addTiles()%>%
       addPolygons(
@@ -481,7 +492,7 @@ shinyServer(function(input, output, session) {
         weight = 1.5, 
         fillOpacity = 0.7,
         layerId = ~DataZone, 
-        fillColor = ~tariffPal(`tariffDecs`),  
+        fillColor = mapCols,  
         color = "black"
       )
     
@@ -489,6 +500,7 @@ shinyServer(function(input, output, session) {
   })
   
   output$newplot3 <- renderLeaflet({
+    mapCols <- if(input$CBCols){~posPalCB(`posDecs`)}else{~posPal(`posDecs`)}
     p <- leaflet(plydata())%>%
       addTiles()%>%
       addPolygons(
@@ -496,7 +508,7 @@ shinyServer(function(input, output, session) {
         weight = 1.5, 
         fillOpacity = 0.7,
         layerId = ~DataZone, 
-        fillColor = ~posPal(`posDecs`), 
+        fillColor = mapCols, 
         color = "black"
       )
     
@@ -504,6 +516,7 @@ shinyServer(function(input, output, session) {
   })
   
   output$newplot4 <- renderLeaflet({
+    mapCols <- if(input$CBCols){~benPalCB(`benDecs`)}else{~benPal(`benDecs`)}
     p <- leaflet(plydata())%>%
       addTiles()%>%
       addPolygons(
@@ -511,7 +524,7 @@ shinyServer(function(input, output, session) {
         weight = 1.5, 
         fillOpacity = 0.7,
         layerId = ~DataZone, 
-        fillColor = ~benPal(`benDecs`), 
+        fillColor = mapCols, 
         color = "black"
       )
     
@@ -519,6 +532,7 @@ shinyServer(function(input, output, session) {
   })
   
   output$newplot5 <- renderLeaflet({
+    mapCols <- if(input$CBCols){~crimePalCB(`crimeDecs`)}else{~crimePal(`crimeDecs`)}
     p <- leaflet(plydata())%>%
       addTiles()%>%
       addPolygons(
@@ -526,7 +540,7 @@ shinyServer(function(input, output, session) {
         weight = 1.5, 
         fillOpacity = 0.7,
         layerId = ~DataZone, 
-        fillColor = ~crimePal(`crimeDecs`), 
+        fillColor = mapCols, 
         color = "black"
       )
     
@@ -534,6 +548,7 @@ shinyServer(function(input, output, session) {
   })
   
   output$newplot6 <- renderLeaflet({
+    mapCols <- if(input$CBCols){~admisPalCB(`admisDecs`)}else{~admisPal(`admisDecs`)}
     p <- leaflet(plydata())%>%
       addTiles()%>%
       addPolygons(
@@ -541,7 +556,7 @@ shinyServer(function(input, output, session) {
         weight = 1.5, 
         fillOpacity = 0.7,
         layerId = ~DataZone, 
-        fillColor = ~admisPal(`admisDecs`), 
+        fillColor = mapCols, 
         color = "black"
       )
     
@@ -719,6 +734,7 @@ shinyServer(function(input, output, session) {
   # Colours for Community Map
   
   communityPal <- colorBin(clrs, SpPolysIZ@data$rank_decs)
+  communityPalCB <- colorBin(clrsCB, SpPolysIZ@data$rank_decs)
   
   #Subset IZ Data
   IZPlys <- reactive({
@@ -730,20 +746,25 @@ shinyServer(function(input, output, session) {
   output$communityMap <- renderLeaflet({
     sbst <- which(SpPolysIZ@data$council %in% input$LA1)
     dt <- SpPolysIZ[sbst,]
+    selCls <- if(input$CBCols){clrsCB}else{clrs}
+    selPls <- if(input$CBCols){
+      ~communityPalCB(`rank_decs`)
+    }else{~communityPal(`rank_decs`)}
+    topRk <- paste0("Best outcomes - ",nrow(dt))
     cp <- leaflet(dt) %>%
       addTiles() %>%
+      addLegend("bottomright", colors = selCls,
+          labels = c("Worst outcomes - 1", "","","","","",topRk),
+          opacity = 1,
+    title = "") %>%
       addPolygons(
         smoothFactor = 0.5, 
         weight = 1.5, 
         fillOpacity = 0.7,
         layerId = ~InterZone, 
-        fillColor = ~communityPal(`rank_decs`), 
+        fillColor = selPls, 
         color = "black"
-      ) %>%
-      addLegend("bottomright", colors = clrs,
-          labels = c("Poorest outcomes", "","","","","","Best outcomes"),
-          opacity = 1,
-    title = "")
+      )
   })
   
   output$scotMap <- renderLeaflet({
@@ -889,7 +910,7 @@ shinyServer(function(input, output, session) {
     # if difference is negative have a smaller number within each grouping
     if(Diff_seq < 0) {groupings <- groupings -1}
     
-    # Create the number sequence again on this bases
+    # Create the number sequence again on this basis
     
     Number_seq2 <- rep(1:Clrs, each = groupings)
     length_seq2 <- length(Number_seq2)

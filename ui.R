@@ -12,7 +12,8 @@ sidebar <- dashboardSidebar(
   menuItem("Community Profile", tabName = "CP", icon = icon("anchor")),
   menuItem("All Communities", tabName = "allCom", icon = icon("heart")),
   menuItem("Help Video", tabName = "hVid", icon = icon("bath"))
-  )
+  ),
+  checkboxInput("CBCols", "Colourblind Colour Scheme", value = FALSE)
 )
 
 body <- dashboardBody(
