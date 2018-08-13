@@ -2,6 +2,7 @@ sidebar <- dashboardSidebar(
   selectizeInput("LA1", "",
                  choices =unique(CPPMapDta$council), options = list(placeholder = "Select a CPP",
                   onInitialize = I('function() { this.setValue(""); }'))),
+  checkboxInput("CBCols", "Colourblind Colour Scheme", value = FALSE),
   sidebarMenu(
   menuItem("Community Maps", tabName = "Map1", icon = icon("map")),
   menuItem("CPP Over Time", tabName = "P1", icon = icon("industry")),
@@ -12,15 +13,14 @@ sidebar <- dashboardSidebar(
   menuItem("Community Profile", tabName = "CP", icon = icon("anchor")),
   menuItem("All Communities", tabName = "allCom", icon = icon("heart")),
   menuItem("Help Video", tabName = "hVid", icon = icon("bath"))
-  ),
-  checkboxInput("CBCols", "Colourblind Colour Scheme", value = FALSE)
+  )
 )
 
 body <- dashboardBody(
   tags$head(tags$style(
     ".leaflet{height:39vh !important; border-style:solid; border-width:1px; margin-top:6px}",
-    "#communityMap{height:92vh !important;border-style:solid;border-width:1px; margin-left:3px}",
-    "#scotMap{height:92vh !important;border-style:solid;border-width:1px; margin-left:3px}",
+    "#communityMap{height:90vh !important;border-style:solid;border-width:1px; margin-left:3px}",
+    "#scotMap{height:90vh !important;border-style:solid;border-width:1px; margin-left:3px}",
     ".content{padding-top:1px}",
     HTML(" h5{height: 18px;
          margin-top:2px;

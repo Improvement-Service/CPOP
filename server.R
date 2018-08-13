@@ -750,11 +750,11 @@ shinyServer(function(input, output, session) {
     selPls <- if(input$CBCols){
       ~communityPalCB(`rank_decs`)
     }else{~communityPal(`rank_decs`)}
-    topRk <- paste0("Best outcomes - ",nrow(dt))
+    topRk <- paste0("Best outcomes - Rank ",nrow(dt))
     cp <- leaflet(dt) %>%
       addTiles() %>%
       addLegend("bottomright", colors = selCls,
-          labels = c("Worst outcomes - 1", "","","","","",topRk),
+          labels = c("Worst outcomes - Rank 1", "","","","","",topRk),
           opacity = 1,
     title = "") %>%
       addPolygons(
