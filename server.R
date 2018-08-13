@@ -355,6 +355,7 @@ shinyServer(function(input, output, session) {
           width = 0.5
         ) +
         scale_fill_manual(values = c("blue","red"), breaks = c("Other", "Sel1")) +
+        scale_x_discrete(label = function(x) abbreviate(x, minlength = 10))+
         guides(fill = FALSE) +
         ggtitle(indi[[.x]])+
         xlab("")+
@@ -364,7 +365,8 @@ shinyServer(function(input, output, session) {
           )
         ) +
         theme_bw()+
-        theme(axis.text.x = element_text(angle =90, hjust =1, vjust = 0))
+        theme(axis.text.x = element_text(angle =90, hjust =1, vjust = 0),
+              plot.title = element_text(face = "bold"))
     })
     do.call("plot_grid", c(plts, ncol = 4))
   }, height = 1200)
@@ -417,7 +419,8 @@ shinyServer(function(input, output, session) {
           )
         ) +
         theme_bw()+
-        theme(axis.text.x = element_text(angle =90, hjust =1, vjust = 0))
+        theme(axis.text.x = element_text(angle =90, hjust =1, vjust = 0),
+              plot.title = element_text(face = "bold"))
     })
     do.call("plot_grid", c(plts, ncol = 4))
   }, height = 1200)
@@ -1580,5 +1583,5 @@ shinyServer(function(input, output, session) {
     })
     do.call("plot_grid", c(plts, ncol = 4))
   }, height = myheight)
-  
+
 })

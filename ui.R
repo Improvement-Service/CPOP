@@ -4,13 +4,14 @@ sidebar <- dashboardSidebar(
                   onInitialize = I('function() { this.setValue(""); }'))),
   sidebarMenu(
   menuItem("Community Maps", tabName = "Map1", icon = icon("map")),
-  menuItem("CPP Over Time", tabName = "P1", icon = icon("chart-line")),
-  menuItem("Compare All CPPs", tabName = "P2", icon = icon("chart-bar")),
+  menuItem("CPP Over Time", tabName = "P1", icon = icon("industry")),
+  menuItem("Compare All CPPs", tabName = "P2", icon = icon("car")),
   menuItem("Compare Similar CPPS", tabName = "P3", icon = icon("fort-awesome")),
   menuItem("Data Zone Maps", tabName = "Map2", icon = icon("globe")),
   menuItem("My Communities", tabName = "MyCom", icon = icon("table")),
   menuItem("Community Profile", tabName = "CP", icon = icon("anchor")),
-  menuItem("All Communities", tabName = "allCom", icon = icon("heart"))
+  menuItem("All Communities", tabName = "allCom", icon = icon("heart")),
+  menuItem("Help Video", tabName = "hVid", icon = icon("bath"))
   )
 )
 
@@ -602,7 +603,11 @@ body <- dashboardBody(
             hr(),
             plotOutput("AllCPlots") %>% withSpinner(type = 6)
           )
-        )
+        ),
+##====Video Tab===##
+  tabItem(tabName = "hVid",
+          HTML('<iframe width="560" height="315" src="https://www.youtube.com/embed/3FOzD4Sfgag" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>')
+    )
   )
 )
 
