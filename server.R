@@ -897,7 +897,7 @@ shinyServer(function(input, output, session) {
     
     NoIGZ      <- nrow(MyCommunitiesDta)
     NoIGZ      <- as.numeric(NoIGZ)
-    Clrs       <- if_else((NoIGZ < 11),NoIGZ,11)
+    Clrs       <- if(input$CBCols){ifelse(NoIGZ<9,NoIGZ,9)}else{ifelse(NoIGZ < 11,NoIGZ,11)}
     groupings  <- round(NoIGZ/Clrs)
     Number_seq <- rep(1:Clrs, each = groupings)
     
@@ -948,7 +948,7 @@ shinyServer(function(input, output, session) {
     Store_unique3 <- unique(MyCommunitiesDta$Helper3) %>% sort
     Store_unique4 <- unique(MyCommunitiesDta$Helper4) %>% sort
     
-    ColourPal <- brewer.pal(Clrs,"RdYlGn")
+    if(input$CBCols){ColourPal <- brewer.pal(Clrs,"YlGnBu")}else{ColourPal <- brewer.pal(Clrs,"RdYlGn")}
     CPPName <- input$LA1
     
     Container1 <- paste(
@@ -983,7 +983,7 @@ shinyServer(function(input, output, session) {
     
     # Store values of the colours which need to have white text
     
-    WhiteTxt <- c(head(Store_unique1,2),tail(Store_unique1,2))
+    WhiteTxt <- if(input$CBCols){c(tail(Store_unique1,2))}else{c(head(Store_unique1,2),tail(Store_unique1,2))}
     TxtValue <- Store_unique1
     TxtValue <- if_else(TxtValue %in% WhiteTxt, "White", "Black")
     
@@ -1059,6 +1059,8 @@ shinyServer(function(input, output, session) {
     
     # Create table
     
+    #if for colourblind options
+        
     datatable(
       MyCommunitiesDta, 
       options = list(
@@ -1177,7 +1179,7 @@ shinyServer(function(input, output, session) {
     
     NoIGZ      <- nrow(CommunityProfileDta)
     NoIGZ      <- as.numeric(NoIGZ)
-    Clrs       <- if_else((NoIGZ < 11), NoIGZ, 11)
+    Clrs       <- if(input$CBCols){ifelse(NoIGZ<9,NoIGZ,9)}else{ifelse(NoIGZ < 11,NoIGZ,11)}
     groupings  <- round(NoIGZ / Clrs)
     Number_seq <- rep(1:Clrs, each = groupings)
     
@@ -1219,7 +1221,7 @@ shinyServer(function(input, output, session) {
     Store_unique1 <- unique(CommunityProfileDta$Helper1)
     Store_unique2 <- unique(CommunityProfileDta$Helper2) %>% sort
     
-    ColourPal <- brewer.pal(Clrs,"RdYlGn")
+    if(input$CBCols){ColourPal <- brewer.pal(Clrs,"YlGnBu")}else{ColourPal <- brewer.pal(Clrs,"RdYlGn")}
     CPPName <-  input$LA1
     
     # determine which IGZ should be bold
@@ -1267,7 +1269,7 @@ shinyServer(function(input, output, session) {
     
     # Store values of the colours which need to have white text
     
-    WhiteTxt <- c(head(Store_unique1,2),tail(Store_unique1,2))
+    WhiteTxt <- if(input$CBCols){c(tail(Store_unique1,2))}else{c(head(Store_unique1,2),tail(Store_unique1,2))}
     TxtValue <- Store_unique1
     TxtValue <- if_else(TxtValue %in% WhiteTxt, "White", "Black")
     

@@ -18,10 +18,12 @@ sidebar <- dashboardSidebar(
 
 body <- dashboardBody(
   tags$head(tags$style(
-    ".leaflet{height:39vh !important; border-style:solid; border-width:1px; margin-top:6px}",
+    ".leaflet{height:38vh !important; border-style:solid; border-width:1px; margin-top:6px}",
     "#communityMap{height:90vh !important;border-style:solid;border-width:1px; margin-left:3px}",
     "#scotMap{height:90vh !important;border-style:solid;border-width:1px; margin-left:3px}",
     ".content{padding-top:1px}",
+    ".col-sm-1{padding-left:2px; z-index:1}",
+    ".col-sm-10{z-index:2}",
     HTML(" h5{height: 18px;
          margin-top:2px;
          margin-bottom:0px;
@@ -33,8 +35,11 @@ body <- dashboardBody(
          margin-top:2px;
          margin-bottom:0px;
          text-align:center;
-         font-weight: bold
-         }"))),
+         font-weight: bold;}
+         .multicol {
+             -webkit-column-count: 3; /* Chrome, Safari, Opera */
+             -moz-column-count: 3; /* Firefox */
+             column-count: 3;}"))),
   includeCSS("www/background.css"),
   
   tabItems(
@@ -408,18 +413,18 @@ body <- dashboardBody(
     ),
 ###====Tab4: Show Community maps===###
   tabItem(tabName = "Map1",
-        fluidRow(div(class = "row-fluid", 
+        fluidRow(
               conditionalPanel("input.LA1 == ''",
                                leafletOutput("scotMap")
               ),
               conditionalPanel("input.LA1 != ''",       
-                     leafletOutput("communityMap") %>% withSpinner(type = 6))))
+                     leafletOutput("communityMap") %>% withSpinner(type = 6)))
   ),
 ###===Tab5: Show Data Zone Maps ===###
   tabItem(tabName = "Map2",
           fluidPage(
                                     uiOutput("IZUI"),
-            conditionalPanel("input.CPP != ' '", div(class = "row-fluid",
+            conditionalPanel("input.CPP != ' '", 
                            fluidRow(splitLayout(cellWidths = c("33%", "33%", "33%"),
                         h4("Percentage of Children in Poverty"), 
                         h4("S4 Average Tariff Score"), 
@@ -428,8 +433,7 @@ body <- dashboardBody(
                        fluidRow(splitLayout(cellWidths = c("33%", "33%", "33%"),
                             leafletOutput("newplot"), 
                             leafletOutput("newplot2"), 
-                            leafletOutput("newplot3")))
-            ), 
+                            leafletOutput("newplot3"))), 
             hr(style = "margin-bottom:0.3vh; margin-top:0.5vh")),
             conditionalPanel("input.CPP != 'Select a CPP'",
                fluidRow(
@@ -450,33 +454,16 @@ body <- dashboardBody(
 ###=== Tab6: My Communities ===###
   tabItem(tabName = "MyCom",
           fluidPage(
-            tags$head(
-              tags$style(HTML("
-
-                              .multicol {
-
-                              height:75px;
-                              
-                              -webkit-column-count: 3; /* Chrome, Safari, Opera */
-                              
-                              -moz-column-count: 3; /* Firefox */
-                              
-                              column-count: 3;
-                              
-                              }
-                              
-                              "))
-            ),
             fluidRow(
               column(
-                6,
+                4,
                 radioButtons(
                   "View","Select Display",
                   c("All", "Top/bottom 10", "Top/bottom 5"),
                   inline = TRUE)
                 ),
               column(
-                5,
+               7,
                 tags$div(
                   class = "multicol",
                   checkboxGroupInput(
@@ -485,21 +472,20 @@ body <- dashboardBody(
                     unique(IGZdta$Indicator),
                     selected = unique(IGZdta$Indicator)
                   )
-                )
-              ),
-              column(
-                1,
-                actionButton("IndiAll","Select All"),
+                )),
+               column(1,div(style = "margin-bottom:1px",
+                actionButton("IndiAll","Select All")),
                 actionButton("IndiClear", "Clear All")
               )
+              
           ),
-          fluidPage(
+         
             fluidRow(
-              column(1,tags$img(src = "Arrow1.png")),
-              column(10,DT::dataTableOutput("MyCommunitiesTbl")),
-              column(1,tags$img(src = "Arrow2.png"))
+              column(1,div(style = "padding-left:0px; float:left",tags$img(src = "Arrow1.png"))),
+              column(10,div(style = "margin-left:9px",DT::dataTableOutput("MyCommunitiesTbl"))),
+              column(1,div(style = "margin-right:8px",tags$img(src = "Arrow2.png")))
             )
-          )
+           
         )
       ),
 
