@@ -18,7 +18,7 @@ sidebar <- dashboardSidebar(
 
 body <- dashboardBody(
   tags$head(tags$style(
-    ".leaflet{height:38vh !important; border-style:solid; border-width:1px; margin-top:6px}",
+    ".leaflet{height:36vh !important; border-style:solid; border-width:1px; margin-top:6px}",
     "#communityMap{height:90vh !important;border-style:solid;border-width:1px; margin-left:3px}",
     "#scotMap{height:90vh !important;border-style:solid;border-width:1px; margin-left:3px}",
     ".content{padding-top:1px}",
@@ -453,7 +453,7 @@ body <- dashboardBody(
       ),
 ###=== Tab6: My Communities ===###
   tabItem(tabName = "MyCom",
-          fluidPage(
+          fluidPage(style = "padding-right:30px",
             fluidRow(
               column(
                 4,
@@ -530,9 +530,9 @@ body <- dashboardBody(
                   fluidRow(
                     box(
                       width = 12,
-                      column(width = 2,tags$img(src="Arrow3.png")),
-                      column(width = 8, DT::dataTableOutput("CommunityProfileTbl")),
-                      column(width = 2, tags$img(src="Arrow4.png"))
+                      column(width = 2, style = "padding-left:2px;padding-right:2px;z-index:1",tags$img(src="Arrow3.png")),
+                      column(width = 8, style = "z-index:2",DT::dataTableOutput("CommunityProfileTbl")),
+                      column(width = 2, style = "padding-left:2px;z-index:1", tags$img(src="Arrow4.png"))
                     )
                   )
                 ),

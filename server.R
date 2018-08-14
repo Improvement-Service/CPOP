@@ -351,11 +351,13 @@ shinyServer(function(input, output, session) {
           fill = colourscheme
           ), 
           stat = "identity",
-          position = "dodge", 
-          width = 0.5
+          position = "dodge",
+          #colour = "black",
+          width = 0.8
         ) +
-        scale_fill_manual(values = c("blue","red"), breaks = c("Other", "Sel1")) +
+        scale_fill_manual(values = c("plum","darkgreen"), breaks = c("Other", "Sel1")) +
         scale_x_discrete(label = function(x) abbreviate(x, minlength = 10))+
+        scale_y_continuous(expand = c(0,0))+
         guides(fill = FALSE) +
         ggtitle(indi[[.x]])+
         xlab("")+
@@ -366,7 +368,9 @@ shinyServer(function(input, output, session) {
         ) +
         theme_bw()+
         theme(axis.text.x = element_text(angle =90, hjust =1, vjust = 0),
-              plot.title = element_text(face = "bold"))
+              plot.title = element_text(face = "bold"),
+              panel.grid.major = element_blank(),
+              panel.grid.minor = element_blank())
     })
     do.call("plot_grid", c(plts, ncol = 4))
   }, height = 1200)
@@ -404,8 +408,9 @@ shinyServer(function(input, output, session) {
         position = "dodge", 
         width = 0.5
         ) +
-        scale_fill_manual(values = c("blue","red"), breaks = c("Other", "Sel1")) +
+        scale_fill_manual(values = c("plum","darkgreen"), breaks = c("Other", "Sel1")) +
         guides(fill = FALSE) +
+        scale_y_continuous(expand = c(0,0))+
         ggtitle(indi[[.x]])+
         xlab("")+
         ylab("")+
