@@ -40,7 +40,6 @@ body <- dashboardBody(
              -webkit-column-count: 3; /* Chrome, Safari, Opera */
              -moz-column-count: 3; /* Firefox */
              column-count: 3;}"))),
-  includeCSS("www/background.css"),
   
   tabItems(
     ##Cover Tab
@@ -481,9 +480,9 @@ body <- dashboardBody(
           ),
          
             fluidRow(
-              column(1,div(style = "padding-left:0px; float:left",tags$img(src = "Arrow1.png"))),
+              uiOutput("arr1"),
               column(10,div(style = "margin-left:9px",DT::dataTableOutput("MyCommunitiesTbl"))),
-              column(1,div(style = "margin-right:8px",tags$img(src = "Arrow2.png")))
+              column(1,div(style = "margin-right:8px",tags$img(src = "Arrow2.PNG")))
             )
            
         )
@@ -530,9 +529,9 @@ body <- dashboardBody(
                   fluidRow(
                     box(
                       width = 12,
-                      column(width = 2, style = "padding-left:2px;padding-right:2px;z-index:1",tags$img(src="Arrow3.png")),
+                      uiOutput("arr2"),
                       column(width = 8, style = "z-index:2",DT::dataTableOutput("CommunityProfileTbl")),
-                      column(width = 2, style = "padding-left:2px;z-index:1", tags$img(src="Arrow4.png"))
+                      column(width = 2, style = "padding-left:2px;z-index:1", tags$img(src="Arrow4.PNG"))
                     )
                   )
                 ),

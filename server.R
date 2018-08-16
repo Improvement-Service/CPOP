@@ -1612,4 +1612,20 @@ shinyServer(function(input, output, session) {
     do.call("plot_grid", c(plts, ncol = 4))
   }, height = myheight)
 
+  
+#colourblind arrows
+  output$arr1 <- renderUI({
+    if(input$CBCols){
+      column(1,div(style = "padding-left:0px; float:left",tags$img(src = "CBArrow1.PNG")))
+      }else{
+    column(1,div(style = "padding-left:0px; float:left",tags$img(src = "Arrow1.PNG")))
+      }
+        })
+  output$arr2 <- renderUI({
+    if(input$CBCols){
+      column(width = 2, style = "padding-left:2px;padding-right:2px;z-index:1",tags$img(src = "CBArrow3.PNG"))
+    }else{
+      column(width = 2, style = "padding-left:2px;padding-right:2px;z-index:1",tags$img(src = "Arrow3.PNG"))
+    }
+  })
 })
