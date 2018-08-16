@@ -62,7 +62,7 @@ body <- dashboardBody(
                   selected = "Scotland"
                 ))
               ),
-              column(6, tags$img(src = "Lgnd1.PNG"))
+              column(6, tags$img(style = "max-width:100%",src = "Lgnd1.PNG"))
             ),
               fluidRow(
                 column(2, plotOutput("plot_1", height = "225px"),
@@ -584,7 +584,7 @@ body <- dashboardBody(
                   unique(IGZdta$Indicator)
                 )
               ),
-              column(3, tags$img(src = "allComLgnd.PNG"))
+              column(3, tags$img(style = "max-width:100%",src = "allComLgnd.PNG"))
             ),
             hr(),
             plotOutput("AllCPlots") %>% withSpinner(type = 6)
