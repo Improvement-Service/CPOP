@@ -150,7 +150,7 @@ shinyServer(function(input, output, session) {
             lwd = 1, show.legend = FALSE
           )+
           scale_color_manual(values = c("red", "blue"))+
-          ggtitle(indicators_1[my.i])+
+          labs(title  = indicators_1[my.i])+
           annotate(
             "text", 
             x = Inf, 
@@ -164,12 +164,13 @@ shinyServer(function(input, output, session) {
           scale_x_continuous(breaks = c(1: length(year_breaks)), labels = year_labels)+
           ylim(y_min, y_max)+
           theme(
-            plot.title = element_text(size = 12), 
+            plot.title = element_text(size = 10), 
             panel.grid.major = element_blank(), 
             panel.grid.minor = element_blank(), 
             panel.background = element_blank(), 
             axis.line = element_line(colour="black"),
             axis.text.x = element_text(vjust = 0.3),
+            axis.text.y = element_text(size = 7),
             axis.title.x = element_blank(),
             axis.title.y = element_blank()
           )
@@ -293,7 +294,7 @@ shinyServer(function(input, output, session) {
         lwd = 1, show.legend = FALSE
       )+
       scale_color_manual(values = c("red", "blue"))+
-      ggtitle(input$Indi1)+
+      labs(title = input$Indi1)+
       annotate(
         "text", 
         x = Inf, 
@@ -307,7 +308,7 @@ shinyServer(function(input, output, session) {
       scale_x_continuous(breaks = c(1:length(year_breaks)), labels = year_labels)+
       ylim(y_min, y_max)+
       theme(
-        plot.title = element_text(size = 12), 
+        plot.title = element_text(size = 5), 
         panel.grid.major = element_blank(), 
         panel.grid.minor = element_blank(), 
         panel.background = element_blank(), 
