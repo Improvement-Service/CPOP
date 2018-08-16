@@ -1616,16 +1616,16 @@ shinyServer(function(input, output, session) {
 #colourblind arrows
   output$arr1 <- renderUI({
     if(input$CBCols){
-      column(1,div(style = "padding-left:0px; float:left",tags$img(src = "CBArrow1.PNG")))
+      column(1,div(style = "padding-left:0px; float:left",tags$img(style = "max-width:100%",src = "CBArrow1.PNG")))
       }else{
-    column(1,div(style = "padding-left:0px; float:left",tags$img(src = "Arrow1.PNG")))
+    column(1,div(style = "padding-left:0px; float:left",tags$img(style = "max-width:100%",src = "Arrow1.PNG")))
       }
         })
   output$arr2 <- renderUI({
     if(input$CBCols){
-      column(width = 2, style = "padding-left:2px;padding-right:2px;z-index:1",tags$img(src = "CBArrow3.PNG"))
+      column(width = 2, style = "padding-left:2px;padding-right:2px;z-index:1;",tags$img(style = "max-width:100%",src = "CBArrow3.PNG"))
     }else{
-      column(width = 2, style = "padding-left:2px;padding-right:2px;z-index:1",tags$img(src = "Arrow3.PNG"))
+      column(width = 2, style = "padding-left:2px;padding-right:2px;z-index:1;",tags$img(style = "max-width:100%", src = "Arrow3.PNG"))
     }
   })
 })

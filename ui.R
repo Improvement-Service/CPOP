@@ -482,7 +482,7 @@ body <- dashboardBody(
             fluidRow(
               uiOutput("arr1"),
               column(10,div(style = "margin-left:9px",DT::dataTableOutput("MyCommunitiesTbl"))),
-              column(1,div(style = "margin-right:8px",tags$img(src = "Arrow2.PNG")))
+              column(1,div(style = "margin-right:8px",tags$img(style = "max-width:100%",src = "Arrow2.PNG")))
             )
            
         )
@@ -531,7 +531,7 @@ body <- dashboardBody(
                       width = 12,
                       uiOutput("arr2"),
                       column(width = 8, style = "z-index:2",DT::dataTableOutput("CommunityProfileTbl")),
-                      column(width = 2, style = "padding-left:2px;z-index:1", tags$img(src="Arrow4.PNG"))
+                      column(width = 2, style = "padding-left:2px;z-index:1;", tags$img(style = "max-width:100%",src="Arrow4.PNG"))
                     )
                   )
                 ),
@@ -552,12 +552,12 @@ body <- dashboardBody(
                     plotOutput("CPplot_8", height = "175px")
                   ),
                   fluidRow(
-                    column(7,uiOutput("LineChoicesCP")),
-                    column(5,tags$img(src = "ComPrflLgnd.PNG"))
+                    column(5,uiOutput("LineChoicesCP")),
+                    column(7,tags$img(style = "max-width:100%;",src = "ComPrflLgnd.PNG"))
                   ),
                   fluidRow(
                     column(
-                      7,
+                      5,
                       radioButtons(
                         "ProjectionsCP", 
                         "Show projections?", 
@@ -566,7 +566,7 @@ body <- dashboardBody(
                         inline = TRUE
                       )
                     ),
-                    column(5,tags$img(src = "DashedLine.PNG"))
+                    column(7,img(style = "max-width:100%;", src = "DashedLine.PNG"))
                   )
                 )
             )
