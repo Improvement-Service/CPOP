@@ -475,7 +475,7 @@ body <- dashboardBody(
             fluidRow(
               uiOutput("arr1"),
               column(10,div(style = "margin-left:9px",DT::dataTableOutput("MyCommunitiesTbl"))),
-              column(1,div(tags$img(style = "max-width:100%; width:100%",src = "Arrow2.PNG")))
+              column(1,div(tags$img(style = "max-width:130%; width:130%",src = "Arrow2.PNG")))
             )
            
         )
