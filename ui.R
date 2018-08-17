@@ -44,7 +44,7 @@ body <- dashboardBody(
   tabItems(
 ###====First tab: all CPPs over time===###    
     tabItem(tabName = "P1",
-            fillPage(fluidRow(
+            fluidPage(fluidRow(
               column(
                 6,
                 div(style = "margin-top:5px;margin-bottom:20px",
@@ -445,7 +445,7 @@ body <- dashboardBody(
       ),
 ###=== Tab6: My Communities ===###
   tabItem(tabName = "MyCom",
-          fluidPage(style = "padding-right:30px",
+          fluidPage(style = "padding-right:30px,overflow-y: auto;",
             fluidRow(
               column(
                 4,
@@ -475,7 +475,7 @@ body <- dashboardBody(
             fluidRow(
               uiOutput("arr1"),
               column(10,div(style = "margin-left:9px",DT::dataTableOutput("MyCommunitiesTbl"))),
-              column(1,div(style = "margin-right:8px",tags$img(style = "max-width:100%",src = "Arrow2.PNG")))
+              column(1,div(tags$img(style = "max-width:100%; width:100%",src = "Arrow2.PNG")))
             )
            
         )
