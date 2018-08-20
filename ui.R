@@ -24,6 +24,9 @@ body <- dashboardBody(
     ".content{padding-top:1px}",
     ".col-sm-1{padding-left:2px; z-index:1}",
     ".col-sm-10{z-index:2}",
+    ".content-wrapper, .right-side {
+      background-color: #ffffff;
+    }",
     HTML(" h5{height: 18px;
          margin-top:2px;
          margin-bottom:0px;
@@ -475,7 +478,7 @@ body <- dashboardBody(
             fluidRow(
               uiOutput("arr1"),
               column(10,div(style = "margin-left:9px",DT::dataTableOutput("MyCommunitiesTbl"))),
-              column(1,div(tags$img(style = "max-width:130%; width:130%",src = "Arrow2.PNG")))
+              column(1,div(tags$img(style = "max-width:150%; width:150%",src = "Arrow2.PNG")))
             )
            
         )
@@ -524,7 +527,7 @@ body <- dashboardBody(
                       width = 12,
                       uiOutput("arr2"),
                       column(width = 8, style = "z-index:2",DT::dataTableOutput("CommunityProfileTbl")),
-                      column(width = 2, style = "padding-left:2px;z-index:1;", tags$img(style = "max-width:100%",src="Arrow4.PNG"))
+                      column(width = 2, style = "padding-left:2px;z-index:1;", tags$img(style = "max-width:130%",src="Arrow4.PNG"))
                     )
                   )
                 ),
