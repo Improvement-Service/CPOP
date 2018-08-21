@@ -4,7 +4,7 @@ sidebar <- dashboardSidebar(
                   onInitialize = I('function() { this.setValue(""); }'))),
   checkboxInput("CBCols", "Colourblind Colour Scheme", value = FALSE),
   sidebarMenu(
-  menuItem("Community Maps", tabName = "Map1", icon = icon("map")),
+  menuItem("Community Map", tabName = "Map1", icon = icon("map")),
   menuItem("CPP Over Time", tabName = "P1", icon = icon("industry")),
   menuItem("Compare All CPPs", tabName = "P2", icon = icon("car")),
   menuItem("Compare Similar CPPS", tabName = "P3", icon = icon("fort-awesome")),
@@ -28,6 +28,27 @@ body <- dashboardBody(
       background-color: #ffffff;
     }",
     "#comProgressBox{width:100%}",
+    "#SimCPP{height:90vh !important}",
+    "#CompCPP{height:90vh !important}",
+    #".shiny-plot-output{26vh !important}",
+    "#plot_1{height:25vh ! important}",
+    "#plot_2{height:25vh ! important}",
+    "#plot_3{height:25vh ! important}",
+    "#plot_4{height:25vh ! important}",
+    "#plot_5{height:25vh ! important}",
+    "#plot_6{height:25vh ! important}",
+    "#plot_7{height:25vh ! important}",
+    "#plot_8{height:25vh ! important}",
+    "#plot_9{height:25vh ! important}",
+    "#plot_10{height:25vh ! important}",
+    "#plot_11{height:25vh ! important}",
+    "#plot_12{height:25vh ! important}",
+    "#plot_13{height:25vh ! important}",
+    "#plot_14{height:25vh ! important}",
+    "#plot_15{height:25vh ! important}",
+    "#plot_16{height:25vh ! important}",
+    "#plot_17{height:25vh ! important}",
+    "#plot_18{height:25vh ! important}",
     HTML(" h5{height: 18px;
          margin-top:2px;
          margin-bottom:0px;
@@ -61,8 +82,8 @@ body <- dashboardBody(
               ),
               column(6, tags$img(style = "max-width:100%",src = "Lgnd1.PNG"))
             ),
-              fluidRow(style = "margin-bottom:20px; margin-right:1px",
-                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_1", height = "225px"),
+              fluidRow(style = "margin-bottom:10px; margin-right:1px",
+                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_1"),
                        bsPopover(id = "plot_1",
                                   title = "Healthy Birthweight", 
                                   content = paste(
@@ -80,7 +101,7 @@ body <- dashboardBody(
                                   options = list(container = "body")
                                  )
                        ),
-                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_2", height = "225px"),
+                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_2"),
                        bsPopover(id = "plot_2",
                                  title = "Primary 1 Body Mass Index", 
                                  content = paste(
@@ -98,7 +119,7 @@ body <- dashboardBody(
                                  options = list(container = "body")
                        )
                        ),
-                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_3", height = "225px"),
+                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_3"),
                        bsPopover(id = "plot_3",
                                  title = "Child Poverty", 
                                  content = paste(
@@ -116,7 +137,7 @@ body <- dashboardBody(
                                  options = list(container = "body")
                        )
                        ),
-                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_4", height = "225px"),
+                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_4"),
                        bsPopover(id = "plot_4",
                                  title = "S4 Tariff", 
                                  content = paste(
@@ -134,7 +155,7 @@ body <- dashboardBody(
                                  options = list(container = "body")
                        )
                        ),
-                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_5", height = "225px"),
+                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_5"),
                        bsPopover(id = "plot_5",
                                  title = "Positive Destinations", 
                                  content = paste(
@@ -152,7 +173,7 @@ body <- dashboardBody(
                                  options = list(container = "body")
                        )
                        ),
-                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_6", height = "225px"),
+                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_6"),
                        bsPopover(id = "plot_6",
                                  title = "Employment Rate", 
                                  content = paste(
@@ -171,8 +192,8 @@ body <- dashboardBody(
                        )
                        )
               ),
-              fluidRow(style = "margin-bottom:20px;margin-right:1px",
-                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_7", height = "225px"),
+              fluidRow(style = "margin-bottom:10px;margin-right:1px",
+                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_7"),
                        bsPopover(id = "plot_7",
                                  title = "Median Earnings", 
                                  content = paste(
@@ -190,7 +211,7 @@ body <- dashboardBody(
                                  options = list(container = "body")
                        )
                        ),
-                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_8", height = "225px"),
+                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_8"),
                        bsPopover(id = "plot_8",
                                  title = "Out of Work Benefits", 
                                  content = paste(
@@ -208,7 +229,7 @@ body <- dashboardBody(
                                  options = list(container = "body")
                        )
                        ),
-                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_9", height = "225px"),
+                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_9"),
                        bsPopover(id = "plot_9",
                                  title = "Business Survival", 
                                  content = paste(
@@ -226,7 +247,7 @@ body <- dashboardBody(
                                  options = list(container = "body")
                        )
                        ),
-                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_10",height = "225px"),
+                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_10"),
                        bsPopover(id = "plot_10",
                                  title = "Crime Rate", 
                                  content = paste(
@@ -244,7 +265,7 @@ body <- dashboardBody(
                                  options = list(container = "body")
                        )
                        ),
-                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_11",height = "225px"),
+                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_11"),
                        bsPopover(id = "plot_11",
                                  title = "Dwelling Fires", 
                                  content = paste(
@@ -262,7 +283,7 @@ body <- dashboardBody(
                                  options = list(container = "body")
                        )
                        ),
-                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_12",height = "225px"),
+                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_12"),
                        bsPopover(id = "plot_12",
                                  title = "Carbon Emissions", 
                                  content = paste(
@@ -281,8 +302,8 @@ body <- dashboardBody(
                        )
                        )
               ),
-              fluidRow(style = "margin-bottom:20px;margin-right:1px",
-                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_13",height = "225px"),
+              fluidRow(style = "margin-bottom:0px;margin-right:1px",
+                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_13"),
                        bsPopover(id = "plot_13",
                                  title = "Emergency Admissions", 
                                  content = paste(
@@ -300,7 +321,7 @@ body <- dashboardBody(
                                  options = list(container = "body")
                        )
                        ),
-                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_14",height = "225px"),
+                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_14"),
                        bsPopover(id = "plot_14",
                                  title = "Unplanned Hospital Attendances", 
                                  content = paste(
@@ -318,7 +339,7 @@ body <- dashboardBody(
                                  options = list(container = "body")
                        )
                        ),
-                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_15",height = "225px"),
+                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_15"),
                        bsPopover(id = "plot_15",
                                  title = "Early Mortality", 
                                  content = paste(
@@ -336,7 +357,7 @@ body <- dashboardBody(
                                  options = list(container = "body")
                        )
                        ),
-                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_16",height = "225px"),
+                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_16"),
                        bsPopover(id = "plot_16",
                                  title = "Fragility", 
                                  content = paste(
@@ -354,7 +375,7 @@ body <- dashboardBody(
                                  options = list(container = "body")
                        )
                        ),
-                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_17",height = "225px"),
+                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_17"),
                        bsPopover(id = "plot_17",
                                  title = "Well-being", 
                                  content = paste(
@@ -372,7 +393,7 @@ body <- dashboardBody(
                                  options = list(container = "body")
                        )
                        ),
-                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_18",height = "225px"),
+                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_18"),
                        bsPopover(id = "plot_18",
                                  title = "Fuel Poverty", 
                                  content = paste(
@@ -397,21 +418,21 @@ body <- dashboardBody(
           fluidPage(
             fluidRow(
               div(style = "margin-top:5px",
-            plotOutput("CompCPP")
+            plotOutput("CompCPP")%>% withSpinner(type = 6)
           ))
     )),
 ###===Tab3: Show only similar councils===###
   tabItem(tabName = "P3",
         fluidPage(
           div(style = "margin-top:5px",
-          plotOutput("SimCPP")
+          plotOutput("SimCPP")%>% withSpinner(type = 6)
         ))
     ),
 ###====Tab4: Show Community maps===###
   tabItem(tabName = "Map1",
         fluidRow(
               conditionalPanel("input.LA1 == ''",
-                               leafletOutput("scotMap")
+                               leafletOutput("scotMap")%>% withSpinner(type = 6)
               ),
               conditionalPanel("input.LA1 != ''",       
                      leafletOutput("communityMap") %>% withSpinner(type = 6)))
@@ -479,7 +500,7 @@ body <- dashboardBody(
          
             fluidRow(
               uiOutput("arr1"),
-              column(10,div(style = "margin-left:9px",DT::dataTableOutput("MyCommunitiesTbl"))),
+              column(10,div(style = "margin-left:9px",DT::dataTableOutput("MyCommunitiesTbl"))%>% withSpinner(type = 6)),
               column(1,div(tags$img(style = "max-width:150%; width:150%",src = "Arrow2.PNG")))
             )
            

@@ -217,7 +217,7 @@ shinyServer(function(input, output, session) {
           width = 0.8
         ) +
         scale_fill_manual(values = c("plum","darkgreen"), breaks = c("Other", "Sel1")) +
-        scale_x_discrete(label = function(x) abbreviate(x, minlength = 10))+
+        #scale_x_discrete(label = function(x) abbreviate(x, minlength = 4))+
         scale_y_continuous(expand = c(0,0))+
         guides(fill = FALSE) +
         ggtitle(indi[[.x]])+
@@ -228,13 +228,15 @@ shinyServer(function(input, output, session) {
           )
         ) +
         theme_bw()+
-        theme(axis.text.x = element_text(angle =90, hjust =1, vjust = 0),
-              plot.title = element_text(face = "bold"),
+        theme(axis.text.x = element_blank(),
+              axis.ticks.x = element_blank(),
+          #axis.text.x = element_text(angle =90, hjust =1, vjust = 0),
+              plot.title = element_text(face = "bold", size = 9),
               panel.grid.major = element_blank(),
               panel.grid.minor = element_blank())
     })
-    do.call("plot_grid", c(plts, ncol = 4))
-  }, height = 1200)
+    do.call("plot_grid", c(plts, ncol = 6))
+  })
   
   
   # Create Graphs for CPP similar - PAGE3----------------------------------------------------------------
@@ -259,6 +261,7 @@ shinyServer(function(input, output, session) {
         position = "dodge", 
         width = 0.5
         ) +
+        scale_x_discrete(label = function(x) abbreviate(x, minlength = 10))+
         scale_fill_manual(values = c("plum","darkgreen"), breaks = c("Other", "Sel1")) +
         guides(fill = FALSE) +
         scale_y_continuous(expand = c(0,0))+
@@ -276,10 +279,10 @@ shinyServer(function(input, output, session) {
         ) +
         theme_bw()+
         theme(axis.text.x = element_text(angle =90, hjust =1, vjust = 0),
-              plot.title = element_text(face = "bold"))
+              plot.title = element_text(face = "bold", size =9))
     })
-    do.call("plot_grid", c(plts, ncol = 4))
-  }, height = 1200)
+    do.call("plot_grid", c(plts, ncol = 6))
+  })
   
   
   # Create Ui outputs for Maps - PAGE4&5--------------------------------------------------
