@@ -27,6 +27,7 @@ body <- dashboardBody(
     ".content-wrapper, .right-side {
       background-color: #ffffff;
     }",
+    "#comProgressBox{width:100%}",
     HTML(" h5{height: 18px;
          margin-top:2px;
          margin-bottom:0px;
@@ -451,11 +452,12 @@ body <- dashboardBody(
           fluidPage(style = "padding-right:30px,overflow-y: auto;",
             fluidRow(
               column(
-                4,
+                2,
                 radioButtons(
                   "View","Select Display",
                   c("All", "Top/bottom 10", "Top/bottom 5"),
-                  inline = TRUE)
+                  inline = FALSE)),
+                column(2,valueBoxOutput("comProgressBox")
                 ),
               column(
                7,

@@ -179,146 +179,6 @@ shinyServer(function(input, output, session) {
     })  
   }
   
-  # create single plot based on what indicator is selected  
-  output$Indi1Plot <- renderPlot({
-    req(input$LA1)
-    selected_dta_1 <- selected_dta_1()
-    dta<- selected_dta_1
-    dtasubset <- dta[dta$Indicator == input$Indi1,]
-    dtasubsetCPP1 <- filter(dtasubset, CPP == input$LA1)
-    dtasubsetCPP2 <- filter(dtasubset, CPP == input$CompLA1)
-    
-    # Y Axis Range for plot, based on indicator
-    
-    y_rnge_dta <- subset(CPP_Imp, CPP_Imp$Indicator == input$Indi1)
-    y_min <- min(y_rnge_dta$value, na.rm = TRUE)
-    y_max <- max(y_rnge_dta$value, na.rm = TRUE)
-    Rnge <- y_max - y_min
-    Extra <- Rnge * 0.05
-    y_min <- y_min - Extra
-    y_max <- y_max + Extra
-    
-    # If statement to determine the colour of the dot
-    # 2 statements to distinguish between high values being positive and high values being negative
-    # compares two selected authorities by the latest value and the improvement rate
-    
-    coloursDotPos <- if_else(
-      ((last(dtasubsetCPP1$value)) > (last(dtasubsetCPP2$value)) & 
-         (last(dtasubsetCPP1$Improvement_Rate)) > (last(dtasubsetCPP2$Improvement_Rate))),
-      "green",
-      if_else(
-        ((last(dtasubsetCPP1$value)) > (last(dtasubsetCPP2$value)) & 
-           (last(dtasubsetCPP1$Improvement_Rate)) < (last(dtasubsetCPP2$Improvement_Rate))),
-        "yellow",
-        if_else(
-          ((last(dtasubsetCPP1$value)) < (last(dtasubsetCPP2$value)) &
-             (last(dtasubsetCPP1$Improvement_Rate)) > (last(dtasubsetCPP2$Improvement_Rate))),
-          "yellow",
-          if_else(
-            ((last(dtasubsetCPP1$value)) < (last(dtasubsetCPP2$value)) & 
-               (last(dtasubsetCPP1$Improvement_Rate)) < (last(dtasubsetCPP2$Improvement_Rate))),
-            "red",
-            "black"
-          )
-        )
-      )
-    )
-    
-    coloursDotNeg <- if_else(
-      ((last(dtasubsetCPP1$value)) > (last(dtasubsetCPP2$value)) &
-         (last(dtasubsetCPP1$Improvement_Rate)) > (last(dtasubsetCPP2$Improvement_Rate))),
-      "red",
-      if_else(
-        ((last(dtasubsetCPP1$value)) > (last(dtasubsetCPP2$value)) &
-           (last(dtasubsetCPP1$Improvement_Rate)) < (last(dtasubsetCPP2$Improvement_Rate))),
-        "yellow",
-        if_else(
-          ((last(dtasubsetCPP1$value)) < (last(dtasubsetCPP2$value)) &
-             (last(dtasubsetCPP1$Improvement_Rate)) > (last(dtasubsetCPP2$Improvement_Rate))),
-          "yellow",
-          if_else(
-            ((last(dtasubsetCPP1$value)) < (last(dtasubsetCPP2$value)) &
-               (last(dtasubsetCPP1$Improvement_Rate)) < (last(dtasubsetCPP2$Improvement_Rate))),
-            "green",
-            "black"
-          )
-        )
-      )
-    )
-    
-    # store unique values of "high is positive?" to determine which coloured dot to use
-    HighValue <- unique(dtasubset$`High is Positive?`)
-    
-    # set x axis labels on plots
-    # need a column which stores a numeric series to be used as the break points
-    # need an additional column which specifies the labels, allowing middle years to be blank
-    # the numeric column is also used as a reactive reference point for setting the labels
-    
-    dtasubset <- arrange(dtasubset, CPP)
-    dtasubset <- setDT(dtasubset)[, YearBreaks :=(seq(1 : length(Year))), by = CPP]
-    dtasubset <- setDT(dtasubset)[, YearLbls :=Year, by = CPP]
-    dtasubset$YearLbls <- as.character(dtasubset$YearLbls)
-    year_breaks <- unique(dtasubset$YearBreaks)
-    dtasubset$YearLbls[dtasubset$YearBreaks > 1 & dtasubset$YearBreaks < last(dtasubset$YearBreaks)] <- ""
-    year_labels <- filter(dtasubset, CPP == input$LA1)
-    year_labels <- year_labels$YearLbls
-    year_labels <- gsub("20", "", year_labels)
-    
-    # store raw data to be used for solid line
-    
-    dtaRaw <- dtasubset[dtasubset$Type == "Raw data",]        
-    
-    # Cerate plot
-    
-    ggplot()+
-      geom_line(
-        data = dtasubset,
-        aes(
-          x = YearBreaks, 
-          y = value, 
-          group = colourscheme, 
-          colour = colourscheme, 
-          linetype = "2"
-        ),
-        lwd = 1, show.legend = FALSE
-      )+
-      geom_line(
-        data = dtaRaw,
-        aes(
-          x = YearBreaks, 
-          y = value, 
-          group = colourscheme, 
-          colour = colourscheme, 
-          linetype = "1"
-        ), 
-        lwd = 1, show.legend = FALSE
-      )+
-      scale_color_manual(values = c("red", "blue"))+
-      labs(title = input$Indi1)+
-      annotate(
-        "text", 
-        x = Inf, 
-        y = Inf, 
-        label = sprintf('\U25CF'), 
-        size = 10, 
-        colour = (if_else(HighValue == "Yes", coloursDotPos, coloursDotNeg)), 
-        hjust = 1, 
-        vjust = 1
-      )+
-      scale_x_continuous(breaks = c(1:length(year_breaks)), labels = year_labels)+
-      ylim(y_min, y_max)+
-      theme(
-        plot.title = element_text(size = 5), 
-        panel.grid.major = element_blank(), 
-        panel.grid.minor = element_blank(), 
-        panel.background = element_blank(), 
-        axis.line = element_line(colour = "black"),
-        axis.text.x = element_text(vjust = 0.3),
-        axis.title.x = element_blank(),
-        axis.title.y = element_blank()
-      )
-  })
-  
   # Create Ui Outputs for CPP all 32 - PAGE2 ------------------------------------------------------------------   
   
   # Render all Plots for Page 2
@@ -378,17 +238,7 @@ shinyServer(function(input, output, session) {
   
   
   # Create Graphs for CPP similar - PAGE3----------------------------------------------------------------
-  
-  
-  # List indicators in the order these are to be presented
-  
-  indis <- c("Healthy Birthweight", "Primary 1 Body Mass Index", "Child Poverty",
-             "S4 Tariff Score", "Positive Destinations", "Employment Rate",
-             "Median Earnings", "Out of Work Benefits", "Business Survival",
-             "Crime Rate", "Dwelling Fires", "Carbon Emissions", 
-             "Emergency Admissions", "Unplanned Hospital Attendances",
-             "Early Mortality", "Fragility", "Well-being", "Fuel Poverty")
-  
+
   output$SimCPP <- renderPlot({
     req(input$LA1)
     FGroup <- filter(CPP_Imp, CPP == input$LA1)[[1,6]]
@@ -433,8 +283,7 @@ shinyServer(function(input, output, session) {
   
   
   # Create Ui outputs for Maps - PAGE4&5--------------------------------------------------
-  
-  
+
   output$IZUI <- renderUI({
     selectizeInput(
       "IZ", 
@@ -750,6 +599,7 @@ shinyServer(function(input, output, session) {
   # Create Community Map
   
   output$communityMap <- renderLeaflet({
+    req(input$LA1)
     sbst <- which(SpPolysIZ@data$council %in% input$LA1)
     dt <- SpPolysIZ[sbst,]
     selCls <- if(input$CBCols){clrsCB}else{clrs}
@@ -845,9 +695,8 @@ shinyServer(function(input, output, session) {
     }
   })  
   
-  # Table output 
-  
-  output$MyCommunitiesTbl <- DT::renderDataTable({
+ ##create rankings for typology and CPP for use later
+  IGZBest <- reactive({
     req(input$LA1)
     
     # rankings for outcomes
@@ -860,10 +709,16 @@ shinyServer(function(input, output, session) {
     
     IGZBest <- setDT(IGZBest)[, FilterRef:= first(Indicator), by = InterZone]
     IGZBest <- filter(IGZBest, Indicator == FilterRef)
-    
     IGZBest$CPPScoreRank <- rank(IGZBest$CombinedCPPScore)
     IGZBest$TypeScoreRank <- rank(IGZBest$CombinedTypeScore)
-    
+    return(IGZBest)
+  })
+  
+  # Table output 
+  
+    output$MyCommunitiesTbl <- DT::renderDataTable({  
+      req(input$LA1)
+      IGZBest <- IGZBest()
     # rankings for improvement 
     
     IGZImprovement <- filter(IGZ_change, CPP %in% input$LA1 & Indicator %in% input$IndiMyCom)
@@ -1628,5 +1483,14 @@ shinyServer(function(input, output, session) {
     }else{
       column(width = 2, style = "padding-left:2px;padding-right:2px;z-index:1;",tags$img(style = "max-width:120%", src = "Arrow3.PNG"))
     }
+  })
+  
+  ##Value box for community progress========
+  output$comProgressBox <- renderValueBox({
+    IGZBest <- IGZBest()
+    pBetter <- round((sum(IGZBest$TypeScore>0)/nrow(IGZBest))*100,0)
+    valueBox(
+    paste0(pBetter, "%"), "Communities Performing Better than Expected", icon = icon("themeisle")
+    )
   })
 })
