@@ -658,7 +658,7 @@ shinyServer(function(input, output, session) {
     selectedIZ <- SpPolysIZ@data[SpPolysIZ@data$InterZone == group,]
     content <- as.character(tagList(
       tags$h4(as.character(unique(selectedIZ$`IGZ name`))),
-      paste("Intermediate Geography Ranking:", as.character(unique(selectedIZ[14]))),
+      paste("Community Ranking:", as.character(unique(selectedIZ[14]))),
       tags$br()
     ))
     leafletProxy("communityMap") %>% addPopups(lng, lat, content, layerId = group)
