@@ -1492,8 +1492,10 @@ shinyServer(function(input, output, session) {
   output$comProgressBox <- renderValueBox({
     IGZBest <- IGZBest()
     pBetter <- round((sum(IGZBest$TypeScore>0)/nrow(IGZBest))*100,0)
+    bCol <- if(pBetter <50) {"red"}else{"blue"}
     valueBox(
-    paste0(pBetter, "%"), "Communities Performing Better than Expected", icon = icon("themeisle")
+    paste0(pBetter, "%"), "Communities Performing Better than Expected", icon = icon("themeisle"),
+    color = bCol
     )
   })
 })

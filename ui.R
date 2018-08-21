@@ -500,7 +500,7 @@ body <- dashboardBody(
          
             fluidRow(
               uiOutput("arr1"),
-              column(10,div(style = "margin-left:9px",DT::dataTableOutput("MyCommunitiesTbl"))%>% withSpinner(type = 6)),
+              column(10,div(style = "margin-left:9px",DT::dataTableOutput("MyCommunitiesTbl"))),
               column(1,div(tags$img(style = "max-width:150%; width:150%",src = "Arrow2.PNG")))
             )
            
