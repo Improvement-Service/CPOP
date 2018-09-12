@@ -1,6 +1,6 @@
 sidebar <- dashboardSidebar(
   selectizeInput("LA1", "",
-                 choices =unique(CPPMapDta$council), options = list(placeholder = "Select a CPP",
+                 choices =c("Scotland",unique(CPPMapDta[CPPMapDta$council != "Scotland", "council"])), options = list(placeholder = "Select a CPP",
                   onInitialize = I('function() { this.setValue(""); }'))),
   checkboxInput("CBCols", "Colourblind Colour Scheme", value = FALSE),
   sidebarMenu(
@@ -19,8 +19,8 @@ sidebar <- dashboardSidebar(
 body <- dashboardBody(
   tags$head(tags$style(
     ".leaflet{height:36vh !important; border-style:solid; border-width:1px; margin-top:6px}",
-    "#communityMap{height:90vh !important;border-style:solid;border-width:1px; margin-left:3px}",
-    "#scotMap{height:90vh !important;border-style:solid;border-width:1px; margin-left:3px}",
+    "#communityMap{height:93vh !important;border-style:solid;border-width:1px; margin-left:3px}",
+    "#scotMap{height:93vh !important;border-style:solid;border-width:1px; margin-left:3px}",
     ".content{padding-top:1px}",
     ".col-sm-1{padding-left:2px; z-index:1}",
     ".col-sm-10{z-index:2}",
@@ -440,7 +440,7 @@ body <- dashboardBody(
 ###===Tab5: Show Data Zone Maps ===###
   tabItem(tabName = "Map2",
           fluidPage(
-                                    uiOutput("IZUI"),
+                                    div(style = "margin-left:40px", uiOutput("IZUI")),
             conditionalPanel("input.CPP != ' '", 
                            fluidRow(splitLayout(cellWidths = c("33%", "33%", "33%"),
                         h4("Percentage of Children in Poverty"), 

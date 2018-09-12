@@ -205,6 +205,8 @@ shinyServer(function(input, output, session) {
     plts <- list()
     indi <- indis
     plts <-lapply(1:18, FUN = function(.x){
+    ##calculate maximum limit for y axis  
+      maxAx <- max(dtaNoScot[dtaNoScot$Indicator == indi[[.x]],5])*1.05
       ggplot(data = filter(dtaNoScot, Indicator == indi[[.x]])) +
         geom_bar(aes(
           x = if((first(`High is Positive?`))== "Yes"){reorder(CPP, value)}else{reorder(CPP, -value)}, 
@@ -218,7 +220,7 @@ shinyServer(function(input, output, session) {
         ) +
         scale_fill_manual(values = c("plum","darkgreen"), breaks = c("Other", "Sel1")) +
         #scale_x_discrete(label = function(x) abbreviate(x, minlength = 4))+
-        scale_y_continuous(expand = c(0,0))+
+        scale_y_continuous(expand = c(0,0), limits = c(0, maxAx))+
         guides(fill = FALSE) +
         ggtitle(indi[[.x]])+
         xlab("")+
@@ -251,6 +253,8 @@ shinyServer(function(input, output, session) {
     indi <- indis
     
     plts <-lapply(1:18, FUN = function(.x){
+      ##calculate maximum limit for y axis  
+      maxAx <- max(dtaNoScot[dta$Indicator == indi[[.x]],5])*1.05
       ggplot(data = filter(dta, Indicator == indi[[.x]])) +
         geom_bar(aes(
           x = if(first(`High is Positive?`)== "Yes"){reorder(CPP, value)}else{reorder(CPP, -value)}, 
@@ -264,7 +268,7 @@ shinyServer(function(input, output, session) {
         scale_x_discrete(label = function(x) abbreviate(x, minlength = 10))+
         scale_fill_manual(values = c("plum","darkgreen"), breaks = c("Other", "Sel1")) +
         guides(fill = FALSE) +
-        scale_y_continuous(expand = c(0,0))+
+        scale_y_continuous(expand = c(0,0), limits = c(0,maxAx))+
         ggtitle(indi[[.x]])+
         xlab("")+
         ylab("")+
@@ -1492,9 +1496,9 @@ shinyServer(function(input, output, session) {
   output$comProgressBox <- renderValueBox({
     IGZBest <- IGZBest()
     pBetter <- round((sum(IGZBest$TypeScore>0)/nrow(IGZBest))*100,0)
-    bCol <- if(pBetter <50) {"red"}else{"blue"}
+    bCol <- if(pBetter <50) {"red"}else{"green"}
     valueBox(
-    paste0(pBetter, "%"), "Communities Performing Better than Expected", icon = icon("themeisle"),
+    paste0(pBetter, "%"), "Communities Performing Better than Expected", icon = icon("percent"),
     color = bCol
     )
   })
