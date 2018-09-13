@@ -225,10 +225,10 @@ shinyServer(function(input, output, session) {
         ggtitle(indi[[.x]])+
         xlab("")+
         ylab("")+
-        geom_hline(aes(
+        {if(input$ScotCheckbox == TRUE)geom_hline(aes(
           yintercept = filter(dta, CPP == "Scotland" & Indicator == indi[[.x]])$value
           )
-        ) +
+        )} +
         theme_bw()+
         theme(axis.text.x = element_blank(),
               axis.ticks.x = element_blank(),
@@ -254,7 +254,7 @@ shinyServer(function(input, output, session) {
     
     plts <-lapply(1:18, FUN = function(.x){
       ##calculate maximum limit for y axis  
-      maxAx <- max(dtaNoScot[dta$Indicator == indi[[.x]],5])*1.05
+      maxAx <- max(dta[dta$Indicator == indi[[.x]],5])*1.05
       ggplot(data = filter(dta, Indicator == indi[[.x]])) +
         geom_bar(aes(
           x = if(first(`High is Positive?`)== "Yes"){reorder(CPP, value)}else{reorder(CPP, -value)}, 
@@ -272,7 +272,7 @@ shinyServer(function(input, output, session) {
         ggtitle(indi[[.x]])+
         xlab("")+
         ylab("")+
-        geom_hline(
+        {if(input$ScotCheckbox2 == TRUE)geom_hline(
           aes(
             yintercept = filter(
             CPP_Imp,
@@ -280,7 +280,7 @@ shinyServer(function(input, output, session) {
               Indicator == indi[[.x]] &
               CPP == "Scotland")$value
           )
-        ) +
+        ) }+
         theme_bw()+
         theme(axis.text.x = element_text(angle =90, hjust =1, vjust = 0),
               plot.title = element_text(face = "bold", size =9))
