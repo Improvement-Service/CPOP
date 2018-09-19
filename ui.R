@@ -5,16 +5,16 @@ sidebar <- dashboardSidebar(
   checkboxInput("CBCols", "Colourblind Colour Scheme", value = FALSE),
   sidebarMenu(id = "sidebarmenu",
   menuItem("Community Map", tabName = "Map1", icon = icon("map")),
-  menuItem("CPP Over Time", tabName = "P1", icon = icon("industry")),
-  menuItem("Compare All CPPs", tabName = "P2", icon = icon("car")),
+  menuItem("CPP Over Time", tabName = "P1", icon = icon("line-chart")),
+  menuItem("Compare All CPPs", tabName = "P2", icon = icon("bar-chart")),
   conditionalPanel(condition = "input.sidebarmenu == `P2`",checkboxInput("ScotCheckbox", "Show Scotland Value", value = TRUE)),
-  menuItem("Compare Similar CPPS", tabName = "P3", icon = icon("fort-awesome")),
+  menuItem("Compare Similar CPPS", tabName = "P3", icon = icon("area-chart")),
   conditionalPanel(condition = "input.sidebarmenu == `P3`",checkboxInput("ScotCheckbox2", "Show Scotland Value", value = TRUE)),
   menuItem("Data Zone Maps", tabName = "Map2", icon = icon("globe")),
   menuItem("My Communities", tabName = "MyCom", icon = icon("table")),
-  menuItem("Community Profile", tabName = "CP", icon = icon("anchor")),
-  menuItem("All Communities", tabName = "allCom", icon = icon("heart")),
-  menuItem("Help Video", tabName = "hVid", icon = icon("bath"))
+  menuItem("Community Profile", tabName = "CP", icon = icon("arrow-down")),
+  menuItem("All Communities", tabName = "allCom", icon = icon("picture-o")),
+  menuItem("Help Video", tabName = "hVid", icon = icon("video-camera"))
   )
 )
 
