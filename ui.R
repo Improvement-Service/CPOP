@@ -1,6 +1,6 @@
 sidebar <- dashboardSidebar(
   selectizeInput("LA1", "",
-                 choices =c(unique(CPPMapDta[CPPMapDta$council != "Scotland", "council"])), options = list(placeholder = "Select a CPP",
+                 choices =unique(CPPMapDta[CPPMapDta$council != "Scotland", "council"]), options = list(placeholder = "Select a CPP",
                   onInitialize = I('function() { this.setValue(""); }'))),
   checkboxInput("CBCols", "Colourblind Colour Scheme", value = FALSE),
   sidebarMenu(id = "sidebarmenu",
@@ -78,7 +78,7 @@ body <- dashboardBody(
                 selectInput(
                   "CompLA1", 
                   "Select Comparator", 
-                  unique(CPPdta$CPP), 
+                  c("Scotland",unique(CPPMapDta[CPPMapDta$council != "Scotland", "council"])), 
                   selected = "Scotland"
                 ))
               ),

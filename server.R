@@ -218,7 +218,7 @@ shinyServer(function(input, output, session) {
           #colour = "black",
           width = 0.8
         ) +
-        scale_fill_manual(values = c("plum","darkgreen"), breaks = c("Other", "Sel1")) +
+        scale_fill_manual(values = c("lightblue2","red2"), breaks = c("Other", "Sel1")) +
         #scale_x_discrete(label = function(x) abbreviate(x, minlength = 4))+
         scale_y_continuous(expand = c(0,0), limits = c(0, maxAx))+
         guides(fill = FALSE) +
@@ -227,7 +227,7 @@ shinyServer(function(input, output, session) {
         ylab("")+
         {if(input$ScotCheckbox == TRUE)geom_hline(aes(
           yintercept = filter(dta, CPP == "Scotland" & Indicator == indi[[.x]])$value
-          )
+          ), colour = "navyblue", size = 1.5
         )} +
         theme_bw()+
         theme(axis.text.x = element_blank(),
@@ -254,7 +254,10 @@ shinyServer(function(input, output, session) {
     
     plts <-lapply(1:18, FUN = function(.x){
       ##calculate maximum limit for y axis  
-      maxAx <- max(dta[dta$Indicator == indi[[.x]],5])*1.05
+      ScotVal <- filter(CPP_Imp,Year %in% c("2016/17", "2014-2016") & 
+                          Indicator == indi[[.x]] &
+                          CPP == "Scotland")$value
+      maxAx <- max(c(dta[dta$Indicator == indi[[.x]],]$value, ScotVal))*1.05
       ggplot(data = filter(dta, Indicator == indi[[.x]])) +
         geom_bar(aes(
           x = if(first(`High is Positive?`)== "Yes"){reorder(CPP, value)}else{reorder(CPP, -value)}, 
@@ -266,7 +269,7 @@ shinyServer(function(input, output, session) {
         width = 0.5
         ) +
         scale_x_discrete(label = function(x) abbreviate(x, minlength = 10))+
-        scale_fill_manual(values = c("plum","darkgreen"), breaks = c("Other", "Sel1")) +
+        scale_fill_manual(values = c("lightblue2","red2"), breaks = c("Other", "Sel1")) +
         guides(fill = FALSE) +
         scale_y_continuous(expand = c(0,0), limits = c(0,maxAx))+
         ggtitle(indi[[.x]])+
@@ -274,16 +277,14 @@ shinyServer(function(input, output, session) {
         ylab("")+
         {if(input$ScotCheckbox2 == TRUE)geom_hline(
           aes(
-            yintercept = filter(
-            CPP_Imp,
-            Year %in% c("2016/17", "2014-2016") & 
-              Indicator == indi[[.x]] &
-              CPP == "Scotland")$value
-          )
+            yintercept = ScotVal
+          ), colour = "navyblue", size = 1.5
         ) }+
         theme_bw()+
         theme(axis.text.x = element_text(angle =90, hjust =1, vjust = 0),
-              plot.title = element_text(face = "bold", size =9))
+              plot.title = element_text(face = "bold", size = 9),
+              panel.grid.major = element_blank(),
+              panel.grid.minor = element_blank())
     })
     do.call("plot_grid", c(plts, ncol = 6))
   })
@@ -1403,7 +1404,7 @@ shinyServer(function(input, output, session) {
     req(input$LA1)
     # Y axis range 
     y_rnge_dta <- filter(
-      IGZdta, 
+      IGZdta, IGZdta$CPP==input$LA1 &
       IGZdta$Indicator == input$IndiAllC & IGZdta$Type != "Projected"
     )
     y_min <- min(y_rnge_dta$value, na.rm = TRUE)
