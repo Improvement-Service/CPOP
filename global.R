@@ -13,6 +13,7 @@ library(cowplot)
 library(shinyBS)
 library(shinycssloaders)
 library(shinyLP)
+library(kableExtra)
 
 
 

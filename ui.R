@@ -14,6 +14,7 @@ sidebar <- dashboardSidebar(
   menuItem("My Communities", tabName = "MyCom", icon = icon("table")),
   menuItem("Community Profile", tabName = "CP", icon = icon("arrow-down")),
   menuItem("All Communities", tabName = "allCom", icon = icon("picture-o")),
+  menuItem("Inequality", tabName = "InQ", icon = icon("arrows-v")),
   menuItem("Help Video", tabName = "hVid", icon = icon("video-camera"))
   )
 )
@@ -614,7 +615,20 @@ body <- dashboardBody(
 ##====Video Tab===##
   tabItem(tabName = "hVid",
           HTML('<iframe width="560" height="315" src="https://www.youtube.com/embed/3FOzD4Sfgag" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>')
-    )
+    ),
+###=====Inequality tab====##
+  tabItem(tabName = "InQ",
+          fluidPage(
+            fluidRow(
+              column(4,
+                     selectInput("InqComp", "Select Comparator",
+     c("Scotland",unique(CPPMapDta[CPPMapDta$council != "Scotland", "council"])))),
+            column(4,
+                   selectInput("InqInd", "Select Indicator",c("Child Poverty", "Indi2", "indi3")))
+            ),
+     tableOutput("inqTbl"),
+     plotOutput("InqGrp")
+          ))
   )
 )
 

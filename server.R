@@ -1503,4 +1503,47 @@ shinyServer(function(input, output, session) {
     color = bCol
     )
   })
+  
+  ##Inequality Page Table
+  output$inqTbl <- function(){
+    dd <- data.frame("this", "this again", "that","this", "this again", "that")
+    names(dd) <- c("10% Most", "10% Least", "2006", "2009", "2012", "2016")
+    dd2 <- data.frame("one", "two", "three", "four", "five", "six")
+    names(dd2) <- c("10% Most", "10% Least", "2006", "2009", "2012", "2016")
+    dd <- rbind(dd,dd2)
+    names(dd) <- c("10% Most", "10% Least", "2006", "2009", "2012", "2016")
+    kable(dd)%>%
+      kable_styling("bordered") %>%
+      add_header_above(c("Actual Value" = 2, "Duncan Index" = 4))
+  }
+
+#Make the table using Data.Table
+#    renderDataTable({
+#    cont = htmltools::withTags(table(
+#      class = "display",
+#      thead(
+#        tr(
+#          th(colspan = 2, "Actual Value", class = "dt-center"),
+#          th(colspan = 4, "Duncan Index", class = "dt-center")
+#        ),
+#        tr(
+#          th("10% Most Deprived"), th("10% Least Deprived"),
+#          th("2006"), th("2009"),th("2012"), th("2016")
+#        )
+#      )
+#    ))
+##    dd <- data.frame("this", "this again", "that","this", "this again", "that")
+#    
+#    datatable(dd, container = cont, rownames = FALSE, 
+#              options = list(columnDefs = list(list(className = "dt-center", targets = 0:5))),
+#                class = "cell-border") %>%
+#      formatStyle(1:2, backgroundColor = "white")
+#  })
+  output$InqGrp <- renderPlot({
+    dta <- data.frame("one"=c(1,2,3,4), "two"=c(33,32,33,35))
+  ggplot(dta)+
+    geom_line(aes(x = one, y = two))+
+    ylab("Duncan Index")+
+    xlab("Year")
+    })
 })
