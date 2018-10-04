@@ -10,11 +10,11 @@ sidebar <- dashboardSidebar(
   conditionalPanel(condition = "input.sidebarmenu == `P2`",checkboxInput("ScotCheckbox", "Show Scotland Value", value = TRUE)),
   menuItem("Compare Similar CPPS", tabName = "P3", icon = icon("area-chart")),
   conditionalPanel(condition = "input.sidebarmenu == `P3`",checkboxInput("ScotCheckbox2", "Show Scotland Value", value = TRUE)),
-  menuItem("Data Zone Maps", tabName = "Map2", icon = icon("globe")),
+  menuItem("CPP Inequality", tabName = "InQ", icon = icon("arrows-v")),
   menuItem("My Communities", tabName = "MyCom", icon = icon("table")),
   menuItem("Community Profile", tabName = "CP", icon = icon("arrow-down")),
   menuItem("All Communities", tabName = "allCom", icon = icon("picture-o")),
-  menuItem("Inequality", tabName = "InQ", icon = icon("arrows-v")),
+  menuItem("Data Zone Comparison", tabName = "Map2", icon = icon("globe")),
   menuItem("Help Video", tabName = "hVid", icon = icon("video-camera")),
   checkboxInput("CBCols", "Colourblind Colour Scheme", value = FALSE)
   )

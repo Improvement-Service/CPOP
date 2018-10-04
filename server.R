@@ -850,7 +850,7 @@ shinyServer(function(input, output, session) {
     
     colnames(MyCommunitiesDta)[c(2,4,6)] <- ""
     
-    # Store values of the colours which need to have white text
+    # Store values of the colours which need to have white text - including colourblind option
     
     WhiteTxt <- if(input$CBCols){c(head(Store_unique1,2))}else{c(head(Store_unique1,2),tail(Store_unique1,2))}
     TxtValue <- Store_unique1
@@ -927,8 +927,6 @@ shinyServer(function(input, output, session) {
     ))
     
     # Create table
-    
-    #if for colourblind options
         
     datatable(
       MyCommunitiesDta, 
