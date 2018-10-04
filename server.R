@@ -304,7 +304,7 @@ shinyServer(function(input, output, session) {
   })
   
   clrs      <- brewer.pal(7, "RdYlGn")
-  clrsCB    <- brewer.pal(7, "YlGnBu")
+  clrsCB    <- rev(brewer.pal(7, "YlGnBu"))
   povPal    <- colorBin(rev(clrs), SpPolysDF@data$povDecs)
   povPalCB  <- colorBin(rev(clrsCB), SpPolysDF@data$povDecs)
   tariffPal <- colorBin(clrs, SpPolysDF@data$tariffDecs)
@@ -337,7 +337,7 @@ shinyServer(function(input, output, session) {
       addPolygons(
         smoothFactor = 0.5, 
         weight = 1.5, 
-        fillOpacity = 0.7,
+        fillOpacity = 0.6,
         layerId = ~DataZone, 
         fillColor = mapCols, 
         color = "black"
@@ -614,11 +614,11 @@ shinyServer(function(input, output, session) {
     selPls <- if(input$CBCols){
       ~communityPalCB(`rank_decs`)
     }else{~communityPal(`rank_decs`)}
-    topRk <- paste0("Best outcomes - Rank ",nrow(dt))
+    topRk <- paste0("Least vulnerable - ",nrow(dt))
     cp <- leaflet(dt) %>%
       addTiles() %>%
       addLegend("bottomright", colors = selCls,
-          labels = c("Worst outcomes - Rank 1", "","","","","",topRk),
+          labels = c("Most vulnerable - 1", "","","","","",topRk),
           opacity = 1,
     title = "") %>%
       addPolygons(
@@ -662,9 +662,9 @@ shinyServer(function(input, output, session) {
   showIZPopup <- function(group, lat, lng){
     selectedIZ <- SpPolysIZ@data[SpPolysIZ@data$InterZone == group,]
     content <- as.character(tagList(
-      tags$h4(as.character(unique(selectedIZ$`IGZ name`))),
-      paste("Community Ranking:", as.character(unique(selectedIZ[14]))),
-      tags$br()
+      tags$h4(as.character(unique(selectedIZ$`IGZ name`)))#,
+      #paste("Community Ranking:", as.character(unique(selectedIZ[14]))),
+     # tags$br()
     ))
     leafletProxy("communityMap") %>% addPopups(lng, lat, content, layerId = group)
   }
@@ -817,7 +817,7 @@ shinyServer(function(input, output, session) {
     Store_unique3 <- unique(MyCommunitiesDta$Helper3) %>% sort
     Store_unique4 <- unique(MyCommunitiesDta$Helper4) %>% sort
     
-    if(input$CBCols){ColourPal <- brewer.pal(Clrs,"YlGnBu")}else{ColourPal <- brewer.pal(Clrs,"RdYlGn")}
+    if(input$CBCols){ColourPal <- rev(brewer.pal(Clrs,"YlGnBu"))}else{ColourPal <- brewer.pal(Clrs,"RdYlGn")}
     CPPName <- input$LA1
     
     Container1 <- paste(
@@ -852,7 +852,7 @@ shinyServer(function(input, output, session) {
     
     # Store values of the colours which need to have white text
     
-    WhiteTxt <- if(input$CBCols){c(tail(Store_unique1,2))}else{c(head(Store_unique1,2),tail(Store_unique1,2))}
+    WhiteTxt <- if(input$CBCols){c(head(Store_unique1,2))}else{c(head(Store_unique1,2),tail(Store_unique1,2))}
     TxtValue <- Store_unique1
     TxtValue <- if_else(TxtValue %in% WhiteTxt, "White", "Black")
     
@@ -1090,7 +1090,7 @@ shinyServer(function(input, output, session) {
     Store_unique1 <- unique(CommunityProfileDta$Helper1)
     Store_unique2 <- unique(CommunityProfileDta$Helper2) %>% sort
     
-    if(input$CBCols){ColourPal <- brewer.pal(Clrs,"YlGnBu")}else{ColourPal <- brewer.pal(Clrs,"RdYlGn")}
+    if(input$CBCols){ColourPal <- rev(brewer.pal(Clrs,"YlGnBu"))}else{ColourPal <- brewer.pal(Clrs,"RdYlGn")}
     CPPName <-  input$LA1
     
     # determine which IGZ should be bold
@@ -1138,7 +1138,7 @@ shinyServer(function(input, output, session) {
     
     # Store values of the colours which need to have white text
     
-    WhiteTxt <- if(input$CBCols){c(tail(Store_unique1,2))}else{c(head(Store_unique1,2),tail(Store_unique1,2))}
+    WhiteTxt <- if(input$CBCols){c(head(Store_unique1,2))}else{c(head(Store_unique1,2),tail(Store_unique1,2))}
     TxtValue <- Store_unique1
     TxtValue <- if_else(TxtValue %in% WhiteTxt, "White", "Black")
     

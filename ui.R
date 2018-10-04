@@ -2,7 +2,7 @@ sidebar <- dashboardSidebar(
   selectizeInput("LA1", "",
                  choices =unique(CPPMapDta[CPPMapDta$council != "Scotland", "council"]), options = list(placeholder = "Select a CPP",
                   onInitialize = I('function() { this.setValue(""); }'))),
-  checkboxInput("CBCols", "Colourblind Colour Scheme", value = FALSE),
+  
   sidebarMenu(id = "sidebarmenu",
   menuItem("Community Map", tabName = "Map1", icon = icon("map")),
   menuItem("CPP Over Time", tabName = "P1", icon = icon("line-chart")),
@@ -15,7 +15,8 @@ sidebar <- dashboardSidebar(
   menuItem("Community Profile", tabName = "CP", icon = icon("arrow-down")),
   menuItem("All Communities", tabName = "allCom", icon = icon("picture-o")),
   menuItem("Inequality", tabName = "InQ", icon = icon("arrows-v")),
-  menuItem("Help Video", tabName = "hVid", icon = icon("video-camera"))
+  menuItem("Help Video", tabName = "hVid", icon = icon("video-camera")),
+  checkboxInput("CBCols", "Colourblind Colour Scheme", value = FALSE)
   )
 )
 
