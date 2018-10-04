@@ -70,7 +70,8 @@ body <- dashboardBody(
          .multicol {
              -webkit-column-count: 3; /* Chrome, Safari, Opera */
              -moz-column-count: 3; /* Firefox */
-             column-count: 3;}"))),
+             column-count: 3;}
+         div.checkbox {margin-top: 0px;}"))),
   
   tabItems(
 ###====First tab: all CPPs over time===###    
@@ -487,12 +488,12 @@ body <- dashboardBody(
                 column(3, style= "padding-left:0px",valueBoxOutput("comProgressBox")
                 ),
               column(
-               7,
+               7,h5("Select Input"),
                 tags$div(
                   class = "multicol",
                   checkboxGroupInput(
                     "IndiMyCom",
-                    "Select Indicators", 
+                    label = NULL, 
                     unique(IGZdta$Indicator),
                     selected = unique(IGZdta$Indicator)
                   )
