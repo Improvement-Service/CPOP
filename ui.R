@@ -31,7 +31,7 @@ body <- dashboardBody(
     ".content-wrapper, .right-side {
       background-color: #ffffff;
     }",
-    "#comProgressBox{width:100%}",
+    "#comProgressBox{width:100%; padding-right:0px; padding-left:0px}",
     "#SimCPP{height:90vh !important}",
     "#CompCPP{height:90vh !important}",
     #".shiny-plot-output{26vh !important}",
@@ -65,6 +65,8 @@ body <- dashboardBody(
          margin-bottom:0px;
          text-align:centre;
          font-weight: bold;}
+          .small-box {margin-bottom:1px}
+          .small-box >.inner {padding:5px}
          .multicol {
              -webkit-column-count: 3; /* Chrome, Safari, Opera */
              -moz-column-count: 3; /* Firefox */
@@ -477,12 +479,12 @@ body <- dashboardBody(
           fluidPage(style = "padding-right:30px,overflow-y: auto;",
             fluidRow(
               column(
-                2,
+                2, style = "padding-right:0px; padding-left:5px",
                 radioButtons(
                   "View","Select Display",
                   c("All", "Top/bottom 10", "Top/bottom 5"),
                   inline = FALSE)),
-                column(2,valueBoxOutput("comProgressBox")
+                column(3, style= "padding-left:0px",valueBoxOutput("comProgressBox")
                 ),
               column(
                7,
@@ -494,11 +496,11 @@ body <- dashboardBody(
                     unique(IGZdta$Indicator),
                     selected = unique(IGZdta$Indicator)
                   )
-                )),
-               column(1,div(style = "margin-bottom:1px",
-                actionButton("IndiAll","Select All")),
-                actionButton("IndiClear", "Clear All")
-              )
+                ))#,
+#               column(1,div(style = "margin-bottom:1px",
+  #              actionButton("IndiAll","Select All")),
+  #              actionButton("IndiClear", "Clear All")
+   #           )
               
           ),
          

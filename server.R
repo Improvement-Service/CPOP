@@ -685,23 +685,23 @@ shinyServer(function(input, output, session) {
   # Create Ui ouputs for My Communities Page - PAGE6-----------------------------------------------------
   
   
-  observeEvent(eventExpr = input$IndiAll,
-               handlerExpr = {
-                 updateCheckboxGroupInput(session = session,
-                                          inputId = "IndiMyCom",
-                                          selected = unique(IGZdta$Indicator)
-                 )
-               }
-  )
+#  observeEvent(eventExpr = input$IndiAll,
+ #              handlerExpr = {
+  #               updateCheckboxGroupInput(session = session,
+  #                                        inputId = "IndiMyCom",
+  #                                        selected = unique(IGZdta$Indicator)
+  #               )
+  #             }
+  #)
   
-  observe({
-    if(input$IndiClear >0){
-      updateCheckboxGroupInput(session = session, 
-                               inputId = "IndiMyCom",
-                               selected = character(0)
-      )
-    }
-  })  
+  #observe({
+  #  if(input$IndiClear >0){
+  #    updateCheckboxGroupInput(session = session, 
+  #                             inputId = "IndiMyCom",
+  #                             selected = character(0)
+  #    )
+  #  }
+  #})  
   
  ##create rankings for typology and CPP for use later
   IGZBest <- reactive({
@@ -1498,7 +1498,7 @@ shinyServer(function(input, output, session) {
     bCol <- if(pBetter <50) {"red"}else{"green"}
     valueBox(
     paste0(pBetter, "%"), "Communities Performing Better than Expected", icon = icon("percent"),
-    color = bCol
+    color = bCol, width = NULL
     )
   })
   
