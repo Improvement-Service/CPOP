@@ -825,9 +825,9 @@ shinyServer(function(input, output, session) {
       CPPName, 
       " which communities have the poorest outcomes?")
     Container2 <- paste(
-      "Compared to other, similar communities, how do those in ", 
+      "Compared to other, similar communities, do those in ", 
       CPPName, 
-      " fare? (are they better or worse than expected?)")
+      " fare better or worse than expected?")
     Container3 <- paste(
       "Within ", 
       CPPName, 

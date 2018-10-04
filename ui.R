@@ -1,6 +1,6 @@
 sidebar <- dashboardSidebar(
   selectizeInput("LA1", "",
-                 choices =unique(CPPMapDta[CPPMapDta$council != "Scotland", "council"]), options = list(placeholder = "Select a CPP",
+                 choices =CPPNames, options = list(placeholder = "Select a CPP",
                   onInitialize = I('function() { this.setValue(""); }'))),
   
   sidebarMenu(id = "sidebarmenu",
@@ -33,7 +33,7 @@ body <- dashboardBody(
     }",
     "#comProgressBox{width:100%; padding-right:0px; padding-left:0px}",
     "#SimCPP{height:90vh !important}",
-    "#CompCPP{height:90vh !important}",
+    "#CompCPP{height:50vh !important}",
     #".shiny-plot-output{26vh !important}",
     "#plot_1{height:25vh ! important}",
     "#plot_2{height:25vh ! important}",
@@ -83,7 +83,7 @@ body <- dashboardBody(
                 selectInput(
                   "CompLA1", 
                   "Select Comparator", 
-                  c("Scotland",unique(CPPMapDta[CPPMapDta$council != "Scotland", "council"])), 
+                  c("Scotland",CPPNames), 
                   selected = "Scotland"
                 ))
               ),
@@ -424,6 +424,9 @@ body <- dashboardBody(
   tabItem(tabName = "P2",
           fluidPage(
             fluidRow(
+              selectInput("OtherCPP", "Select a Comparator CPP", CPPNames)
+            ),
+            fluidRow(
               div(style = "margin-top:5px",
             plotOutput("CompCPP")%>% withSpinner(type = 6)
           ))
@@ -488,7 +491,7 @@ body <- dashboardBody(
                 column(3, style= "padding-left:0px",valueBoxOutput("comProgressBox")
                 ),
               column(
-               7,h5("Select Input"),
+               7,h5("Select Indicators"),
                 tags$div(
                   class = "multicol",
                   checkboxGroupInput(
@@ -626,7 +629,7 @@ body <- dashboardBody(
             fluidRow(
               column(4,
                      selectInput("InqComp", "Select Comparator",
-     c("Scotland",unique(CPPMapDta[CPPMapDta$council != "Scotland", "council"])))),
+     c("Scotland",CPPNames))),
             column(4,
                    selectInput("InqInd", "Select Indicator",c("Child Poverty", "Indi2", "indi3")))
             ),

@@ -138,3 +138,6 @@ FuelPov       <- filter(Metadata, Indicator == "Fuel Poverty")
 DefFuelPov    <- FuelPov[[1,2]]
 TimeFuelPov   <- FuelPov[[1,3]]
 SourceFuelPov <- FuelPov[[1,4]]
+
+#Create list of CPP names for use in UI
+CPPNames <- unique(CPPMapDta[CPPMapDta$council != "Scotland", "council"])
