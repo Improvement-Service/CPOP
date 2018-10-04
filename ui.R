@@ -484,7 +484,7 @@ body <- dashboardBody(
                 radioButtons(
                   "View","Select Display",
                   c("All", "Top/bottom 10", "Top/bottom 5"),
-                  inline = FALSE)),
+                  inline = FALSE, selected = "Top/bottom 5")),
                 column(3, style= "padding-left:0px",valueBoxOutput("comProgressBox")
                 ),
               column(
