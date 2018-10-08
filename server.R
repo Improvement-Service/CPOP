@@ -692,25 +692,6 @@ shinyServer(function(input, output, session) {
   
   # Create Ui ouputs for My Communities Page - PAGE6-----------------------------------------------------
   
-  
-  observeEvent(eventExpr = input$IndiAll,
-               handlerExpr = {
-                 updateCheckboxGroupInput(session = session,
-                                          inputId = "IndiMyCom",
-                                          selected = unique(IGZdta$Indicator)
-                 )
-               }
-  )
-  
-  observe({
-    if(input$IndiClear >0){
-      updateCheckboxGroupInput(session = session, 
-                               inputId = "IndiMyCom",
-                               selected = character(0)
-      )
-    }
-  })  
-  
  ##create rankings for typology and CPP for use later
   IGZBest <- reactive({
     req(input$LA1)
@@ -917,7 +898,7 @@ shinyServer(function(input, output, session) {
     TopBottom5 <- rbind(Top5, Bottom5)
     
     Display <- input$View
-    if(Display == "Top/bottom 10") { MyCommunitiesDta <- TopBottom10}
+    if(Display == "Top/bottom 10") {MyCommunitiesDta <- TopBottom10}
     if(Display == "Top/bottom 5") {MyCommunitiesDta <- TopBottom5}
     
     # HTML to allow column headers to span multiple columns

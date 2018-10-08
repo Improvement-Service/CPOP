@@ -505,7 +505,7 @@ body <- dashboardBody(
                 2,
                 radioButtons(
                   "View","Select Display",
-                  c("All", "Top/bottom 10", "Top/bottom 5"),
+                  c("Top/bottom 5","Top/bottom 10","All"),
                   inline = FALSE)),
                 column(2,valueBoxOutput("comProgressBox")
                 ),
@@ -519,12 +519,7 @@ body <- dashboardBody(
                     unique(IGZdta$Indicator),
                     selected = unique(IGZdta$Indicator)
                   )
-                )),
-               column(1,div(style = "margin-bottom:1px",
-                actionButton("IndiAll","Select All")),
-                actionButton("IndiClear", "Clear All")
-              )
-              
+                ))
           ),
          
             fluidRow(
