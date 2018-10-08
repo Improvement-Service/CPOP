@@ -83,8 +83,19 @@ body <- dashboardBody(
                   selected = "Scotland"
                 ))
               ),
-              column(6, tags$img(style = "max-width:100%",src = "Lgnd1.PNG"))
-            ),
+              column(2,tags$img(style = "margin-left:0px;margin-right:0px",src = "Lgnd1.PNG")),
+              column(
+                4, 
+                tags$style("#CPPLgnd{
+                                   font-size: 20px;
+                                   font-style: bold}"),
+                div(textOutput("CPPLgnd")),
+                tags$style("#CompLgnd{
+                                   font-size: 20px;
+                                   font-style: bold}"),
+                div(textOutput("CompLgnd"))
+              )
+              ),
               fluidRow(style = "margin-bottom:10px; margin-right:1px",
                 column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_1"),
                        bsPopover(id = "plot_1",

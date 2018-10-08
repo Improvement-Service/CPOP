@@ -12,6 +12,14 @@ shinyServer(function(input, output, session) {
   
   
   # Create Ui ouputs for CPP over time page - PAGE1------------------------------------------------------
+  output$CPPLgnd <- renderText({
+    txt <- input$LA1
+  })
+  
+  output$CompLgnd <- renderText({
+    txt <- input$CompLA1
+  })
+  
   
   
   selected_dta_1 <- reactive({
@@ -246,7 +254,7 @@ shinyServer(function(input, output, session) {
   output$SimCPP <- renderPlot({
     req(input$LA1)
     FGroup <- filter(CPP_Imp, CPP == input$LA1)[[1,6]]
-    dta <- filter(CPP_Imp, Year %in% c("2016/17", "2014-2016") & FG %in% FGroup)
+    dta <- filter(CPP_Imp, Year == RcntYear & FG %in% FGroup)
     dta$colourscheme <-ifelse(dta$CPP == input$LA1,"Sel1","Other")
     #lapply to generate plots
     plts <- list()
@@ -254,7 +262,7 @@ shinyServer(function(input, output, session) {
     
     plts <-lapply(1:18, FUN = function(.x){
       ##calculate maximum limit for y axis  
-      ScotVal <- filter(CPP_Imp,Year %in% c("2016/17", "2014-2016") & 
+      ScotVal <- filter(CPP_Imp,Year == RcntYear & 
                           Indicator == indi[[.x]] &
                           CPP == "Scotland")$value
       maxAx <- max(c(dta[dta$Indicator == indi[[.x]],]$value, ScotVal))*1.05
