@@ -474,6 +474,21 @@ body <- dashboardBody(
 ###=== Tab6: My Communities ===###
   tabItem(tabName = "MyCom",
           fluidPage(style = "padding-right:30px,overflow-y: auto;",
+                    tags$head(
+                      tags$style(HTML("
+                              .multicol {
+                              height:75px;
+                              
+                              -webkit-column-count: 3; /* Chrome, Safari, Opera */
+                              
+                              -moz-column-count: 3; /* Firefox */
+                              
+                              column-count: 3;
+                              
+                              }
+                              
+                              "))
+                    ),
             fluidRow(
               column(
                 2,
