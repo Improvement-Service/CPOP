@@ -74,7 +74,7 @@ body <- dashboardBody(
     tabItem(tabName = "P1",
             fluidPage(fluidRow(
               column(
-                6,
+                4,
                 div(style = "margin-top:5px;margin-bottom:20px",
                 selectInput(
                   "CompLA1", 
@@ -632,7 +632,22 @@ body <- dashboardBody(
                   unique(IGZdta$Indicator)
                 )
               ),
-              column(3, tags$img(style = "max-width:100%",src = "allComLgnd.PNG"))
+              column(2, tags$img(style = "margin-right:0px",src = "allComLgnd.PNG")),
+              column(
+                4,
+                tags$style("#CommLgnd{
+                                   font-size: 18px;
+                                   font-style: bold}"),
+                div(textOutput("CommLgnd")),
+                tags$style("#CPPLgnd2{
+                                   font-size: 18px;
+                                   font-style: bold}"),
+                div(textOutput("CPPLgnd2")), 
+                tags$style("#ScotLgnd{
+                                   font-size: 18px;
+                           font-style: bold}"),
+                div(textOutput("ScotLgnd"))
+              )
             ),
             hr(),
             plotOutput("AllCPlots") %>% withSpinner(type = 6)

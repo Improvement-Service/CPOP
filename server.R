@@ -1400,6 +1400,17 @@ shinyServer(function(input, output, session) {
   
   # Create Ui Outputs for All Communities Page - PAGE8----------------------------------
   
+  output$CommLgnd <- renderText({
+    txt <- "Community"
+  })
+  
+  output$CPPLgnd2 <- renderText({
+    txt <- input$LA1
+  })
+  
+  output$ScotLgnd <- renderText({
+    txt <- "Scotland"
+  })
   
   # render plots
   
