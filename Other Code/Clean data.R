@@ -24,10 +24,10 @@ colnames(CPPdta)[1] <- "CPP"
 write_excel_csv(CPPdta ,path = "data/CPPcleandata.csv")
 
 ##IGZ data
-IGZdta <- read_excel("Final IGZ Data.xlsx",
+IGZdta <- read_excel("data/IGZ Data Sept 18.xlsx",
                      sheet = 2)
 for (i in 3:10) {
-  IGZdta2 <- read_excel("Final IGZ Data.xlsx",
+  IGZdta2 <- read_excel("data/IGZ Data Sept 18.xlsx",
                         sheet = i)
   IGZdta <- merge(IGZdta, IGZdta2)
 }
