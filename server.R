@@ -194,7 +194,7 @@ shinyServer(function(input, output, session) {
   
   output$CompCPP <- renderPlot({
     req(input$LA1)
-    dta <- filter(CPP_Imp, Year %in% c("2016/17", "2014-2016"))
+    dta <- filter(CPP_Imp, Year == RcntYear)
     dta$colourscheme <-ifelse(dta$CPP == input$LA1,"Sel1","Other")
     
     #filter so that the Scotland value isn't a bar on the plot

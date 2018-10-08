@@ -15,7 +15,8 @@ library(shinycssloaders)
 library(shinyLP)
 library(kableExtra)
 
-
+#Store value for the most recent year data is available, this needs to be changed when data is refreshed annually
+RcntYear <- "2016/17"
 
 SpPolysDF <- read_rds("data/Shapes_decs.rds")
 SpPolysIZ <- read_rds("data/IZshapes_decs.rds")
