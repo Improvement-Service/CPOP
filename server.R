@@ -1298,7 +1298,7 @@ shinyServer(function(input, output, session) {
         
         # Y axis 
         
-        y_rnge_dta <- subset(IGZdta, IGZdta$Indicator == IndicatorsCP[my.i])
+        y_rnge_dta <- subset(LineChoiceDta, LineChoiceDta$Indicator == IndicatorsCP[my.i])
         y_min <- min(y_rnge_dta$value, na.rm = TRUE)
         y_max <- max(y_rnge_dta$value, na.rm = TRUE)
         Rnge <- y_max - y_min
