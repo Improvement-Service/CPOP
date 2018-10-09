@@ -8,6 +8,10 @@ library(Unicode)
 library(leaflet)
 library(cowplot)
 
+#Store value for the start year and most recent year data is available, this needs to be changed when data is refreshed annually
+StrtYear <- "2006/07"
+RcntYear <- "2016/17"
+
 SpPolysDF <- read_rds("data/Shapes.rds")
 SpPolysIZ <- read_rds("data/IZshapes.rds")
 CPPdta <- read_csv("data/CPPcleandata.csv")
@@ -68,7 +72,8 @@ IGZdta$`High is Positive?`[IGZdta$Indicator %in% c("Child Poverty","Out of Work 
                                                    "Crime Rate", "Emergency Admissions", 
                                                    "Early Mortality", "Depopulation")] <- "No"
 
-IGZ_latest <- filter(IGZdta, Year == "2016/17")
+
+IGZ_latest <- filter(IGZdta, Year == RcntYear)
 
 # CPP Score
 
@@ -133,7 +138,7 @@ IGZ_latest <- select(IGZ_latest, c(-TypeMean, -Differences, -StdDev, -ZScore))
 
 # calculate overall zscore for change
 
-IGZ_change <- filter(IGZdta, Year %in% c("2006/07","2016/17"))
+IGZ_change <- filter(IGZdta, Year %in% c(StrtYear,RcntYear))
 
 # need to group by CPP + IGZ here to stop IGZ's with the same name getting included in the wrong group
 
@@ -151,7 +156,7 @@ IGZ_change$Change[IGZ_change$High.is.Positive. == "No"] <-
 
 # Filtering data so that change value is only included once per IGZ
 
-IGZ_change <- filter(IGZ_change, Year == "2016/17")
+IGZ_change <- filter(IGZ_change, Year == RcntYear)
 
 IGZ_change <- ddply(
   IGZ_change,. 

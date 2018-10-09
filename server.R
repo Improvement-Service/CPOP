@@ -12,6 +12,14 @@ shinyServer(function(input, output, session) {
   
   
   # Create Ui ouputs for CPP over time page - PAGE1------------------------------------------------------
+  output$CPPLgnd <- renderText({
+    txt <- input$LA1
+  })
+  
+  output$CompLgnd <- renderText({
+    txt <- input$CompLA1
+  })
+  
   
   
   selected_dta_1 <- reactive({
@@ -194,7 +202,7 @@ shinyServer(function(input, output, session) {
   
   output$CompCPP <- renderPlot({
     req(input$LA1)
-    dta <- filter(CPP_Imp, Year %in% c("2016/17", "2014-2016"))
+    dta <- filter(CPP_Imp, Year == RcntYear)
     dta$colourscheme <-ifelse(dta$CPP == input$LA1,"Sel1","Other")
     
     #filter so that the Scotland value isn't a bar on the plot
@@ -246,7 +254,7 @@ shinyServer(function(input, output, session) {
   output$SimCPP <- renderPlot({
     req(input$LA1)
     FGroup <- filter(CPP_Imp, CPP == input$LA1)[[1,6]]
-    dta <- filter(CPP_Imp, Year %in% c("2016/17", "2014-2016") & FG %in% FGroup)
+    dta <- filter(CPP_Imp, Year == RcntYear & FG %in% FGroup)
     dta$colourscheme <-ifelse(dta$CPP == input$LA1,"Sel1","Other")
     #lapply to generate plots
     plts <- list()
@@ -254,7 +262,7 @@ shinyServer(function(input, output, session) {
     
     plts <-lapply(1:18, FUN = function(.x){
       ##calculate maximum limit for y axis  
-      ScotVal <- filter(CPP_Imp,Year %in% c("2016/17", "2014-2016") & 
+      ScotVal <- filter(CPP_Imp,Year == RcntYear & 
                           Indicator == indi[[.x]] &
                           CPP == "Scotland")$value
       maxAx <- max(c(dta[dta$Indicator == indi[[.x]],]$value, ScotVal))*1.05
@@ -703,6 +711,7 @@ shinyServer(function(input, output, session) {
   #  }
   #})  
   
+
  ##create rankings for typology and CPP for use later
   IGZBest <- reactive({
     req(input$LA1)
@@ -909,7 +918,7 @@ shinyServer(function(input, output, session) {
     TopBottom5 <- rbind(Top5, Bottom5)
     
     Display <- input$View
-    if(Display == "Top/bottom 10") { MyCommunitiesDta <- TopBottom10}
+    if(Display == "Top/bottom 10") {MyCommunitiesDta <- TopBottom10}
     if(Display == "Top/bottom 5") {MyCommunitiesDta <- TopBottom5}
     
     # HTML to allow column headers to span multiple columns
@@ -1390,6 +1399,17 @@ shinyServer(function(input, output, session) {
   
   # Create Ui Outputs for All Communities Page - PAGE8----------------------------------
   
+  output$CommLgnd <- renderText({
+    txt <- "Community"
+  })
+  
+  output$CPPLgnd2 <- renderText({
+    txt <- input$LA1
+  })
+  
+  output$ScotLgnd <- renderText({
+    txt <- "Scotland"
+  })
   
   # render plots
   

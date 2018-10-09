@@ -5,11 +5,11 @@ library(readxl)
 #use for loop to loop through and read every worksheet
 ##CPP data
 
-CPPdta <- read_excel("Final CPP Data.xlsx",
+CPPdta <- read_excel("data/CPP Data Sept 18.xlsx",
                      sheet = 2)
 
-for (i in 3:19) {
-  CPPdta2 <- read_excel("Final CPP Data.xlsx",
+for (i in 3:20) {
+  CPPdta2 <- read_excel("data/CPP Data Sept 18.xlsx",
                         sheet = i)
   CPPdta <- merge(CPPdta, CPPdta2)
 }
@@ -21,13 +21,13 @@ CPPdta <- separate(CPPdta, Indicator_Type_Year, c("Indicator", "Type", "Year"), 
 #rename 1st variable
 colnames(CPPdta)[1] <- "CPP"
 #save CSV data file
-write_excel_csv(CPPdta ,path = "CPPcleandata.csv")
+write_excel_csv(CPPdta ,path = "data/CPPcleandata.csv")
 
 ##IGZ data
-IGZdta <- read_excel("Final IGZ Data.xlsx",
+IGZdta <- read_excel("data/IGZ Data Sept 18.xlsx",
                      sheet = 2)
 for (i in 3:10) {
-  IGZdta2 <- read_excel("Final IGZ Data.xlsx",
+  IGZdta2 <- read_excel("data/IGZ Data Sept 18.xlsx",
                         sheet = i)
   IGZdta <- merge(IGZdta, IGZdta2)
 }

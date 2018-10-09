@@ -67,18 +67,14 @@ body <- dashboardBody(
          font-weight: bold;}
           .small-box {margin-bottom:1px}
           .small-box >.inner {padding:5px}
-         .multicol {
-             -webkit-column-count: 3; /* Chrome, Safari, Opera */
-             -moz-column-count: 3; /* Firefox */
-             column-count: 3;}
-         div.checkbox {margin-top: 0px;}"))),
+         "))),
   
   tabItems(
 ###====First tab: all CPPs over time===###    
     tabItem(tabName = "P1",
             fluidPage(fluidRow(
               column(
-                6,
+                4,
                 div(style = "margin-top:5px;margin-bottom:20px",
                 selectInput(
                   "CompLA1", 
@@ -87,8 +83,19 @@ body <- dashboardBody(
                   selected = "Scotland"
                 ))
               ),
-              column(6, tags$img(style = "max-width:100%",src = "Lgnd1.PNG"))
-            ),
+              column(2,tags$img(style = "margin-left:0px;margin-right:0px",src = "Lgnd1.PNG")),
+              column(
+                4, 
+                tags$style("#CPPLgnd{
+                                   font-size: 20px;
+                                   font-style: bold}"),
+                div(textOutput("CPPLgnd")),
+                tags$style("#CompLgnd{
+                                   font-size: 20px;
+                                   font-style: bold}"),
+                div(textOutput("CompLgnd"))
+              )
+              ),
               fluidRow(style = "margin-bottom:10px; margin-right:1px",
                 column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_1"),
                        bsPopover(id = "plot_1",
@@ -481,31 +488,46 @@ body <- dashboardBody(
 ###=== Tab6: My Communities ===###
   tabItem(tabName = "MyCom",
           fluidPage(style = "padding-right:30px,overflow-y: auto;",
+                    tags$head(
+                      tags$style(HTML("
+                              .multicol {
+                              height:75px;
+                              
+                              -webkit-column-count: 3; /* Chrome, Safari, Opera */
+                              
+                              -moz-column-count: 3; /* Firefox */
+                              
+                              column-count: 3;
+                              
+                              }
+                              
+                              "))
+                    ),
             fluidRow(
               column(
                 2, style = "padding-right:0px; padding-left:5px",
                 radioButtons(
                   "View","Select Display",
-                  c("All", "Top/bottom 10", "Top/bottom 5"),
-                  inline = FALSE, selected = "Top/bottom 5")),
+                  c("Top/bottom 5","Top/bottom 10","All"),
+                  inline = FALSE)),
                 column(3, style= "padding-left:0px",valueBoxOutput("comProgressBox")
                 ),
               column(
-               7,h5("Select Indicators"),
+               7,
                 tags$div(
                   class = "multicol",
                   checkboxGroupInput(
                     "IndiMyCom",
-                    label = NULL, 
+                    "select indicators",
                     unique(IGZdta$Indicator),
                     selected = unique(IGZdta$Indicator)
                   )
+
                 ))#,
 #               column(1,div(style = "margin-bottom:1px",
   #              actionButton("IndiAll","Select All")),
   #              actionButton("IndiClear", "Clear All")
    #           )
-              
           ),
          
             fluidRow(
@@ -613,7 +635,22 @@ body <- dashboardBody(
                   unique(IGZdta$Indicator)
                 )
               ),
-              column(3, tags$img(style = "max-width:100%",src = "allComLgnd.PNG"))
+              column(2, tags$img(style = "margin-right:0px",src = "allComLgnd.PNG")),
+              column(
+                4,
+                tags$style("#CommLgnd{
+                                   font-size: 18px;
+                                   font-style: bold}"),
+                div(textOutput("CommLgnd")),
+                tags$style("#CPPLgnd2{
+                                   font-size: 18px;
+                                   font-style: bold}"),
+                div(textOutput("CPPLgnd2")), 
+                tags$style("#ScotLgnd{
+                                   font-size: 18px;
+                           font-style: bold}"),
+                div(textOutput("ScotLgnd"))
+              )
             ),
             hr(),
             plotOutput("AllCPlots") %>% withSpinner(type = 6)
