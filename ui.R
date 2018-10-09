@@ -3,13 +3,13 @@ sidebar <- dashboardSidebar(
                  choices =CPPNames, options = list(placeholder = "Select a CPP",
                   onInitialize = I('function() { this.setValue(""); }'))),
   
-  sidebarMenu(id = "sidebarmenu",
+  sidebarMenu(id = "tabs",
   menuItem("Community Map", tabName = "Map1", icon = icon("map")),
   menuItem("CPP Over Time", tabName = "P1", icon = icon("line-chart")),
   menuItem("Compare All CPPs", tabName = "P2", icon = icon("bar-chart")),
-  conditionalPanel(condition = "input.sidebarmenu == `P2`",checkboxInput("ScotCheckbox", "Show Scotland Value", value = TRUE)),
+  conditionalPanel(condition = "input.tabs == `P2`",checkboxInput("ScotCheckbox", "Show Scotland Value", value = TRUE)),
   menuItem("Compare Similar CPPS", tabName = "P3", icon = icon("area-chart")),
-  conditionalPanel(condition = "input.sidebarmenu == `P3`",checkboxInput("ScotCheckbox2", "Show Scotland Value", value = TRUE)),
+  conditionalPanel(condition = "input.tabs == `P3`",checkboxInput("ScotCheckbox2", "Show Scotland Value", value = TRUE)),
   menuItem("CPP Inequality", tabName = "InQ", icon = icon("arrows-v")),
   menuItem("My Communities", tabName = "MyCom", icon = icon("table")),
   menuItem("Community Profile", tabName = "CP", icon = icon("arrow-down")),
@@ -437,6 +437,7 @@ body <- dashboardBody(
               div(style = "margin-top:5px",
             plotOutput("CompCPP")%>% withSpinner(type = 6)
           ))
+          
     )),
 ###===Tab3: Show only similar councils===###
   tabItem(tabName = "P3",
@@ -518,7 +519,7 @@ body <- dashboardBody(
                   class = "multicol",
                   checkboxGroupInput(
                     "IndiMyCom",
-                    "select indicators",
+                    "Select indicators",
                     unique(IGZdta$Indicator),
                     selected = unique(IGZdta$Indicator)
                   )
@@ -674,15 +675,21 @@ body <- dashboardBody(
      plotOutput("InqGrp")
           ))
   )
+
 )
 
 dashboardPage(
-  dashboardHeader(title = "CPOP",
-                  dropdownMenu(type = "notifications",
-                  icon = icon("question-circle"), badgeStatus = NULL,
-                  headerText = "Help!!",
-                  notificationItem(text = "click here for help", icon = icon("child"),
-                                   href = "http://www.improvementservice.org.uk/community-planning-outcomes-profile.html"))),
+  dashboardHeader(
+    title = "CPOP",
+    tags$li(class = "dropdown", actionButton("testbutton", "Help"))
+    ),
+                 
+                 # dropdownMenu(type = "notifications",
+                #  icon = icon("question-circle"), badgeStatus = NULL,
+                  #headerText = "Help!!",
+                  #notificationItem(text = "click here for help", icon = icon("child"),
+                   #                href = "link"))),
+  
   sidebar,
   body
   )

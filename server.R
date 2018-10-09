@@ -1549,4 +1549,59 @@ shinyServer(function(input, output, session) {
     ylab("Duncan Index")+
     xlab("Year")
     })
-})
+  # Work for Help Pages----------------------------------------------
+
+  observeEvent(input$testbutton,{
+    if(input$tabs == "Map1")
+    {showModal(modalDialog(title = "Map Page","some text"))}
+  })
+  
+  observeEvent(input$testbutton,{
+    if(input$tabs == "P1")
+    {showModal(modalDialog(title = "Page 1","some text"))}
+  })
+  
+  observeEvent(input$testbutton,{
+    if(input$tabs == "P2")
+    {showModal(modalDialog(title = "Page 2","some text"))}
+  })
+  
+  observeEvent(input$testbutton,{
+    if(input$tabs == "P3")
+    {showModal(modalDialog(title = "Page 3","some text"))}
+  })
+  
+  observeEvent(input$testbutton,{
+    if(input$tabs == "InQ")
+    {showModal(modalDialog(title = "Inequalities","some text"))}
+  })
+  
+  observeEvent(input$testbutton,{
+    if(input$tabs == "MyCom")
+    {showModal(modalDialog(title = "My Communities","some text"))}
+  })
+  
+  observeEvent(input$testbutton,{
+    if(input$tabs == "CP")
+    {showModal(modalDialog(title = "Community Profile","some text"))}
+  })
+  
+  observeEvent(input$testbutton,{
+    if(input$tabs == "allCom")
+    {showModal(modalDialog(title = "All Communities","some text"))}
+  })
+  
+  observeEvent(input$testbutton,{
+    if(input$tabs == "Map2")
+    {showModal(modalDialog(title = "Data Zones","some text"))}
+  })
+  
+  observeEvent(input$testbutton,{
+    if(input$tabs == "hVid")
+    {showModal(modalDialog(title = "Help Video","some text"))}
+  })
+  
+  
+  })
+
+  
