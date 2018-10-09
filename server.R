@@ -1551,52 +1551,77 @@ shinyServer(function(input, output, session) {
     })
   # Work for Help Pages----------------------------------------------
 
-  observeEvent(input$testbutton,{
+  observeEvent(input$HelpButton,{
     if(input$tabs == "Map1")
-    {showModal(modalDialog(title = "Map Page","some text"))}
+    {showModal(modalDialog(
+      title = "Community Map",
+      fluidRow(
+      tags$img(src = "MapHelp1.PNG")),
+      fluidRow(
+        column(10),
+        column(2,actionButton("Map1P2", "Next Page"))
+      ),
+      size = "l"))}
   })
   
-  observeEvent(input$testbutton,{
+  observeEvent(input$Map1P2,{
+    showModal(modalDialog(title = "Community Map", tags$img(src = "MapHelp2.PNG"), size = "l"))
+  })
+  
+  observeEvent(input$HelpButton,{
     if(input$tabs == "P1")
-    {showModal(modalDialog(title = "Page 1","some text"))}
+    {showModal(modalDialog(
+      title = "CPP Over Time",
+      fluidRow(
+        tags$img(src = "CPPTimeHelp1.PNG")
+      ),
+      fluidRow(
+        column(10),
+        column(2, actionButton("P1P2", "Next Page"))
+      ),
+      size = "l"))}
   })
   
-  observeEvent(input$testbutton,{
+  observeEvent(input$P1P2,{
+    showModal(modalDialog(title = "CPP Over Time", tags$img(src = "CPPTimeHelp2.PNG"), size = "l"))
+  })
+  
+  observeEvent(input$HelpButton,{
     if(input$tabs == "P2")
-    {showModal(modalDialog(title = "Page 2","some text"))}
+    {showModal(modalDialog(title = "Compare All CPPs",size = "l"))}
   })
   
-  observeEvent(input$testbutton,{
+  observeEvent(input$HelpButton,{
     if(input$tabs == "P3")
-    {showModal(modalDialog(title = "Page 3","some text"))}
+    {showModal(modalDialog(title = "Compare Similar CPPs", tags$img(src = "SimCPPHelp.PNG"), size = "l"))}
   })
   
-  observeEvent(input$testbutton,{
+  observeEvent(input$HelpButton,{
     if(input$tabs == "InQ")
-    {showModal(modalDialog(title = "Inequalities","some text"))}
+    {showModal(modalDialog(title = "CPP Inequality", size = "l"))}
   })
   
-  observeEvent(input$testbutton,{
+  observeEvent(input$HelpButton,{
     if(input$tabs == "MyCom")
-    {showModal(modalDialog(title = "My Communities","some text"))}
+    {showModal(modalDialog(title = "My Communities", size = "l"))}
   })
   
-  observeEvent(input$testbutton,{
+  observeEvent(input$HelpButton,{
     if(input$tabs == "CP")
-    {showModal(modalDialog(title = "Community Profile","some text"))}
+    {showModal(modalDialog(title = "Community Profile",size = "l"))}
   })
   
-  observeEvent(input$testbutton,{
+  observeEvent(input$HelpButton,{
     if(input$tabs == "allCom")
-    {showModal(modalDialog(title = "All Communities","some text"))}
+    {showModal(modalDialog(title = "All Communities", tags$img(src = "AllCommHelp.PNG"),size = "l"))}
   })
   
-  observeEvent(input$testbutton,{
+  observeEvent(input$HelpButton,{
     if(input$tabs == "Map2")
-    {showModal(modalDialog(title = "Data Zones","some text"))}
+    {showModal(modalDialog(title = "Data Zone Comparison",tags$img(src = "DZHelp.PNG"), size = "l"))}
   })
   
-  observeEvent(input$testbutton,{
+  observeEvent(input$HelpButton,{
     if(input$tabs == "hVid")
     {showModal(modalDialog(title = "Help Video","some text"))}
   })

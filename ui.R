@@ -681,7 +681,7 @@ body <- dashboardBody(
 dashboardPage(
   dashboardHeader(
     title = "CPOP",
-    tags$li(class = "dropdown", actionButton("testbutton", "Help"))
+    tags$li(class = "dropdown", actionButton("HelpButton", "Help"))
     ),
                  
                  # dropdownMenu(type = "notifications",
