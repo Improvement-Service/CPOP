@@ -33,7 +33,7 @@ body <- dashboardBody(
     }",
     "#comProgressBox{width:100%; padding-right:0px; padding-left:0px}",
     "#SimCPP{height:90vh !important}",
-    "#CompCPP{height:50vh !important}",
+    "#CompCPP{height:75vh !important; margin-top:15px}",
     #".shiny-plot-output{26vh !important}",
     "#plot_1{height:25vh ! important}",
     "#plot_2{height:25vh ! important}",
@@ -432,10 +432,10 @@ body <- dashboardBody(
   tabItem(tabName = "P2",
           fluidPage(
             fluidRow(style = "padding-top:10px",
-              selectInput("OtherCPP", "Select a Comparator CPP", CPPNames)
+              uiOutput("CompSelection")
             ),
             fluidRow(
-              div(style = "margin-top:5px",
+              div(style = "margin-top:10px",
             plotOutput("CompCPP")%>% withSpinner(type = 6)
           ))
     )),

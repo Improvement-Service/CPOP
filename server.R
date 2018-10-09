@@ -188,6 +188,12 @@ shinyServer(function(input, output, session) {
   }
   
   # Create Ui Outputs for CPP all 32 - PAGE2 ------------------------------------------------------------------   
+  output$CompSelection <- renderUI({
+    selectizeInput("OtherCPP", "Select a Comparator CPP", choices =CPPNames[CPPNames!= input$LA1], 
+            options = list(
+             placeholder = "Select a CPP",
+             onInitialize = I('function() { this.setValue(""); }')))
+    })
   
   # Render all Plots for Page 2
   
@@ -203,8 +209,14 @@ shinyServer(function(input, output, session) {
   output$CompCPP <- renderPlot({
     req(input$LA1)
     dta <- filter(CPP_Imp, Year == RcntYear)
-    dta$colourscheme <-ifelse(dta$CPP == input$LA1,"Sel1","Other")
-    
+    if(is.null(input$OtherCPP)){
+      dta$colourscheme <- ifelse(dta$CPP == input$LA1,"Sel1","Other")}
+    else{
+      dta$colourscheme <- ifelse(dta$CPP == input$LA1,"Sel1",ifelse(dta$CPP == input$OtherCPP, "Sel2","Other"))
+      }
+    if(is.null(input$OtherCPP)){
+      sclFll <- scale_fill_manual(values = c("lightblue2","red2"), breaks = c("Other", "Sel1"))}
+    else{ sclFll <- scale_fill_manual(values = c("lightblue2","red2", "darkgreen"), breaks = c("Other", "Sel1", "Sel2"))}
     #filter so that the Scotland value isn't a bar on the plot
     
     dtaNoScot <- filter(dta, CPP != "Scotland")
@@ -226,7 +238,7 @@ shinyServer(function(input, output, session) {
           #colour = "black",
           width = 0.8
         ) +
-        scale_fill_manual(values = c("lightblue2","red2"), breaks = c("Other", "Sel1")) +
+        sclFll+
         #scale_x_discrete(label = function(x) abbreviate(x, minlength = 4))+
         scale_y_continuous(expand = c(0,0), limits = c(0, maxAx))+
         guides(fill = FALSE) +
@@ -235,7 +247,7 @@ shinyServer(function(input, output, session) {
         ylab("")+
         {if(input$ScotCheckbox == TRUE)geom_hline(aes(
           yintercept = filter(dta, CPP == "Scotland" & Indicator == indi[[.x]])$value
-          ), colour = "navyblue", size = 1.5
+          ), colour = "navyblue", size = 1.2
         )} +
         theme_bw()+
         theme(axis.text.x = element_blank(),
@@ -243,7 +255,8 @@ shinyServer(function(input, output, session) {
           #axis.text.x = element_text(angle =90, hjust =1, vjust = 0),
               plot.title = element_text(face = "bold", size = 9),
               panel.grid.major = element_blank(),
-              panel.grid.minor = element_blank())
+              panel.grid.minor = element_blank(),
+          plot.margin = unit(c(2,2,15,2),"mm"))
     })
     do.call("plot_grid", c(plts, ncol = 6))
   })
@@ -286,7 +299,7 @@ shinyServer(function(input, output, session) {
         {if(input$ScotCheckbox2 == TRUE)geom_hline(
           aes(
             yintercept = ScotVal
-          ), colour = "navyblue", size = 1.5
+          ), colour = "navyblue", size = 1.2
         ) }+
         theme_bw()+
         theme(axis.text.x = element_text(angle =90, hjust =1, vjust = 0),
