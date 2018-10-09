@@ -83,15 +83,16 @@ body <- dashboardBody(
                   selected = "Scotland"
                 ))
               ),
-              column(2,tags$img(style = "margin-left:0px;margin-right:0px",src = "Lgnd1.PNG")),
+              column(2,tags$img(style = "margin-left:0px;margin-right:0px;max-width:180%",src = "Lgnd1.PNG")),
+              column(1),
               column(
-                4, 
+                4, style = "margin-top:3px",
                 tags$style("#CPPLgnd{
-                                   font-size: 20px;
+                                   font-size: 120%;
                                    font-style: bold}"),
                 div(textOutput("CPPLgnd")),
                 tags$style("#CompLgnd{
-                                   font-size: 20px;
+                                   font-size: 120%;
                                    font-style: bold}"),
                 div(textOutput("CompLgnd"))
               )
@@ -430,7 +431,7 @@ body <- dashboardBody(
 ###====Tab2: Show all Councils for all indicators===###
   tabItem(tabName = "P2",
           fluidPage(
-            fluidRow(
+            fluidRow(style = "padding-top:10px",
               selectInput("OtherCPP", "Select a Comparator CPP", CPPNames)
             ),
             fluidRow(
