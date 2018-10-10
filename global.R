@@ -16,7 +16,13 @@ library(shinyLP)
 library(kableExtra)
 
 #Store value for the most recent year data is available, this needs to be changed when data is refreshed annually
+FrstYear <- "2006/07"
 RcntYear <- "2016/17"
+ProjYear <- "2020/21"
+
+LblFrst <- "06/07"
+LblRcnt <- "16/17"
+LblProj <- "20/21"
 
 SpPolysDF <- read_rds("data/Shapes_decs.rds")
 SpPolysIZ <- read_rds("data/IZshapes_decs.rds")

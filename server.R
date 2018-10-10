@@ -1314,14 +1314,14 @@ shinyServer(function(input, output, session) {
         
         LineChoiceDta$YearLabels <- LineChoiceDta$Year
         LineChoiceDta$YearLabels <- if_else(
-          LineChoiceDta$Year == "2006/07",
-          "06/07",
+          LineChoiceDta$Year == FrstYear,
+          LblFrst,
           if_else(
-            LineChoiceDta$Year == "2016/17", 
-            "16/17",
+            LineChoiceDta$Year == RcntYear, 
+            LblRcnt,
             if_else(
-              LineChoiceDta$Year == "2020/21",
-              "20/21",
+              LineChoiceDta$Year == ProjYear,
+              LblProj,
               ""
             )
           )
