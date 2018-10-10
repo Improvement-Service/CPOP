@@ -1295,7 +1295,18 @@ shinyServer(function(input, output, session) {
       GrpAv, c(-InterZone, -InterZone_Name, -CPP, -Typology_Group, -Typology_Name)
     )
     
-    LineChoiceDta <- rbind(Community, LA, Scotland, GrpAv)
+    SimComm            <- IGZdta
+    SimComm$InterZone_Name <- paste(SimComm$CPP, "-",SimComm$InterZone_Name)
+    SimComm            <- filter(SimComm, InterZone_Name == input$ChoiceAddComm)
+    SimComm$Identifier <- "Similar Community"
+    SimComm$ColourRef  <- "E"
+    SimComm$Colours    <- "purple"
+    SimComm            <- select(
+      SimComm, c(-InterZone, -InterZone_Name, -CPP, -Typology_Group, -Typology_Name))
+    
+    if(input$ChoiceAddComm == 0)
+      (LineChoiceDta <- rbind(Community, LA, Scotland, GrpAv))
+      (LineChoiceDta <- rbind(Community, LA, Scotland, GrpAv, SimComm))
   })
   
   # Create plot outputs
