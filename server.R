@@ -1,5 +1,5 @@
 shinyServer(function(input, output, session) {
-  
+ 
   ##get the right HTML for the first page
   output$CovPg <- renderUI({
     if(input$LA1 == ""){
@@ -1235,8 +1235,18 @@ shinyServer(function(input, output, session) {
   # Graphs for Community Profile Page
   
   output$LineChoicesCP <- renderUI({
-    Choices <- c(input$CommunityCP, input$LA1, "Scotland", "Group Average")
-    checkboxGroupInput("ChoicesCP", "Select lines to plot", Choices, selected = Choices)
+    Choices <- c(input$CommunityCP, input$LA1, "Scotland", "Group Average", "Similar Community")
+    checkboxGroupInput(
+      "ChoicesCP", 
+      "Select lines to plot", 
+      Choices, selected = c(input$CommunityCP, input$LA1, "Scotland", "Group Average"))
+  })
+  
+  output$AddComm <- renderUI({
+    Comm <- filter(IGZdta, InterZone_Name == input$CommunityCP)
+    Group <- Comm$Typology_Group[1]
+    Options <- filter(IGZdta, Typology_Group == Group)
+    selectInput("ChoiceAddComm", "", choices = unique(Options$InterZone_Name))
   })
   
   IndicatorsCP <- unique(IGZdta$Indicator)

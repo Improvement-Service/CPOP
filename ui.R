@@ -591,7 +591,14 @@ body <- dashboardBody(
                   width = 6, 
                   plotOutput("CPplots", height = "750px"),
                   fluidRow(
-                    column(5,uiOutput("LineChoicesCP")),
+                    column(
+                      5,
+                      uiOutput("LineChoicesCP"),
+                      conditionalPanel(
+                        condition = "input.ChoicesCP.includes(`Similar Community`)" , 
+                        uiOutput("AddComm")
+                      )
+                    ),
                     column(7,tags$img(style = "max-width:100%;",src = "ComPrflLgnd.PNG"))
                   ),
                   fluidRow(
@@ -680,6 +687,3 @@ dashboardPage(
   sidebar,
   body
   )
-
-
-##Modification to be added to next commit
