@@ -589,20 +589,7 @@ body <- dashboardBody(
                 ),
                 box(
                   width = 6, 
-                  column(
-                    width = 6,
-                    plotOutput("CPplot_1", height = "175px"),
-                    plotOutput("CPplot_3", height = "175px"),
-                    plotOutput("CPplot_5", height = "175px"),
-                    plotOutput("CPplot_7", height = "175px")
-                  ),
-                  column(
-                    width = 6,
-                    plotOutput("CPplot_2", height = "175px"),
-                    plotOutput("CPplot_4", height = "175px"),
-                    plotOutput("CPplot_6", height = "175px"),
-                    plotOutput("CPplot_8", height = "175px")
-                  ),
+                  plotOutput("CPplots", height = "750px"),
                   fluidRow(
                     column(5,uiOutput("LineChoicesCP")),
                     column(7,tags$img(style = "max-width:100%;",src = "ComPrflLgnd.PNG"))

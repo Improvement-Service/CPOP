@@ -1288,17 +1288,18 @@ shinyServer(function(input, output, session) {
   
   # Create plot outputs
   
-  for(i in seq_along(IndicatorsCP)){
-    local({
-      my.i <- i
-      plotname <- paste("CPplot", my.i, sep ="_")
-      output[[plotname]]<- renderPlot({
+  
+  nIndis <- length(IndicatorsCP)
+  
+  output$CPplots<- renderPlot({
+    plots <- list()
+    plots <- lapply(1:nIndis, FUN = function(.x){
         req(input$LA1)
         LineChoiceDta <- LineChoiceDta()
         
         # Y axis 
         
-        y_rnge_dta <- subset(LineChoiceDta, LineChoiceDta$Indicator == IndicatorsCP[my.i])
+        y_rnge_dta <- subset(LineChoiceDta, LineChoiceDta$Indicator == IndicatorsCP[.x])
         y_min <- min(y_rnge_dta$value, na.rm = TRUE)
         y_max <- max(y_rnge_dta$value, na.rm = TRUE)
         Rnge <- y_max - y_min
@@ -1336,7 +1337,7 @@ shinyServer(function(input, output, session) {
         if(input$ProjectionsCP == "No"){LineChoiceDta <- filter(
           LineChoiceDta, Type != "Projected")} 
         
-        loopdata <- filter(LineChoiceDta, Indicator == IndicatorsCP[my.i])
+        loopdata <- filter(LineChoiceDta, Indicator == IndicatorsCP[.x])
         
         ColourRefPnts <- unique(loopdata$ColourRef)
         LineColours <- unique(loopdata$Colours)
@@ -1351,6 +1352,7 @@ shinyServer(function(input, output, session) {
         
         DashedLine <- loopdata
         SolidLine <- filter(loopdata, Type != "Projected")
+
         
         # Create Plot
         
@@ -1379,7 +1381,7 @@ shinyServer(function(input, output, session) {
             lwd = 1, 
             show.legend = FALSE
           )+
-          ggtitle(IndicatorsCP[my.i])+
+          ggtitle(IndicatorsCP[.x])+
           scale_colour_manual(breaks = ColourRefPnts, values = LineColours)+
           scale_x_continuous(breaks = c(1: length(YPoints)), labels = YLabels)+
           ylim(y_min, y_max)+
@@ -1393,9 +1395,9 @@ shinyServer(function(input, output, session) {
             axis.title.y = element_blank()
           )
       })
-    })
-  }
   
+  do.call("plot_grid", c(plots, ncol = 2, align = "v"))
+  })
   
   # Create Ui Outputs for All Communities Page - PAGE8----------------------------------
   
