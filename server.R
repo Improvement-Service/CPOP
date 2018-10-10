@@ -1246,6 +1246,8 @@ shinyServer(function(input, output, session) {
     Comm <- filter(IGZdta, InterZone_Name == input$CommunityCP)
     Group <- Comm$Typology_Group[1]
     Options <- filter(IGZdta, Typology_Group == Group)
+    Options <- filter(Options, InterZone_Name != input$CommunityCP )
+    Options$InterZone_Name <-  paste(Options$CPP, "-",Options$InterZone_Name)
     selectInput("ChoiceAddComm", "", choices = unique(Options$InterZone_Name))
   })
   
