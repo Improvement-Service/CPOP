@@ -1502,7 +1502,11 @@ shinyServer(function(input, output, session) {
           breaks = c("Com", "CPP", "Scot"), 
           values = c("red", "green","blue")
         )+
-        guides(colour = FALSE)
+        guides(colour = FALSE)+
+        theme(panel.grid.major = element_blank(), 
+              panel.grid.minor = element_blank(),
+              panel.border = element_blank(),
+              axis.line = element_line(colour = "black"))
     })
     do.call("plot_grid", c(plts, ncol = 4))
   }, height = myheight)
