@@ -583,7 +583,7 @@ body <- dashboardBody(
                 ),
                 fluidRow(
                   column(6,
-                  box(
+                  style = "padding-left:0px",box(
                     width = 12,
                     uiOutput("arr2"),
                       column(width = 8, style = "z-index:2",DT::dataTableOutput("CommunityProfileTbl")),
@@ -591,7 +591,7 @@ body <- dashboardBody(
                     )
                 ),
                  column(6,
-                 box(
+                 style = "padding-left:0px",box(
                   width = 12, 
                   plotOutput("CPplots", height = "700px"),
                   fluidRow(
@@ -700,15 +700,17 @@ body <- dashboardBody(
 dashboardPage(
   dashboardHeader(
     title = "CPOP",
-    tags$li(class = "dropdown", actionButton("HelpButton", "Help"))
+    tags$li(
+      class = "dropdown", 
+      tags$head(
+        tags$style(HTML('#HelpButton{background-color:White;
+                                     font-size: 20px;
+                                     font-weight: 600
+                                    }')
+        )
+      ),
+      div(actionButton("HelpButton", "Help", icon = icon("question-circle"))))
     ),
-                 
-                 # dropdownMenu(type = "notifications",
-                #  icon = icon("question-circle"), badgeStatus = NULL,
-                  #headerText = "Help!!",
-                  #notificationItem(text = "click here for help", icon = icon("child"),
-                   #                href = "link"))),
-  
   sidebar,
   body
   )
