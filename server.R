@@ -1254,7 +1254,7 @@ shinyServer(function(input, output, session) {
       "Select lines to plot", 
       Choices, selected = c(input$CommunityCP, input$LA1, "Scotland", "Group Average"))
   })
-  
+  outputOptions(output, 'LineChoicesCP', suspendWhenHidden = FALSE)
   output$AddComm <- renderUI({
     Comm <- filter(IGZdta, InterZone_Name == input$CommunityCP)
     Group <- Comm$Typology_Group[1]
