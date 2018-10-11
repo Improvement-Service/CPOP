@@ -13,6 +13,7 @@ sidebar <- dashboardSidebar(
   menuItem("CPP Inequality", tabName = "InQ", icon = icon("arrows-v")),
   menuItem("My Communities", tabName = "MyCom", icon = icon("table")),
   menuItem("Community Profile", tabName = "CP", icon = icon("arrow-down")),
+  conditionalPanel(condition = "input.tabs == `CP`", uiOutput("CommCP")),
   menuItem("All Communities", tabName = "allCom", icon = icon("picture-o")),
   menuItem("Data Zone Comparison", tabName = "Map2", icon = icon("globe")),
   menuItem("Help Video", tabName = "hVid", icon = icon("video-camera")),
@@ -551,7 +552,6 @@ body <- dashboardBody(
                       width = 12, 
                       column(
                         width = 6,
-                        uiOutput("CommCP"),
                         tags$style("#Descrip{
                                    font-size: 13px;
                                    font-style: bold}"),
@@ -589,7 +589,7 @@ body <- dashboardBody(
                 ),
                 box(
                   width = 6, 
-                  plotOutput("CPplots", height = "750px"),
+                  plotOutput("CPplots", height = "700px"),
                   fluidRow(
                     column(
                       5,
