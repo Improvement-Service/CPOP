@@ -656,7 +656,7 @@ shinyServer(function(input, output, session) {
     leaflet(SpPolysLA) %>%
       addTiles() %>%
       addPolygons(
-        smoothFactor = 0.5, 
+        smoothFactor = 1, 
         weight = 1.5, 
         fillOpacity = 0.7,
         layerId = ~NAME,
