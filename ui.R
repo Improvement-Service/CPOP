@@ -552,14 +552,7 @@ body <- dashboardBody(
                       width = 12, 
                       column(
                         width = 6,
-                        tags$style("#Descrip{
-                                   font-size: 13px;
-                                   font-style: bold}"),
-                        div(textOutput("Descrip")),
-                        tags$style("#GrpSize{
-                                   font-size: 13px;
-                                   font-style: bold}"),
-                        div(textOutput("GrpSize")),
+
                         radioButtons(
                           "ViewCP", 
                           "Select Display", 
@@ -593,13 +586,32 @@ body <- dashboardBody(
                   fluidRow(
                     column(
                       5,
-                      uiOutput("LineChoicesCP"),
+                      uiOutput("LineChoicesCP")
+                    ),
+                    column(
+                      7,
+                      tags$img(style = "max-width:100%;",src = "ComPrflLgnd.PNG")
+                      )
+                  ),
+                  fluidRow(
+                    column(
+                      5,
                       conditionalPanel(
-                        condition = "input.ChoicesCP.includes(`Similar Community`)" , 
+                        condition = "input.ChoicesCP.includes(`Similar Community`)", 
                         uiOutput("AddComm")
                       )
                     ),
-                    column(7,tags$img(style = "max-width:100%;",src = "ComPrflLgnd.PNG"))
+                    column(
+                      7,
+                      tags$style("#Descrip{
+                                   font-size: 13px;
+                                 font-style: bold}"),
+                      div(textOutput("Descrip")),
+                      tags$style("#GrpSize{
+                                 font-size: 13px;
+                                 font-style: bold}"),
+                      div(textOutput("GrpSize"))
+                    )
                   ),
                   fluidRow(
                     column(
