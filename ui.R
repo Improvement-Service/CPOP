@@ -666,13 +666,20 @@ body <- dashboardBody(
           fluidPage(
             fluidRow(
               column(4,
-                     selectInput("InqComp", "Select Comparator",
-     c("Scotland",CPPNames))),
+                     uiOutput("ICompUI")),
             column(4,
-                   selectInput("InqInd", "Select Indicator",c("Child Poverty", "Indi2", "indi3")))
+                   selectInput("InqYr", "Select Year", unique(IGZdta$Year)[1:11], selected = "2016/17"))
             ),
      tableOutput("inqTbl"),
-     plotOutput("InqGrp")
+     hr(),
+     plotOutput("InqGrp"),
+     fluidRow(
+       column(2,""),
+       column(2, style = "text-align:right", tags$img(style = "margin-right:0px",src = "Legend - Selection.PNG")),
+       column(2, style = "text-align:left;padding-right:0px",span(textOutput("CPPLgndInq"), style = "font-size:14px; font-weight:bold")),
+       column(2, style = "text-align:right",tags$img(style = "margin-right:0px",src = "Legend - Comp.PNG")),
+       column(2,style = "text-align:left;padding-right:0px",span(textOutput("CompLgndInq"), style = "font-size:14px; font-weight:bold"))
+     )
           ))
   )
 )

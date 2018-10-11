@@ -142,3 +142,9 @@ SourceFuelPov <- FuelPov[[1,4]]
 
 #Create list of CPP names for use in UI
 CPPNames <- unique(CPPMapDta[CPPMapDta$council != "Scotland", "council"])
+
+
+##Read in Duncan Index Scores
+DIdta <- read_csv("data/DuncanIndex.csv")
+DIdta <- gather(DIdta, "ind", "value",3:10) 
+InqDta <-readRDS("data/DecileData.rds")

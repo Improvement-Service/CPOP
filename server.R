@@ -1424,6 +1424,13 @@ shinyServer(function(input, output, session) {
     txt <- "Scotland"
   })
   
+  output$CompLgndInq <- renderText({
+    txt <- input$InqComp
+  })
+  output$CPPLgndInq <- renderText({
+    txt <- input$LA1
+  })
+  
   # render plots
   
   myheight <- function(){
@@ -1541,29 +1548,53 @@ shinyServer(function(input, output, session) {
   
   ##Inequality Page Table
   output$inqTbl <- function(){
-    dd <- data.frame("this", "this again", "that","this", "this again", "that", "these", "those")
-    names(dd) <- c("Out of Work Benefits", "Emergency Admissions", "Crime Rate", 
-                   "Early Mortality","Depopulation", "Child Poverty", 
-                   "Positive Destinations", "Tariff Score")
-    dd2 <- data.frame("one", "two", "three", "four", "five", "six","seven", "eight")
-    names(dd2) <- c("Out of Work Benefits", "Emergency Admissions", "Crime Rate", 
-                    "Early Mortality","Depopulation", "Child Poverty", 
-                    "Positive Destinations", "Tariff Score")
-    dd <- rbind(dd,dd2)
-    rownames(dd) <- c("Most deprived", "Least deprived")
-   kable(dd)%>%
-      kable_styling("striped")%>%
-     row_spec(0,background = "black", color = "white", font_size = 14) %>%
-     column_spec(1, bold = TRUE, border_right = TRUE)
-  
-    
+    #filter dataset
+    req(input$LA1)
+    dd <- filter(InqDta, CouncilName %in% c(input$LA1, input$InqComp) & Year == input$InqYr)
+    dd$value <- round(dd$value,1)
+    dd <- spread(dd, Indicator, value)[2:11]
+    dd <- dd[c(2,1,3:10)]
+    dd[2] <- c("Least deprived","Least deprived","Most deprived", "Most deprived")
+    dd <- arrange(dd,CouncilName)
+    #rownames(dd) <- c("Least deprived","Least deprived","Most deprived", "Most deprived")
+   colnames(dd)[1:2] <- c("","")
+    tbl1 <- kable(dd, "html")%>% 
+      kable_styling("basic")%>%
+     row_spec(0,background = "black", color = "white", font_size = 14, 
+              align = "right") %>%
+     column_spec(1, bold = TRUE, border_right = TRUE) %>%
+      column_spec(2, bold = TRUE) %>%
+     collapse_rows(1,valign = "middle",latex_hline = "major")%>%
+      row_spec(3, extra_css = "border-top: solid 1px")
+      #group_rows("", 3,4, label_row_css = "background-color: black; height: 3px") 
+      #group_rows("", 1,2, label_row_css = "height:1px")
+     
+    # row_spec(tbl1,1, hline_after = TRUE) 
     }
 
   output$InqGrp <- renderPlot({
-    dta <- data.frame("one"=c(1,2,3,4), "two"=c(33,32,33,35))
-  ggplot(dta)+
-    geom_line(aes(x = one, y = two))+
-    ylab("Duncan Index")+
-    xlab("Year")
+    req(input$LA1)
+    lstDI <- list()
+    DIdta <- filter(DIdta, la %in% c(input$LA1, input$InqComp)) %>% arrange(ind)
+    indList <- unique(DIdta$ind)
+    ##create colourscheme
+    DIdta$coloursch <- ifelse(DIdta$la ==input$LA1, "CPP", "Comp")
+    lstDi <- lapply(1:8,FUN = function(y){
+    dta <- DIdta[DIdta$ind == indList[y],]
+                  ggplot(dta, aes(x = year, y = value))+
+    geom_line(data = dta[!is.na(dta$value),], aes(group = coloursch, colour = coloursch), size = 1)+
+    ylab("")+
+    xlab("")+
+    ggtitle(indList[y])+
+    scale_colour_manual(breaks = c("Comp", "CPP"), values = c("blue", "red"))+
+    guides(colour = FALSE)
+          })
+  do.call("plot_grid", c(lstDi, ncol = 4))
     })
+  
+  output$ICompUI <- renderUI({
+    CPPNames <- CPPNames[CPPNames != input$LA1]
+    selectInput("InqComp", "Select Comparator",
+                c("Scotland",CPPNames))
+  })
 })
