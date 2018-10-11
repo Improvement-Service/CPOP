@@ -544,44 +544,55 @@ body <- dashboardBody(
 ##====Tab7: Community profile==========##
     tabItem(tabName = "CP",
             fluidPage(
+              tags$head(
+                tags$style(HTML("
+                              .multicol {
+                              height:75px;
+                              
+                              -webkit-column-count: 3; /* Chrome, Safari, Opera */
+                              
+                              -moz-column-count: 3; /* Firefox */
+                              
+                              column-count: 3;
+                              
+                              }
+                              
+                              "))
+              ),
               fluidRow(
                 column(
-                  width = 6,
-                  fluidRow(
-                    box(
-                      width = 12, 
-                      column(
-                        width = 6,
-
-                        radioButtons(
-                          "ViewCP", 
-                          "Select Display", 
-                          c("All", "Top/bottom 10", "Top/bottom 5"),
-                          inline = TRUE
-                        )
-                      ),
-                      column(
-                        width = 6,
-                        checkboxGroupInput(
-                          "IndiCP", 
-                          "Select Indicators",
-                          unique(IGZdta$Indicator),
-                          selected = unique(IGZdta$Indicator)
-                        )
-                      )
-                    )
-                  ),
-                  fluidRow(
-                    box(
-                      width = 12,
-                      uiOutput("arr2"),
+                  4,
+                  radioButtons(
+                    "ViewCP", 
+                    "Select Display", 
+                    c("All", "Top/bottom 10", "Top/bottom 5"),
+                    inline = TRUE
+                  )
+                ),
+                column(
+                  8,
+                  tags$div(
+                    class = "multicol", 
+                    checkboxGroupInput(
+                    "IndiCP", 
+                    "Select Indicators",
+                    unique(IGZdta$Indicator),
+                    selected = unique(IGZdta$Indicator)
+                  )
+                  )
+                ),
+                fluidRow(
+                  column(6,
+                  box(
+                    width = 12,
+                    uiOutput("arr2"),
                       column(width = 8, style = "z-index:2",DT::dataTableOutput("CommunityProfileTbl")),
                       column(width = 2, style = "padding-left:2px;z-index:1;", tags$img(style = "max-width:130%",src="Arrow4.PNG"))
                     )
-                  )
                 ),
-                box(
-                  width = 6, 
+                 column(6,
+                 box(
+                  width = 12, 
                   plotOutput("CPplots", height = "700px"),
                   fluidRow(
                     column(
@@ -628,7 +639,9 @@ body <- dashboardBody(
                   )
                 )
             )
-              )     
+              )  
+              )
+            )
     ),            
 ##===tab8: All Communities===##
   tabItem(tabName = "allCom",
