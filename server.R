@@ -1576,10 +1576,12 @@ shinyServer(function(input, output, session) {
     })
   # Work for Help Pages----------------------------------------------
 
+  #Community Map Page
+  
   observeEvent(input$HelpButton,{
     if(input$tabs == "Map1")
     {showModal(modalDialog(
-      title = "Community Map",
+      title = "Community Map - Page 1 of 2",
       fluidRow(
       tags$img(src = "MapHelp1.PNG")),
       fluidRow(
@@ -1590,13 +1592,33 @@ shinyServer(function(input, output, session) {
   })
   
   observeEvent(input$Map1P2,{
-    showModal(modalDialog(title = "Community Map", tags$img(src = "MapHelp2.PNG"), size = "l"))
+    showModal(
+      modalDialog(
+        title = "Community Map - Page 2 of 2", 
+        fluidRow(tags$img(src = "MapHelp2.PNG")),
+        fluidRow(actionButton("Map1P1", "Previous Page")),
+        size = "l"
+      )
+    )
   })
+  
+  observeEvent(input$Map1P1,{showModal(modalDialog(
+    title = "Community Map - Page 1 of 1",
+    fluidRow(
+      tags$img(src = "MapHelp1.PNG")),
+    fluidRow(
+      column(10),
+      column(2,actionButton("Map1P2", "Next Page"))
+    ),
+    size = "l"))
+  })
+
+  #CPP Over Time Page
   
   observeEvent(input$HelpButton,{
     if(input$tabs == "P1")
     {showModal(modalDialog(
-      title = "CPP Over Time",
+      title = "CPP Over Time - Page 1 of 2",
       fluidRow(
         tags$img(src = "CPPTimeHelp1.PNG")
       ),
@@ -1608,43 +1630,173 @@ shinyServer(function(input, output, session) {
   })
   
   observeEvent(input$P1P2,{
-    showModal(modalDialog(title = "CPP Over Time", tags$img(src = "CPPTimeHelp2.PNG"), size = "l"))
+    showModal(
+      modalDialog(
+        title = "CPP Over Time - Page 2 of 2", 
+        fluidRow(tags$img(src = "CPPTimeHelp2.PNG")),
+        fluidRow(actionButton("P1P1", "Previous Page"))
+        , size = "l"))
   })
+  
+  observeEvent(input$P1P1,{
+    showModal(modalDialog(
+      title = "CPP Over Time - Page 1 of 2",
+      fluidRow(
+        tags$img(src = "CPPTimeHelp1.PNG")
+      ),
+      fluidRow(
+        column(10),
+        column(2, actionButton("P1P2", "Next Page"))
+      ),
+      size = "l"))
+  })
+  
+  #Compare All CPPs page
   
   observeEvent(input$HelpButton,{
     if(input$tabs == "P2")
     {showModal(modalDialog(title = "Compare All CPPs",size = "l"))}
   })
   
+  #Compare Similar CPPs page
+  
   observeEvent(input$HelpButton,{
     if(input$tabs == "P3")
     {showModal(modalDialog(title = "Compare Similar CPPs", tags$img(src = "SimCPPHelp.PNG"), size = "l"))}
   })
+  
+  #CPP Inequality Page
   
   observeEvent(input$HelpButton,{
     if(input$tabs == "InQ")
     {showModal(modalDialog(title = "CPP Inequality", size = "l"))}
   })
   
+  #My Communities Page
+  
   observeEvent(input$HelpButton,{
     if(input$tabs == "MyCom")
-    {showModal(modalDialog(title = "My Communities", size = "l"))}
+    {showModal(
+      modalDialog(
+        title = "My Communities - Page 1 of 3", 
+        fluidRow(tags$img(src = "MyComHelp1.PNG")),
+        fluidRow(
+          column(10),
+          column(2, actionButton("MyComP2", "Next Page"))
+        ),
+        size = "l"
+        )
+    )
+      }
   })
+  
+  observeEvent(input$MyComP2,{
+      showModal(
+        modalDialog(
+          title = "My Communities - Page 2 of 3",
+          fluidRow(
+          tags$img(src = "MyComHelp2.PNG"),
+          size = "l"
+          ),
+          fluidRow(
+            column(2, actionButton("MyComP1", "Previous Page")),
+            column(8),
+            column(2, actionButton("MyComP3", "Next Page"))
+          ),
+          size = "l"
+        )
+      )
+    })
+  
+  observeEvent(input$MyComP3,{
+    showModal(
+      modalDialog(
+        title = "My Communities - Page 3 of 3",
+        fluidRow(tags$img(src = "MyComHelp3.PNG")),
+        fluidRow(actionButton("MyComP2", "Previous Page")),
+        size = "l"
+      )
+    )
+  })
+  
+  observeEvent(input$MyComP1,{
+    showModal(
+      modalDialog(
+        title = "My Communities - Page 1 of 3", 
+        fluidRow(tags$img(src = "MyComHelp1.PNG")),
+        fluidRow(
+          column(10),
+          column(2, actionButton("MyComP2", "Next Page"))
+        ),
+        size = "l"
+      )
+    )
+  })
+  
+  #Community Profile Page
   
   observeEvent(input$HelpButton,{
     if(input$tabs == "CP")
-    {showModal(modalDialog(title = "Community Profile",size = "l"))}
+    {showModal(
+      modalDialog(
+        title = "Community Profile - Page 1 of 3",
+        fluidRow(tags$img(src = "CPHelp1.PNG")),
+        fluidRow(
+          column(10),
+          column(2, actionButton("CPP2", "Next Page"))
+        ),
+        size = "l"))}
   })
+  
+  observeEvent(input$CPP2,{
+    showModal(
+      modalDialog(
+        title = "Community Profile - Page 2 of 3",
+        fluidRow(tags$img(src = "CPHelp2.PNG")),
+        fluidRow(
+          column(2, actionButton("CPP1", "Previous Page")),
+          column(8),
+          column(2, actionButton("CPP3", "Next Page"))
+        ),
+        size = "l"))
+  })
+  
+  observeEvent(input$CPP3,{
+    showModal(
+      modalDialog(
+        title = "Community Profile - Page 3 of 3",
+        fluidRow(tags$img(src = "CPHelp3.PNG")),
+        fluidRow(actionButton("CPP2", "Previous Page")),
+        size = "l"))
+  })
+  
+  observeEvent(input$CPP1,{
+    showModal(
+      modalDialog(
+        title = "Community Profile - Page 1 of 3",
+        fluidRow(tags$img(src = "CPHelp1.PNG")),
+        fluidRow(
+          column(10),
+          column(2, actionButton("CPP2", "Next Page"))
+        ),
+        size = "l"))
+  })
+  
+  #All Communities Page
   
   observeEvent(input$HelpButton,{
     if(input$tabs == "allCom")
     {showModal(modalDialog(title = "All Communities", tags$img(src = "AllCommHelp.PNG"),size = "l"))}
   })
   
+  #Data Zone Comparison Page
+  
   observeEvent(input$HelpButton,{
     if(input$tabs == "Map2")
     {showModal(modalDialog(title = "Data Zone Comparison",tags$img(src = "DZHelp.PNG"), size = "l"))}
   })
+  
+  #Help Video Page
   
   observeEvent(input$HelpButton,{
     if(input$tabs == "hVid")
