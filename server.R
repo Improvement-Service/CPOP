@@ -1,5 +1,5 @@
 shinyServer(function(input, output, session) {
-  
+ 
   ##get the right HTML for the first page
   output$CovPg <- renderUI({
     if(input$LA1 == ""){
@@ -1248,8 +1248,20 @@ shinyServer(function(input, output, session) {
   # Graphs for Community Profile Page
   
   output$LineChoicesCP <- renderUI({
-    Choices <- c(input$CommunityCP, input$LA1, "Scotland", "Group Average")
-    checkboxGroupInput("ChoicesCP", "Select lines to plot", Choices, selected = Choices)
+    Choices <- c(input$CommunityCP, input$LA1, "Scotland", "Group Average", "Similar Community")
+    checkboxGroupInput(
+      "ChoicesCP", 
+      "Select lines to plot", 
+      Choices, selected = c(input$CommunityCP, input$LA1, "Scotland", "Group Average"))
+  })
+  
+  output$AddComm <- renderUI({
+    Comm <- filter(IGZdta, InterZone_Name == input$CommunityCP)
+    Group <- Comm$Typology_Group[1]
+    Options <- filter(IGZdta, Typology_Group == Group)
+    Options <- filter(Options, InterZone_Name != input$CommunityCP )
+    Options$InterZone_Name <-  paste(Options$CPP, "-",Options$InterZone_Name)
+    selectInput("ChoiceAddComm", "", choices = unique(Options$InterZone_Name))
   })
   
   IndicatorsCP <- unique(IGZdta$Indicator)
@@ -1296,22 +1308,34 @@ shinyServer(function(input, output, session) {
       GrpAv, c(-InterZone, -InterZone_Name, -CPP, -Typology_Group, -Typology_Name)
     )
     
-    LineChoiceDta <- rbind(Community, LA, Scotland, GrpAv)
+    SimComm            <- IGZdta
+    SimComm$InterZone_Name <- paste(SimComm$CPP, "-",SimComm$InterZone_Name)
+    SimComm            <- filter(SimComm, InterZone_Name == input$ChoiceAddComm)
+    SimComm$Identifier <- "Similar Community"
+    SimComm$ColourRef  <- "E"
+    SimComm$Colours    <- "purple"
+    SimComm            <- select(
+      SimComm, c(-InterZone, -InterZone_Name, -CPP, -Typology_Group, -Typology_Name))
+    
+    if(input$ChoiceAddComm == 0)
+      (LineChoiceDta <- rbind(Community, LA, Scotland, GrpAv))
+      (LineChoiceDta <- rbind(Community, LA, Scotland, GrpAv, SimComm))
   })
   
   # Create plot outputs
   
-  for(i in seq_along(IndicatorsCP)){
-    local({
-      my.i <- i
-      plotname <- paste("CPplot", my.i, sep ="_")
-      output[[plotname]]<- renderPlot({
+  
+  nIndis <- length(IndicatorsCP)
+  
+  output$CPplots<- renderPlot({
+    plots <- list()
+    plots <- lapply(1:nIndis, FUN = function(.x){
         req(input$LA1)
         LineChoiceDta <- LineChoiceDta()
         
         # Y axis 
         
-        y_rnge_dta <- subset(IGZdta, IGZdta$Indicator == IndicatorsCP[my.i])
+        y_rnge_dta <- subset(LineChoiceDta, LineChoiceDta$Indicator == IndicatorsCP[.x])
         y_min <- min(y_rnge_dta$value, na.rm = TRUE)
         y_max <- max(y_rnge_dta$value, na.rm = TRUE)
         Rnge <- y_max - y_min
@@ -1326,14 +1350,14 @@ shinyServer(function(input, output, session) {
         
         LineChoiceDta$YearLabels <- LineChoiceDta$Year
         LineChoiceDta$YearLabels <- if_else(
-          LineChoiceDta$Year == "2006/07",
-          "06/07",
+          LineChoiceDta$Year == FrstYear,
+          LblFrst,
           if_else(
-            LineChoiceDta$Year == "2016/17", 
-            "16/17",
+            LineChoiceDta$Year == RcntYear, 
+            LblRcnt,
             if_else(
-              LineChoiceDta$Year == "2020/21",
-              "20/21",
+              LineChoiceDta$Year == ProjYear,
+              LblProj,
               ""
             )
           )
@@ -1349,7 +1373,7 @@ shinyServer(function(input, output, session) {
         if(input$ProjectionsCP == "No"){LineChoiceDta <- filter(
           LineChoiceDta, Type != "Projected")} 
         
-        loopdata <- filter(LineChoiceDta, Indicator == IndicatorsCP[my.i])
+        loopdata <- filter(LineChoiceDta, Indicator == IndicatorsCP[.x])
         
         ColourRefPnts <- unique(loopdata$ColourRef)
         LineColours <- unique(loopdata$Colours)
@@ -1364,6 +1388,7 @@ shinyServer(function(input, output, session) {
         
         DashedLine <- loopdata
         SolidLine <- filter(loopdata, Type != "Projected")
+
         
         # Create Plot
         
@@ -1392,7 +1417,7 @@ shinyServer(function(input, output, session) {
             lwd = 1, 
             show.legend = FALSE
           )+
-          ggtitle(IndicatorsCP[my.i])+
+          ggtitle(IndicatorsCP[.x])+
           scale_colour_manual(breaks = ColourRefPnts, values = LineColours)+
           scale_x_continuous(breaks = c(1: length(YPoints)), labels = YLabels)+
           ylim(y_min, y_max)+
@@ -1406,9 +1431,9 @@ shinyServer(function(input, output, session) {
             axis.title.y = element_blank()
           )
       })
-    })
-  }
   
+  do.call("plot_grid", c(plots, ncol = 2, align = "v"))
+  })
   
   # Create Ui Outputs for All Communities Page - PAGE8----------------------------------
   
@@ -1591,10 +1616,237 @@ shinyServer(function(input, output, session) {
           })
   do.call("plot_grid", c(lstDi, ncol = 4))
     })
+
   
   output$ICompUI <- renderUI({
     CPPNames <- CPPNames[CPPNames != input$LA1]
     selectInput("InqComp", "Select Comparator",
                 c("Scotland",CPPNames))
   })
-})
+
+
+  # Work for Help Pages----------------------------------------------
+
+  #Community Map Page
+  
+  observeEvent(input$HelpButton,{
+    if(input$tabs == "Map1")
+    {showModal(modalDialog(
+      title = "Community Map - Page 1 of 2",
+      fluidRow(
+      tags$img(src = "MapHelp1.PNG")),
+      fluidRow(
+        column(10),
+        column(2,actionButton("Map1P2", "Next Page"))
+      ),
+      size = "l"))}
+  })
+  
+  observeEvent(input$Map1P2,{
+    showModal(
+      modalDialog(
+        title = "Community Map - Page 2 of 2", 
+        fluidRow(tags$img(src = "MapHelp2.PNG")),
+        fluidRow(actionButton("Map1P1", "Previous Page")),
+        size = "l"
+      )
+    )
+  })
+  
+  observeEvent(input$Map1P1,{showModal(modalDialog(
+    title = "Community Map - Page 1 of 1",
+    fluidRow(
+      tags$img(src = "MapHelp1.PNG")),
+    fluidRow(
+      column(10),
+      column(2,actionButton("Map1P2", "Next Page"))
+    ),
+    size = "l"))
+  })
+
+  #CPP Over Time Page
+  
+  observeEvent(input$HelpButton,{
+    if(input$tabs == "P1")
+    {showModal(modalDialog(
+      title = "CPP Over Time - Page 1 of 2",
+      fluidRow(
+        tags$img(src = "CPPTimeHelp1.PNG")
+      ),
+      fluidRow(
+        column(10),
+        column(2, actionButton("P1P2", "Next Page"))
+      ),
+      size = "l"))}
+  })
+  
+  observeEvent(input$P1P2,{
+    showModal(
+      modalDialog(
+        title = "CPP Over Time - Page 2 of 2", 
+        fluidRow(tags$img(src = "CPPTimeHelp2.PNG")),
+        fluidRow(actionButton("P1P1", "Previous Page"))
+        , size = "l"))
+  })
+  
+  observeEvent(input$P1P1,{
+    showModal(modalDialog(
+      title = "CPP Over Time - Page 1 of 2",
+      fluidRow(
+        tags$img(src = "CPPTimeHelp1.PNG")
+      ),
+      fluidRow(
+        column(10),
+        column(2, actionButton("P1P2", "Next Page"))
+      ),
+      size = "l"))
+  })
+  
+  #Compare All CPPs page
+  
+  observeEvent(input$HelpButton,{
+    if(input$tabs == "P2")
+    {showModal(modalDialog(title = "Compare All CPPs",size = "l"))}
+  })
+  
+  #Compare Similar CPPs page
+  
+  observeEvent(input$HelpButton,{
+    if(input$tabs == "P3")
+    {showModal(modalDialog(title = "Compare Similar CPPs", tags$img(src = "SimCPPHelp.PNG"), size = "l"))}
+  })
+  
+  #CPP Inequality Page
+  
+  observeEvent(input$HelpButton,{
+    if(input$tabs == "InQ")
+    {showModal(modalDialog(title = "CPP Inequality", size = "l"))}
+  })
+  
+  #My Communities Page
+  
+  observeEvent(input$HelpButton,{
+    if(input$tabs == "MyCom")
+    {showModal(
+      modalDialog(
+        title = "My Communities - Page 1 of 3", 
+        fluidRow(tags$img(src = "MyComHelp1.PNG")),
+        fluidRow(
+          column(10),
+          column(2, actionButton("MyComP2", "Next Page"))
+        ),
+        size = "l"
+        )
+    )
+      }
+  })
+  
+  observeEvent(input$MyComP2,{
+      showModal(
+        modalDialog(
+          title = "My Communities - Page 2 of 3",
+          fluidRow(
+          tags$img(src = "MyComHelp2.PNG"),
+          size = "l"
+          ),
+          fluidRow(
+            column(2, actionButton("MyComP1", "Previous Page")),
+            column(8),
+            column(2, actionButton("MyComP3", "Next Page"))
+          ),
+          size = "l"
+        )
+      )
+    })
+  
+  observeEvent(input$MyComP3,{
+    showModal(
+      modalDialog(
+        title = "My Communities - Page 3 of 3",
+        fluidRow(tags$img(src = "MyComHelp3.PNG")),
+        fluidRow(actionButton("MyComP2", "Previous Page")),
+        size = "l"
+      )
+    )
+  })
+  
+  observeEvent(input$MyComP1,{
+    showModal(
+      modalDialog(
+        title = "My Communities - Page 1 of 3", 
+        fluidRow(tags$img(src = "MyComHelp1.PNG")),
+        fluidRow(
+          column(10),
+          column(2, actionButton("MyComP2", "Next Page"))
+        ),
+        size = "l"
+      )
+    )
+  })
+  
+  #Community Profile Page
+  
+  observeEvent(input$HelpButton,{
+    if(input$tabs == "CP")
+    {showModal(
+      modalDialog(
+        title = "Community Profile - Page 1 of 3",
+        fluidRow(tags$img(src = "CPHelp1.PNG")),
+        fluidRow(
+          column(10),
+          column(2, actionButton("CPP2", "Next Page"))
+        ),
+        size = "l"))}
+  })
+  
+  observeEvent(input$CPP2,{
+    showModal(
+      modalDialog(
+        title = "Community Profile - Page 2 of 3",
+        fluidRow(tags$img(src = "CPHelp2.PNG")),
+        fluidRow(
+          column(2, actionButton("CPP1", "Previous Page")),
+          column(8),
+          column(2, actionButton("CPP3", "Next Page"))
+        ),
+        size = "l"))
+  })
+  
+  observeEvent(input$CPP3,{
+    showModal(
+      modalDialog(
+        title = "Community Profile - Page 3 of 3",
+        fluidRow(tags$img(src = "CPHelp3.PNG")),
+        fluidRow(actionButton("CPP2", "Previous Page")),
+        size = "l"))
+  })
+  
+  observeEvent(input$CPP1,{
+    showModal(
+      modalDialog(
+        title = "Community Profile - Page 1 of 3",
+        fluidRow(tags$img(src = "CPHelp1.PNG")),
+        fluidRow(
+          column(10),
+          column(2, actionButton("CPP2", "Next Page"))
+        ),
+        size = "l"))
+  })
+  
+  #All Communities Page
+  
+  observeEvent(input$HelpButton,{
+    if(input$tabs == "allCom")
+    {showModal(modalDialog(title = "All Communities", tags$img(src = "AllCommHelp.PNG"),size = "l"))}
+  })
+  
+  #Data Zone Comparison Page
+  
+  observeEvent(input$HelpButton,{
+    if(input$tabs == "Map2")
+    {showModal(modalDialog(title = "Data Zone Comparison",tags$img(src = "DZHelp.PNG"), size = "l"))}
+  })
+  
+  
+  
+  })
