@@ -596,11 +596,11 @@ body <- dashboardBody(
                   plotOutput("CPplots", height = "700px"),
                   fluidRow(
                     column(
-                      5,
+                      7,
                       uiOutput("LineChoicesCP")
                     ),
                     column(
-                      7,
+                      5,
                       tags$img(style = "max-width:100%;",src = "ComPrflLgnd.PNG")
                       )
                   ),
@@ -626,7 +626,7 @@ body <- dashboardBody(
                   ),
                   fluidRow(
                     column(
-                      5,
+                      7,
                       radioButtons(
                         "ProjectionsCP", 
                         "Show projections?", 
@@ -635,7 +635,7 @@ body <- dashboardBody(
                         inline = TRUE
                       )
                     ),
-                    column(7,img(style = "max-width:100%;", src = "DashedLine.PNG"))
+                    column(5,img(style = "max-width:100%;", src = "DashedLine.PNG"))
                   )
                 )
             )
