@@ -3,19 +3,19 @@ sidebar <- dashboardSidebar(
                  choices =CPPNames, options = list(placeholder = "Select a CPP",
                   onInitialize = I('function() { this.setValue(""); }'))),
   
-  sidebarMenu(id = "sidebarmenu",
+  sidebarMenu(id = "tabs",
   menuItem("Community Map", tabName = "Map1", icon = icon("map")),
   menuItem("CPP Over Time", tabName = "P1", icon = icon("line-chart")),
   menuItem("Compare All CPPs", tabName = "P2", icon = icon("bar-chart")),
-  conditionalPanel(condition = "input.sidebarmenu == `P2`",checkboxInput("ScotCheckbox", "Show Scotland Value", value = TRUE)),
+  conditionalPanel(condition = "input.tabs == `P2`",checkboxInput("ScotCheckbox", "Show Scotland Value", value = TRUE)),
   menuItem("Compare Similar CPPS", tabName = "P3", icon = icon("area-chart")),
-  conditionalPanel(condition = "input.sidebarmenu == `P3`",checkboxInput("ScotCheckbox2", "Show Scotland Value", value = TRUE)),
+  conditionalPanel(condition = "input.tabs == `P3`",checkboxInput("ScotCheckbox2", "Show Scotland Value", value = TRUE)),
   menuItem("CPP Inequality", tabName = "InQ", icon = icon("arrows-v")),
   menuItem("My Communities", tabName = "MyCom", icon = icon("table")),
   menuItem("Community Profile", tabName = "CP", icon = icon("arrow-down")),
+  conditionalPanel(condition = "input.tabs == `CP`", uiOutput("CommCP")),
   menuItem("All Communities", tabName = "allCom", icon = icon("picture-o")),
   menuItem("Data Zone Comparison", tabName = "Map2", icon = icon("globe")),
-  menuItem("Help Video", tabName = "hVid", icon = icon("video-camera")),
   checkboxInput("CBCols", "Colourblind Colour Scheme", value = FALSE)
   )
 )
@@ -438,6 +438,7 @@ body <- dashboardBody(
               div(style = "margin-top:10px",
             plotOutput("CompCPP")%>% withSpinner(type = 6)
           ))
+          
     )),
 ###===Tab3: Show only similar councils===###
   tabItem(tabName = "P3",
@@ -519,7 +520,7 @@ body <- dashboardBody(
                   class = "multicol",
                   checkboxGroupInput(
                     "IndiMyCom",
-                    "select indicators",
+                    "Select indicators",
                     unique(IGZdta$Indicator),
                     selected = unique(IGZdta$Indicator)
                   )
@@ -543,73 +544,89 @@ body <- dashboardBody(
 ##====Tab7: Community profile==========##
     tabItem(tabName = "CP",
             fluidPage(
+              tags$head(
+                tags$style(HTML("
+                              .multicol {
+                              height:75px;
+                              
+                              -webkit-column-count: 3; /* Chrome, Safari, Opera */
+                              
+                              -moz-column-count: 3; /* Firefox */
+                              
+                              column-count: 3;
+                              
+                              }
+                              
+                              "))
+              ),
               fluidRow(
                 column(
-                  width = 6,
-                  fluidRow(
-                    box(
-                      width = 12, 
-                      column(
-                        width = 6,
-                        uiOutput("CommCP"),
-                        tags$style("#Descrip{
-                                   font-size: 13px;
-                                   font-style: bold}"),
-                        div(textOutput("Descrip")),
-                        tags$style("#GrpSize{
-                                   font-size: 13px;
-                                   font-style: bold}"),
-                        div(textOutput("GrpSize")),
-                        radioButtons(
-                          "ViewCP", 
-                          "Select Display", 
-                          c("All", "Top/bottom 10", "Top/bottom 5"),
-                          inline = TRUE
-                        )
-                      ),
-                      column(
-                        width = 6,
-                        checkboxGroupInput(
-                          "IndiCP", 
-                          "Select Indicators",
-                          unique(IGZdta$Indicator),
-                          selected = unique(IGZdta$Indicator)
-                        )
-                      )
-                    )
-                  ),
-                  fluidRow(
-                    box(
-                      width = 12,
-                      uiOutput("arr2"),
+                  4,
+                  radioButtons(
+                    "ViewCP", 
+                    "Select Display", 
+                    c("All", "Top/bottom 10", "Top/bottom 5"),
+                    inline = TRUE
+                  )
+                ),
+                column(
+                  8,
+                  tags$div(
+                    class = "multicol", 
+                    checkboxGroupInput(
+                    "IndiCP", 
+                    "Select Indicators",
+                    unique(IGZdta$Indicator),
+                    selected = unique(IGZdta$Indicator)
+                  )
+                  )
+                ),
+                fluidRow(
+                  column(6,
+                  style = "padding-left:0px",box(
+                    width = 12,
+                    uiOutput("arr2"),
                       column(width = 8, style = "z-index:2",DT::dataTableOutput("CommunityProfileTbl")),
                       column(width = 2, style = "padding-left:2px;z-index:1;", tags$img(style = "max-width:130%",src="Arrow4.PNG"))
                     )
-                  )
                 ),
-                box(
-                  width = 6, 
-                  column(
-                    width = 6,
-                    plotOutput("CPplot_1", height = "175px"),
-                    plotOutput("CPplot_3", height = "175px"),
-                    plotOutput("CPplot_5", height = "175px"),
-                    plotOutput("CPplot_7", height = "175px")
-                  ),
-                  column(
-                    width = 6,
-                    plotOutput("CPplot_2", height = "175px"),
-                    plotOutput("CPplot_4", height = "175px"),
-                    plotOutput("CPplot_6", height = "175px"),
-                    plotOutput("CPplot_8", height = "175px")
-                  ),
+                 column(6,
+                 style = "padding-left:0px",box(
+                  width = 12, 
+                  plotOutput("CPplots", height = "700px"),
                   fluidRow(
-                    column(5,uiOutput("LineChoicesCP")),
-                    column(7,tags$img(style = "max-width:100%;",src = "ComPrflLgnd.PNG"))
+                    column(
+                      7,
+                      uiOutput("LineChoicesCP")
+                    ),
+                    column(
+                      5,
+                      tags$img(style = "max-width:100%;",src = "ComPrflLgnd.PNG")
+                      )
                   ),
                   fluidRow(
                     column(
                       5,
+                      conditionalPanel(
+                        condition = "input.ChoicesCP.includes(`Similar Community`)", 
+                        uiOutput("AddComm")
+                      )
+                    ),
+                    column(
+                      7,
+                      tags$style("#Descrip{
+                                   font-size: 13px;
+                                 font-style: bold}"),
+                      div(textOutput("Descrip")),
+                      tags$style("#GrpSize{
+                                 font-size: 13px;
+                                 font-style: bold}"),
+                      div(textOutput("GrpSize"))
+                    )
+                  ),
+                  fluidRow(
+                    column(
+                      7,
                       radioButtons(
                         "ProjectionsCP", 
                         "Show projections?", 
@@ -618,11 +635,13 @@ body <- dashboardBody(
                         inline = TRUE
                       )
                     ),
-                    column(7,img(style = "max-width:100%;", src = "DashedLine.PNG"))
+                    column(5,img(style = "max-width:100%;", src = "DashedLine.PNG"))
                   )
                 )
             )
-              )     
+              )  
+              )
+            )
     ),            
 ##===tab8: All Communities===##
   tabItem(tabName = "allCom",
@@ -657,10 +676,7 @@ body <- dashboardBody(
             plotOutput("AllCPlots") %>% withSpinner(type = 6)
           )
         ),
-##====Video Tab===##
-  tabItem(tabName = "hVid",
-          HTML('<iframe width="560" height="315" src="https://www.youtube.com/embed/3FOzD4Sfgag" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>')
-    ),
+
 ###=====Inequality tab====##
   tabItem(tabName = "InQ",
           fluidPage(
@@ -682,15 +698,23 @@ body <- dashboardBody(
      )
           ))
   )
+
 )
 
 dashboardPage(
-  dashboardHeader(title = "CPOP",
-                  dropdownMenu(type = "notifications",
-                  icon = icon("question-circle"), badgeStatus = NULL,
-                  headerText = "Help!!",
-                  notificationItem(text = "click here for help", icon = icon("child"),
-                                   href = "http://www.improvementservice.org.uk/community-planning-outcomes-profile.html"))),
+  dashboardHeader(
+    title = "CPOP",
+    tags$li(
+      class = "dropdown", 
+      tags$head(
+        tags$style(HTML('#HelpButton{background-color:White;
+                                     font-size: 20px;
+                                     font-weight: 600
+                                    }')
+        )
+      ),
+      div(actionButton("HelpButton", "Help", icon = icon("question-circle"))))
+    ),
   sidebar,
   body
   )
