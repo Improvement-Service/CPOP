@@ -1254,20 +1254,31 @@ shinyServer(function(input, output, session) {
       "Select lines to plot", 
       Choices, selected = c(input$CommunityCP, input$LA1, "Scotland", "Group Average"))
   })
-  outputOptions(output, 'LineChoicesCP', suspendWhenHidden = FALSE)
+  #outputOptions(output, 'LineChoicesCP', suspendWhenHidden = FALSE)
   output$AddComm <- renderUI({
     Comm <- filter(IGZdta, InterZone_Name == input$CommunityCP)
     Group <- Comm$Typology_Group[1]
     Options <- filter(IGZdta, Typology_Group == Group)
     Options <- filter(Options, InterZone_Name != input$CommunityCP )
     Options$InterZone_Name <-  paste(Options$CPP, "-",Options$InterZone_Name)
-    selectInput("ChoiceAddComm", "", choices = unique(Options$InterZone_Name))
+    selectInput(
+      "ChoiceAddComm", 
+      "", 
+      choices = unique(Options$InterZone_Name)
+      )
   })
   
+  observe({
+    shinyjs::toggle(id = "AddComm", condition = ("Similar Community" %in% input$ChoicesCP))
+  })
+  
+  
+  outputOptions(output, 'AddComm', suspendWhenHidden = FALSE)
   IndicatorsCP <- unique(IGZdta$Indicator)
   
   LineChoiceDta <- reactive({
     req(input$LA1)
+    req(input$CommunityCP)
     # need to filter to selected CPP to avoid cases where the 
     #IGZ name has a duplicate in another CPP
     
@@ -1331,6 +1342,7 @@ shinyServer(function(input, output, session) {
     plots <- list()
     plots <- lapply(1:nIndis, FUN = function(.x){
         req(input$LA1)
+        req(input$CommunityCP)
         LineChoiceDta <- LineChoiceDta()
         
         # Y axis 

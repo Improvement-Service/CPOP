@@ -607,7 +607,9 @@ body <- dashboardBody(
                   fluidRow(
                     column(
                       5,
-                      conditionalPanel(condition = "input.ChoicesCP.indexOf(`Similar Community`) != -1",uiOutput("AddComm"))
+                     shinyjs::useShinyjs(),
+                      uiOutput("AddComm")
+                      #conditionalPanel(condition = "input.ChoicesCP.indexOf(`Similar Community`) != -1",uiOutput("AddComm"))
                     ),
                     column(
                       7,
