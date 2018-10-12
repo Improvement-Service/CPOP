@@ -1718,21 +1718,30 @@ shinyServer(function(input, output, session) {
   
   observeEvent(input$HelpButton,{
     if(input$tabs == "P2")
-    {showModal(modalDialog(title = "Compare All CPPs",size = "l"))}
+    {showModal(modalDialog(
+      title = "Compare All CPPs",
+      tags$img(src = "AllCPPHelp.PNG"),
+      size = "l"))}
   })
   
   #Compare Similar CPPs page
   
   observeEvent(input$HelpButton,{
     if(input$tabs == "P3")
-    {showModal(modalDialog(title = "Compare Similar CPPs", tags$img(src = "SimCPPHelp.PNG"), size = "l"))}
+    {showModal(modalDialog(
+      title = "Compare Similar CPPs", 
+      tags$img(src = "SimCPPHelp.PNG"), 
+      size = "l"))}
   })
   
   #CPP Inequality Page
   
   observeEvent(input$HelpButton,{
     if(input$tabs == "InQ")
-    {showModal(modalDialog(title = "CPP Inequality", size = "l"))}
+    {showModal(modalDialog(
+      title = "CPP Inequality", 
+      tags$img(src = "IneqHelp.PNG"),
+      size = "l"))}
   })
   
   #My Communities Page
