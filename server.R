@@ -1600,7 +1600,8 @@ shinyServer(function(input, output, session) {
     ##Rearrange indicators - if adding OOWB make: dd[c(2,1,3:10)]
     dd <- dd[c(2,1,3:7,9:10)]
     dd[2] <- c("Least deprived","Least deprived","Most deprived", "Most deprived")
-    dd <- arrange(dd,CouncilName)
+    OrdCPPs <<-c(input$LA1, input$InqComp)
+    dd <- arrange(dd,match(CouncilName, OrdCPPs), desc(CouncilName))
     #rownames(dd) <- c("Least deprived","Least deprived","Most deprived", "Most deprived")
     colnames(dd)[1:2] <- c("","")
     tbl1 <- kable(dd, "html")%>% 
