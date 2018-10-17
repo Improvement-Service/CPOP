@@ -7,10 +7,8 @@ sidebar <- dashboardSidebar(
   menuItem("Community Map", tabName = "Map1", icon = icon("map")),
   menuItem("CPP Over Time", tabName = "P1", icon = icon("line-chart")),
   menuItem("Compare All CPPs", tabName = "P2", icon = icon("bar-chart")),
-  conditionalPanel(condition = "input.tabs == `P2`",checkboxInput("ScotCheckbox", "Show Scotland Value", value = TRUE)),
-  menuItem("Compare Similar CPPS", tabName = "P3", icon = icon("area-chart")),
-  conditionalPanel(condition = "input.tabs == `P3`",checkboxInput("ScotCheckbox2", "Show Scotland Value", value = TRUE)),
-  menuItem("CPP Inequality", tabName = "InQ", icon = icon("arrows-v")),
+  menuItem("Compare Similar CPPs", tabName = "P3", icon = icon("area-chart")),
+  menuItem("Inequality Over Time", tabName = "InQ", icon = icon("arrows-v")),
   menuItem("My Communities", tabName = "MyCom", icon = icon("table")),
   menuItem("Community Profile", tabName = "CP", icon = icon("arrow-down")),
   conditionalPanel(condition = "input.tabs == `CP`", uiOutput("CommCP")),
@@ -66,6 +64,7 @@ body <- dashboardBody(
          margin-bottom:0px;
          text-align:centre;
          font-weight: bold;}
+        p{text-align: -webkit-right;}
           .small-box {margin-bottom:1px}
           .small-box >.inner {padding:5px}
          "))),
@@ -84,16 +83,16 @@ body <- dashboardBody(
                   selected = "Scotland"
                 ))
               ),
-              column(2,tags$img(style = "margin-left:0px;margin-right:0px;max-width:180%",src = "Lgnd1.PNG")),
+              column(2,tags$img(style = "margin-left:0px;margin-right:0px;margin-top:1px;width:16vw",src = "Lgnd1.PNG")),
               column(1),
               column(
                 4, style = "margin-top:3px",
                 tags$style("#CPPLgnd{
-                                   font-size: 120%;
+                                   font-size: 1.4vw;
                                    font-style: bold}"),
                 div(textOutput("CPPLgnd")),
                 tags$style("#CompLgnd{
-                                   font-size: 120%;
+                                   font-size: 1.4vw;
                                    font-style: bold}"),
                 div(textOutput("CompLgnd"))
               )
@@ -433,7 +432,24 @@ body <- dashboardBody(
   tabItem(tabName = "P2",
           fluidPage(
             fluidRow(style = "padding-top:10px",
-              uiOutput("CompSelection")
+              column(4,style = "margin-top:3px",uiOutput("CompSelection")),
+          conditionalPanel("input.OtherCPP != ''",  
+              column(2, tags$img(style = "margin-left:0px;margin-right:0px;margin-top:1px;width:16vw",src = "allComLgnd.PNG"))),
+          conditionalPanel("input.OtherCPP == ''",
+                           column(2, tags$img(style = "margin-left:0px;margin-right:0px;margin-top:1px;width:16vw",src = "Lgnd1.PNG"))),
+          column(1),
+              column(
+                4,
+                tags$style("#BarLA{font-size: 1.4vw;
+                                   font-style: bold}"),
+                div(textOutput("BarLA")),
+                tags$style("#BarComp{font-size: 1.4vw;margin-top:1px;
+                                   font-style: bold}"),
+                div(textOutput("BarComp")), 
+                tags$style("#BarScot{font-size: 1.4vw;margin-top:1px;
+                                   font-style: bold}"),
+                div(textOutput("BarScot"))
+              )
             ),
             fluidRow(
               div(style = "margin-top:10px",
@@ -655,19 +671,20 @@ body <- dashboardBody(
                   unique(IGZdta$Indicator)
                 )
               ),
-              column(2, tags$img(style = "margin-right:0px",src = "allComLgnd.PNG")),
+              column(2, tags$img(style = "margin-top:1px;margin-right:0px;width:16vw",src = "allComLgnd.PNG")),
+              column(1),
               column(
                 4,
                 tags$style("#CommLgnd{
-                                   font-size: 18px;
+                                   font-size: 1.4vw;
                                    font-style: bold}"),
                 div(textOutput("CommLgnd")),
                 tags$style("#CPPLgnd2{
-                                   font-size: 18px;
+                                   font-size: 1.4vw;
                                    font-style: bold}"),
                 div(textOutput("CPPLgnd2")), 
                 tags$style("#ScotLgnd{
-                                   font-size: 18px;
+                                   font-size: 1.4vw;
                            font-style: bold}"),
                 div(textOutput("ScotLgnd"))
               )
@@ -696,7 +713,7 @@ body <- dashboardBody(
        column(2, style = "text-align:right",tags$img(style = "margin-right:0px",src = "Legend - Comp.png")),
        column(2,style = "text-align:left;padding-right:0px",span(textOutput("CompLgndInq"), style = "font-size:14px; font-weight:bold"))
      ),
-     div(style ="align:right; font-size: 8",p("Duncan Index Source: University of Sheffield"))
+     p("Duncan Index Source: University of Sheffield")
           ))
   )
 

@@ -216,7 +216,7 @@ shinyServer(function(input, output, session) {
       }
     if(is.null(input$OtherCPP)){
       sclFll <- scale_fill_manual(values = c("lightblue2","red2"), breaks = c("Other", "Sel1"))}
-    else{ sclFll <- scale_fill_manual(values = c("lightblue2","red2", "darkgreen"), breaks = c("Other", "Sel1", "Sel2"))}
+    else{ sclFll <- scale_fill_manual(values = c("lightblue2","red2", "green"), breaks = c("Other", "Sel1", "Sel2"))}
     #filter so that the Scotland value isn't a bar on the plot
     
     dtaNoScot <- filter(dta, CPP != "Scotland")
@@ -246,10 +246,13 @@ shinyServer(function(input, output, session) {
         ggtitle(indi[[.x]])+
         xlab("")+
         ylab("")+
-        {if(input$ScotCheckbox == TRUE)geom_hline(aes(
+        #    {if(input$ScotCheckbox == TRUE)
+        geom_hline(aes(
           yintercept = filter(dta, CPP == "Scotland" & Indicator == indi[[.x]])$value
           ), colour = "navyblue", size = 1.2
-        )} +
+        )+
+          #} +
+        
         theme_bw()+
         theme(axis.text.x = element_blank(),
               axis.ticks.x = element_blank(),
@@ -298,11 +301,13 @@ shinyServer(function(input, output, session) {
         ggtitle(indi[[.x]])+
         xlab("")+
         ylab("")+
-        {if(input$ScotCheckbox2 == TRUE)geom_hline(
+   #     {if(input$ScotCheckbox2 == TRUE)
+        geom_hline(
           aes(
             yintercept = ScotVal
           ), colour = "navyblue", size = 1.2
-        ) }+
+        )+ 
+      #}+
         theme_bw()+
         theme(axis.text.x = element_text(angle =90, hjust =1, vjust = 0),
               plot.title = element_text(face = "bold", size = 9),
@@ -1873,6 +1878,14 @@ shinyServer(function(input, output, session) {
     {showModal(modalDialog(title = "Data Zone Comparison",tags$img(src = "DZHelp.PNG"), size = "l"))}
   })
   
-  
-  
+  ##legend for compar CPP page
+  output$BarLA <- renderText({
+    txt <- input$LA1
+  })
+  output$BarComp <- renderText({
+      txt <- input$OtherCPP
+  })
+    output$BarScot <- renderText({
+      txt <- "Scotland"
+    })
   })
