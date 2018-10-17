@@ -14,6 +14,8 @@ library(shinyBS)
 library(shinycssloaders)
 library(shinyLP)
 library(kableExtra)
+library(shinyjs)
+
 
 #Store value for the most recent year data is available, this needs to be changed when data is refreshed annually
 FrstYear <- "2006/07"

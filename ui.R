@@ -34,6 +34,7 @@ body <- dashboardBody(
     "#comProgressBox{width:100%; padding-right:0px; padding-left:0px}",
     "#SimCPP{height:90vh !important}",
     "#CompCPP{height:75vh !important; margin-top:15px}",
+    ".main-header .logo {text-align:left; padding-left:0px}",
     #".shiny-plot-output{26vh !important}",
     "#plot_1{height:25vh ! important}",
     "#plot_2{height:25vh ! important}",
@@ -690,11 +691,12 @@ body <- dashboardBody(
      plotOutput("InqGrp"),
      fluidRow(
        column(2,""),
-       column(2, style = "text-align:right", tags$img(style = "margin-right:0px",src = "Legend - Selection.PNG")),
+       column(2, style = "text-align:right", tags$img(style = "margin-right:0px",src = "Legend - Selection.png")),
        column(2, style = "text-align:left;padding-right:0px",span(textOutput("CPPLgndInq"), style = "font-size:14px; font-weight:bold")),
-       column(2, style = "text-align:right",tags$img(style = "margin-right:0px",src = "Legend - Comp.PNG")),
+       column(2, style = "text-align:right",tags$img(style = "margin-right:0px",src = "Legend - Comp.png")),
        column(2,style = "text-align:left;padding-right:0px",span(textOutput("CompLgndInq"), style = "font-size:14px; font-weight:bold"))
-     )
+     ),
+     div(style ="align:right; font-size: 8",p("Duncan Index Source: University of Sheffield"))
           ))
   )
 
@@ -702,7 +704,7 @@ body <- dashboardBody(
 
 dashboardPage(
   dashboardHeader(
-    title = "CPOP",
+    title = tags$img(src = "IS Logo blue background.jpg"),
     tags$li(
       class = "dropdown", 
       tags$head(
@@ -712,7 +714,7 @@ dashboardPage(
                                     }')
         )
       ),
-      div(actionButton("HelpButton", "Help", icon = icon("question-circle"))))
+      div(style = "padding-right:5px; padding-top:2px",actionButton("HelpButton", "Help", icon = icon("question-circle"))))
     ),
   sidebar,
   body

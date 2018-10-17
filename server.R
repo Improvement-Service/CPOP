@@ -227,6 +227,7 @@ shinyServer(function(input, output, session) {
     plts <-lapply(1:18, FUN = function(.x){
     ##calculate maximum limit for y axis  
       maxAx <- max(dtaNoScot[dtaNoScot$Indicator == indi[[.x]],5])*1.05
+      minAx <- ifelse(indi[[.x]] == "Carbon Emissions",-5,0)
       ggplot(data = filter(dtaNoScot, Indicator == indi[[.x]])) +
         geom_bar(aes(
           x = if((first(`High is Positive?`))== "Yes"){reorder(CPP, value)}else{reorder(CPP, -value)}, 
@@ -240,7 +241,7 @@ shinyServer(function(input, output, session) {
         ) +
         sclFll+
         #scale_x_discrete(label = function(x) abbreviate(x, minlength = 4))+
-        scale_y_continuous(expand = c(0,0), limits = c(0, maxAx))+
+        scale_y_continuous(expand = c(0,0), limits = c(minAx, maxAx))+    
         guides(fill = FALSE) +
         ggtitle(indi[[.x]])+
         xlab("")+
@@ -279,6 +280,7 @@ shinyServer(function(input, output, session) {
                           Indicator == indi[[.x]] &
                           CPP == "Scotland")$value
       maxAx <- max(c(dta[dta$Indicator == indi[[.x]],]$value, ScotVal))*1.05
+      minAx <- ifelse(indi[[.x]] == "Carbon Emissions" & FGroup %in% c(2,3),-5,0)
       ggplot(data = filter(dta, Indicator == indi[[.x]])) +
         geom_bar(aes(
           x = if(first(`High is Positive?`)== "Yes"){reorder(CPP, value)}else{reorder(CPP, -value)}, 
@@ -292,7 +294,7 @@ shinyServer(function(input, output, session) {
         scale_x_discrete(label = function(x) abbreviate(x, minlength = 10))+
         scale_fill_manual(values = c("lightblue2","red2"), breaks = c("Other", "Sel1")) +
         guides(fill = FALSE) +
-        scale_y_continuous(expand = c(0,0), limits = c(0,maxAx))+
+        scale_y_continuous(expand = c(0,0), limits = c(minAx,maxAx))+       
         ggtitle(indi[[.x]])+
         xlab("")+
         ylab("")+
@@ -1590,44 +1592,47 @@ shinyServer(function(input, output, session) {
     dd <- filter(InqDta, CouncilName %in% c(input$LA1, input$InqComp) & Year == input$InqYr)
     dd$value <- round(dd$value,1)
     dd <- spread(dd, Indicator, value)[2:11]
-    dd <- dd[c(2,1,3:10)]
+    ##Rearrange indicators - if adding OOWB make: dd[c(2,1,3:10)]
+    dd <- dd[c(2,1,3:7,9:10)]
     dd[2] <- c("Least deprived","Least deprived","Most deprived", "Most deprived")
     dd <- arrange(dd,CouncilName)
     #rownames(dd) <- c("Least deprived","Least deprived","Most deprived", "Most deprived")
-   colnames(dd)[1:2] <- c("","")
+    colnames(dd)[1:2] <- c("","")
     tbl1 <- kable(dd, "html")%>% 
       kable_styling("basic")%>%
-     row_spec(0,background = "black", color = "white", font_size = 14, 
-              align = "right") %>%
-     column_spec(1, bold = TRUE, border_right = TRUE) %>%
+      row_spec(0,background = "black", color = "white", font_size = 14, 
+               align = "right") %>%
+      column_spec(1, bold = TRUE, border_right = TRUE) %>%
       column_spec(2, bold = TRUE) %>%
-     collapse_rows(1,valign = "middle",latex_hline = "major")%>%
+      collapse_rows(1,valign = "middle",latex_hline = "major")%>%
       row_spec(3, extra_css = "border-top: solid 1px")
-      #group_rows("", 3,4, label_row_css = "background-color: black; height: 3px") 
-      #group_rows("", 1,2, label_row_css = "height:1px")
-     
+    #group_rows("", 3,4, label_row_css = "background-color: black; height: 3px") 
+    #group_rows("", 1,2, label_row_css = "height:1px")
+    
     # row_spec(tbl1,1, hline_after = TRUE) 
-    }
-
+  }
+  
   output$InqGrp <- renderPlot({
     req(input$LA1)
     lstDI <- list()
     DIdta <- filter(DIdta, la %in% c(input$LA1, input$InqComp)) %>% arrange(ind)
+    DIdta <- DIdta[DIdta$ind != "Out of Work Benefits", ]
     indList <- unique(DIdta$ind)
     ##create colourscheme
     DIdta$coloursch <- ifelse(DIdta$la ==input$LA1, "CPP", "Comp")
-    lstDi <- lapply(1:8,FUN = function(y){
-    dta <- DIdta[DIdta$ind == indList[y],]
-                  ggplot(dta, aes(x = year, y = value))+
-    geom_line(data = dta[!is.na(dta$value),], aes(group = coloursch, colour = coloursch), size = 1)+
-    ylab("")+
-    xlab("")+
-    ggtitle(indList[y])+
-    scale_colour_manual(breaks = c("Comp", "CPP"), values = c("blue", "red"))+
-    guides(colour = FALSE)
-          })
-  do.call("plot_grid", c(lstDi, ncol = 4))
+    lstDi <- lapply(1:7,FUN = function(y){
+      dta <- DIdta[DIdta$ind == indList[y],]
+      ggplot(dta, aes(x = year, y = value))+
+        geom_line(data = dta[!is.na(dta$value),], aes(group = coloursch, colour = coloursch), size = 1)+
+        ylab("")+
+        xlab("")+
+        ggtitle(indList[y])+
+        scale_colour_manual(breaks = c("Comp", "CPP"), values = c("blue", "red"))+
+        guides(colour = FALSE)
     })
+    do.call("plot_grid", c(lstDi, ncol = 4))
+  })
+  
 
   
   output$ICompUI <- renderUI({
