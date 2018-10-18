@@ -700,19 +700,18 @@ body <- dashboardBody(
             fluidRow(
               column(4,
                      uiOutput("ICompUI")),
-            column(4,
-                   selectInput("InqYr", "Select Year", unique(IGZdta$Year)[1:11], selected = "2016/17"))
+            column(3,
+                   selectInput("InqYr", "Select Year", unique(IGZdta$Year)[1:11], selected = "2016/17")),
+            column(5, style = "margin-top:3px",div(style = "display:block",tags$img(style = "margin-right:0px",src = "Legend - Selection.png"),
+                   span(textOutput("CPPLgndInq"), style = "font-size:14px; font-weight:bold; display:inline-block")),
+                   div(style = "display:block",tags$img(style = "margin-right:0px",src = "Legend - Comp.png"),
+                   span(textOutput("CompLgndInq"), style = "font-size:14px; font-weight:bold; display:inline-block"))
+                   )
             ),
      tableOutput("inqTbl"),
      hr(),
      plotOutput("InqGrp"),
-     fluidRow(
-       column(2,""),
-       column(2, style = "text-align:right", tags$img(style = "margin-right:0px",src = "Legend - Selection.png")),
-       column(2, style = "text-align:left;padding-right:0px",span(textOutput("CPPLgndInq"), style = "font-size:14px; font-weight:bold")),
-       column(2, style = "text-align:right",tags$img(style = "margin-right:0px",src = "Legend - Comp.png")),
-       column(2,style = "text-align:left;padding-right:0px",span(textOutput("CompLgndInq"), style = "font-size:14px; font-weight:bold"))
-     ),
+     fluidRow(),
      p("Duncan Index Source: University of Sheffield")
           ))
   )
