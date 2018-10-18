@@ -1,16 +1,5 @@
 shinyServer(function(input, output, session) {
  
-  ##get the right HTML for the first page
-  output$CovPg <- renderUI({
-    if(input$LA1 == ""){
-      includeHTML("CoverPage.html")
-    }else{
-       htmPg <- paste0(input$LA1, ".html")
-       includeHTML(htmPg)
-    }
-  })
-  
-  
   # Create Ui ouputs for CPP over time page - PAGE1------------------------------------------------------
   output$CPPLgnd <- renderText({
     txt <- input$LA1
