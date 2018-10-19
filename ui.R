@@ -467,8 +467,8 @@ body <- dashboardBody(
 ###====Tab4: Show Community maps===###
   tabItem(tabName = "Map1",
         fluidRow(
-              conditionalPanel("input.LA1 == ''",
-                               leafletOutput("scotMap")%>% withSpinner(type = 6)
+              conditionalPanel("input.LA1 == ''", 
+                               leafletOutput("scotMap",width = "50%")%>% withSpinner(type = 6)
               ),
               conditionalPanel("input.LA1 != ''",       
                      leafletOutput("communityMap") %>% withSpinner(type = 6)))

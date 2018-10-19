@@ -1245,9 +1245,9 @@ shinyServer(function(input, output, session) {
   
   output$LineChoicesCP <- renderUI({
     Choices <- c(input$CommunityCP, input$LA1, "Scotland", "Group Average", "Similar Community")
-    checkboxGroupInput(
+    awesomeCheckboxGroup(
       "ChoicesCP", 
-      "Select lines to plot", 
+      "Select lines to plot", status = "danger",
       Choices, selected = c(input$CommunityCP, input$LA1, "Scotland", "Group Average"))
   })
   #outputOptions(output, 'LineChoicesCP', suspendWhenHidden = FALSE)
@@ -1609,11 +1609,11 @@ shinyServer(function(input, output, session) {
   
   output$InqGrp <- renderPlot({
     req(input$LA1)
-    lstDI <- list()
     DIdta <- filter(DIdta, la %in% c(input$LA1, input$InqComp)) %>% arrange(ind)
     DIdta <- DIdta[DIdta$ind != "Out of Work Benefits", ]
     indList <- unique(DIdta$ind)
     ##create colourscheme
+    descText <- "These graphs display inequality over time.\nA value of 0 indicates perfect equality.\nPositive values indicate more inequality \nwith more deprived communities having worse\noutcomes. Negative values indicate that less\ndeprived communities have worse outcomes."
     DIdta$coloursch <- ifelse(DIdta$la ==input$LA1, "CPP", "Comp")
     lstDi <- lapply(1:7,FUN = function(y){
       dta <- DIdta[DIdta$ind == indList[y],]
@@ -1627,7 +1627,19 @@ shinyServer(function(input, output, session) {
         scale_colour_manual(breaks = c("Comp", "CPP"), values = c("blue", "red"))+
         guides(colour = FALSE)
     })
-    do.call("plot_grid", c(lstDi, ncol = 4))
+    lstDI <- list()
+    lstDI[[1]] <- ggplot()+
+      annotate("text", x = 5, y = 25, size = 4, label = descText)+
+      theme_bw()+
+      theme(panel.grid.major= element_blank(),
+            panel.grid.minor = element_blank(),
+            axis.line = element_blank(),
+            axis.text=element_blank(),
+            panel.border = element_blank(),
+            axis.title = element_blank(),
+            axis.ticks = element_blank())
+    lstDI <- c(lstDI,lstDi)
+    do.call("plot_grid", c(lstDI, ncol = 4))
   })
   
 
