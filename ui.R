@@ -83,18 +83,10 @@ body <- dashboardBody(
                   selected = "Scotland"
                 ))
               ),
-              column(2,tags$img(style = "margin-left:0px;margin-right:0px;margin-top:1px;width:16vw",src = "Lgnd1.PNG")),
-              column(1),
-              column(
-                4, style = "margin-top:3px",
-                tags$style("#CPPLgnd{
-                                   font-size: 1.4vw;
-                                   font-style: bold}"),
-                div(textOutput("CPPLgnd")),
-                tags$style("#CompLgnd{
-                                   font-size: 1.4vw;
-                                   font-style: bold}"),
-                div(textOutput("CompLgnd"))
+              column(5, style = "margin-top:1px",div(style = "display:block",tags$img(style = "margin-right:2px",src = "Legend - Selection.png"),
+                                                     span(textOutput("CPPLgnd"), style = "font-size:1.4vw;; font-weight:bold; display:inline-block")),
+                     div(style = "display:block",tags$img(style = "margin-right:2px",src = "Legend - Comp.png"),
+                         span(textOutput("CompLgnd"), style = "font-size:1.4vw;; font-weight:bold; display:inline-block"))
               )
               ),
               fluidRow(style = "margin-bottom:10px; margin-right:1px",
@@ -433,22 +425,13 @@ body <- dashboardBody(
           fluidPage(
             fluidRow(style = "padding-top:10px",
               column(4,style = "margin-top:3px",uiOutput("CompSelection")),
-          conditionalPanel("input.OtherCPP != ''",  
-              column(2, tags$img(style = "margin-left:0px;margin-right:0px;margin-top:1px;width:16vw",src = "allComLgnd.PNG"))),
-          conditionalPanel("input.OtherCPP == ''",
-                           column(2, tags$img(style = "margin-left:0px;margin-right:0px;margin-top:1px;width:16vw",src = "Lgnd1.PNG"))),
-          column(1),
-              column(
-                4,
-                tags$style("#BarLA{font-size: 1.4vw;
-                                   font-style: bold}"),
-                div(textOutput("BarLA")),
-                tags$style("#BarComp{font-size: 1.4vw;margin-top:1px;
-                                   font-style: bold}"),
-                div(textOutput("BarComp")), 
-                tags$style("#BarScot{font-size: 1.4vw;margin-top:1px;
-                                   font-style: bold}"),
-                div(textOutput("BarScot"))
+              column(5, style = "margin-top:1px",div(style = "display:block",tags$img(style = "margin-right:2px",src = "Legend - Selection.png"),
+                       span(textOutput("BarLA"), style = "font-size:1.4vw;; font-weight:bold; display:inline-block")),
+                     div(style = "display:block",tags$img(style = "margin-right:2px",src = "Legend - Comp.png"),
+                         span(textOutput("BarScot"), style = "font-size:1.4vw;; font-weight:bold; display:inline-block")),
+                     conditionalPanel("input.OtherCPP != ''",
+                                      div(style = "display:block",tags$img(style = "margin-right:2px",src = "Legend - LA.png"),
+                                          span(textOutput("BarComp"), style = "font-size:1.4vw;; font-weight:bold; display:inline-block")))
               )
             ),
             fluidRow(
@@ -671,24 +654,13 @@ body <- dashboardBody(
                   unique(IGZdta$Indicator)
                 )
               ),
-              column(2, tags$img(style = "margin-top:1px;margin-right:0px;width:16vw",src = "allComLgnd.PNG")),
-              column(1),
-              column(
-                4,
-                tags$style("#CommLgnd{
-                                   font-size: 1.4vw;
-                                   font-style: bold}"),
-                div(textOutput("CommLgnd")),
-                tags$style("#CPPLgnd2{
-                                   font-size: 1.4vw;
-                                   font-style: bold}"),
-                div(textOutput("CPPLgnd2")), 
-                tags$style("#ScotLgnd{
-                                   font-size: 1.4vw;
-                           font-style: bold}"),
-                div(textOutput("ScotLgnd"))
-              )
-            ),
+              column(5, style = "margin-top:1px",div(style = "display:block",tags$img(style = "margin-right:2px",src = "Legend - Selection.png"),
+                                                     span(textOutput("CommLgnd"), style = "font-size:1.4vw;; font-weight:bold; display:inline-block")),
+                     div(style = "display:block",tags$img(style = "margin-right:2px",src = "Legend - LA.png"),
+                         span(textOutput("CPPLgnd2"), style = "font-size:1.4vw;; font-weight:bold; display:inline-block")),
+                     div(style = "display:block",tags$img(style = "margin-right:2px",src = "Legend - Comp.png"),
+                         span(textOutput("ScotLgnd"), style = "font-size:1.4vw;; font-weight:bold; display:inline-block"))
+              )),
             hr(),
             plotOutput("AllCPlots") %>% withSpinner(type = 6)
           )
@@ -702,10 +674,10 @@ body <- dashboardBody(
                      uiOutput("ICompUI")),
             column(3,
                    selectInput("InqYr", "Select Year", unique(IGZdta$Year)[1:11], selected = "2016/17")),
-            column(5, style = "margin-top:3px",div(style = "display:block",tags$img(style = "margin-right:0px",src = "Legend - Selection.png"),
-                   span(textOutput("CPPLgndInq"), style = "font-size:14px; font-weight:bold; display:inline-block")),
-                   div(style = "display:block",tags$img(style = "margin-right:0px",src = "Legend - Comp.png"),
-                   span(textOutput("CompLgndInq"), style = "font-size:14px; font-weight:bold; display:inline-block"))
+            column(5, style = "margin-top:1px",div(style = "display:block",tags$img(style = "margin-right:2px",src = "Legend - Selection.png"),
+                   span(textOutput("CPPLgndInq"), style = "font-size:1.4vw;; font-weight:bold; display:inline-block")),
+                   div(style = "display:block",tags$img(style = "margin-right:2px",src = "Legend - Comp.png"),
+                   span(textOutput("CompLgndInq"), style = "font-size:1.4vw;; font-weight:bold; display:inline-block"))
                    )
             ),
      tableOutput("inqTbl"),
@@ -720,7 +692,7 @@ body <- dashboardBody(
 
 dashboardPage(
   dashboardHeader(
-    title = tags$img(src = "IS Logo blue background.jpg"),
+    title = "CPOP",
     tags$li(
       class = "dropdown", 
       tags$head(
@@ -730,7 +702,7 @@ dashboardPage(
                                     }')
         )
       ),
-      div(style = "padding-right:5px; padding-top:2px",actionButton("HelpButton", "Help", icon = icon("question-circle"))))
+      div(style = "padding-right:5px; padding-top:2px",actionButton("HelpButton", "Help with this page", icon = icon("question-circle"))))
     ),
   sidebar,
   body

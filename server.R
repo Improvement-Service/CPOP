@@ -205,7 +205,7 @@ shinyServer(function(input, output, session) {
       }
     if(is.null(input$OtherCPP)){
       sclFll <- scale_fill_manual(values = c("lightblue2","red2"), breaks = c("Other", "Sel1"))}
-    else{ sclFll <- scale_fill_manual(values = c("lightblue2","red2", "green"), breaks = c("Other", "Sel1", "Sel2"))}
+    else{ sclFll <- scale_fill_manual(values = c("lightblue2","red2", "green4"), breaks = c("Other", "Sel1", "Sel2"))}
     #filter so that the Scotland value isn't a bar on the plot
     
     dtaNoScot <- filter(dta, CPP != "Scotland")
@@ -1540,7 +1540,7 @@ shinyServer(function(input, output, session) {
         ylim(y_min, y_max)+
         scale_color_manual(
           breaks = c("Com", "CPP", "Scot"), 
-          values = c("red", "green","blue")
+          values = c("red", "green4","blue")
         )+
         guides(colour = FALSE)+
         theme(panel.grid.major = element_blank(), 
