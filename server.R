@@ -977,10 +977,10 @@ shinyServer(function(input, output, session) {
   
   output$CommCP <- renderUI({
     IGZsubset <- filter(IGZdta, CPP == input$LA1)
-    selectInput(
+    pickerInput(
       "CommunityCP", 
       "Select a Community", 
-      sort(unique(IGZsubset$InterZone_Name))
+      sort(unique(IGZsubset$InterZone_Name)), options = list(size = 8)
     )
   })
   
@@ -1257,10 +1257,10 @@ shinyServer(function(input, output, session) {
     Options <- filter(IGZdta, Typology_Group == Group)
     Options <- filter(Options, InterZone_Name != input$CommunityCP )
     Options$InterZone_Name <-  paste(Options$CPP, "-",Options$InterZone_Name)
-    selectInput(
+    pickerInput(
       "ChoiceAddComm", 
       "", 
-      choices = unique(Options$InterZone_Name)
+      choices = unique(Options$InterZone_Name), options(size = 10)
       )
   })
   
