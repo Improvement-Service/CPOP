@@ -9,7 +9,7 @@ library(rgeos)
 SpPolysDF<-read_rds("C:/Users/cassidy.nicholas/OneDrive - IS/Data/Shapefiles/DZ11.rds")
 
 #read higher geography data
-dtaGeoHigher <- read_excel("C:/Users/cassidy.nicholas/OneDrive - IS/CMaps - 2011/HigherGeos2011.xlsx", sheet = 3)[c(1,19,21)]
+dtaGeoHigher <- read_excel("C:/Users/cassidy.nicholas/OneDrive - IS/CPOP/data/HigherGeos2011.xlsx", sheet = 3)[c(1,19,21)]
 #merge
 SpPolysDF@data <- left_join(SpPolysDF@data, dtaGeoHigher, by = c("DataZone" = "DZ"))
 colnames(SpPolysDF@data)[12] <- "council"
@@ -21,7 +21,7 @@ colnames(SpPolysDF@data)[12] <- "council"
 #SpPolysDF@data[SpPolysDF@data$INTZONE_NAME %in% dups, 10] <- paste(SpPolysDF@data[SpPolysDF@data$INTZONE_NAME %in% dups, 10], abbreviate(SpPolysDF@data[SpPolysDF@data$INTZONE_NAME %in% dups, 7],6), sep = " ")
 
 #Read the data zone indicator data
-indDta <- read_excel("C:/Users/cassidy.nicholas/OneDrive - IS/CMaps - 2011/datazone data for maps.xlsx")
+indDta <- read_excel("C:/Users/cassidy.nicholas/OneDrive - IS/CPOP/data/datazone data for maps.xlsx")
 SpPolysDF@data <- left_join(SpPolysDF@data, indDta[c(1,3,4,5,6,7,8,9)], by = c("DataZone" = "Datazone"))
 #remove old Intzone name column
 SpPolysDF@data$IZname <- SpPolysDF@data$IGZ
@@ -44,14 +44,14 @@ rownames(dta) <- 0:6975
 SpPolysDF <- gSimplify(SpPolysDF,  0.00005,TRUE)
 SpPolysDF <- SpatialPolygonsDataFrame(SpPolysDF, dta)
 #save
-saveRDS(SpPolysDF, file = "C:/Users/cassidy.nicholas/OneDrive - IS/CMaps - 2011/Shapes.rds")
+saveRDS(SpPolysDF, file = "C:/Users/cassidy.nicholas/OneDrive - IS/CPOP/data/Shapes.rds")
 
 
 ## Intermediate Geography Shapes
 #Read shapes
 SpPolysIZ <- readRDS("C:/Users/cassidy.nicholas/OneDrive - IS/CMaps - 2011/IZ11.rds")
 #Read CPOP data, merge with shapes, clean the ranks into LA "sevenths" (septiles?)
-CPdta <- read_excel("C:/Users/cassidy.nicholas/OneDrive - IS/CMaps - 2011/ranks for igzs.xlsx", sheet = 1)
+CPdta <- read_excel("C:/Users/cassidy.nicholas/OneDrive - IS/CPOP/data/ranks for igzs.xlsx", sheet = 1)
 SpPolysIZ@data <- left_join(SpPolysIZ@data, CPdta, by = c("InterZone" = "IGZ code"))
 colnames(SpPolysIZ@data)[11] <- "council"
 decs <- c()
@@ -71,4 +71,4 @@ SpPolysIZ <- gSimplify(SpPolysIZ, 0.00005,TRUE)
 SpPolysIZ <- SpatialPolygonsDataFrame(SpPolysIZ, dta)
 
 #Save 
-saveRDS(SpPolysIZ, "C:/Users/cassidy.nicholas/OneDrive - IS/CMaps - 2011/IZshapes.rds")
+saveRDS(SpPolysIZ, "C:/Users/cassidy.nicholas/OneDrive - IS/CPOP/data/IZshapes.rds")
