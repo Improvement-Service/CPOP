@@ -4084,7 +4084,7 @@ Orkney Islands,Child Poverty,Raw data,2014/15,9.4,1,Orkney Islands Raw data,-2.8
 Perth and Kinross,Child Poverty,Raw data,2014/15,11.799999999999999,1,Perth and Kinross Raw data,-11.381200172163453,No
 Renfrewshire,Child Poverty,Raw data,2014/15,18.6,3,Renfrewshire Raw data,-21.588895354399984,No
 Scotland,Child Poverty,Raw data,2014/15,18.4,NA,Scotland Raw data,-24.386117677654273,No
-Scottish Borders,Child Poverty,Raw data,2014/15,18.6,2,Scottish Borders Raw data,-12.731138505774918,No
+Scottish Borders,Child Poverty,Raw data,2014/15,14.000000000000002,2,Scottish Borders Raw data,-12.731138505774918,No
 Shetland Islands,Child Poverty,Raw data,2014/15,6.9,1,Shetland Islands Raw data,-34.40613023774021,No
 South Ayrshire,Child Poverty,Raw data,2014/15,18.5,3,South Ayrshire Raw data,-23.55576503894915,No
 South Lanarkshire,Child Poverty,Raw data,2014/15,18.099999999999998,3,South Lanarkshire Raw data,-17.544711637432584,No
@@ -4095,34 +4095,34 @@ Aberdeen City,Child Poverty,Raw data,2015/16,12.2,1,Aberdeen City Raw data,-41.3
 Aberdeenshire,Child Poverty,Raw data,2015/16,7.3999999999999995,1,Aberdeenshire Raw data,-28.955602632733214,No
 Angus,Child Poverty,Raw data,2015/16,12.9,2,Angus Raw data,-16.702931962804435,No
 Argyll and Bute,Child Poverty,Raw data,2015/16,11.899999999999999,2,Argyll and Bute Raw data,-17.81851738907877,No
-Clackmannanshire,Child Poverty,Raw data,2015/16,12.1,3,Clackmannanshire Raw data,-30.414408152025196,No
-Dumfries and Galloway,Child Poverty,Raw data,2015/16,19.5,3,Dumfries and Galloway Raw data,-10.073328286389948,No
-Dundee City,Child Poverty,Raw data,2015/16,22.1,4,Dundee City Raw data,-29.48223560649268,No
-East Ayrshire,Child Poverty,Raw data,2015/16,15.4,4,East Ayrshire Raw data,-16.879978019207165,No
-East Dunbartonshire,Child Poverty,Raw data,2015/16,22,1,East Dunbartonshire Raw data,-11.993368851382979,No
-East Lothian,Child Poverty,Raw data,2015/16,20.200000000000003,2,East Lothian Raw data,-17.983519870243025,No
-East Renfrewshire,Child Poverty,Raw data,2015/16,9.1,1,East Renfrewshire Raw data,-32.155010728015554,No
-"Edinburgh, City of",Child Poverty,Raw data,2015/16,12.3,1,"Edinburgh, City of Raw data",-37.18007304908405,No
-Eilean Siar,Child Poverty,Raw data,2015/16,8.200000000000001,4,Eilean Siar Raw data,-26.05237585988327,No
-Falkirk,Child Poverty,Raw data,2015/16,14.399999999999999,3,Falkirk Raw data,-20.66447493593716,No
-Fife,Child Poverty,Raw data,2015/16,8.4,3,Fife Raw data,-19.84844758432206,No
-Glasgow City,Child Poverty,Raw data,2015/16,15.1,4,Glasgow City Raw data,-30.809409994453276,No
-Highland,Child Poverty,Raw data,2015/16,17.599999999999998,2,Highland Raw data,-21.842943786953107,No
-Inverclyde,Child Poverty,Raw data,2015/16,27.200000000000003,4,Inverclyde Raw data,-17.349789915246415,No
-Midlothian,Child Poverty,Raw data,2015/16,12.5,2,Midlothian Raw data,-15.37253089126349,No
-Moray,Child Poverty,Raw data,2015/16,21.2,2,Moray Raw data,-12.11407170338007,No
-North Ayrshire,Child Poverty,Raw data,2015/16,15.8,4,North Ayrshire Raw data,-7.835820258213344,No
-North Lanarkshire,Child Poverty,Raw data,2015/16,11.3,4,North Lanarkshire Raw data,-20.27622524994118,No
-Orkney Islands,Child Poverty,Raw data,2015/16,23.3,1,Orkney Islands Raw data,-2.823038165134517,No
-Perth and Kinross,Child Poverty,Raw data,2015/16,18.7,1,Perth and Kinross Raw data,-11.381200172163453,No
-Renfrewshire,Child Poverty,Raw data,2015/16,7.7,3,Renfrewshire Raw data,-21.588895354399984,No
+Clackmannanshire,Child Poverty,Raw data,2015/16,19.5,3,Clackmannanshire Raw data,-30.414408152025196,No
+Dumfries and Galloway,Child Poverty,Raw data,2015/16,15.4,3,Dumfries and Galloway Raw data,-10.073328286389948,No
+Dundee City,Child Poverty,Raw data,2015/16,22,4,Dundee City Raw data,-29.48223560649268,No
+East Ayrshire,Child Poverty,Raw data,2015/16,20.200000000000003,4,East Ayrshire Raw data,-16.879978019207165,No
+East Dunbartonshire,Child Poverty,Raw data,2015/16,9.1,1,East Dunbartonshire Raw data,-11.993368851382979,No
+East Lothian,Child Poverty,Raw data,2015/16,12.3,2,East Lothian Raw data,-17.983519870243025,No
+East Renfrewshire,Child Poverty,Raw data,2015/16,8.200000000000001,1,East Renfrewshire Raw data,-32.155010728015554,No
+"Edinburgh, City of",Child Poverty,Raw data,2015/16,14.399999999999999,1,"Edinburgh, City of Raw data",-37.18007304908405,No
+Eilean Siar,Child Poverty,Raw data,2015/16,8.4,4,Eilean Siar Raw data,-26.05237585988327,No
+Falkirk,Child Poverty,Raw data,2015/16,15.1,3,Falkirk Raw data,-20.66447493593716,No
+Fife,Child Poverty,Raw data,2015/16,17.599999999999998,3,Fife Raw data,-19.84844758432206,No
+Glasgow City,Child Poverty,Raw data,2015/16,27.200000000000003,4,Glasgow City Raw data,-30.809409994453276,No
+Highland,Child Poverty,Raw data,2015/16,12.5,2,Highland Raw data,-21.842943786953107,No
+Inverclyde,Child Poverty,Raw data,2015/16,21.2,4,Inverclyde Raw data,-17.349789915246415,No
+Midlothian,Child Poverty,Raw data,2015/16,15.8,2,Midlothian Raw data,-15.37253089126349,No
+Moray,Child Poverty,Raw data,2015/16,11.3,2,Moray Raw data,-12.11407170338007,No
+North Ayrshire,Child Poverty,Raw data,2015/16,23.3,4,North Ayrshire Raw data,-7.835820258213344,No
+North Lanarkshire,Child Poverty,Raw data,2015/16,18.7,4,North Lanarkshire Raw data,-20.27622524994118,No
+Orkney Islands,Child Poverty,Raw data,2015/16,7.7,1,Orkney Islands Raw data,-2.823038165134517,No
+Perth and Kinross,Child Poverty,Raw data,2015/16,10.4,1,Perth and Kinross Raw data,-11.381200172163453,No
+Renfrewshire,Child Poverty,Raw data,2015/16,16.6,3,Renfrewshire Raw data,-21.588895354399984,No
 Scotland,Child Poverty,Raw data,2015/16,16.3,NA,Scotland Raw data,-24.386117677654273,No
-Scottish Borders,Child Poverty,Raw data,2015/16,10.4,2,Scottish Borders Raw data,-12.731138505774918,No
-Shetland Islands,Child Poverty,Raw data,2015/16,16.6,1,Shetland Islands Raw data,-34.40613023774021,No
-South Ayrshire,Child Poverty,Raw data,2015/16,5.3,3,South Ayrshire Raw data,-23.55576503894915,No
-South Lanarkshire,Child Poverty,Raw data,2015/16,16.3,3,South Lanarkshire Raw data,-17.544711637432584,No
-Stirling,Child Poverty,Raw data,2015/16,15.9,2,Stirling Raw data,-22.61487491606522,No
-West Dunbartonshire,Child Poverty,Raw data,2015/16,12,4,West Dunbartonshire Raw data,-23.155342313173655,No
+Scottish Borders,Child Poverty,Raw data,2015/16,12.1,2,Scottish Borders Raw data,-12.731138505774918,No
+Shetland Islands,Child Poverty,Raw data,2015/16,5.3,1,Shetland Islands Raw data,-34.40613023774021,No
+South Ayrshire,Child Poverty,Raw data,2015/16,16.3,3,South Ayrshire Raw data,-23.55576503894915,No
+South Lanarkshire,Child Poverty,Raw data,2015/16,15.9,3,South Lanarkshire Raw data,-17.544711637432584,No
+Stirling,Child Poverty,Raw data,2015/16,12,2,Stirling Raw data,-22.61487491606522,No
+West Dunbartonshire,Child Poverty,Raw data,2015/16,22.1,4,West Dunbartonshire Raw data,-23.155342313173655,No
 West Lothian,Child Poverty,Raw data,2015/16,14.899999999999999,3,West Lothian Raw data,-29.318099888298242,No
 Aberdeen City,Child Poverty,Imputed,2016/17,10.67689767844904,1,Aberdeen City Imputed,-41.39971057663872,No
 Aberdeenshire,Child Poverty,Imputed,2016/17,7.3122479277953305,1,Aberdeenshire Imputed,-28.955602632733214,No
