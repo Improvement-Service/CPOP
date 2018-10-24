@@ -685,7 +685,7 @@ body <- dashboardBody(
      hr(),
      plotOutput("InqGrp"),
      fluidRow(),
-     p("Duncan Index Source: University of Sheffield")
+     p("Methodology Source: University of Sheffield")
           ))
   )
 

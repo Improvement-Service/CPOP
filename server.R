@@ -1600,7 +1600,8 @@ shinyServer(function(input, output, session) {
       column_spec(1, bold = TRUE, border_right = TRUE) %>%
       column_spec(2, bold = TRUE) %>%
       collapse_rows(1,valign = "middle",latex_hline = "major")%>%
-      row_spec(3, extra_css = "border-top: solid 1px")
+      row_spec(3, extra_css = "border-top: solid 1px") %>%
+      footnote("This analysis will help you understand the difference in outcomes between most and least deprived areas", footnote_as_chunk = TRUE)
     #group_rows("", 3,4, label_row_css = "background-color: black; height: 3px") 
     #group_rows("", 1,2, label_row_css = "height:1px")
     
@@ -1613,7 +1614,7 @@ shinyServer(function(input, output, session) {
     DIdta <- DIdta[DIdta$ind != "Out of Work Benefits", ]
     indList <- unique(DIdta$ind)
     ##create colourscheme
-    descText <- "These graphs display inequality over time.\nA value of 0 indicates perfect equality.\nPositive values indicate more inequality \nwith more deprived communities having worse\noutcomes. Negative values indicate that less\ndeprived communities have worse outcomes."
+    descText <- "These graphs will help you understand\ninequality in outcomes across the whole of the\nCPP, with 0 indicating perfect equality and\nvalues between 0 and 1 indicating that income\ndeprived people experience poorer outcomes,\n and values between -1 and 0 indicating that\nnon-income deprived people experience\npoorer outcomes."
     DIdta$coloursch <- ifelse(DIdta$la ==input$LA1, "CPP", "Comp")
     lstDi <- lapply(1:7,FUN = function(y){
       dta <- DIdta[DIdta$ind == indList[y],]
@@ -1628,16 +1629,7 @@ shinyServer(function(input, output, session) {
         guides(colour = FALSE)
     })
     lstDI <- list()
-    lstDI[[1]] <- ggplot()+
-      annotate("text", x = 5, y = 25, size = 4, label = descText)+
-      theme_bw()+
-      theme(panel.grid.major= element_blank(),
-            panel.grid.minor = element_blank(),
-            axis.line = element_blank(),
-            axis.text=element_blank(),
-            panel.border = element_blank(),
-            axis.title = element_blank(),
-            axis.ticks = element_blank())
+    lstDI[[1]] <- ggdraw()+draw_text(descText,x = 0.5,y = 0.5, size = 10)
     lstDI <- c(lstDI,lstDi)
     do.call("plot_grid", c(lstDI, ncol = 4))
   })
