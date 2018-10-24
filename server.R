@@ -1884,4 +1884,23 @@ shinyServer(function(input, output, session) {
     output$BarScot <- renderText({
       txt <- "Scotland"
     })
+    
+  ##Download data buttons============
+    #CPP data
+    output$DLDta <- downloadHandler(
+    filename = paste("CPP Data Sept 18", ".zip", sep = ""),
+    content = function(con) {
+      file.copy("data/CPP Data Sept 18.zip", con)
+    },
+    contentType = "application/zip"
+    )
+    #
+    
+    output$dldata <- downloadHandler(
+      filename = paste("IGZ Data Sept 18", ".zip", sep = ""),
+      content = function(con) {
+        file.copy("data/IGZ Data Sept 18.zip", con)
+      },
+      contentType = "application/zip"
+    )
   })

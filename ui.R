@@ -464,7 +464,7 @@ body <- dashboardBody(
                               column(6,
                                   h2("Welcome to the Community Planning Outcomes Profile (CPOP)"),
                                    h3("The CPOP tool aims to help you assess if the lives of people in your community are improving by providing a set of core measures on important life outcomes including early years, older people, safer/stronger communities, health and wellbeing, and engagement with local communities and a consistent basis for measuring outcomes and inequalities of outcome in your area."),
-                               h3("To get started use the map on the right to select a CPP and the communities that make up that CPP, and don’t forget to look at ‘help with this page’ in the top right hand corner of this page, as that gives a useful introduction to how to use each page. To explore others parts of the CPOP use the list on left to help you navigate the tool.")),
+                               h3("To get started use the map on the right to select a CPP and the communities that make up that CPP, and don’t forget to look at ‘help with this page’ in the top right hand corner of every page, as that gives a useful introduction to how to use each page. To explore others parts of the CPOP use the list on left to help you navigate the tool.")),
                                leafletOutput("scotMap",width = "50%")
               ),
               conditionalPanel("input.LA1 != ''",       
@@ -707,11 +707,41 @@ body <- dashboardBody(
 ##Download tab====================##
   tabItem(tabName = "DtaDL",
           fluidPage(
-            fluidRow(h3("Download the Data"), p("Please note that much of this data is modelled and so may not match exactly with data from other sources."),
-                     actionBttn("DLDta",label = "Download Data", icon = icon("download")),
+            fluidRow(h3("Download the Data"), p("Use these buttons to download all of the data used in this tool. Please note that much of this data is modelled and so may not match exactly with data from other sources."),
+                     downloadBttn("DLDta",label = "Download All CPP Data"),
+                     downloadBttn("DLIZDta", label = "Download All Community Data", style = "fill", color = "success"),
                      hr()),
-            fluidRow(h3("Methodology")),
-            fluidRow(h3("Other Profiling Tools"))
+            fluidRow(h3("Methodology"), p("You can find details on the methodology used to collect all of our indicators", style = "display:inline"), a("here", href = "https://khub.net/"), hr()),
+            fluidRow(h3("Other Profiling Tools and Data Sources"), p("There are a number of other profiling tools available, some of these are listed below.\nYou can also find sources for some of the data used in this tool"),
+                                                    tags$ul( 
+                                                      #Link to ScotPHO
+                                                      tags$li(class= "li-custom", tags$a(href="https://scotland.shinyapps.io/ScotPHO_profiles_tool/", 
+                                                                                         "ScotPHO profiles",  class="externallink", target = "_blank")),
+                                                      #Link to GCPH
+                                                      tags$li(class= "li-custom", tags$a(href="http://www.understandingglasgow.com/",
+                                                                                         "Glasgow Centre for Population Health (GCPH)",  class="externallink", target = "_blank")), 
+                                                      #Link to Fife
+                                                      tags$li(class= "li-custom", tags$a(href="https://knowfife.fife.gov.uk/",
+                                                                                         "KnowFife Dataset",  class="externallink", target = "_blank")), 
+                                                      #Link to NRS
+                                                      tags$li(class= "li-custom", tags$a(href="https://www.nrscotland.gov.uk/statistics-and-data/statistics/stats-at-a-glance/council-area-profiles", 
+                                                                                         "National Records of Scotland (NRS) Council Area Profiles",  class="externallink", target = "_blank")), 
+                                                      #Link to stats.gov.scot
+                                                      tags$li(class= "li-custom", tags$a(href="http://statistics.gov.scot/home", 
+                                                                                         "Statistics.gov.scot",  class="externallink")), 
+                                                      #Link to Scotland's environment
+                                                      tags$li(class= "li-custom", tags$a(href="http://www.environment.gov.scot/", 
+                                                                                         "Scotland's Environment Hub",  class="externallink", target = "_blank")),
+                                                      #Link to Stats.gov
+                                                      tags$li(class= "li-custom", tags$a(href="https://statistics.gov.scot/home", 
+                                                                                         "Statistics.gov.scot",  class="externallink", target = "_blank")),
+                                                      tags$li(class= "li-custom", tags$a(href="https://www.nomisweb.co.uk/", 
+                                                                                         "NOMIS - Official Labour Market Statistics",  class="externallink", target = "_blank")),
+                                                      tags$li(class= "li-custom", tags$a(href="https://stat-xplore.dwp.gov.uk/webapi/jsf/login.xhtml", 
+                                                                                         "DWP - Stat-Xplore",  class="externallink", target = "_blank"))
+                                                      
+                                                      
+                                                    ))
           )
           ))
     
@@ -742,7 +772,7 @@ dashboardPage(
                                     }')
         )
       ),
-      div(style = "padding-right:5px; padding-top:2px",actionButton("HelpButton", "Help with this page", icon = icon("question-circle"))))
+      div(style = "padding-right:8px; padding-top:5px",actionBttn("HelpButton", "Help with this page", icon = icon("question-circle"), style = "jelly")))
     ),
   sidebar,
   body
