@@ -14,15 +14,17 @@ sidebar <- dashboardSidebar(
   conditionalPanel(condition = "input.tabs == `CP`", uiOutput("CommCP")),
   menuItem("All Communities", tabName = "allCom", icon = icon("picture-o")),
   menuItem("Data Zone Comparison", tabName = "Map2", icon = icon("globe")),
-  checkboxInput("CBCols", "Colourblind Colour Scheme", value = FALSE)
+  menuItem("Data Download", tabName = "DtaDL", icon = icon("download")),
+  awesomeCheckbox("CBCols", "Colourblind Colour Scheme", value = FALSE),
+  tags$footer(a("Contact us", href = "mailto:nicholas.cassidy@improvementservice.org.uk"), style = "position:fixed; bottom:0; margin-left:2px")
   )
 )
 
 body <- dashboardBody(
   tags$head(tags$style(
     ".leaflet{height:36vh !important; border-style:solid; border-width:1px; margin-top:6px}",
-    "#communityMap{height:93vh !important;border-style:solid;border-width:1px; margin-left:3px}",
-    "#scotMap{height:93vh !important;border-style:solid;border-width:1px; margin-left:3px}",
+    "#communityMap{height:91vh !important;border-style:solid;border-width:1px; margin-left:3px}",
+    "#scotMap{height:91vh !important;border-style:solid;border-width:1px; margin-left:3px}",
     ".content{padding-top:1px}",
     ".col-sm-1{padding-left:2px; z-index:1}",
     ".col-sm-10{z-index:2}",
@@ -65,7 +67,14 @@ body <- dashboardBody(
          margin-bottom:0px;
          text-align:centre;
          font-weight: bold;}
-        p{text-align: -webkit-right;}
+        h3{font-style:italic;
+          font-family: sans-serif;
+        font-height:3vh}
+      h2{font-family: sans-serif;
+          font-weight:bold;
+          font-size:5vh; 
+          margin-top:11vh}
+        strong{float:right;}
           .small-box {margin-bottom:1px}
           .small-box >.inner {padding:5px}
          "))),
@@ -452,7 +461,11 @@ body <- dashboardBody(
   tabItem(tabName = "Map1",
         fluidRow(
               conditionalPanel("input.LA1 == ''", 
-                               leafletOutput("scotMap",width = "50%")%>% withSpinner(type = 6)
+                              column(6,
+                                  h2("Welcome to the Community Planning Outcomes Profile (CPOP)"),
+                                   h3("The CPOP tool aims to help you assess if the lives of people in your community are improving by providing a set of core measures on important life outcomes including early years, older people, safer/stronger communities, health and wellbeing, and engagement with local communities and a consistent basis for measuring outcomes and inequalities of outcome in your area."),
+                               h3("To get started use the map on the right to select a CPP and the communities that make up that CPP, and don’t forget to look at ‘help with this page’ in the top right hand corner of this page, as that gives a useful introduction to how to use each page. To explore others parts of the CPOP use the list on left to help you navigate the tool.")),
+                               leafletOutput("scotMap",width = "50%")
               ),
               conditionalPanel("input.LA1 != ''",       
                      leafletOutput("communityMap") %>% withSpinner(type = 6)))
@@ -509,17 +522,18 @@ body <- dashboardBody(
             fluidRow(
               column(
                 2, style = "padding-right:0px; padding-left:5px",
-                radioButtons(
+                awesomeRadio(
                   "View","Select Display",
                   c("Top/bottom 5","Top/bottom 10","All"),
                   inline = FALSE)),
-                column(3, style= "padding-left:0px",valueBoxOutput("comProgressBox")
+                column(3, style= "padding-left:0px",valueBoxOutput("comProgressBox"),
+                       checkbox = TRUE
                 ),
               column(
                7,
                 tags$div(
                   class = "multicol",
-                  checkboxGroupInput(
+                  awesomeCheckboxGroup(
                     "IndiMyCom",
                     "Select indicators",
                     unique(IGZdta$Indicator),
@@ -563,18 +577,19 @@ body <- dashboardBody(
               fluidRow(
                 column(
                   4,
-                  radioButtons(
+                  awesomeRadio(
                     "ViewCP", 
                     "Select Display", 
                     c("All", "Top/bottom 10", "Top/bottom 5"),
-                    inline = TRUE
+                    inline = TRUE,
+                    checkbox = TRUE
                   )
                 ),
                 column(
                   8,
                   tags$div(
                     class = "multicol", 
-                    checkboxGroupInput(
+                    awesomeCheckboxGroup(
                     "IndiCP", 
                     "Select Indicators",
                     unique(IGZdta$Indicator),
@@ -627,12 +642,13 @@ body <- dashboardBody(
                   fluidRow(
                     column(
                       7,
-                      radioButtons(
+                      awesomeRadio(
                         "ProjectionsCP", 
                         "Show projections?", 
                         c("Yes","No"), 
                         selected = "Yes", 
-                        inline = TRUE
+                        inline = TRUE,
+                        checkbox = TRUE
                       )
                     ),
                     column(5,img(style = "max-width:100%;", src = "DashedLine.PNG"))
@@ -685,10 +701,33 @@ body <- dashboardBody(
      hr(),
      plotOutput("InqGrp"),
      fluidRow(),
-     p("Methodology Source: University of Sheffield")
-          ))
-  )
+     strong("Methodology Source: University of Sheffield")
+          )),
 
+##Download tab====================##
+  tabItem(tabName = "DtaDL",
+          fluidPage(
+            fluidRow(h3("Download the Data"), p("Please note that much of this data is modelled and so may not match exactly with data from other sources."),
+                     actionBttn("DLDta",label = "Download Data", icon = icon("download")),
+                     hr()),
+            fluidRow(h3("Methodology")),
+            fluidRow(h3("Other Profiling Tools"))
+          )
+          ))
+    
+##Footer========================##
+#  tags$footer("Some text",
+#              style = "
+#              position:absolute;
+#              bottom:0;
+#              width:100%;
+#              height:20px;   /* Height of the footer */
+#              color: white;
+#              padding: 10px;
+#              background-color: black;
+#              z-index: 1000;"
+#  )
+  
 )
 
 dashboardPage(
