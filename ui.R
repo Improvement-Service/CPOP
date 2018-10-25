@@ -465,7 +465,7 @@ body <- dashboardBody(
                                   h2("Welcome to the Community Planning Outcomes Profile (CPOP)"),
                                    h3("The CPOP tool aims to help you assess if the lives of people in your community are improving by providing a set of core measures on important life outcomes including early years, older people, safer/stronger communities, health and wellbeing, and engagement with local communities and a consistent basis for measuring outcomes and inequalities of outcome in your area."),
                                h3("To get started use the map on the right to select a CPP and the communities that make up that CPP, and don’t forget to look at ‘help with this page’ in the top right hand corner of every page, as that gives a useful introduction to how to use each page. To explore others parts of the CPOP use the list on left to help you navigate the tool.")),
-                               leafletOutput("scotMap",width = "50%")
+                               column(6,leafletOutput("scotMap",width = "100%") %>% withSpinner(type = 6))
               ),
               conditionalPanel("input.LA1 != ''",       
                      leafletOutput("communityMap") %>% withSpinner(type = 6)))
@@ -762,7 +762,7 @@ body <- dashboardBody(
 
 dashboardPage(
   dashboardHeader(
-    title = "CPOP",
+    title = tags$img(src = "Improvement Service Logo.png", style = "height:110%;margin-left:10px"),
     tags$li(
       class = "dropdown", 
       tags$head(
