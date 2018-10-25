@@ -760,7 +760,7 @@ body <- dashboardBody(
   
 )
 
-dashboardPage(
+dashboardPage(title = "CPOP",
   dashboardHeader(
     title = tags$img(src = "Improvement Service Logo.png", style = "height:110%;margin-left:10px"),
     tags$li(
