@@ -15,7 +15,7 @@ sidebar <- dashboardSidebar(
   menuItem("All Communities", tabName = "allCom", icon = icon("picture-o")),
   menuItem("Data Zone Comparison", tabName = "Map2", icon = icon("globe")),
   menuItem("Data Download", tabName = "DtaDL", icon = icon("download")),
-  awesomeCheckbox("CBCols", "Colourblind Colour Scheme", value = FALSE),
+  awesomeCheckbox("CBCols", "Colour Blind Colour Scheme", value = FALSE),
   tags$footer(a("Contact us", href = "mailto:nicholas.cassidy@improvementservice.org.uk"), style = "position:fixed; bottom:0; margin-left:2px")
   )
 )
@@ -31,7 +31,7 @@ body <- dashboardBody(
     ".content-wrapper, .right-side {
       background-color: #ffffff;
     }",
-    "#comProgressBox{width:100%; padding-right:0px; padding-left:0px}",
+    "#comProgressBox{width:80%; padding-right:0px; padding-left:0px}",
     "#SimCPP{height:90vh !important}",
     "#CompCPP{height:75vh !important; margin-top:15px}",
     ".main-header .logo {text-align:left; padding-left:0px}",
@@ -73,7 +73,7 @@ body <- dashboardBody(
       h2{font-family: sans-serif;
           font-weight:bold;
           font-size:5vh; 
-          margin-top:11vh}
+          margin-top:6vh}
         strong{float:right;}
           .small-box {margin-bottom:1px}
           .small-box >.inner {padding:5px}
