@@ -54,6 +54,13 @@ body <- dashboardBody(
     "#plot_16{height:25vh ! important}",
     "#plot_17{height:25vh ! important}",
     "#plot_18{height:25vh ! important}",
+    "#DLDta_bttn{margin-right:10px}",
+    "#Map1P1{margin-left:20px}",
+    "#P1P1{margin-left:20px}",
+    "#MyComP1{margin-left:20px}",
+    "#MyComP2{margin-left:20px}",
+    "#CPP1{margin-left:20px}",
+    "#CPP2{margin-left:20px}",
     ".btn-group.bootstrap-select.form-control {background: border-box}",
     ".skin-blue {padding-right:0px}",
     HTML(" h5{height: 18px;
@@ -773,7 +780,7 @@ dashboardPage(title = "CPOP",
                                     }')
         )
       ),
-      div(style = "padding-right:8px; padding-top:5px",actionBttn("HelpButton", "Help with this page", icon = icon("question-circle"), style = "jelly")))
+      div(style = "padding-right:20px; padding-top:5px",actionBttn("HelpButton", "Help with this page", icon = icon("question-circle"), style = "jelly")))
     ),
   sidebar,
   body
