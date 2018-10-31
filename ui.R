@@ -704,7 +704,7 @@ body <- dashboardBody(
                    )
             ),
      tableOutput("inqTbl"),
-     hr(),
+     hr(style = "height:3px;background-color:black;color:black"),
      plotOutput("InqGrp"),
      fluidRow(),
      strong("Methodology Source: University of Sheffield")

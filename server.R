@@ -1602,8 +1602,7 @@ shinyServer(function(input, output, session) {
       column_spec(1, bold = TRUE, border_right = TRUE) %>%
       column_spec(2, bold = TRUE) %>%
       collapse_rows(1,valign = "middle",latex_hline = "major")%>%
-      row_spec(3, extra_css = "border-top: solid 1px") %>%
-      footnote("This analysis will help you understand the difference in outcomes between most and least deprived areas", footnote_as_chunk = TRUE)
+      row_spec(3, extra_css = "border-top: solid 1px") 
     #group_rows("", 3,4, label_row_css = "background-color: black; height: 3px") 
     #group_rows("", 1,2, label_row_css = "height:1px")
     
@@ -1630,10 +1629,10 @@ shinyServer(function(input, output, session) {
         scale_colour_manual(breaks = c("Comp", "CPP"), values = c("blue", "red"))+
         guides(colour = FALSE)
     })
-    lstDI <- list()
-    lstDI[[1]] <- ggdraw()+draw_text(descText,x = 0.5,y = 0.5, size = 10)
-    lstDI <- c(lstDI,lstDi)
-    do.call("plot_grid", c(lstDI, ncol = 4))
+    #lstDI <- list()
+    #lstDI[[1]] <- ggdraw()+draw_text(descText,x = 0.5,y = 0.5, size = 10)
+    #lstDI <- c(lstDI,lstDi)
+    do.call("plot_grid", c(lstDi, ncol = 4))
   })
   
 
