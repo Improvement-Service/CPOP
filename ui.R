@@ -14,9 +14,9 @@ sidebar <- dashboardSidebar(
   conditionalPanel(condition = "input.tabs == `CP`", uiOutput("CommCP")),
   menuItem("All Communities", tabName = "allCom", icon = icon("picture-o")),
   menuItem("Data Zone Comparison", tabName = "Map2", icon = icon("globe")),
-  menuItem("Data Download", tabName = "DtaDL", icon = icon("download")),
+  menuItem("About/ Data Download", tabName = "DtaDL", icon = icon("download")),
   awesomeCheckbox("CBCols", "Colour Blind Colour Scheme", value = FALSE),
-  tags$footer(a("Contact us", href = "mailto:nicholas.cassidy@improvementservice.org.uk"), style = "position:fixed; bottom:0; margin-left:2px")
+  tags$footer(a("Contact us", href = "mailto:rachel.mcguire@improvementservice.org.uk"), style = "position:fixed; bottom:0; margin-left:2px")
   )
 )
 
@@ -68,8 +68,7 @@ body <- dashboardBody(
          margin-bottom:0px;
          text-align:centre;
          font-weight: bold;}
-         h4 {
-         font-size:12px;
+         h4 {font-size:12px;
          height: 18px;
          margin-top:2px;
          margin-bottom:0px;
@@ -469,11 +468,10 @@ body <- dashboardBody(
   tabItem(tabName = "Map1",
         fluidRow(
               conditionalPanel("input.LA1 == ''", 
-                              column(6,
-                                  h2("Welcome to the Community Planning Outcomes Profile (CPOP)"),
-                                   h3("The CPOP tool aims to help you assess if the lives of people in your community are improving by providing a set of core measures on important life outcomes including early years, older people, safer/stronger communities, health and wellbeing, and engagement with local communities and a consistent basis for measuring outcomes and inequalities of outcome in your area."),
-                               h3("To get started use the map on the right to select a CPP and the communities that make up that CPP, and don’t forget to look at ‘help with this page’ in the top right hand corner of every page, as that gives a useful introduction to how to use each page. To explore others parts of the CPOP use the list on left to help you navigate the tool.")),
-                               column(6,leafletOutput("scotMap",width = "100%") %>% withSpinner(type = 6))
+#                              column(6,
+#                                  h2("Welcome to the Community Planning Outcomes Profile (CPOP)"),
+#                               h3("To get started use the map on the right to select a CPP and the communities that make up that CPP, and don’t forget to look at ‘help with this page’ in the top right hand corner of every page, as that gives a useful introduction to how to use each page. To explore others parts of the CPOP use the list on left to help you navigate the tool.")),
+                               column(12,leafletOutput("scotMap",width = "100%") %>% withSpinner(type = 6))
               ),
               conditionalPanel("input.LA1 != ''",       
                      leafletOutput("communityMap") %>% withSpinner(type = 6)))
@@ -715,6 +713,7 @@ body <- dashboardBody(
 ##Download tab====================##
   tabItem(tabName = "DtaDL",
           fluidPage(
+            fluidRow(h3("About this tool"), p("The CPOP tool aims to help you assess if the lives of people in your community are improving by providing a set of core measures on important life outcomes including early years, older people, safer/stronger communities, health and wellbeing, and engagement with local communities and a consistent basis for measuring outcomes and inequalities of outcome in your area."), hr()),
             fluidRow(h3("Download the Data"), p("Use these buttons to download all of the data used in this tool. Please note that much of this data is modelled and so may not match exactly with data from other sources."),
                      downloadBttn("DLDta",label = "Download All CPP Data"),
                      downloadBttn("DLIZDta", label = "Download All Community Data", style = "fill", color = "success"),
