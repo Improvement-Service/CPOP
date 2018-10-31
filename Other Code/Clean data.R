@@ -37,7 +37,7 @@ IGZdta <- gather(IGZdta, Indicator_Type_Year, value, -1,-2,-3,-4,-5)
 #seperate 1 column into 3
 IGZdta <- separate(IGZdta, Indicator_Type_Year, c("Indicator", "Type", "Year"), sep = "_")
 #save CSV data file
-write_excel_csv(IGZdta ,path = "IGZcleandata.csv")
+write_excel_csv(IGZdta ,path = "data/IGZcleandata.csv")
 
 
 ##DZ data
