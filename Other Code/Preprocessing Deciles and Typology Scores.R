@@ -1,12 +1,9 @@
 library(tidyverse)
 library(plyr)
-library(shinythemes)
-library(RColorBrewer)
 library(DT)
 library(data.table)
-library(Unicode)
-library(leaflet)
-library(cowplot)
+
+
 
 #Store value for the start year and most recent year data is available, this needs to be changed when data is refreshed annually
 StrtYear <- "2006/07"
