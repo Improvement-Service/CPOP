@@ -661,7 +661,7 @@ shinyServer(function(input, output, session) {
         label = SpPolysLA@data$NAME,
         highlightOptions = highlightOptions(color = "white", weight = 3,bringToFront = TRUE)
       ) %>%
-      addLabelOnlyMarkers(lng = -19 , lat = 61,label = HTML("<h2>CPOP</h2><h3>Tracking improvement in communities across Scotland</h3><h5>To get started use the map to select a CPP</h5><h5>Select ‘help with this page’ in the top right hand corner of every page for an introduction to how to use each page</h5><h5>To explore other parts of the CPOP use the list on the left to navigate the tool</h5>"),
+      addLabelOnlyMarkers(lng = -19.4 , lat = 60.2,label = HTML("<h2>CPOP</h2><h3>Tracking improvement in communities across Scotland</h3><h5>To get started use the map to select a CPP</h5><h5>Select ‘help with this page’ in the top right hand corner of every page for an introduction to how to use each page</h5><h5>To explore other parts of the CPOP use the list on the left to navigate the tool</h5>"),
                           labelOptions = labelOptions(noHide = T, direction = 'right', offset = c(0,0), textOnly = T, sticky = FALSE))
   })
   
@@ -1615,7 +1615,7 @@ shinyServer(function(input, output, session) {
     DIdta <- DIdta[DIdta$ind != "Out of Work Benefits", ]
     indList <- unique(DIdta$ind)
     ##create colourscheme
-    descText <- "These graphs will help you understand\ninequality in outcomes across the whole of the\nCPP, with 0 indicating perfect equality and\nvalues between 0 and 1 indicating that income\ndeprived people experience poorer outcomes,\n and values between -1 and 0 indicating that\nnon-income deprived people experience\npoorer outcomes."
+    #descText <- "These graphs will help you understand\ninequality in outcomes across the whole of the\nCPP, with 0 indicating perfect equality and\nvalues between 0 and 1 indicating that income\ndeprived people experience poorer outcomes,\n and values between -1 and 0 indicating that\nnon-income deprived people experience\npoorer outcomes."
     DIdta$coloursch <- ifelse(DIdta$la ==input$LA1, "CPP", "Comp")
     lstDi <- lapply(1:7,FUN = function(y){
       dta <- DIdta[DIdta$ind == indList[y],]
