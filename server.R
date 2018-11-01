@@ -988,14 +988,14 @@ shinyServer(function(input, output, session) {
   
   output$Descrip <- renderText({
     req(input$LA1)
-    IGZsubset <- filter(IGZdta, InterZone_Name == input$CommunityCP)
+    IGZsubset <- filter(IGZdta, InterZone_Name == input$CommunityCP & CPP == input$LA1)
     txt <- first(IGZsubset$Typology_Name)
     txt <- paste("Group Description: ", txt)
   })
   
   output$GrpSize <- renderText({
     req(input$LA1)
-    IGZsubset <- filter(IGZdta, InterZone_Name == input$CommunityCP)
+    IGZsubset <- filter(IGZdta, InterZone_Name == input$CommunityCP & CPP == input$LA1)
     Typology <- first(IGZsubset$Typology_Group)
     Indi <- first(IGZsubset$Indicator)
     Yr <- first(IGZsubset$Year)
@@ -1012,7 +1012,7 @@ shinyServer(function(input, output, session) {
   
   output$CommunityProfileTbl <- DT::renderDataTable({
     req(input$LA1)
-    IGZsubset <- filter(IGZdta, InterZone_Name == input$CommunityCP)
+    IGZsubset <- filter(IGZdta, InterZone_Name == input$CommunityCP & CPP == input$LA1)
     Typology <- first(IGZsubset$Typology_Group)
     
     # Rankings for Outcomes
@@ -1254,7 +1254,7 @@ shinyServer(function(input, output, session) {
   })
   #outputOptions(output, 'LineChoicesCP', suspendWhenHidden = FALSE)
   output$AddComm <- renderUI({
-    Comm <- filter(IGZdta, InterZone_Name == input$CommunityCP)
+    Comm <- filter(IGZdta, InterZone_Name == input$CommunityCP & CPP == input$LA1)
     Group <- Comm$Typology_Group[1]
     Options <- filter(IGZdta, Typology_Group == Group)
     Options <- filter(Options, InterZone_Name != input$CommunityCP )
@@ -1279,9 +1279,7 @@ shinyServer(function(input, output, session) {
     req(input$CommunityCP)
     # need to filter to selected CPP to avoid cases where the 
     #IGZ name has a duplicate in another CPP
-    
-    Community            <- filter(IGZdta, CPP == input$LA1)
-    Community            <- filter(Community, InterZone_Name == input$CommunityCP)
+    Community            <- filter(IGZdta, InterZone_Name == input$CommunityCP& CPP == input$LA1)
     Community$Identifier <- input$CommunityCP
     Community$ColourRef  <- "A"
     Community$Colours    <- "red"
@@ -1303,7 +1301,7 @@ shinyServer(function(input, output, session) {
     Scotland$Colours    <- "blue"
     Scotland            <- select(Scotland, c(-CPP, -FG))
     
-    IGZsubset         <- filter(IGZdta, InterZone_Name == input$CommunityCP)
+    IGZsubset         <- filter(IGZdta, InterZone_Name == input$CommunityCP& CPP == input$LA1)
     Typology          <- first(IGZsubset$Typology_Group)
     GrpAv             <- filter(IGZdta, Typology_Group == Typology)
     GrpAv <- ddply(GrpAv,. (Indicator, Year), transform, GrpAver = mean(value))
@@ -1632,7 +1630,7 @@ shinyServer(function(input, output, session) {
     #lstDI <- list()
     #lstDI[[1]] <- ggdraw()+draw_text(descText,x = 0.5,y = 0.5, size = 10)
     #lstDI <- c(lstDI,lstDi)
-    do.call("plot_grid", c(lstDi, ncol = 4))
+    do.call("plot_grid", c(lstDi, ncol = 4, align = "v"))
   })
   
 
