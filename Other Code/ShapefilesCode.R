@@ -40,6 +40,11 @@ SpPolysDF@data$`Percentage of school leavers entering positive destinations` <- 
 SpPolysDF@data[SpPolysDF@data$council == "Na h-Eileanan an Iar",12] <- "Eilean Siar"
 SpPolysDF@data[SpPolysDF@data$council == "City of Edinburgh",12] <- "Edinburgh"
 dta <- SpPolysDF@data
+##read in West DUn names and replace in all data
+wDNms <- read_excel("data/Intermediate Geography Names.xlsx", sheet = 2)
+dta <- left_join(dta,wDNms[c(1,3)], by = c("DataZone"))
+dta$IZname <- dta$`IZ Name`
+dta <- select(dta, -"IZ Name")
 rownames(dta) <- 0:6975
 SpPolysDF <- gSimplify(SpPolysDF,  0.00005,TRUE)
 SpPolysDF <- SpatialPolygonsDataFrame(SpPolysDF, dta)

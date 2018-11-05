@@ -452,7 +452,7 @@ shinyServer(function(input, output, session) {
       sprintf(
         "%s: %s",
         "Children in Poverty (%)", 
-        round(unique(selectedDZ[13]),2)
+        round(unique(as.numeric(selectedDZ[13])),2)
       ), 
       tags$br()
     ))
