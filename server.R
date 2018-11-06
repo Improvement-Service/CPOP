@@ -661,7 +661,7 @@ shinyServer(function(input, output, session) {
         label = SpPolysLA@data$NAME,
         highlightOptions = highlightOptions(color = "white", weight = 3,bringToFront = TRUE)
       ) %>%
-      addLabelOnlyMarkers(lng = -19.4 , lat = 60.2,label = HTML("<h2>CPOP</h2><h3>Tracking improvement in communities across Scotland</h3><h5>To get started use the map to select a CPP</h5><h5>Select ‘help with this page’ in the top right hand corner of every page for an introduction to how to use each page</h5><h5>To explore other parts of the CPOP use the list on the left to navigate the tool</h5>"),
+      addLabelOnlyMarkers(lng = -19.5 , lat = 60.2,label = HTML("<h2>CPOP</h2><h3>Tracking improvement in communities across Scotland</h3><h5>To get started use the map to select a CPP</h5><h5>Select ‘help with this page’ in the top right hand corner of every page for an introduction to how to use each page</h5><h5>To explore other parts of the CPOP use the list on the left to navigate the tool</h5>"),
                           labelOptions = labelOptions(noHide = T, direction = 'right', offset = c(0,0), textOnly = T, sticky = FALSE))
   })
   
@@ -1887,7 +1887,7 @@ shinyServer(function(input, output, session) {
   ##Download data buttons============
     #CPP data
     output$DLDta <- downloadHandler(
-    filename = paste("CPP Data Sept 18", ".zip", sep = ""),
+    filename = paste("CPP Data", ".zip", sep = ""),
     content = function(con) {
       file.copy("data/CPP Data Sept 18.zip", con)
     },
@@ -1895,8 +1895,8 @@ shinyServer(function(input, output, session) {
     )
     #
     
-    output$dldata <- downloadHandler(
-      filename = paste("IGZ Data Sept 18", ".zip", sep = ""),
+    output$DLIZDta <- downloadHandler(
+      filename = paste("IGZ Data", ".zip", sep = ""),
       content = function(con) {
         file.copy("data/IGZ Data Sept 18.zip", con)
       },

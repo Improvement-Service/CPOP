@@ -61,6 +61,7 @@ body <- dashboardBody(
     "#MyComP2{margin-left:20px}",
     "#CPP1{margin-left:20px}",
     "#CPP2{margin-left:20px}",
+    ".popover{width:40vw; max-width:450px}",
     ".btn-group.bootstrap-select.form-control {background: border-box}",
     ".skin-blue {padding-right:0px}",
     HTML(" h5{height: 18px;
@@ -721,7 +722,7 @@ body <- dashboardBody(
                      downloadBttn("DLDta",label = "Download All CPP Data"),
                      downloadBttn("DLIZDta", label = "Download All Community Data", style = "fill", color = "success"),
                      hr()),
-            fluidRow(h3("Methodology"), p("You can find details on the methodology used to collect all of our indicators", style = "display:inline"), a("here", href = "https://khub.net/"), hr()),
+            fluidRow(h3("Methodology"), p("You can find details on the methodology used to collect all of our indicators", style = "display:inline"), a("here", href = "https://drive.google.com/file/d/1Cjp_-KW065WLS-1tNO_3rYq6Ie17M4aW/view", target = "_blank"), hr()),
             fluidRow(h3("Other Profiling Tools and Data Sources"), p("There are a number of other profiling tools available, some of these are listed below.\nYou can also find sources for some of the data used in this tool"),
                                                     tags$ul( 
                                                       #Link to ScotPHO
@@ -772,7 +773,7 @@ body <- dashboardBody(
 
 dashboardPage(title = "CPOP",
   dashboardHeader(
-    title = tags$img(src = "Improvement Service Logo.png", style = "height:110%;margin-left:10px"),
+    title = tags$img(src = "Improvement Service Logo.png", style = "height:110%;margin-left:3px"),
     tags$li(
       class = "dropdown", 
       tags$head(
