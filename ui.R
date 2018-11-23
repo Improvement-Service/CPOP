@@ -742,7 +742,7 @@ body <- dashboardBody(
                                                                                          "Statistics.gov.scot",  class="externallink")), 
                                                       #Link to Scotland's environment
                                                       tags$li(class= "li-custom", tags$a(href="http://www.environment.gov.scot/", 
-                                                                                         "Scotland's Environment Hub",  class="externallink", target = "_blank")),
+                                                                                         "Scotland's Environment Web",  class="externallink", target = "_blank")),
                                                       #Link to Stats.gov
                                                       tags$li(class= "li-custom", tags$a(href="https://statistics.gov.scot/home", 
                                                                                          "Statistics.gov.scot",  class="externallink", target = "_blank")),

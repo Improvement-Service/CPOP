@@ -18,4 +18,12 @@ dd <- bind_rows(dd[1:5], scotvals[1:5])
 dd <- filter(dd, Year %in% c("2006/07", "2007/08", "2008/09", "2009/10", 
                              "2010/11", "2011/12", "2012/13",
                              "2013/14", "2014/15", "2015/16", "2016/17"))
+dd[dd$Indicator == "Child Poverty",4] <- "Child Poverty (%)"
+dd[dd$Indicator == "Crime Rate",4] <- "Crime Rate, per 10,000"
+dd[dd$Indicator == "Early Mortality",4] <- "Early Mortality, per 100,000"
+dd[dd$Indicator == "Emergency Admissions",4] <- "Emergency Admissions, per 100,000"
+dd[dd$Indicator == "Out of Work Benefits",4] <- "Out of Work Benefits (%)"
+dd[dd$Indicator == "Positive Destinations",4] <- "Positive Destinations (%)"
+dd[dd$Indicator == "Depopulation",4] <- "Depopulation Index"
+
 saveRDS(dd, "data/DecileData.rds")

@@ -661,7 +661,7 @@ shinyServer(function(input, output, session) {
         label = SpPolysLA@data$NAME,
         highlightOptions = highlightOptions(color = "white", weight = 3,bringToFront = TRUE)
       ) %>%
-      addLabelOnlyMarkers(lng = -19.5 , lat = 60.2,label = HTML("<h2>CPOP</h2><h3>Tracking improvement in communities across Scotland</h3><h5>To get started use the map to select a CPP</h5><h5>Select ‘help with this page’ in the top right hand corner of every page for an introduction to how to use each page</h5><h5>To explore other parts of the CPOP use the list on the left to navigate the tool</h5>"),
+      addLabelOnlyMarkers(lng = -19.5 , lat = 60.2,label = HTML("<h2>Community Planning Outcomes Profile</h2><h3>Tracking improvement in communities across Scotland</h3><h5>To get started use the map to select a CPP</h5><h5>Select ‘help with this page’ in the top right hand corner of every page for an introduction to how to use each page</h5><h5>To explore other parts of the CPOP use the list on the left to navigate the tool</h5>"),
                           labelOptions = labelOptions(noHide = T, direction = 'right', offset = c(0,0), textOnly = T, sticky = FALSE))
   })
   
@@ -1589,7 +1589,7 @@ shinyServer(function(input, output, session) {
     ##Rearrange indicators - if adding OOWB make: dd[c(2,1,3:10)]
     dd <- dd[c(2,1,3:7,9:10)]
     dd[2] <- c("Least deprived","Least deprived","Most deprived", "Most deprived")
-    OrdCPPs <<-c(input$LA1, input$InqComp)
+    OrdCPPs <-c(input$LA1, input$InqComp)
     dd <- arrange(dd,match(CouncilName, OrdCPPs), desc(CouncilName))
     #rownames(dd) <- c("Least deprived","Least deprived","Most deprived", "Most deprived")
     colnames(dd)[1:2] <- c("","")
