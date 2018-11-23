@@ -1476,7 +1476,7 @@ shinyServer(function(input, output, session) {
     # Y axis range 
     y_rnge_dta <- filter(
       IGZdta, IGZdta$CPP==input$LA1 &
-      IGZdta$Indicator == input$IndiAllC & IGZdta$Type != "Projected"
+      IGZdta$IndicatorFullName == input$IndiAllC & IGZdta$Type != "Projected"
     )
     y_min <- min(y_rnge_dta$value, na.rm = TRUE)
     y_max <- max(y_rnge_dta$value, na.rm = TRUE)
@@ -1486,7 +1486,7 @@ shinyServer(function(input, output, session) {
     y_max <- y_max + Extra
     
     dta <- IGZdta[IGZdta$CPP == input$LA1 & 
-                    IGZdta$Indicator == input$IndiAllC &
+                    IGZdta$IndicatorFullName == input$IndiAllC &
                     IGZdta$Type != "Projected",
                   c(2,8,9)
                   ]
@@ -1494,12 +1494,12 @@ shinyServer(function(input, output, session) {
     nComs <- length(unique(dta$InterZone_Name))
     comList <- unique(dta$InterZone_Name)%>% sort
     dta2 <- CPPdta[CPPdta$CPP %in% input$LA1 & 
-                     CPPdta$Indicator == input$IndiAllC & 
+                     CPPdta$IndicatorFullName == input$IndiAllC & 
                      CPPdta$Type != "Projected",
                    c(1,4,5)
                    ]
     dta3 <- CPPdta[CPPdta$CPP %in% "Scotland"& 
-                     CPPdta$Indicator == input$IndiAllC &
+                     CPPdta$IndicatorFullName == input$IndiAllC &
                      CPPdta$Type != "Projected",
                    c(1,4,5)
                    ]

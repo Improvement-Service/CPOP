@@ -1,3 +1,6 @@
+##File for adding family group info to CPP dta
+#RUN AFTER Clean data.R
+
 ###Match family groups to CPPs
 library(tidyverse)
 library(readxl)
@@ -7,7 +10,7 @@ FGdta <- read_excel("data/Family Groups.xlsx")
 FGdta[FGdta$X__1 == "Edinburgh City",1] <- "Edinburgh, City of"
 
 ##read in CPP data
-CPPdta <- read_csv("data/CPPcleandata.csv")[1:5]
+CPPdta <- read_csv("data/CPPcleandata.csv")
 
 ##match all FGs to CPP data
 CPPdta <- left_join(CPPdta, FGdta, by = c("CPP" = "X__1"))
@@ -16,5 +19,5 @@ CPPdta <- left_join(CPPdta, FGdta, by = c("CPP" = "X__1"))
 #CPPdta$FG <-with(CPPdta, ifelse(Indicator %in% c("Fragility","Fuel Poverty"), popdensityFG_2012, deprivationFG_2012))
 #CPPdta <- CPPdta[c(1:5,8)]
 CPPdta$FG <- CPPdta$deprivationFG_2012
-CPPdta <- CPPdta[c(1:5,8)]
+CPPdta <- CPPdta[c(1:6,9)]
 write_csv(CPPdta, "data/CPPcleandata.csv")

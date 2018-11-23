@@ -1,3 +1,7 @@
+##File for final data prep. 
+
+##RUN AFTER clean data.R and AddFGtoData.R
+
 library(tidyverse)
 library(plyr)
 library(DT)

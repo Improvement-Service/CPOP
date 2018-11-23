@@ -675,7 +675,7 @@ body <- dashboardBody(
                 selectInput(
                   "IndiAllC", 
                   "Select Indicator", 
-                  unique(IGZdta$Indicator)
+                  unique(IGZdta$IndicatorFullName)
                 )
               ),
               column(5, style = "margin-top:1px",div(style = "display:block",tags$img(style = "margin-right:2px",src = "Legend - Selection.png"),

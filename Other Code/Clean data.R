@@ -20,6 +20,16 @@ CPPdta <- gather(CPPdta, Indicator_Type_Year, value, -1)
 CPPdta <- separate(CPPdta, Indicator_Type_Year, c("Indicator", "Type", "Year"), sep = "_")
 #rename 1st variable
 colnames(CPPdta)[1] <- "CPP"
+
+##New column with full indicator names
+CPPdta$IndicatorFullName <- CPPdta$Indicator
+CPPdta[CPPdta$Indicator == "Child Poverty","IndicatorFullName"] <- "Child Poverty (%)"
+CPPdta[CPPdta$Indicator =="Crime Rate","IndicatorFullName"] <- "Crime Rate, per 10,000"
+CPPdta[CPPdta$Indicator == "Early Mortality","IndicatorFullName"] <- "Early Mortality, per 100,000"
+CPPdta[CPPdta$Indicator =="Emergency Admissions","IndicatorFullName"] <- "Emergency Admissions, per 100,000"
+CPPdta[CPPdta$Indicator =="Out of Work Benefits","IndicatorFullName"] <- "Out of Work Benefits (%)"
+CPPdta[CPPdta$Indicator =="Positive Destinations","IndicatorFullName"] <- "Positive Destinations (%)"     
+CPPdta[CPPdta$Indicator =="Depopulation","IndicatorFullName"] <- "Depopulation Index"
 #save CSV data file
 write_excel_csv(CPPdta ,path = "data/CPPcleandata.csv")
 
@@ -36,6 +46,16 @@ for (i in 3:10) {
 IGZdta <- gather(IGZdta, Indicator_Type_Year, value, -1,-2,-3,-4,-5)
 #seperate 1 column into 3
 IGZdta <- separate(IGZdta, Indicator_Type_Year, c("Indicator", "Type", "Year"), sep = "_")
+##rename indicators- in new column
+IGZdta$IndicatorFullName <- IGZdta$Indicator
+IGZdta[IGZdta$Indicator == "Child Poverty","IndicatorFullName"] <- "Child Poverty (%)"
+IGZdta[IGZdta$Indicator =="Crime Rate","IndicatorFullName"] <- "Crime Rate, per 10,000"
+IGZdta[IGZdta$Indicator == "Early Mortality","IndicatorFullName"] <- "Early Mortality, per 100,000"
+IGZdta[IGZdta$Indicator =="Emergency Admissions","IndicatorFullName"] <- "Emergency Admissions, per 100,000"
+IGZdta[IGZdta$Indicator =="Out of Work Benefits","IndicatorFullName"] <- "Out of Work Benefits (%)"
+IGZdta[IGZdta$Indicator =="Positive Destinations","IndicatorFullName"] <- "Positive Destinations (%)"     
+IGZdta[IGZdta$Indicator =="Depopulation","IndicatorFullName"] <- "Depopulation Index"
+
 #save CSV data file
 write_excel_csv(IGZdta ,path = "data/IGZcleandata.csv")
 
