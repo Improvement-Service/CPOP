@@ -157,3 +157,24 @@ CPPNames <- unique(CPPMapDta[CPPMapDta$council != "Scotland", "council"])
 DIdta <- read_csv("data/DuncanIndex.csv")
 DIdta <- gather(DIdta, "ind", "value",3:10) 
 InqDta <-readRDS("data/DecileData.rds")
+
+popOvs <- function(pltnm,Title,Def,Tm,Src, plc = "top"){
+  column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px; height:25vh !important", plotOutput(pltnm, height= "25vh"),
+         bsPopover(id = pltnm,
+                   title = Title, 
+                   content = paste(
+                     "<b>Definition</b></p><p>",
+                     Def,
+                     "</p><p>",
+                     "<b>Raw Time Period</b></p><p>",
+                     Tm,
+                     "</p><p>",
+                     "<b>Source</b></p><p>",
+                     Src
+                   ),
+                   placement = plc,
+                   trigger = "click",
+                   options = list(container = "body")
+         )
+  )
+}

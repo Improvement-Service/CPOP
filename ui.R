@@ -35,25 +35,6 @@ body <- dashboardBody(
     "#SimCPP{height:90vh !important}",
     "#CompCPP{height:75vh !important; margin-top:15px}",
     ".main-header .logo {text-align:left; padding-left:0px}",
-    #".shiny-plot-output{26vh !important}",
-    "#plot_1{height:25vh ! important}",
-    "#plot_2{height:25vh ! important}",
-    "#plot_3{height:25vh ! important}",
-    "#plot_4{height:25vh ! important}",
-    "#plot_5{height:25vh ! important}",
-    "#plot_6{height:25vh ! important}",
-    "#plot_7{height:25vh ! important}",
-    "#plot_8{height:25vh ! important}",
-    "#plot_9{height:25vh ! important}",
-    "#plot_10{height:25vh ! important}",
-    "#plot_11{height:25vh ! important}",
-    "#plot_12{height:25vh ! important}",
-    "#plot_13{height:25vh ! important}",
-    "#plot_14{height:25vh ! important}",
-    "#plot_15{height:25vh ! important}",
-    "#plot_16{height:25vh ! important}",
-    "#plot_17{height:25vh ! important}",
-    "#plot_18{height:25vh ! important}",
     "#DLDta_bttn{margin-right:10px}",
     "#Map1P1{margin-left:20px}",
     "#P1P1{margin-left:20px}",
@@ -107,338 +88,35 @@ body <- dashboardBody(
                          span(textOutput("CompLgnd"), style = "font-size:1.4vw;; font-weight:bold; display:inline-block"))
               )
               ),
-              fluidRow(style = "margin-bottom:10px; margin-right:1px",
-                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_1"),
-                       bsPopover(id = "plot_1",
-                                  title = "Healthy Birthweight", 
-                                  content = paste(
-                                    "<b>Definition</b></p><p>",
-                                    DefHBW,
-                                    "</p><p>",
-                                    "<b>Raw Time Period</b></p><p>",
-                                    TimeHBW,
-                                    "</p><p>",
-                                    "<b>Source</b></p><p>",
-                                    SourceHBW
-                                  ),
-                                  placement = "bottom",
-                                  trigger = "click",
-                                  options = list(container = "body")
-                                 )
-                       ),
-                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_2"),
-                       bsPopover(id = "plot_2",
-                                 title = "Primary 1 Body Mass Index", 
-                                 content = paste(
-                                   "<b>Definition</b></p><p>",
-                                   DefBMI,
-                                   "</p><p>",
-                                   "<b>Raw Time Period</b></p><p>",
-                                   TimeBMI,
-                                   "</p><p>",
-                                   "<b>Source</b></p><p>",
-                                   SourceBMI
-                                 ),
-                                 placement = "bottom",
-                                 trigger = "click",
-                                 options = list(container = "body")
-                       )
-                       ),
-                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_3"),
-                       bsPopover(id = "plot_3",
-                                 title = "Child Poverty", 
-                                 content = paste(
-                                   "<b>Definition</b></p><p>",
-                                   DefCPov,
-                                   "</p><p>",
-                                   "<b>Raw Time Period</b></p><p>",
-                                   TimeCPov,
-                                   "</p><p>",
-                                   "<b>Source</b></p><p>",
-                                   SourceCPov
-                                 ),
-                                 placement = "bottom",
-                                 trigger = "click",
-                                 options = list(container = "body")
-                       )
-                       ),
-                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_4"),
-                       bsPopover(id = "plot_4",
-                                 title = "S4 Tariff", 
-                                 content = paste(
-                                   "<b>Definition</b></p><p>",
-                                   DefS4T,
-                                   "</p><p>",
-                                   "<b>Raw Time Period</b></p><p>",
-                                   TimeS4T,
-                                   "</p><p>",
-                                   "<b>Source</b></p><p>",
-                                   SourceS4T
-                                 ),
-                                 placement = "bottom",
-                                 trigger = "click",
-                                 options = list(container = "body")
-                       )
-                       ),
-                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_5"),
-                       bsPopover(id = "plot_5",
-                                 title = "Positive Destinations", 
-                                 content = paste(
-                                   "<b>Definition</b></p><p>",
-                                   DefPosDes,
-                                   "</p><p>",
-                                   "<b>Raw Time Period</b></p><p>",
-                                   TimePosDes,
-                                   "</p><p>",
-                                   "<b>Source</b></p><p>",
-                                   SourcePosDes
-                                 ),
-                                 placement = "bottom",
-                                 trigger = "click",
-                                 options = list(container = "body")
-                       )
-                       ),
-                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_6"),
-                       bsPopover(id = "plot_6",
-                                 title = "Employment Rate", 
-                                 content = paste(
-                                   "<b>Definition</b></p><p>",
-                                   DefEmpRt,
-                                   "</p><p>",
-                                   "<b>Raw Time Period</b></p><p>",
-                                   TimeEmpRt,
-                                   "</p><p>",
-                                   "<b>Source</b></p><p>",
-                                   SourceEmpRt
-                                 ),
-                                 placement = "bottom",
-                                 trigger = "click",
-                                 options = list(container = "body")
-                       )
-                       )
-              ),
-              fluidRow(style = "margin-bottom:10px;margin-right:1px",
-                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_7"),
-                       bsPopover(id = "plot_7",
-                                 title = "Median Earnings", 
-                                 content = paste(
-                                   "<b>Definition</b></p><p>",
-                                   DefMedEarn,
-                                   "</p><p>",
-                                   "<b>Raw Time Period</b></p><p>",
-                                   TimeMedEarn,
-                                   "</p><p>",
-                                   "<b>Source</b></p><p>",
-                                   SourceMedEarn
-                                 ),
-                                 placement = "top",
-                                 trigger = "click",
-                                 options = list(container = "body")
-                       )
-                       ),
-                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_8"),
-                       bsPopover(id = "plot_8",
-                                 title = "Out of Work Benefits", 
-                                 content = paste(
-                                   "<b>Definition</b></p><p>",
-                                   DefOWB,
-                                   "</p><p>",
-                                   "<b>Raw Time Period</b></p><p>",
-                                   TimeOWB,
-                                   "</p><p>",
-                                   "<b>Source</b></p><p>",
-                                   SourceOWB
-                                 ),
-                                 placement = "top",
-                                 trigger = "click",
-                                 options = list(container = "body")
-                       )
-                       ),
-                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_9"),
-                       bsPopover(id = "plot_9",
-                                 title = "Business Survival", 
-                                 content = paste(
-                                   "<b>Definition</b></p><p>",
-                                   DefBusSurv,
-                                   "</p><p>",
-                                   "<b>Raw Time Period</b></p><p>",
-                                   TimeBusSurv,
-                                   "</p><p>",
-                                   "<b>Source</b></p><p>",
-                                   SourceBusSurv
-                                 ),
-                                 placement = "top",
-                                 trigger = "click",
-                                 options = list(container = "body")
-                       )
-                       ),
-                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_10"),
-                       bsPopover(id = "plot_10",
-                                 title = "Crime Rate", 
-                                 content = paste(
-                                   "<b>Definition</b></p><p>",
-                                   DefCrime,
-                                   "</p><p>",
-                                   "<b>Raw Time Period</b></p><p>",
-                                   TimeCrime,
-                                   "</p><p>",
-                                   "<b>Source</b></p><p>",
-                                   SourceCrime
-                                 ),
-                                 placement = "top",
-                                 trigger = "click",
-                                 options = list(container = "body")
-                       )
-                       ),
-                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_11"),
-                       bsPopover(id = "plot_11",
-                                 title = "Dwelling Fires", 
-                                 content = paste(
-                                   "<b>Definition</b></p><p>",
-                                   DefFire,
-                                   "</p><p>",
-                                   "<b>Raw Time Period</b></p><p>",
-                                   TimeFire,
-                                   "</p><p>",
-                                   "<b>Source</b></p><p>",
-                                   SourceFire
-                                 ),
-                                 placement = "top",
-                                 trigger = "click",
-                                 options = list(container = "body")
-                       )
-                       ),
-                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_12"),
-                       bsPopover(id = "plot_12",
-                                 title = "Carbon Emissions", 
-                                 content = paste(
-                                   "<b>Definition</b></p><p>",
-                                   DefEmiss,
-                                   "</p><p>",
-                                   "<b>Raw Time Period</b></p><p>",
-                                   TimeEmiss,
-                                   "</p><p>",
-                                   "<b>Source</b></p><p>",
-                                   SourceEmiss
-                                 ),
-                                 placement = "top",
-                                 trigger = "click",
-                                 options = list(container = "body")
-                       )
-                       )
-              ),
-              fluidRow(style = "margin-bottom:0px;margin-right:1px",
-                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_13"),
-                       bsPopover(id = "plot_13",
-                                 title = "Emergency Admissions", 
-                                 content = paste(
-                                   "<b>Definition</b></p><p>",
-                                   DefEmAd,
-                                   "</p><p>",
-                                   "<b>Raw Time Period</b></p><p>",
-                                   TimeEmAd,
-                                   "</p><p>",
-                                   "<b>Source</b></p><p>",
-                                   SourceEmAd
-                                 ),
-                                 placement = "top",
-                                 trigger = "click",
-                                 options = list(container = "body")
-                       )
-                       ),
-                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_14"),
-                       bsPopover(id = "plot_14",
-                                 title = "Unplanned Hospital Attendances", 
-                                 content = paste(
-                                   "<b>Definition</b></p><p>",
-                                   DefHospAtt,
-                                   "</p><p>",
-                                   "<b>Raw Time Period</b></p><p>",
-                                   TimeHospAtt,
-                                   "</p><p>",
-                                   "<b>Source</b></p><p>",
-                                   SourceHospAtt
-                                 ),
-                                 placement = "top",
-                                 trigger = "click",
-                                 options = list(container = "body")
-                       )
-                       ),
-                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_15"),
-                       bsPopover(id = "plot_15",
-                                 title = "Early Mortality", 
-                                 content = paste(
-                                   "<b>Definition</b></p><p>",
-                                   DefMort,
-                                   "</p><p>",
-                                   "<b>Raw Time Period</b></p><p>",
-                                   TimeMort,
-                                   "</p><p>",
-                                   "<b>Source</b></p><p>",
-                                   SourceMort
-                                 ),
-                                 placement = "top",
-                                 trigger = "click",
-                                 options = list(container = "body")
-                       )
-                       ),
-                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_16"),
-                       bsPopover(id = "plot_16",
-                                 title = "Fragility", 
-                                 content = paste(
-                                   "<b>Definition</b></p><p>",
-                                   DefFrag,
-                                   "</p><p>",
-                                   "<b>Raw Time Period</b></p><p>",
-                                   TimeFrag,
-                                   "</p><p>",
-                                   "<b>Source</b></p><p>",
-                                   SourceFrag
-                                 ),
-                                 placement = "top",
-                                 trigger = "click",
-                                 options = list(container = "body")
-                       )
-                       ),
-                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_17"),
-                       bsPopover(id = "plot_17",
-                                 title = "Well-being", 
-                                 content = paste(
-                                   "<b>Definition</b></p><p>",
-                                   DefWellB,
-                                   "</p><p>",
-                                   "<b>Raw Time Period</b></p><p>",
-                                   TimeWellB,
-                                   "</p><p>",
-                                   "<b>Source</b></p><p>",
-                                   SourceWellB
-                                 ),
-                                 placement = "top",
-                                 trigger = "click",
-                                 options = list(container = "body")
-                       )
-                       ),
-                column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px", plotOutput("plot_18"),
-                       bsPopover(id = "plot_18",
-                                 title = "Fuel Poverty", 
-                                 content = paste(
-                                   "<b>Definition</b></p><p>",
-                                   DefFuelPov,
-                                   "</p><p>",
-                                   "<b>Raw Time Period</b></p><p>",
-                                   TimeFuelPov,
-                                   "</p><p>",
-                                   "<b>Source</b></p><p>",
-                                   SourceFuelPov
-                                 ),
-                                 placement = "top",
-                                 trigger = "click",
-                                 options = list(container = "body")
-                       )
-                       )
-              )
+      div(style = "margin-top:10px",
+                  fluidRow(style = "margin-bottom:0px;margin-right:1px",
+                           popOvs("plot_1", "Healthy Birthweight",DefHBW, TimeHBW, SourceHBW, "bottom"),
+                           popOvs("plot_2", "Primary 1 Body Mass Index",DefBMI, TimeBMI, SourceBMI, "bottom"),
+                           popOvs("plot_3", "Child Poverty",DefCPov, TimeCPov, SourceCPov, "bottom"),
+                           popOvs("plot_4", "S4 Tariff",DefS4T, TimeS4T, SourceS4T, "bottom"),
+                           popOvs("plot_5", "Positive Destinations",DefPosDes, TimePosDes, SourcePosDes, "bottom"),
+                           popOvs("plot_6", "Employment Rate",DefEmpRt, TimeEmpRt, SourceEmpRt, "bottom")
+                  ),
+                  fluidRow(style = "margin-bottom:0px;margin-right:1px",
+                           popOvs("plot_7", "Median Earnings",DefMedEarn, TimeMedEarn, SourceMedEarn),
+                           popOvs("plot_8", "Out of Work Benefits",DefOWB, TimeOWB, SourceOWB),
+                           popOvs("plot_9", "Business Survival",DefBusSurv, TimeBusSurv, SourceBusSurv),
+                           popOvs("plot_10", "Crime Rate",DefCrime, TimeCrime, SourceCrime),
+                           popOvs("plot_11", "Dwelling Fires",DefFire, TimeFire, SourceFire),
+                           popOvs("plot_12", "Carbon Emissions",DefEmiss, TimeEmiss, SourceEmiss)
+                  ),
+                  fluidRow(style = "margin-bottom:0px;margin-right:1px",
+                           popOvs("plot_13", "Emergency Admissions",DefEmAd, TimeEmAd, SourceEmAd),
+                           popOvs("plot_14", "Unplanned Hospital Admissions",DefHospAtt, TimeHospAtt, SourceHospAtt),
+                           popOvs("plot_15", "Early Mortality",DefMort, TimeMort, SourceMort),
+                           popOvs("plot_16", "Fragility",DefFrag, TimeFrag, SourceFrag),
+                           popOvs("plot_17", "Well-being",DefWellB, TimeWellB, SourceWellB),
+                           popOvs("plot_18", "Fuel Poverty",DefFuelPov, TimeFuelPov, SourceFuelPov)
+                  )
+              )  
     )),
 ###====Tab2: Show all Councils for all indicators===###
+
   tabItem(tabName = "P2",
           fluidPage(
             fluidRow(style = "padding-top:10px",
@@ -452,10 +130,32 @@ body <- dashboardBody(
                                           span(textOutput("BarComp"), style = "font-size:1.4vw;; font-weight:bold; display:inline-block")))
               )
             ),
-            fluidRow(
               div(style = "margin-top:10px",
-            plotOutput("CompCPP")%>% withSpinner(type = 6)
-          ))
+            fluidRow(style = "margin-bottom:0px;margin-right:1px",
+                     popOvs("plot_CPP_1", "Healthy Birthweight",DefHBW, TimeHBW, SourceHBW, "bottom"),
+                     popOvs("plot_CPP_2", "Primary 1 Body Mass Index",DefBMI, TimeBMI, SourceBMI, "bottom"),
+                     popOvs("plot_CPP_3", "Child Poverty",DefCPov, TimeCPov, SourceCPov, "bottom"),
+                     popOvs("plot_CPP_4", "S4 Tariff",DefS4T, TimeS4T, SourceS4T, "bottom"),
+            popOvs("plot_CPP_5", "Positive Destinations",DefPosDes, TimePosDes, SourcePosDes, "bottom"),
+            popOvs("plot_CPP_6", "Employment Rate",DefEmpRt, TimeEmpRt, SourceEmpRt, "bottom")
+            ),
+            fluidRow(style = "margin-bottom:0px;margin-right:1px",
+                     popOvs("plot_CPP_7", "Median Earnings",DefMedEarn, TimeMedEarn, SourceMedEarn),
+                     popOvs("plot_CPP_8", "Out of Work Benefits",DefOWB, TimeOWB, SourceOWB),
+                     popOvs("plot_CPP_9", "Business Survival",DefBusSurv, TimeBusSurv, SourceBusSurv),
+                     popOvs("plot_CPP_10", "Crime Rate",DefCrime, TimeCrime, SourceCrime),
+                     popOvs("plot_CPP_11", "Dwelling Fires",DefFire, TimeFire, SourceFire),
+                     popOvs("plot_CPP_12", "Carbon Emissions",DefEmiss, TimeEmiss, SourceEmiss)
+            ),
+            fluidRow(style = "margin-bottom:0px;margin-right:1px",
+                     popOvs("plot_CPP_13", "Emergency Admissions",DefEmAd, TimeEmAd, SourceEmAd),
+                     popOvs("plot_CPP_14", "Unplanned Hospital Admissions",DefHospAtt, TimeHospAtt, SourceHospAtt),
+                     popOvs("plot_CPP_15", "Early Mortality",DefMort, TimeMort, SourceMort),
+                     popOvs("plot_CPP_16", "Fragility",DefFrag, TimeFrag, SourceFrag),
+                     popOvs("plot_CPP_17", "Well-being",DefWellB, TimeWellB, SourceWellB),
+                     popOvs("plot_CPP_18", "Fuel Poverty",DefFuelPov, TimeFuelPov, SourceFuelPov)
+            )
+          )
           
     )),
 ###===Tab3: Show only similar councils===###

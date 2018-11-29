@@ -184,7 +184,7 @@ shinyServer(function(input, output, session) {
              onInitialize = I('function() { this.setValue(""); }')))
     })
   
-  # Render all Plots for Page 2
+#Render all Plots for Page 2===================================
   
   # List indicators in the order these are to be presented
   
@@ -195,7 +195,11 @@ shinyServer(function(input, output, session) {
              "Emergency Admissions", "Unplanned Hospital Attendances",
              "Early Mortality", "Fragility", "Well-being", "Fuel Poverty")
   
-  output$CompCPP <- renderPlot({
+  for(i in seq_along(indis)){
+    local({
+      this_i <- i
+      plotnameCPP <- paste("plot_CPP", this_i, sep ="_")
+      output[[plotnameCPP]] <- renderPlot({
     req(input$LA1)
     dta <- filter(CPP_Imp, Year == RcntYear)
     if(is.null(input$OtherCPP)){
@@ -205,19 +209,17 @@ shinyServer(function(input, output, session) {
       }
     if(is.null(input$OtherCPP)){
       sclFll <- scale_fill_manual(values = c("lightblue2","red2"), breaks = c("Other", "Sel1"))}
-    else{ sclFll <- scale_fill_manual(values = c("lightblue2","red2", "green4"), breaks = c("Other", "Sel1", "Sel2"))}
+    else{sclFll <- scale_fill_manual(values = c("lightblue2","red2", "green4"), breaks = c("Other", "Sel1", "Sel2"))}
     #filter so that the Scotland value isn't a bar on the plot
     
     dtaNoScot <- filter(dta, CPP != "Scotland")
   
-    #lapply to generate plots
-    plts <- list()
+    #Generate plots
     indi <- indis
-    plts <-lapply(1:18, FUN = function(.x){
     ##calculate maximum limit for y axis  
-      maxAx <- max(dtaNoScot[dtaNoScot$Indicator == indi[[.x]],5])*1.05
-      minAx <- ifelse(indi[[.x]] == "Carbon Emissions",-5,0)
-      ggplot(data = filter(dtaNoScot, Indicator == indi[[.x]])) +
+      maxAx <- max(dtaNoScot[dtaNoScot$Indicator == indi[[this_i]],5])*1.05
+      minAx <- ifelse(indi[[this_i]] == "Carbon Emissions",-5,0)
+      ggplot(data = filter(dtaNoScot, Indicator == indi[[this_i]])) +
         geom_bar(aes(
           x = if((first(`High is Positive?`))== "Yes"){reorder(CPP, value)}else{reorder(CPP, -value)}, 
           y = value, 
@@ -232,12 +234,12 @@ shinyServer(function(input, output, session) {
         #scale_x_discrete(label = function(x) abbreviate(x, minlength = 4))+
         scale_y_continuous(expand = c(0,0), limits = c(minAx, maxAx))+    
         guides(fill = FALSE) +
-        ggtitle(indi[[.x]])+
+        ggtitle(indi[[this_i]])+
         xlab("")+
         ylab("")+
         #    {if(input$ScotCheckbox == TRUE)
         geom_hline(aes(
-          yintercept = filter(dta, CPP == "Scotland" & Indicator == indi[[.x]])$value
+          yintercept = filter(dta, CPP == "Scotland" & Indicator == indi[[this_i]])$value
           ), colour = "navyblue", size = 1.2
         )+
           #} +
@@ -251,15 +253,14 @@ shinyServer(function(input, output, session) {
               panel.grid.minor = element_blank(),
           plot.margin = unit(c(2,2,15,2),"mm"))
     })
-    do.call("plot_grid", c(plts, ncol = 6))
   })
-  
+  }
   
   # Create Graphs for CPP similar - PAGE3----------------------------------------------------------------
 
   output$SimCPP <- renderPlot({
     req(input$LA1)
-    FGroup <- filter(CPP_Imp, CPP == input$LA1)[[1,6]]
+    FGroup <- filter(CPP_Imp, CPP == input$LA1)[[1,7]]
     dta <- filter(CPP_Imp, Year == RcntYear & FG %in% FGroup)
     dta$colourscheme <-ifelse(dta$CPP == input$LA1,"Sel1","Other")
     #lapply to generate plots
