@@ -257,57 +257,60 @@ shinyServer(function(input, output, session) {
   }
   
   # Create Graphs for CPP similar - PAGE3----------------------------------------------------------------
-
-  output$SimCPP <- renderPlot({
-    req(input$LA1)
-    FGroup <- filter(CPP_Imp, CPP == input$LA1)[[1,7]]
-    dta <- filter(CPP_Imp, Year == RcntYear & FG %in% FGroup)
-    dta$colourscheme <-ifelse(dta$CPP == input$LA1,"Sel1","Other")
-    #lapply to generate plots
-    plts <- list()
-    indi <- indis
-    
-    plts <-lapply(1:18, FUN = function(.x){
-      ##calculate maximum limit for y axis  
-      ScotVal <- filter(CPP_Imp,Year == RcntYear & 
-                          Indicator == indi[[.x]] &
-                          CPP == "Scotland")$value
-      maxAx <- max(c(dta[dta$Indicator == indi[[.x]],]$value, ScotVal))*1.05
-      minAx <- ifelse(indi[[.x]] == "Carbon Emissions" & FGroup %in% c(2,3),-5,0)
-      ggplot(data = filter(dta, Indicator == indi[[.x]])) +
-        geom_bar(aes(
-          x = if(first(`High is Positive?`)== "Yes"){reorder(CPP, value)}else{reorder(CPP, -value)}, 
-          y = value, 
-          fill = colourscheme
-        ), 
-        stat = "identity", 
-        position = "dodge", 
-        width = 0.5
-        ) +
-        scale_x_discrete(label = function(x) abbreviate(x, minlength = 10))+
-        scale_fill_manual(values = c("lightblue2","red2"), breaks = c("Other", "Sel1")) +
-        guides(fill = FALSE) +
-        scale_y_continuous(expand = c(0,0), limits = c(minAx,maxAx))+       
-        ggtitle(indi[[.x]])+
-        xlab("")+
-        ylab("")+
-   #     {if(input$ScotCheckbox2 == TRUE)
-        geom_hline(
-          aes(
-            yintercept = ScotVal
-          ), colour = "navyblue", size = 1.2
-        )+ 
-      #}+
-        theme_bw()+
-        theme(axis.text.x = element_text(angle =90, hjust =1, vjust = 0),
-              plot.title = element_text(face = "bold", size = 9),
-              panel.grid.major = element_blank(),
-              panel.grid.minor = element_blank())
+  for(i in seq_along(indis)){
+    local({
+      that_i <- i
+      plotnameCPPSim <- paste("plotSimCPP", that_i, sep ="_")
+      output[[plotnameCPPSim]] <- renderPlot({
+        req(input$LA1)
+        FGroup <- filter(CPP_Imp, CPP == input$LA1)[[1,7]]
+        dta <- filter(CPP_Imp, Year == RcntYear & FG %in% FGroup)
+        dta$colourscheme <-ifelse(dta$CPP == input$LA1,"Sel1","Other")
+        #filter so that the Scotland value isn't a bar on the plot
+        
+        dtaNoScot <- filter(dta, CPP != "Scotland")
+        
+        #Generate plots
+        indi <- indis
+        ##calculate maximum limit for y axis  
+        ScotVal <- filter(CPP_Imp,Year == RcntYear & 
+                            Indicator == indi[[that_i]] &
+                            CPP == "Scotland")$value
+        maxAx <- max(c(dta[dta$Indicator == indi[[that_i]],]$value, ScotVal))*1.05
+        minAx <- ifelse(indi[[that_i]] == "Carbon Emissions" & FGroup %in% c(2,3),-5,0)
+        ggplot(data = filter(dta, Indicator == indi[[that_i]])) +
+          geom_bar(aes(
+            x = if(first(`High is Positive?`)== "Yes"){reorder(CPP, value)}else{reorder(CPP, -value)}, 
+            y = value, 
+            fill = colourscheme
+          ), 
+          stat = "identity", 
+          position = "dodge", 
+          width = 0.5
+          ) +
+          scale_x_discrete(label = function(x) abbreviate(x, minlength = 10))+
+          scale_fill_manual(values = c("lightblue2","red2"), breaks = c("Other", "Sel1")) +
+          guides(fill = FALSE) +
+          scale_y_continuous(expand = c(0,0), limits = c(minAx,maxAx))+       
+          ggtitle(indi[[that_i]])+
+          xlab("")+
+          ylab("")+
+          #     {if(input$ScotCheckbox2 == TRUE)
+          geom_hline(
+            aes(
+              yintercept = ScotVal
+            ), colour = "navyblue", size = 1.2
+          )+ 
+          #}+
+          theme_bw()+
+          theme(axis.text.x = element_text(angle =90, hjust =1, vjust = 0),
+                plot.title = element_text(face = "bold", size = 9),
+                panel.grid.major = element_blank(),
+                panel.grid.minor = element_blank())
+      })
     })
-    do.call("plot_grid", c(plts, ncol = 6))
-  })
-  
-  
+  }
+
   # Create Ui outputs for Maps - PAGE4&5--------------------------------------------------
 
   output$IZUI <- renderUI({
@@ -662,7 +665,7 @@ shinyServer(function(input, output, session) {
         label = SpPolysLA@data$NAME,
         highlightOptions = highlightOptions(color = "white", weight = 3,bringToFront = TRUE)
       ) %>%
-      addLabelOnlyMarkers(lng = -19.5 , lat = 60.2,label = HTML("<h2>Community Planning Outcomes Profile</h2><h3>Tracking improvement in communities across Scotland</h3><h5>To get started use the map to select a CPP</h5><h5>Select ‘help with this page’ in the top right hand corner of every page for an introduction to how to use each page</h5><h5>To explore other parts of the CPOP use the list on the left to navigate the tool</h5>"),
+      addLabelOnlyMarkers(lng = -20.6, lat = 60.3,label = HTML("<h2>Community Planning Outcomes Profile</h2><h3>Tracking improvement in communities across Scotland</h3><h5>To get started use the map to select a CPP</h5><h5>Select ‘help with this page’ in the top right hand corner of every page for an introduction to how to use each page</h5><h5>To explore other parts of the CPOP use the list on the left to navigate the tool</h5>"),
                           labelOptions = labelOptions(noHide = T, direction = 'right', offset = c(0,0), textOnly = T, sticky = FALSE))
   })
   

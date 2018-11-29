@@ -62,7 +62,8 @@ body <- dashboardBody(
       h2{font-family: sans-serif;
           font-weight:bold;
           font-size:5vh; 
-          margin-top:6vh}
+          margin-top:6vh;
+          text-decoration:underline}
         strong{float:right;}
           .small-box {margin-bottom:1px}
           .small-box >.inner {padding:5px}
@@ -132,28 +133,28 @@ body <- dashboardBody(
             ),
               div(style = "margin-top:10px",
             fluidRow(style = "margin-bottom:0px;margin-right:1px",
-                     popOvs("plot_CPP_1", "Healthy Birthweight",DefHBW, TimeHBW, SourceHBW, "bottom"),
-                     popOvs("plot_CPP_2", "Primary 1 Body Mass Index",DefBMI, TimeBMI, SourceBMI, "bottom"),
-                     popOvs("plot_CPP_3", "Child Poverty",DefCPov, TimeCPov, SourceCPov, "bottom"),
-                     popOvs("plot_CPP_4", "S4 Tariff",DefS4T, TimeS4T, SourceS4T, "bottom"),
-            popOvs("plot_CPP_5", "Positive Destinations",DefPosDes, TimePosDes, SourcePosDes, "bottom"),
-            popOvs("plot_CPP_6", "Employment Rate",DefEmpRt, TimeEmpRt, SourceEmpRt, "bottom")
+                     popOvs("plot_CPP_1", "Healthy Birthweight",DefHBW, TimeHBW, SourceHBW, "bottom", pltHght = "28vh"),
+                     popOvs("plot_CPP_2", "Primary 1 Body Mass Index",DefBMI, TimeBMI, SourceBMI, "bottom", pltHght = "28vh"),
+                     popOvs("plot_CPP_3", "Child Poverty",DefCPov, TimeCPov, SourceCPov, "bottom", pltHght = "28vh"),
+                     popOvs("plot_CPP_4", "S4 Tariff",DefS4T, TimeS4T, SourceS4T, "bottom", pltHght = "28vh"),
+            popOvs("plot_CPP_5", "Positive Destinations",DefPosDes, TimePosDes, SourcePosDes, "bottom", pltHght = "28vh"),
+            popOvs("plot_CPP_6", "Employment Rate",DefEmpRt, TimeEmpRt, SourceEmpRt, "bottom", pltHght = "28vh")
             ),
             fluidRow(style = "margin-bottom:0px;margin-right:1px",
-                     popOvs("plot_CPP_7", "Median Earnings",DefMedEarn, TimeMedEarn, SourceMedEarn),
-                     popOvs("plot_CPP_8", "Out of Work Benefits",DefOWB, TimeOWB, SourceOWB),
-                     popOvs("plot_CPP_9", "Business Survival",DefBusSurv, TimeBusSurv, SourceBusSurv),
-                     popOvs("plot_CPP_10", "Crime Rate",DefCrime, TimeCrime, SourceCrime),
-                     popOvs("plot_CPP_11", "Dwelling Fires",DefFire, TimeFire, SourceFire),
-                     popOvs("plot_CPP_12", "Carbon Emissions",DefEmiss, TimeEmiss, SourceEmiss)
+                     popOvs("plot_CPP_7", "Median Earnings",DefMedEarn, TimeMedEarn, SourceMedEarn, pltHght = "28vh"),
+                     popOvs("plot_CPP_8", "Out of Work Benefits",DefOWB, TimeOWB, SourceOWB, pltHght = "28vh"),
+                     popOvs("plot_CPP_9", "Business Survival",DefBusSurv, TimeBusSurv, SourceBusSurv, pltHght = "28vh"),
+                     popOvs("plot_CPP_10", "Crime Rate",DefCrime, TimeCrime, SourceCrime, pltHght = "28vh"),
+                     popOvs("plot_CPP_11", "Dwelling Fires",DefFire, TimeFire, SourceFire, pltHght = "28vh"),
+                     popOvs("plot_CPP_12", "Carbon Emissions",DefEmiss, TimeEmiss, SourceEmiss, pltHght = "28vh")
             ),
             fluidRow(style = "margin-bottom:0px;margin-right:1px",
-                     popOvs("plot_CPP_13", "Emergency Admissions",DefEmAd, TimeEmAd, SourceEmAd),
-                     popOvs("plot_CPP_14", "Unplanned Hospital Admissions",DefHospAtt, TimeHospAtt, SourceHospAtt),
-                     popOvs("plot_CPP_15", "Early Mortality",DefMort, TimeMort, SourceMort),
-                     popOvs("plot_CPP_16", "Fragility",DefFrag, TimeFrag, SourceFrag),
-                     popOvs("plot_CPP_17", "Well-being",DefWellB, TimeWellB, SourceWellB),
-                     popOvs("plot_CPP_18", "Fuel Poverty",DefFuelPov, TimeFuelPov, SourceFuelPov)
+                     popOvs("plot_CPP_13", "Emergency Admissions",DefEmAd, TimeEmAd, SourceEmAd, pltHght = "28vh"),
+                     popOvs("plot_CPP_14", "Unplanned Hospital Admissions",DefHospAtt, TimeHospAtt, SourceHospAtt, pltHght = "28vh"),
+                     popOvs("plot_CPP_15", "Early Mortality",DefMort, TimeMort, SourceMort, pltHght = "28vh"),
+                     popOvs("plot_CPP_16", "Fragility",DefFrag, TimeFrag, SourceFrag, pltHght = "28vh"),
+                     popOvs("plot_CPP_17", "Well-being",DefWellB, TimeWellB, SourceWellB, pltHght = "28vh"),
+                     popOvs("plot_CPP_18", "Fuel Poverty",DefFuelPov, TimeFuelPov, SourceFuelPov, pltHght = "28vh")
             )
           )
           
@@ -162,8 +163,31 @@ body <- dashboardBody(
   tabItem(tabName = "P3",
         fluidPage(
           div(style = "margin-top:5px",
-          plotOutput("SimCPP")%>% withSpinner(type = 6)
-        ))
+              fluidRow(style = "margin-bottom:0px;margin-right:1px",
+                       popOvs("plotSimCPP_1", "Healthy Birthweight",DefHBW, TimeHBW, SourceHBW, "bottom",pltHght = "30vh"),
+                       popOvs("plotSimCPP_2", "Primary 1 Body Mass Index",DefBMI, TimeBMI, SourceBMI, "bottom",pltHght = "30vh"),
+                       popOvs("plotSimCPP_3", "Child Poverty",DefCPov, TimeCPov, SourceCPov, "bottom",pltHght = "30vh"),
+                       popOvs("plotSimCPP_4", "S4 Tariff",DefS4T, TimeS4T, SourceS4T, "bottom",pltHght = "30vh"),
+                       popOvs("plotSimCPP_5", "Positive Destinations",DefPosDes, TimePosDes, SourcePosDes, "bottom",pltHght = "30vh"),
+                       popOvs("plotSimCPP_6", "Employment Rate",DefEmpRt, TimeEmpRt, SourceEmpRt, "bottom",pltHght = "30vh")
+              ),
+              fluidRow(style = "margin-bottom:0px;margin-right:1px",
+                       popOvs("plotSimCPP_7", "Median Earnings",DefMedEarn, TimeMedEarn, SourceMedEarn,pltHght = "30vh"),
+                       popOvs("plotSimCPP_8", "Out of Work Benefits",DefOWB, TimeOWB, SourceOWB,pltHght = "30vh"),
+                       popOvs("plotSimCPP_9", "Business Survival",DefBusSurv, TimeBusSurv, SourceBusSurv,pltHght = "30vh"),
+                       popOvs("plotSimCPP_10", "Crime Rate",DefCrime, TimeCrime, SourceCrime,pltHght = "30vh"),
+                       popOvs("plotSimCPP_11", "Dwelling Fires",DefFire, TimeFire, SourceFire,pltHght = "30vh"),
+                       popOvs("plotSimCPP_12", "Carbon Emissions",DefEmiss, TimeEmiss, SourceEmiss,pltHght = "30vh")
+              ),
+              fluidRow(style = "margin-bottom:0px;margin-right:1px",
+                       popOvs("plotSimCPP_13", "Emergency Admissions",DefEmAd, TimeEmAd, SourceEmAd,pltHght = "30vh"),
+                       popOvs("plotSimCPP_14", "Unplanned Hospital Admissions",DefHospAtt, TimeHospAtt, SourceHospAtt,pltHght = "30vh"),
+                       popOvs("plotSimCPP_15", "Early Mortality",DefMort, TimeMort, SourceMort,pltHght = "30vh"),
+                       popOvs("plotSimCPP_16", "Fragility",DefFrag, TimeFrag, SourceFrag,pltHght = "30vh"),
+                       popOvs("plotSimCPP_17", "Well-being",DefWellB, TimeWellB, SourceWellB,pltHght = "30vh"),
+                       popOvs("plotSimCPP_18", "Fuel Poverty",DefFuelPov, TimeFuelPov, SourceFuelPov,pltHght = "30vh")
+              )
+          ))
     ),
 ###====Tab4: Show Community maps===###
   tabItem(tabName = "Map1",

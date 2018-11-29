@@ -158,8 +158,8 @@ DIdta <- read_csv("data/DuncanIndex.csv")
 DIdta <- gather(DIdta, "ind", "value",3:10) 
 InqDta <-readRDS("data/DecileData.rds")
 
-popOvs <- function(pltnm,Title,Def,Tm,Src, plc = "top"){
-  column(2, style = "margin-left:0px;margin-right:0px;padding-right:0px; height:25vh !important", plotOutput(pltnm, height= "25vh"),
+popOvs <- function(pltnm,Title,Def,Tm,Src, plc = "top", pltHght = "25vh"){
+  column(2, style = paste0("margin-left:0px;margin-right:0px;padding-right:0px; padding-left:0px; height:", pltHght,"!important"), plotOutput(pltnm, height= pltHght),
          bsPopover(id = pltnm,
                    title = Title, 
                    content = paste(
