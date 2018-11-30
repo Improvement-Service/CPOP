@@ -172,12 +172,12 @@ body <- dashboardBody(
                        popOvs("plotSimCPP_6", "Employment Rate",DefEmpRt, TimeEmpRt, SourceEmpRt, "bottom",pltHght = "30vh")
               ),
               fluidRow(style = "margin-bottom:0px;margin-right:1px",
-                       popOvs("plotSimCPP_7", "Median Earnings",DefMedEarn, TimeMedEarn, SourceMedEarn,pltHght = "30vh"),
-                       popOvs("plotSimCPP_8", "Out of Work Benefits",DefOWB, TimeOWB, SourceOWB,pltHght = "30vh"),
-                       popOvs("plotSimCPP_9", "Business Survival",DefBusSurv, TimeBusSurv, SourceBusSurv,pltHght = "30vh"),
-                       popOvs("plotSimCPP_10", "Crime Rate",DefCrime, TimeCrime, SourceCrime,pltHght = "30vh"),
-                       popOvs("plotSimCPP_11", "Dwelling Fires",DefFire, TimeFire, SourceFire,pltHght = "30vh"),
-                       popOvs("plotSimCPP_12", "Carbon Emissions",DefEmiss, TimeEmiss, SourceEmiss,pltHght = "30vh")
+                       popOvs("plotSimCPP_7", "Median Earnings",DefMedEarn, TimeMedEarn, SourceMedEarn, "bottom",pltHght = "30vh"),
+                       popOvs("plotSimCPP_8", "Out of Work Benefits",DefOWB, TimeOWB, SourceOWB, "bottom",pltHght = "30vh"),
+                       popOvs("plotSimCPP_9", "Business Survival",DefBusSurv, TimeBusSurv, SourceBusSurv, "bottom",pltHght = "30vh"),
+                       popOvs("plotSimCPP_10", "Crime Rate",DefCrime, TimeCrime, SourceCrime, "bottom",pltHght = "30vh"),
+                       popOvs("plotSimCPP_11", "Dwelling Fires",DefFire, TimeFire, SourceFire, "bottom",pltHght = "30vh"),
+                       popOvs("plotSimCPP_12", "Carbon Emissions",DefEmiss, TimeEmiss, SourceEmiss, "bottom",pltHght = "30vh")
               ),
               fluidRow(style = "margin-bottom:0px;margin-right:1px",
                        popOvs("plotSimCPP_13", "Emergency Admissions",DefEmAd, TimeEmAd, SourceEmAd,pltHght = "30vh"),
