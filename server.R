@@ -674,10 +674,7 @@ shinyServer(function(input, output, session) {
     event <- input$scotMap_shape_click
     if(is.null(event)){
       return()} 
-      isolate({
-        
       updateSelectizeInput(session,"LA1", label = NULL, choices = NULL, selected = event$id)
-    })
   })
   
   # Add click function
@@ -1288,7 +1285,7 @@ shinyServer(function(input, output, session) {
     Community$ColourRef  <- "A"
     Community$Colours    <- "red"
     Community            <- select(
-      Community, c(-InterZone, -InterZone_Name, -CPP, -Typology_Group, -Typology_Name) 
+      Community, c(-InterZone, -InterZone_Name, -CPP, -Typology_Group, -Typology_Name, -IndicatorFullName) 
     )
     
     Indicators    <- unique(IGZdta$Indicator)
@@ -1296,14 +1293,14 @@ shinyServer(function(input, output, session) {
     LA$Identifier <- input$LA1
     LA$ColourRef  <- "B"
     LA$Colours    <- "green"
-    LA            <- select(LA, c(-CPP, -FG))
+    LA            <- select(LA, c(-CPP, -FG,-IndicatorFullName))
     
     Indicators          <- unique(IGZdta$Indicator)
     Scotland            <- filter(CPPdta, CPP == "Scotland" & Indicator %in% Indicators)
     Scotland$Identifier <- "Scotland"
     Scotland$ColourRef  <- "C"
     Scotland$Colours    <- "blue"
-    Scotland            <- select(Scotland, c(-CPP, -FG))
+    Scotland            <- select(Scotland, c(-CPP, -FG,-IndicatorFullName))
     
     IGZsubset         <- filter(IGZdta, InterZone_Name == input$CommunityCP& CPP == input$LA1)
     Typology          <- first(IGZsubset$Typology_Group)
@@ -1311,12 +1308,12 @@ shinyServer(function(input, output, session) {
     GrpAv <- ddply(GrpAv,. (Indicator, Year), transform, GrpAver = mean(value))
     GrpAv              <- filter(GrpAv, InterZone_Name == input$CommunityCP)
     GrpAv              <- select(GrpAv, -value)
-    colnames(GrpAv)[9] <- "value"
+    colnames(GrpAv)[10] <- "value"
     GrpAv$Identifier   <- "Group Average"
     GrpAv$ColourRef    <- "D"
     GrpAv$Colours      <- "orange"
     GrpAv              <- select(
-      GrpAv, c(-InterZone, -InterZone_Name, -CPP, -Typology_Group, -Typology_Name)
+      GrpAv, c(-InterZone, -InterZone_Name, -CPP, -Typology_Group, -Typology_Name,-IndicatorFullName)
     )
     
     SimComm            <- IGZdta
@@ -1326,11 +1323,13 @@ shinyServer(function(input, output, session) {
     SimComm$ColourRef  <- "E"
     SimComm$Colours    <- "purple"
     SimComm            <- select(
-      SimComm, c(-InterZone, -InterZone_Name, -CPP, -Typology_Group, -Typology_Name))
+      SimComm, c(-InterZone, -InterZone_Name, -CPP, -Typology_Group, -Typology_Name,-IndicatorFullName))
     
-    if(input$ChoiceAddComm == 0)
+    if(input$ChoiceAddComm == 0){
       (LineChoiceDta <- rbind(Community, LA, Scotland, GrpAv))
+    }else{
       (LineChoiceDta <- rbind(Community, LA, Scotland, GrpAv, SimComm))
+    }
   })
   
   # Create plot outputs
