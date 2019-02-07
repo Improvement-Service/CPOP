@@ -1892,7 +1892,7 @@ shinyServer(function(input, output, session) {
     output$DLDta <- downloadHandler(
     filename = paste("CPP Data", ".zip", sep = ""),
     content = function(con) {
-      file.copy("data/CPP Data Sept 18.zip", con)
+      file.copy("data/CPP Data - Feb 19.zip", con)
     },
     contentType = "application/zip"
     )
@@ -1901,7 +1901,7 @@ shinyServer(function(input, output, session) {
     output$DLIZDta <- downloadHandler(
       filename = paste("IGZ Data", ".zip", sep = ""),
       content = function(con) {
-        file.copy("data/IGZ Data Sept 18.zip", con)
+        file.copy("data/IGZ Data - Feb 19.zip", con)
       },
       contentType = "application/zip"
     )
