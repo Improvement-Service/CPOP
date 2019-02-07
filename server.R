@@ -1625,7 +1625,8 @@ shinyServer(function(input, output, session) {
         ylab("")+
         xlab("")+
         ggtitle(indList[y])+
-        scale_y_continuous(limits = c(-0.253,0.485))+
+        scale_y_continuous(limits = c(-0.23,0.5))+
+        scale_x_continuous(breaks = seq(2007,2017, by  =2))+
         geom_hline(yintercept = 0)+
         scale_colour_manual(breaks = c("Comp", "CPP"), values = c("blue", "red"))+
         guides(colour = FALSE)
