@@ -1,3 +1,7 @@
+##Run this code first - it takes all of the prepared data within the 
+#spreadsheets
+#Then converts these into long format for inclusion in the tool
+
 library(tidyverse)
 library(plyr)
 library(readxl)
@@ -75,5 +79,5 @@ DZdta <- gather(DZdta, Indicator_Type_Year, value, -1,-2,-3,-4)
 #separate 1 column into 3
 DZdta <- separate(DZdta, Indicator_Type_Year, c("Indicator","Type","Year"), sep = "_")
 #save CSV data file
-write_excel_csv(DZdta ,path = "DZcleandata.csv")
+write_excel_csv(DZdta ,path = "data/DZcleandata.csv")
 

@@ -1,4 +1,5 @@
 #------------------Create shapefiles for Cpop maps ---------------
+
 library(readr)
 library(readxl)
 library(dplyr)
@@ -26,21 +27,18 @@ SpPolysDF@data <- left_join(SpPolysDF@data, indDta[c(1,3,4,5,6,7,8,9)], by = c("
 #remove old Intzone name column
 SpPolysDF@data$IZname <- SpPolysDF@data$IGZ
 SpPolysDF@data <- select(SpPolysDF@data, -IGZ)
-#If IZs begin with IZ then add Council name to the end
-SpPolysDF@data[grep("IZ",SpPolysDF$INTZONE_NAME), 10] <- paste(SpPolysDF@data[grep("IZ",SpPolysDF$INTZONE_NAME), 10], SpPolysDF@data[grep("IZ",SpPolysDF$INTZONE_NAME), 7], sep = " ")
 #Look for duplicates
 dups <- unique(SpPolysDF@data[c(11,12)])
-dups <- dups[duplicated(dups$INTZONE_NAME),2]
+dups <- dups[duplicated(dups$IZname),1]
 #Where duplicated add abbreviated Council Name
-SpPolysDF@data[SpPolysDF@data$INTZONE_NAME %in% dups, 10] <- paste(SpPolysDF@data[SpPolysDF@data$INTZONE_NAME %in% dups, 10], SpPolysDF@data[SpPolysDF@data$INTZONE_NAME %in% dups, 7], sep = " ")
-SpPolysDF@data$`S4 Average tariff score` <- as.numeric(SpPolysDF@data$`S4 Average tariff score`)
+#SpPolysDF@data[SpPolysDF@data$IZname %in% dups, 11] <- paste(SpPolysDF@data[SpPolysDF@data$IZname %in% dups, 11], SpPolysDF@data[SpPolysDF@data$INTZONE_NAME %in% dups, 12], sep = " ")
 SpPolysDF@data$`Percentage of school leavers entering positive destinations` <- as.numeric(SpPolysDF@data$`Percentage of school leavers entering positive destinations`)
 
 ##change council names
 SpPolysDF@data[SpPolysDF@data$council == "Na h-Eileanan an Iar",12] <- "Eilean Siar"
 SpPolysDF@data[SpPolysDF@data$council == "City of Edinburgh",12] <- "Edinburgh"
 dta <- SpPolysDF@data
-##read in West DUn names and replace in all data
+##read in West Dun and East L. names and replace in all data
 wDNms <- read_excel("data/Intermediate Geography Names.xlsx", sheet = 2)
 dta <- left_join(dta,wDNms[c(1,3)], by = c("DataZone"))
 dta$IZname <- dta$`IZ Name`
@@ -56,6 +54,7 @@ saveRDS(SpPolysDF, file = "C:/Users/cassidy.nicholas/OneDrive - IS/CPOP/data/Sha
 #Read shapes
 SpPolysIZ <- readRDS("C:/Users/cassidy.nicholas/OneDrive - IS/CMaps - 2011/IZ11.rds")
 #Read CPOP data, merge with shapes, clean the ranks into LA "sevenths" (septiles?)
+##This is old data, but will be replaced later anyway
 CPdta <- read_excel("C:/Users/cassidy.nicholas/OneDrive - IS/CPOP/data/ranks for igzs.xlsx", sheet = 1)
 SpPolysIZ@data <- left_join(SpPolysIZ@data, CPdta, by = c("InterZone" = "IGZ code"))
 colnames(SpPolysIZ@data)[11] <- "council"

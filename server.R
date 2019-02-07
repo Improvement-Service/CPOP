@@ -19,8 +19,8 @@ shinyServer(function(input, output, session) {
   # List indicators in the order these are to be presented
   
   indicators_1 <- c("Healthy Birthweight", "Primary 1 Body Mass Index", "Child Poverty",
-                    "S4 Tariff Score", "Positive Destinations", "Employment Rate",
-                    "Median Earnings", "Out of Work Benefits", "Business Survival",
+                    "Attainment", "Positive Destinations", "Employment Rate",
+                    "Median Earnings", "Out Of Work Benefits", "Business Survival",
                     "Crime Rate", "Dwelling Fires", "Carbon Emissions", 
                     "Emergency Admissions", "Unplanned Hospital Attendances",
                     "Early Mortality", "Fragility", "Well-being", "Fuel Poverty"
@@ -189,8 +189,8 @@ shinyServer(function(input, output, session) {
   # List indicators in the order these are to be presented
   
   indis <- c("Healthy Birthweight", "Primary 1 Body Mass Index", "Child Poverty",
-             "S4 Tariff Score", "Positive Destinations", "Employment Rate",
-             "Median Earnings", "Out of Work Benefits", "Business Survival",
+             "Attainment", "Positive Destinations", "Employment Rate",
+             "Median Earnings", "Out Of Work Benefits", "Business Survival",
              "Crime Rate", "Dwelling Fires", "Carbon Emissions", 
              "Emergency Admissions", "Unplanned Hospital Attendances",
              "Early Mortality", "Fragility", "Well-being", "Fuel Poverty")
@@ -483,7 +483,7 @@ shinyServer(function(input, output, session) {
       tags$h4(as.character(unique(selectedDZ$DataZone))),
       sprintf(
         "%s: %s\n",
-        "Tariff Score", 
+        "Average Highest Attainment", 
         round(unique(selectedDZ[14]),2)
       ), 
       tags$br()

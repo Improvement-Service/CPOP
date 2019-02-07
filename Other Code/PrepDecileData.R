@@ -10,14 +10,14 @@ scotvals <- filter(IGZdta, ScotlandDec %in% c(1,10)) %>%
 scotvals$CouncilName <- "Scotland"
 names(scotvals)[1] <- "Decile"
 
-dd <- IGZdta[c(11,6,8:10)] %>% filter(Decile %in% c(1,10))%>%
+dd <- IGZdta[c(12,11,6,8:10)] %>% filter(Decile %in% c(1,10))%>%
   group_by(Decile,Year,CouncilName,Indicator) %>%
   summarise_at(vars(value), funs(mean))
 dd <- bind_rows(dd[1:5], scotvals[1:5])
 
 dd <- filter(dd, Year %in% c("2006/07", "2007/08", "2008/09", "2009/10", 
                              "2010/11", "2011/12", "2012/13",
-                             "2013/14", "2014/15", "2015/16", "2016/17"))
+                             "2013/14", "2014/15", "2015/16", "2016/17", "2017/18"))
 dd[dd$Indicator == "Child Poverty",4] <- "Child Poverty (%)"
 dd[dd$Indicator == "Crime Rate",4] <- "Crime Rate, per 10,000"
 dd[dd$Indicator == "Early Mortality",4] <- "Early Mortality, per 100,000"
@@ -25,5 +25,5 @@ dd[dd$Indicator == "Emergency Admissions",4] <- "Emergency Admissions, per 100,0
 dd[dd$Indicator == "Out of Work Benefits",4] <- "Out of Work Benefits (%)"
 dd[dd$Indicator == "Positive Destinations",4] <- "Positive Destinations (%)"
 dd[dd$Indicator == "Depopulation",4] <- "Depopulation Index"
-
+dd[dd$Indicator == "Attainment",4] <- "Average Highest Attainment"
 saveRDS(dd, "data/DecileData.rds")

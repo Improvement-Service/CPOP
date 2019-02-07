@@ -94,7 +94,7 @@ body <- dashboardBody(
                            popOvs("plot_1", "Healthy Birthweight",DefHBW, TimeHBW, SourceHBW, "bottom"),
                            popOvs("plot_2", "Primary 1 Body Mass Index",DefBMI, TimeBMI, SourceBMI, "bottom"),
                            popOvs("plot_3", "Child Poverty",DefCPov, TimeCPov, SourceCPov, "bottom"),
-                           popOvs("plot_4", "S4 Tariff",DefS4T, TimeS4T, SourceS4T, "bottom"),
+                           popOvs("plot_4", "Average Highest Attainment",DefS4T, TimeS4T, SourceS4T, "bottom"),
                            popOvs("plot_5", "Positive Destinations",DefPosDes, TimePosDes, SourcePosDes, "bottom"),
                            popOvs("plot_6", "Employment Rate",DefEmpRt, TimeEmpRt, SourceEmpRt, "bottom")
                   ),
@@ -136,7 +136,7 @@ body <- dashboardBody(
                      popOvs("plot_CPP_1", "Healthy Birthweight",DefHBW, TimeHBW, SourceHBW, "bottom", pltHght = "28vh"),
                      popOvs("plot_CPP_2", "Primary 1 Body Mass Index",DefBMI, TimeBMI, SourceBMI, "bottom", pltHght = "28vh"),
                      popOvs("plot_CPP_3", "Child Poverty",DefCPov, TimeCPov, SourceCPov, "bottom", pltHght = "28vh"),
-                     popOvs("plot_CPP_4", "S4 Tariff",DefS4T, TimeS4T, SourceS4T, "bottom", pltHght = "28vh"),
+                     popOvs("plot_CPP_4", "Average Highest Attainment",DefS4T, TimeS4T, SourceS4T, "bottom", pltHght = "28vh"),
             popOvs("plot_CPP_5", "Positive Destinations",DefPosDes, TimePosDes, SourcePosDes, "bottom", pltHght = "28vh"),
             popOvs("plot_CPP_6", "Employment Rate",DefEmpRt, TimeEmpRt, SourceEmpRt, "bottom", pltHght = "28vh")
             ),
@@ -167,7 +167,7 @@ body <- dashboardBody(
                        popOvs("plotSimCPP_1", "Healthy Birthweight",DefHBW, TimeHBW, SourceHBW, "bottom",pltHght = "30vh"),
                        popOvs("plotSimCPP_2", "Primary 1 Body Mass Index",DefBMI, TimeBMI, SourceBMI, "bottom",pltHght = "30vh"),
                        popOvs("plotSimCPP_3", "Child Poverty",DefCPov, TimeCPov, SourceCPov, "bottom",pltHght = "30vh"),
-                       popOvs("plotSimCPP_4", "S4 Tariff",DefS4T, TimeS4T, SourceS4T, "bottom",pltHght = "30vh"),
+                       popOvs("plotSimCPP_4", "Average Highest Attainment",DefS4T, TimeS4T, SourceS4T, "bottom",pltHght = "30vh"),
                        popOvs("plotSimCPP_5", "Positive Destinations",DefPosDes, TimePosDes, SourcePosDes, "bottom",pltHght = "30vh"),
                        popOvs("plotSimCPP_6", "Employment Rate",DefEmpRt, TimeEmpRt, SourceEmpRt, "bottom",pltHght = "30vh")
               ),
@@ -208,7 +208,7 @@ body <- dashboardBody(
             conditionalPanel("input.CPP != ' '", 
                            fluidRow(splitLayout(cellWidths = c("33%", "33%", "33%"),
                         h4("Percentage of Children in Poverty"), 
-                        h4("S4 Average Tariff Score"), 
+                        h4("Average Highest Attainment"), 
                         h4("% School Leavers Entering Positive Destinations"))
                      ),
                        fluidRow(splitLayout(cellWidths = c("33%", "33%", "33%"),

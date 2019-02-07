@@ -20,11 +20,11 @@ library(shinyWidgets)
 
 #Store value for the most recent year data is available, this needs to be changed when data is refreshed annually
 FrstYear <- "2006/07"
-RcntYear <- "2016/17"
+RcntYear <- "2017/18"
 ProjYear <- "2020/21"
 
 LblFrst <- "06/07"
-LblRcnt <- "16/17"
+LblRcnt <- "17/18"
 LblProj <- "20/21"
 
 SpPolysDF <- read_rds("data/Shapes_decs.rds")
@@ -74,7 +74,7 @@ DefCPov    <- CPov[[1,2]]
 TimeCPov   <- CPov[[1,3]]
 SourceCPov <- CPov[[1,4]]
 
-S4T       <- filter(Metadata, Indicator == "S4 Tariff")
+S4T       <- filter(Metadata, Indicator == "Average Highest Attainment")
 DefS4T    <- S4T[[1,2]]
 TimeS4T   <- S4T[[1,3]]
 SourceS4T <- S4T[[1,4]]
