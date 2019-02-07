@@ -20,7 +20,7 @@ shinyServer(function(input, output, session) {
   
   indicators_1 <- c("Healthy Birthweight", "Primary 1 Body Mass Index", "Child Poverty",
                     "Attainment", "Positive Destinations", "Employment Rate",
-                    "Median Earnings", "Out Of Work Benefits", "Business Survival",
+                    "Median Earnings", "Out of Work Benefits", "Business Survival",
                     "Crime Rate", "Dwelling Fires", "Carbon Emissions", 
                     "Emergency Admissions", "Unplanned Hospital Attendances",
                     "Early Mortality", "Fragility", "Well-being", "Fuel Poverty"
@@ -190,7 +190,7 @@ shinyServer(function(input, output, session) {
   
   indis <- c("Healthy Birthweight", "Primary 1 Body Mass Index", "Child Poverty",
              "Attainment", "Positive Destinations", "Employment Rate",
-             "Median Earnings", "Out Of Work Benefits", "Business Survival",
+             "Median Earnings", "Out of Work Benefits", "Business Survival",
              "Crime Rate", "Dwelling Fires", "Carbon Emissions", 
              "Emergency Admissions", "Unplanned Hospital Attendances",
              "Early Mortality", "Fragility", "Well-being", "Fuel Poverty")

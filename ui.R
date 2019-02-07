@@ -421,7 +421,7 @@ body <- dashboardBody(
               column(4,
                      uiOutput("ICompUI")),
             column(3,
-                   selectInput("InqYr", "Select Year", unique(IGZdta$Year)[1:11], selected = "2016/17")),
+                   selectInput("InqYr", "Select Year", unique(IGZdta$Year)[1:match(RcntYear, unique(IGZdta$Year))], selected = RcntYear)),
             column(5, style = "margin-top:1px",div(style = "display:block",tags$img(style = "margin-right:2px",src = "Legend - Selection.png"),
                    span(textOutput("CPPLgndInq"), style = "font-size:1.4vw;; font-weight:bold; display:inline-block")),
                    div(style = "display:block",tags$img(style = "margin-right:2px",src = "Legend - Comp.png"),
