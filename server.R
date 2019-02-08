@@ -153,7 +153,7 @@ shinyServer(function(input, output, session) {
             x = Inf, 
             y = Inf, 
             label = sprintf('\U25CF'), 
-            size = 10, 
+            size = 7, 
             colour = (if_else(HighValue == "Yes", coloursDotPos, coloursDotNeg)), 
             hjust = 1, 
             vjust = 1
