@@ -750,7 +750,8 @@ shinyServer(function(input, output, session) {
     
     CompleteSet <- 
       knitr::kable(CompleteSet,"html", escape = F) %>% 
-      kable_styling(bootstrap_options = c("bordered", "hover", "responsive", "condensed"), font_size = 10, full_width = F) %>%
+      kable_styling(bootstrap_options = c("bordered", "hover", "responsive", "condensed"), 
+                    font_size = 10) %>%
       add_header_above(c(
         " " = 2,
         "Overall Outcomes" = 1,
@@ -764,7 +765,8 @@ shinyServer(function(input, output, session) {
         "S4 Tariff Score" = 3
       )
       ) %>%
-      collapse_rows(columns = 1, valign = "middle") 
+      collapse_rows(columns = 1, valign = "middle") %>%
+      scroll_box(width = "1200px") 
   }  
   
   # Create Ui ouputs for My Communities Page - PAGE 7-----------------------------------------------------
