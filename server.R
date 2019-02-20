@@ -766,7 +766,7 @@ shinyServer(function(input, output, session) {
       )
       ) %>%
       collapse_rows(columns = 1, valign = "middle") %>%
-      scroll_box(width = "1200px") 
+      scroll_box(width = "160%") 
   }  
   
   # Create Ui ouputs for My Communities Page - PAGE 7-----------------------------------------------------
