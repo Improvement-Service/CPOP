@@ -1612,18 +1612,33 @@ shinyServer(function(input, output, session) {
   
   output$InqGrp <- renderPlot({
     req(input$LA1)
-    DIdta <- filter(DIdta, la %in% c(input$LA1, input$InqComp)) %>% arrange(ind)
+    DIdta <- filter(DIdta, la %in% c(input$LA1, input$InqComp)) %>% arrange(ind, match(la, c(input$LA1, input$InqComp)))
     DIdta <- DIdta[DIdta$ind != "Out of Work Benefits", ]
     indList <- unique(DIdta$ind)
+    ##get the dot colour
+    DIdta <- setDT(DIdta)[,Higher :=
+                      abs(first(value))<abs(last(value)),
+                      by = list(ind, year)]
+    DIdta <- setDT(DIdta)[,IRHigher :=
+                            first(ImprovementRate)<last(ImprovementRate),
+                          by = list(ind, year)]
     ##create colourscheme
     #descText <- "These graphs will help you understand\ninequality in outcomes across the whole of the\nCPP, with 0 indicating perfect equality and\nvalues between 0 and 1 indicating that income\ndeprived people experience poorer outcomes,\n and values between -1 and 0 indicating that\nnon-income deprived people experience\npoorer outcomes."
     DIdta$coloursch <- ifelse(DIdta$la ==input$LA1, "CPP", "Comp")
     lstDi <- lapply(1:7,FUN = function(y){
       dta <- DIdta[DIdta$ind == indList[y],]
+      DDta <- filter(dta, year == 2017)
+      CDot <- if_else(DDta$Higher == T && DDta$IRHigher == T, "green", if_else(DDta$Higher == F && DDta$IRHigher == F, "red", "orange"))
       ggplot(dta, aes(x = year, y = value))+
         geom_line(data = dta[!is.na(dta$value),], aes(group = coloursch, colour = coloursch), size = 1)+
         ylab("")+
         xlab("")+
+        annotate(
+          "text", x = Inf, y = Inf,label = sprintf('\U25CF'),size = 7, 
+          colour = CDot, 
+          hjust = 1, 
+          vjust = 1
+        )+
         ggtitle(indList[y])+
         scale_y_continuous(limits = c(-0.23,0.5))+
         scale_x_continuous(breaks = seq(2007,2017, by  =2))+

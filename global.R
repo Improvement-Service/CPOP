@@ -23,6 +23,10 @@ FrstYear <- "2006/07"
 RcntYear <- "2017/18"
 ProjYear <- "2020/21"
 
+#First and last years for Duncan Index graphs
+DIFrYr <- substr(FrstYear,1,4)
+DIRcYr <- substr(RcntYear,1,4)
+
 LblFrst <- "06/07"
 LblRcnt <- "17/18"
 LblProj <- "20/21"
@@ -153,9 +157,13 @@ SourceFuelPov <- FuelPov[[1,4]]
 CPPNames <- unique(CPPMapDta[CPPMapDta$council != "Scotland", "council"])
 
 
-##Read in Duncan Index Scores
+##Read in Duncan Index Scores and calculate whether improving
 DIdta <- read_csv("data/DuncanIndex.csv")
 DIdta <- gather(DIdta, "ind", "value",3:10) 
+DIdta <- setDT(DIdta)[, ImprovementRate :=
+                                  (abs(last(value))/abs(first(value)))-1,
+                                by = list(la, ind)
+                                ]
 InqDta <-readRDS("data/DecileData.rds")
 
 popOvs <- function(pltnm,Title,Def,Tm,Src, plc = "top", pltHght = "25vh"){
