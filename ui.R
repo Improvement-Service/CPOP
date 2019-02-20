@@ -445,6 +445,7 @@ body <- dashboardBody(
             fluidPage(
               fluidRow(
                 column(12,
+                       h3("How have outcomes for the five most vulnerable communities changed relative to the CPP"),
                        tableOutput("VulnTable")
                        )
               )
