@@ -40,6 +40,11 @@ IGZdta <- read_csv("data/IGZcleandata.csv")
 IGZ_latest <- read_csv("data/IGZ_latest.csv")
 IGZ_change <- read_csv("data/IGZ_change.csv")
 Metadata <- read_csv("data/Metadata.csv")
+VulnComm <- read_csv("data/Formatted Vulnerable Communities.csv")
+
+VulnComm$Most_Deprived_Comm[VulnComm$Most_Deprived_Comm == 6] <- ""
+VulnComm[VulnComm$AreaLabel == "CPP Average", c(4,7,10,13,16,19,22,25,28)] <- ""
+VulnComm <- as.data.frame(VulnComm)
 
 #rename Edinburgh
 SpPolysIZ@data[SpPolysIZ@data$council == "Edinburgh","council"] <- "Edinburgh, City of" 

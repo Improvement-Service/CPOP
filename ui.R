@@ -9,6 +9,7 @@ sidebar <- dashboardSidebar(
   menuItem("Compare All CPPs", tabName = "P2", icon = icon("bar-chart")),
   menuItem("Compare Similar CPPs", tabName = "P3", icon = icon("area-chart")),
   menuItem("Inequality Over Time", tabName = "InQ", icon = icon("arrows-v")),
+  menuItem("Vulnerable Communities Over Time", tabName = "Vuln"),
   menuItem("My Communities", tabName = "MyCom", icon = icon("table")),
   menuItem("Community Profile", tabName = "CP", icon = icon("arrow-down")),
   conditionalPanel(condition = "input.tabs == `CP`", uiOutput("CommCP")),
@@ -437,6 +438,18 @@ body <- dashboardBody(
     div(em("These graphs will help you understand inequality in outcomes across the whole of the CPP, with 0 indicating perfect equality, values between 0 and 1 indicating that income deprived people experience poorer outcomes, and values between -1 and 0 indicating that non-income deprived people experience poorer outcomes. Please note that this is experimental analysis which makes use of modelled data alongside raw data."),
      strong("Methodology Source: University of Sheffield"))
           )),
+
+  tabItem(tabName = "Vuln",
+          mainPanel(
+            fluidPage(
+              fluidRow(
+                column(12,
+                       tableOutput("VulnTable")
+                       )
+              )
+            )
+          )
+        ),
 
 ##Download tab====================##
   tabItem(tabName = "DtaDL",

@@ -701,8 +701,75 @@ shinyServer(function(input, output, session) {
     })
   })
   
+  #Create Ui outputs for Vulnerable Communities page - PAGE 6 --------------------------------------------
   
-  # Create Ui ouputs for My Communities Page - PAGE6-----------------------------------------------------
+  output$VulnTable <- function(){
+    CPPSelected <- input$LA1
+    CompleteSet <- filter(VulnComm, CPP == CPPSelected)
+    CompleteSet <- CompleteSet[,-2]
+    #Store which cells should be coloured
+    
+    CompleteSet[,c(6,9,12,15,18,21,24,27)][CompleteSet[,c(6,9,12,15,18,21,24,27)] == "Faster"] <- cell_spec(CompleteSet[,c(6,9,12,15,18,21,24,27)][CompleteSet[,c(6,9,12,15,18,21,24,27)] == "Faster"], color = "green")
+    CompleteSet[,c(6,9,12,15,18,21,24,27)][CompleteSet[,c(6,9,12,15,18,21,24,27)] == "Slower"] <- cell_spec(CompleteSet[,c(6,9,12,15,18,21,24,27)][CompleteSet[,c(6,9,12,15,18,21,24,27)] == "Slower"], color = "red")
+    CompleteSet[,c(6,9,12,15,18,21,24,27)][CompleteSet[,c(6,9,12,15,18,21,24,27)] == "No Difference"] <- cell_spec(CompleteSet[,c(6,9,12,15,18,21,24,27)][CompleteSet[,c(6,9,12,15,18,21,24,27)] == "No Difference"], color = "black")
+    
+    CompleteSet[,3][CompleteSet[,3] == "Faster"] <- cell_spec(CompleteSet[,3][CompleteSet[,3] == "Faster"], color = "white", background = "green")
+    CompleteSet[,3][CompleteSet[,3] == "Slower"] <- cell_spec(CompleteSet[,3][CompleteSet[,3] == "Slower"], color = "white", background = "red")
+    CompleteSet[,3][CompleteSet[,3] == "No Difference"] <- cell_spec(CompleteSet[,3][CompleteSet[,3] == "No Difference"], color = "black", background = "yellow")
+  
+    
+    names(CompleteSet) <- c(
+      " ",
+      "Community",
+      "Improvement rate compared to the CPP average",
+      "2006/07",
+      "2017/18",
+      "Improvement rate compared to the CPP average",
+      "2006/07",
+      "2017/18",
+      "Improvement rate compared to the CPP average",
+      "2006/07",
+      "2017/18",
+      "Improvement rate compared to the CPP average",
+      "2006/07",
+      "2017/18",
+      "Improvement rate compared to the CPP average",
+      "2006/07",
+      "2017/18",
+      "Improvement rate compared to the CPP average",
+      "2006/07",
+      "2017/18",
+      "Improvement rate compared to the CPP average",
+      "2006/07",
+      "2017/18",
+      "Improvement rate compared to the CPP average",
+      "2006/07",
+      "2017/18",
+      "Improvement rate compared to the CPP average"
+    )
+    
+    CompleteSet <- 
+      knitr::kable(CompleteSet,"html", escape = F) %>% 
+      kable_styling(bootstrap_options = c("bordered", "hover", "responsive", "condensed"), 
+                    font_size = 10) %>%
+      add_header_above(c(
+        " " = 2,
+        "Overall Outcomes" = 1,
+        "Child Poverty" = 3,
+        "Crime Rate" = 3,
+        "Depopulation" = 3,
+        "Early Mortality" = 3,
+        "Emergency Admissions" = 3,
+        "Out of Work Benefits" = 3,
+        "Positive Destinations" = 3,
+        "S4 Tariff Score" = 3
+      )
+      ) %>%
+      collapse_rows(columns = 1, valign = "middle") %>%
+      scroll_box(width = "1200px") 
+  }  
+  
+  # Create Ui ouputs for My Communities Page - PAGE 7-----------------------------------------------------
   
   
 #  observeEvent(eventExpr = input$IndiAll,
@@ -976,7 +1043,7 @@ shinyServer(function(input, output, session) {
   })
   
   
-  # Create Ui ouputs for Community Profile - Page 7-------------------------------------- 
+  # Create Ui ouputs for Community Profile - Page 8-------------------------------------- 
   
   output$CommCP <- renderUI({
     IGZsubset <- filter(IGZdta, CPP == input$LA1)
@@ -1446,7 +1513,7 @@ shinyServer(function(input, output, session) {
   do.call("plot_grid", c(plots, ncol = 2, align = "v"))
   })
   
-  # Create Ui Outputs for All Communities Page - PAGE8----------------------------------
+  # Create Ui Outputs for All Communities Page - PAGE 9----------------------------------
   
   output$CommLgnd <- renderText({
     txt <- "Community"
@@ -1582,7 +1649,7 @@ shinyServer(function(input, output, session) {
     )
   })
   
-  ##Inequality Page Table
+  # Create Ui Outputs for Inequality Page -------------------------------------------------
   output$inqTbl <- function(){
     #filter dataset
     req(input$LA1)
