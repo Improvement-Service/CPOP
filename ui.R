@@ -9,8 +9,8 @@ sidebar <- dashboardSidebar(
   menuItem("Compare All CPPs", tabName = "P2", icon = icon("bar-chart")),
   menuItem("Compare Similar CPPs", tabName = "P3", icon = icon("area-chart")),
   menuItem("Inequality Over Time", tabName = "InQ", icon = icon("arrows-v")),
-  menuItem("Vulnerable Communities Over Time", tabName = "Vuln"),
-  menuItem("My Communities", tabName = "MyCom", icon = icon("table")),
+  menuItem("Vulnerable Communities", tabName = "Vuln",icon = icon("table")),
+  menuItem("My Communities", tabName = "MyCom", icon = icon("columns")),
   menuItem("Community Profile", tabName = "CP", icon = icon("arrow-down")),
   conditionalPanel(condition = "input.tabs == `CP`", uiOutput("CommCP")),
   menuItem("All Communities", tabName = "allCom", icon = icon("picture-o")),
@@ -46,6 +46,7 @@ body <- dashboardBody(
     ".popover{width:40vw; max-width:450px}",
     ".btn-group.bootstrap-select.form-control {background: border-box}",
     ".skin-blue {padding-right:0px}",
+    "#VulnTable {margin-top:10px}",
     HTML(" h5{height: 18px;
          margin-top:2px;
          margin-bottom:0px;

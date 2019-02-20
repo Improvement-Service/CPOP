@@ -750,8 +750,8 @@ shinyServer(function(input, output, session) {
     
     CompleteSet <- 
       knitr::kable(CompleteSet,"html", escape = F) %>% 
-      kable_styling(bootstrap_options = c("bordered", "hover", "responsive", "condensed"), 
-                    font_size = 10) %>%
+      kable_styling(bootstrap_options = c("bordered", "hover", "responsive"), 
+                    font_size = 14) %>%
       add_header_above(c(
         " " = 2,
         "Overall Outcomes" = 1,
