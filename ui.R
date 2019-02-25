@@ -433,7 +433,7 @@ body <- dashboardBody(
     h3("Inequality Between Most and Least Deprived Communities"),
      tableOutput("inqTbl"),
      hr(style = "height:2px;background-color:black;color:black"),
-     h3("Inequality Across Communities"),
+     h3("Inequality Across All Communities"),
      plotOutput("InqGrp"),
      fluidRow(),
     div(em("These graphs will help you understand inequality in outcomes across the whole of the CPP, with 0 indicating perfect equality, values between 0 and 1 indicating that income deprived people experience poorer outcomes, and values between -1 and 0 indicating that non-income deprived people experience poorer outcomes. Please note that this is experimental analysis which makes use of modelled data alongside raw data."),
