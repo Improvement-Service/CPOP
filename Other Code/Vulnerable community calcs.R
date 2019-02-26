@@ -24,7 +24,7 @@ IGZData <- read_csv("data/Inequality Data.csv")
 
 
 IGZData$HighIsPos <- "No"
-IGZData$HighIsPos[IGZData$Indicator %in% c("S4 Tariff Score", "Positive Destinations")] <- "Yes"
+IGZData$HighIsPos[IGZData$Indicator %in% c("Average Highest Attainment", "Positive Destinations")] <- "Yes"
 
 #Calculate %Change from start year to end year for all outcomes
 
@@ -200,7 +200,7 @@ total$AreaLabel <- total$CPP
 total$AreaLabel[total$Label == "CPPMean"] <- "CPP Average"
 total <- total[,-2]
 
-total <- total[,c(28,1,18,27,2,3,19,4,5,20,6,7,21,8,9,22,10,11,23,12,13,24,14,15,25,16,17,26)]
+total <- total[,c(28,1,18,27,4,5,20,6,7,21,8,9,22,10,11,23,12,13,24,14,15,25,16,17,26,2,3,19)]
 
 
 total[,c(5,6,11,12,20,21,23,24,26,27)] <- round(total[,c(5,6,11,12,20,21,23,24,26,27)],2)
@@ -208,4 +208,5 @@ total[,c(8,9,14,15,17,18)] <- round(total[,c(8,9,14,15,17,18)],0)
 
 #Save formatted data
 
-write_excel_csv(total ,path = "data/Formatted Vulnerable Communities.csv")
+write_excel_csv(total, path = "data/Formatted Vulnerable Communities.csv")
+
