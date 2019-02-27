@@ -47,6 +47,10 @@ body <- dashboardBody(
     ".btn-group.bootstrap-select.form-control {background: border-box}",
     ".skin-blue {padding-right:0px}",
     "#VulnTable {margin-top:10px}",
+    "#HeaderVuln {font-style:italic;
+          font-family: sans-serif;
+        font-size:3vh; margin-top:5px;
+    }",
     HTML(" h5{height: 18px;
          margin-top:2px;
          margin-bottom:0px;
@@ -445,7 +449,7 @@ body <- dashboardBody(
             fluidPage(
               fluidRow(
                 column(12,
-                       h3("How have outcomes for the five most vulnerable communities changed relative to the CPP"),
+                       textOutput("HeaderVuln"),
                        tableOutput("VulnTable")
                        )
               )
@@ -457,7 +461,7 @@ body <- dashboardBody(
   tabItem(tabName = "DtaDL",
           fluidPage(
             fluidRow(h3("About this tool"), p("The CPOP tool aims to help you assess if the lives of people in your community are improving by providing a set of core measures on important life outcomes including early years, older people, safer/stronger communities, health and wellbeing, and engagement with local communities and a consistent basis for measuring outcomes and inequalities of outcome in your area."), hr()),
-            fluidRow(h3("Download the Data"), p("Use these buttons to download all of the data used in this tool. Please note that much of this data is modelled and so may not match exactly with data from other sources."),
+            fluidRow(h3("Download the Data"), p("Use these buttons to download all of the data used in this tool. Please note that much of this data is modelled and so may not match exactly with data from other sources. This data was most recently updated on 27/02/2019."),
                      downloadBttn("DLDta",label = "Download All CPP Data"),
                      downloadBttn("DLIZDta", label = "Download All Community Data", style = "fill", color = "success"),
                      hr()),
