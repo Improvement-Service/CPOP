@@ -765,7 +765,7 @@ shinyServer(function(input, output, session) {
         "Emergency Admissions" = 3,
         "Out of Work Benefits" = 3,
         "Positive Destinations" = 3,
-        "S4 Tariff Score" = 3
+        "Average Highest Attainment" = 3
       )
       ) %>%
       collapse_rows(columns = 1, valign = "middle") %>%

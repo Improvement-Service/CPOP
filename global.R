@@ -164,7 +164,8 @@ CPPNames <- unique(CPPMapDta[CPPMapDta$council != "Scotland", "council"])
 
 ##Read in Duncan Index Scores and calculate whether improving
 DIdta <- read_csv("data/DuncanIndex.csv")
-DIdta <- gather(DIdta, "ind", "value",3:10) 
+DIdta <- DIdta[,-5]
+DIdta <- gather(DIdta, "ind", "value",3:9) 
 DIdta <- setDT(DIdta)[, ImprovementRate :=
                                   (abs(last(value))/abs(first(value)))-1,
                                 by = list(la, ind)
