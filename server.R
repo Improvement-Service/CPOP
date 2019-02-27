@@ -9,7 +9,10 @@ shinyServer(function(input, output, session) {
     txt <- input$CompLA1
   })
   
-  
+  output$HeaderVuln <- renderText({
+    req(input$LA1)
+    txt <- paste("Have outcomes for the five most vulnerable communities in",input$LA1, "improved faster or slower than the CPP as a whole?")
+  })
   
   selected_dta_1 <- reactive({
     CPP_Imp$colourscheme <- ifelse(CPP_Imp$CPP == input$LA1,"A","B")
