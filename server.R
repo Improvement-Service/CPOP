@@ -752,6 +752,11 @@ shinyServer(function(input, output, session) {
       knitr::kable(CompleteSet,"html", escape = F) %>% 
       kable_styling(bootstrap_options = c("bordered", "hover", "responsive"), 
                     font_size = 14) %>%
+      row_spec(0, color = "white", background = "black") %>%
+      row_spec(6, background = "aliceblue") %>%
+      column_spec(1, color = "white", background = "black") %>%
+      column_spec(2, color = "white", background = "black") %>%
+      collapse_rows(columns = 1, valign = "middle") %>%
       add_header_above(c(
         " " = 2,
         "Overall Outcomes" = 1,
@@ -763,9 +768,11 @@ shinyServer(function(input, output, session) {
         "Out of Work Benefits" = 3,
         "Positive Destinations" = 3,
         "Average Highest Attainment" = 3
-      )
+      ),
+      background = "black",
+      color = "white",
+      include_empty = T
       ) %>%
-      collapse_rows(columns = 1, valign = "middle") %>%
       scroll_box(width = "160%") 
   }  
   
