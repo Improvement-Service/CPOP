@@ -1553,17 +1553,6 @@ shinyServer(function(input, output, session) {
   
   output$AllCPlots <- renderPlot({
     req(input$LA1)
-    # Y axis range 
-    y_rnge_dta <- filter(
-      IGZdta, IGZdta$CPP==input$LA1 &
-      IGZdta$IndicatorFullName == input$IndiAllC & IGZdta$Type != "Projected"
-    )
-    y_min <- min(y_rnge_dta$value, na.rm = TRUE)
-    y_max <- max(y_rnge_dta$value, na.rm = TRUE)
-    Rnge <- y_max - y_min
-    Extra <- Rnge * 0.05
-    y_min <- y_min - Extra
-    y_max <- y_max + Extra
     
     dta <- IGZdta[IGZdta$CPP == input$LA1 & 
                     IGZdta$IndicatorFullName == input$IndiAllC &
@@ -1587,6 +1576,14 @@ shinyServer(function(input, output, session) {
     colnames(dta2) <- colnames(dta)
     colnames(dta3) <- colnames(dta)
     dta            <- rbind(dta, dta2, dta3)
+    
+    # Y axis range 
+    y_min <- min(dta$value, na.rm = TRUE)
+    y_max <- max(dta$value, na.rm = TRUE)
+    Rnge <- y_max - y_min
+    Extra <- Rnge * 0.05
+    y_min <- y_min - Extra
+    y_max <- y_max + Extra
     
     dta$colourscheme <-ifelse(
       dta$InterZone_Name == "Scotland",
