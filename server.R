@@ -1837,10 +1837,32 @@ shinyServer(function(input, output, session) {
   observeEvent(input$HelpButton,{
     if(input$tabs == "InQ")
     {showModal(modalDialog(
-      title = "CPP Inequality", 
+      title = "CPP Inequality - Page 1 of 2", 
       tags$img(src = "IneqHelp.PNG"),
+      fluidRow(column(10),
+               column(2, actionButton("InQ2", "Next Page"))),
       size = "l"))}
   })
+  
+  observeEvent(input$InQ2,{
+    showModal(
+      modalDialog(
+        title = "CPP Inequality - Page 2 of 2",
+      fluidRow(tags$img(src = "IneqHelp2.PNG")),
+        fluidRow(column(2, actionButton("InQ1", "Previous Page")),
+                 column(10)),
+      size = "l"
+      )
+    )
+  })
+  
+  observeEvent(input$InQ1,
+               showModal(modalDialog(
+                 title = "CPP Inequality - Page 1 of 2", 
+                 tags$img(src = "IneqHelp.PNG"),
+                 fluidRow(column(10),
+                          column(2, actionButton("InQ2", "Next Page"))),
+                 size = "l")))
   
   #My Communities Page
   
