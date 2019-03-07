@@ -1864,6 +1864,17 @@ shinyServer(function(input, output, session) {
                           column(2, actionButton("InQ2", "Next Page"))),
                  size = "l")))
   
+  ##Vulnerable Communities Page
+  observeEvent(input$HelpButton,{
+    if(input$tabs == "Vuln"){
+      showModal(modalDialog(
+        title = "Outcomes for Vulnerable Communties",
+        tags$img(src = "VulnCHelp.PNG"),
+        size = "l"
+      ))
+    }
+  })
+  
   #My Communities Page
   
   observeEvent(input$HelpButton,{
