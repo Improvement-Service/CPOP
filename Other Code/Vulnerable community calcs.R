@@ -177,7 +177,11 @@ TableData <- TableData %>% spread(DataSpec, value)
 
 #Add Vulnerable Community Labels to data and filter to only include these
 
-DeprivedCommData <- read_csv("data/Most Deprived Communities.csv")
+DeprivedCommData <- read_csv("data/Vulnerable communities - 2006.csv")
+DeprivedCommData <- filter(DeprivedCommData, revRank %in% 1:5) %>%
+  select(c("InterZone", "revRank"))
+colnames(DeprivedCommData) <- c("IGZ","Most_Deprived_Comm")
+DeprivedCommData <- DeprivedCommData[c(2,1)]
 TableData <- merge(TableData, DeprivedCommData)
 TableData <- TableData[order(TableData$Most_Deprived_Comm),]
 
