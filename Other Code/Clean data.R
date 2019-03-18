@@ -9,11 +9,11 @@ library(readxl)
 #use for loop to loop through and read every worksheet
 ##CPP data
 
-CPPdta <- read_excel("data/Final CPP Data - Feb 19.xlsx",
+CPPdta <- read_excel("data/Final CPP Data - Mar 19.xlsx",
                      sheet = 2)
 
 for (i in 3:20) {
-  CPPdta2 <- read_excel("data/Final CPP Data - Feb 19.xlsx",
+  CPPdta2 <- read_excel("data/Final CPP Data - Mar 19.xlsx",
                         sheet = i)
   CPPdta <- merge(CPPdta, CPPdta2)
 }
@@ -39,10 +39,10 @@ CPPdta[CPPdta$Indicator == "Attainment", "IndicatorFullName"] <- "Average Highes
 write_excel_csv(CPPdta ,path = "data/CPPcleandata.csv")
 
 ##IGZ data
-IGZdta <- read_excel("data/Final IGZ Data - Feb 19.xlsx",
+IGZdta <- read_excel("data/Final IGZ Data - Mar 19.xlsx",
                      sheet = 2)
 for (i in 3:10) {
-  IGZdta2 <- read_excel("data/Final IGZ Data - Feb 19.xlsx",
+  IGZdta2 <- read_excel("data/Final IGZ Data - Mar 19.xlsx",
                         sheet = i)
   IGZdta <- merge(IGZdta, IGZdta2)
 }
@@ -66,10 +66,10 @@ write_excel_csv(IGZdta ,path = "data/IGZcleandata.csv")
 
 
 ##DZ data
-DZdta <- read_excel("data/Final DZ Data - Feb 19.xlsx",
+DZdta <- read_excel("data/Final DZ Data - Mar 19.xlsx",
                      sheet = 2)
 for (i in 3:7) {
-  DZdta2 <- read_excel("data/Final DZ Data - Feb 19.xlsx",
+  DZdta2 <- read_excel("data/Final DZ Data - Mar 19.xlsx",
                         sheet = i)
   DZdta <- merge(DZdta, DZdta2)
 }

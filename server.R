@@ -2024,7 +2024,7 @@ shinyServer(function(input, output, session) {
     output$DLIZDta <- downloadHandler(
       filename = paste("IGZ Data", ".zip", sep = ""),
       content = function(con) {
-        file.copy("data/IGZ Data - Feb 19.zip", con)
+        file.copy("data/IGZ Data - Mar 19.zip", con)
       },
       contentType = "application/zip"
     )

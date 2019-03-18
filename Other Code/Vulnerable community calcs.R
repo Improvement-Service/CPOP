@@ -17,8 +17,8 @@ CPPNames <- c("Aberdeen City", "Aberdeenshire", "Angus", "Argyll and Bute",
 
 
 
-IGZData <- read_csv("data/Inequality Data.csv")
-
+IGZData <- read_csv("data/IGZcleandata.csv")[c(1,3,4,5,6,8,9)]
+colnames(IGZData)[1] <- "IGZ"
 #Calculations for table 1 --------------------------------------------------------------------------------
 #Calculate Change and CPPChangeScore----------------------------------------------------------------------
 
