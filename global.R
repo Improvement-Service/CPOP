@@ -16,6 +16,7 @@ library(shinyLP)
 library(kableExtra)
 library(shinyjs)
 library(shinyWidgets)
+library(formattable)
 
 
 #Store value for the most recent year data is available, this needs to be changed when data is refreshed annually
