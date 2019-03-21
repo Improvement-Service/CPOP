@@ -4,6 +4,10 @@ decDta <- read_csv("data/IncomeDeciles.csv")
 IGZdta <- read_csv("data/IGZcleandata.csv")
 
 IGZdta <- left_join(IGZdta, decDta, by = c("InterZone" = "AreaCode"))
+##Make imputed data NAs and then remove them - in case 
+#  we change our mind about how to display this in future
+IGZdta[IGZdta$Type=="Imputed"|IGZdta$Type=="Projected", "value"] <- NA
+IGZdta <- IGZdta[complete.cases(IGZdta$value),]
 scotvals <- filter(IGZdta, ScotlandDec %in% c(1,10)) %>%
   group_by(ScotlandDec, Indicator, Year) %>%
   summarise_at(vars(value), funs(mean))
@@ -15,9 +19,13 @@ dd <- IGZdta[c(12,11,6,8:10)] %>% filter(Decile %in% c(1,10))%>%
   summarise_at(vars(value), funs(mean))
 dd <- bind_rows(dd[1:5], scotvals[1:5])
 
-dd <- filter(dd, Year %in% c("2006/07", "2007/08", "2008/09", "2009/10", 
-                             "2010/11", "2011/12", "2012/13",
-                             "2013/14", "2014/15", "2015/16", "2016/17", "2017/18"))
+##Previously we wanted to keep every year, but no longer! - get last year
+#dd <- filter(dd, Year %in% c("2006/07", "2007/08", "2008/09", "2009/10", 
+#                             "2010/11", "2011/12", "2012/13",
+#                             "2013/14", "2014/15", "2015/16", "2016/17", "2017/18"))
+dd <- dd %>% dplyr::arrange(Year) %>% group_by(Indicator)%>%
+  filter(Year ==last(Year))
+
 dd[dd$Indicator == "Child Poverty",4] <- "Child Poverty (%)"
 dd[dd$Indicator == "Crime Rate",4] <- "Crime Rate, per 10,000"
 dd[dd$Indicator == "Early Mortality",4] <- "Early Mortality, per 100,000"

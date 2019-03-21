@@ -426,8 +426,8 @@ body <- dashboardBody(
             fluidRow(
               column(4,
                      uiOutput("ICompUI")),
-            column(3,
-                   selectInput("InqYr", "Select Year", unique(IGZdta$Year)[1:match(RcntYear, unique(IGZdta$Year))], selected = RcntYear)),
+         #   column(3,
+        #           selectInput("InqYr", "Select Year", unique(IGZdta$Year)[1:match(RcntYear, unique(IGZdta$Year))], selected = RcntYear)),
             column(5, style = "margin-top:1px",div(style = "display:block",tags$img(style = "margin-right:2px",src = "Legend - Selection.png"),
                    span(textOutput("CPPLgndInq"), style = "font-size:1.4vw;; font-weight:bold; display:inline-block")),
                    div(style = "display:block",tags$img(style = "margin-right:2px",src = "Legend - Comp.png"),
@@ -461,7 +461,7 @@ body <- dashboardBody(
   tabItem(tabName = "DtaDL",
           fluidPage(
             fluidRow(h3("About this tool"), p("The CPOP tool aims to help you assess if the lives of people in your community are improving by providing a set of core measures on important life outcomes including early years, older people, safer/stronger communities, health and wellbeing, and engagement with local communities and a consistent basis for measuring outcomes and inequalities of outcome in your area."), hr()),
-            fluidRow(h3("Explainer Video"), p("We have produced a short video about the CPOP to help with using the tool and interpreting the data and results. You can access this", style = "display:inline"), a("here.", href = "https://drive.google.com/file/d/1VTUowbFDGMgSZVSz-8A1-qyopD0AA8FL/view", target = "_blank"), hr()),
+            fluidRow(h3("Explainer Video"), HTML('<iframe width="789" height="444" src="https://www.youtube.com/embed/rhno_7VMX38?autoplay=0&showinfo=0&loop=1&rel=0" frameborder="0" allow="accelerometer; loop ;encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),hr()),
             fluidRow(h3("Download the Data"), p("Use these buttons to download all of the data used in this tool. Please note that much of this data is modelled and so may not match exactly with data from other sources. This data was most recently updated on 14/03/2019."),
                      downloadBttn("DLDta",label = "Download All CPP Data"),
                      downloadBttn("DLIZDta", label = "Download All Community Data", style = "fill", color = "success"),

@@ -1660,9 +1660,11 @@ shinyServer(function(input, output, session) {
   output$inqTbl <- function(){
     #filter dataset
     req(input$LA1)
-    dd <- filter(InqDta, CouncilName %in% c(input$LA1, input$InqComp) & Year == input$InqYr)
+    dd <- filter(InqDta, CouncilName %in% c(input$LA1, input$InqComp))
     dd$value <- round(dd$value,1)
-    dd <- spread(dd, Indicator, value)[2:11]
+    #remove year column - no longer needed once year filter is removed
+    dd <- dd[-2]
+    dd <- spread(dd, Indicator, value)
     ##Rearrange indicators - if adding OOWB make: dd[c(2,1,3:10)]
     dd <- dd[c(2,1,3:7,9:10)]
     dd[2] <- c("Least deprived","Least deprived","Most deprived", "Most deprived")
@@ -1670,7 +1672,7 @@ shinyServer(function(input, output, session) {
     dd <- arrange(dd,match(CouncilName, OrdCPPs), desc(CouncilName))
     #rownames(dd) <- c("Least deprived","Least deprived","Most deprived", "Most deprived")
     colnames(dd)[1:2] <- c("","")
-    tbl1 <- kable(dd, "html")%>% 
+    tbl1 <- kable(dd, "html", align = "c")%>% 
       kable_styling("basic")%>%
       row_spec(0,background = "black", color = "white", font_size = 14, 
                align = "right") %>%
