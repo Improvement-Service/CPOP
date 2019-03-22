@@ -721,18 +721,18 @@ shinyServer(function(input, output, session) {
     CompleteSet[,3][CompleteSet[,3] == "No Difference"] <- cell_spec(CompleteSet[,3][CompleteSet[,3] == "No Difference"], color = "black", background = "yellow")
   
     #move name to front
-    CompleteSet <- CompleteSet[c(1,2,28,3:27)]
+    CompleteSet <- CompleteSet[c(2,28,3:27)]
     
     ##Some nice regex to change names dynamically
-    names(CompleteSet) <-gsub(".+Change", "Improvement rate compared to the CPP average", names(CompleteSet), perl = T)
-    names(CompleteSet) <-gsub("(.+_)", "", names(CompleteSet), perl = T)
-    names(CompleteSet)[1:3] <- c(
+    names(CompleteSet)[1:2] <- c(
       " ",
       "Vulnerability",
       "Name")
+    names(CompleteSet) <-gsub(".+Change", "Improvement rate compared to the CPP average", names(CompleteSet), perl = T)
+    names(CompleteSet) <-gsub("(.+_)", "", names(CompleteSet), perl = T)
     
     CompleteSet <- 
-      knitr::kable(CompleteSet[-1],"html", escape = F) %>% 
+      knitr::kable(CompleteSet,"html", escape = F) %>% 
       kable_styling(bootstrap_options = c("bordered", "hover", "responsive"), 
                     font_size = 14) %>%
       row_spec(0, color = "white", background = "black") %>%
@@ -743,7 +743,7 @@ shinyServer(function(input, output, session) {
         "Community" = 2,
         "Overall Outcomes" = 1,
         "Child Poverty" = 3,
-        "Crime Rate" = 3,
+        "Crime Rate*" = 3,
         "Depopulation" = 3,
         "Early Mortality" = 3,
         "Emergency Admissions" = 3,
@@ -755,6 +755,7 @@ shinyServer(function(input, output, session) {
       color = "white",
       include_empty = T
       ) %>%
+      footnote(symbol = "Crime data is a three year rolled average based on modelled data")%>%
       scroll_box(width = "160%") 
   }  
   
