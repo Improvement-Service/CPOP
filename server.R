@@ -720,48 +720,27 @@ shinyServer(function(input, output, session) {
     CompleteSet[,3][CompleteSet[,3] == "Slower"] <- cell_spec(CompleteSet[,3][CompleteSet[,3] == "Slower"], color = "white", background = "red")
     CompleteSet[,3][CompleteSet[,3] == "No Difference"] <- cell_spec(CompleteSet[,3][CompleteSet[,3] == "No Difference"], color = "black", background = "yellow")
   
+    #move name to front
+    CompleteSet <- CompleteSet[c(1,2,28,3:27)]
     
-    names(CompleteSet) <- c(
+    ##Some nice regex to change names dynamically
+    names(CompleteSet) <-gsub(".+Change", "Improvement rate compared to the CPP average", names(CompleteSet), perl = T)
+    names(CompleteSet) <-gsub("(.+_)", "", names(CompleteSet), perl = T)
+    names(CompleteSet)[1:3] <- c(
       " ",
-      "Community",
-      "Improvement rate compared to the CPP average",
-      "2006/07",
-      "2017/18",
-      "Improvement rate compared to the CPP average",
-      "2006/07",
-      "2017/18",
-      "Improvement rate compared to the CPP average",
-      "2006/07",
-      "2017/18",
-      "Improvement rate compared to the CPP average",
-      "2006/07",
-      "2017/18",
-      "Improvement rate compared to the CPP average",
-      "2006/07",
-      "2017/18",
-      "Improvement rate compared to the CPP average",
-      "2006/07",
-      "2017/18",
-      "Improvement rate compared to the CPP average",
-      "2006/07",
-      "2017/18",
-      "Improvement rate compared to the CPP average",
-      "2006/07",
-      "2017/18",
-      "Improvement rate compared to the CPP average"
-    )
+      "Vulnerability",
+      "Name")
     
     CompleteSet <- 
-      knitr::kable(CompleteSet,"html", escape = F) %>% 
+      knitr::kable(CompleteSet[-1],"html", escape = F) %>% 
       kable_styling(bootstrap_options = c("bordered", "hover", "responsive"), 
                     font_size = 14) %>%
       row_spec(0, color = "white", background = "black") %>%
       row_spec(6, background = "aliceblue") %>%
-      column_spec(1, color = "white", background = "black") %>%
-      column_spec(2, color = "white", background = "black") %>%
+      column_spec(1:2, color = "white", background = "black") %>%
       collapse_rows(columns = 1, valign = "middle") %>%
       add_header_above(c(
-        " " = 2,
+        "Community" = 2,
         "Overall Outcomes" = 1,
         "Child Poverty" = 3,
         "Crime Rate" = 3,
@@ -1663,23 +1642,28 @@ shinyServer(function(input, output, session) {
     dd <- filter(InqDta, CouncilName %in% c(input$LA1, input$InqComp))
     dd$value <- round(dd$value,1)
     #remove year column - no longer needed once year filter is removed
-    dd <- dd[-2]
-    dd <- spread(dd, Indicator, value)
+    #dd <- dd[-2]
+    dd <- dd %>% unite(Titles, Indicator, Year, sep = " - ")
+    dd <- spread(dd, Titles, value)
     ##Rearrange indicators - if adding OOWB make: dd[c(2,1,3:10)]
     dd <- dd[c(2,1,3:7,9:10)]
     dd[2] <- c("Least deprived","Least deprived","Most deprived", "Most deprived")
     OrdCPPs <-c(input$LA1, input$InqComp)
     dd <- arrange(dd,match(CouncilName, OrdCPPs), desc(CouncilName))
     #rownames(dd) <- c("Least deprived","Least deprived","Most deprived", "Most deprived")
+#    #mutate each column to add a popver showing the year-DOESN'T WORK IN SHINY
+ #   dd <- dd %>% mutate(`Child Poverty (%)` =  cell_spec(`Child Poverty (%)`,popover = spec_popover(content = dd[[1]])))
     colnames(dd)[1:2] <- c("","")
-    tbl1 <- kable(dd, "html", align = "c")%>% 
+    tbl1 <- kable(dd, "html", align = "c", escape = F)%>% 
       kable_styling("basic")%>%
       row_spec(0,background = "black", color = "white", font_size = 14, 
                align = "right") %>%
       column_spec(1, bold = TRUE, border_right = TRUE) %>%
       column_spec(2, bold = TRUE) %>%
       collapse_rows(1,valign = "middle",latex_hline = "major")%>%
-      row_spec(3, extra_css = "border-top: solid 1px") 
+      row_spec(3, extra_css = "border-top: solid 1px")  %>%
+      row_spec(0, align = "c") %>%
+      scroll_box(width = "100%")
     #group_rows("", 3,4, label_row_css = "background-color: black; height: 3px") 
     #group_rows("", 1,2, label_row_css = "height:1px")
     

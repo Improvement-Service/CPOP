@@ -1,8 +1,9 @@
 library(tidyverse)
 library(plyr)
 
-StartYear <- "2006/07"
-EndYear   <- "2017/18"
+###NO LONGER NEED THIS AS GOING TO SELECT EARLIEST AND MOST RECENT YEAR
+#StartYear <- "2006/07"
+#EndYear   <- "2017/18"
 
 CPPNames <- c("Aberdeen City", "Aberdeenshire", "Angus", "Argyll and Bute",
               "Clackmannanshire", "Dumfries and Galloway","Dundee City",
@@ -17,19 +18,22 @@ CPPNames <- c("Aberdeen City", "Aberdeenshire", "Angus", "Argyll and Bute",
 
 
 
-IGZData <- read_csv("data/IGZcleandata.csv")[c(1,3,4,5,6,8,9)]
+IGZData <- read_csv("data/IGZcleandata.csv")[c(1:9)]
 colnames(IGZData)[1] <- "IGZ"
+IGZData <- filter(IGZData, Type == "Raw data") %>% select(-Type)
+##get labels for later
+Labels <- IGZData[1:2]
+IGZData <- IGZData[-2]
 #Calculations for table 1 --------------------------------------------------------------------------------
 #Calculate Change and CPPChangeScore----------------------------------------------------------------------
-
-
 IGZData$HighIsPos <- "No"
 IGZData$HighIsPos[IGZData$Indicator %in% c("Average Highest Attainment", "Positive Destinations")] <- "Yes"
 
-#Calculate %Change from start year to end year for all outcomes
-
-TableData <- filter(IGZData, Year %in% c(StartYear, EndYear))
-TableData$YearRef <- if_else(TableData$Year == StartYear, 1, 2)
+#Calculate %Change from First year to last year
+TableData <- IGZData %>%
+  group_by(Indicator) %>% 
+  filter(Year %in% c(first(Year), last(Year))) %>%
+  mutate(YearRef = if_else(Year == first(Year),1,2))
 TableData <- TableData[order(TableData$YearRef),]
 TableData[,7] <- round(TableData[,7],2)
 
@@ -192,6 +196,7 @@ total <- rbind(TableData, CPPMeanData)
 total <- merge(total, ChangeData)
 total <- merge(total, CPPScoreData)
 
+total <- unique(left_join(total, Labels, by = "IGZ"))
 total <- total[,-c(1,3,4)]
 
 #relabel in correct format, format in correct order and round values
@@ -204,12 +209,12 @@ total$AreaLabel <- total$CPP
 total$AreaLabel[total$Label == "CPPMean"] <- "CPP Average"
 total <- total[,-2]
 
-total <- total[,c(28,1,18,27,4,5,20,6,7,21,8,9,22,10,11,23,12,13,24,14,15,25,16,17,26,2,3,19)]
+total <- total[,c(29,1,18,27,4,5,20,6,7,21,8,9,22,10,11,23,12,13,24,14,15,25,16,17,26,2,3,19,28)]
 
 
 total[,c(5,6,11,12,20,21,23,24,26,27)] <- round(total[,c(5,6,11,12,20,21,23,24,26,27)],2)
 total[,c(8,9,14,15,17,18)] <- round(total[,c(8,9,14,15,17,18)],0)
-
+total[total$AreaLabel =="CPP Average","InterZone_Name"] <- paste(total[total$AreaLabel =="CPP Average","CPP"], "Average")
 #Save formatted data
 
 write_excel_csv(total, path = "data/Formatted Vulnerable Communities.csv")
