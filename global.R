@@ -167,6 +167,7 @@ CPPNames <- unique(CPPMapDta[CPPMapDta$council != "Scotland", "council"])
 DIdta <- read_csv("data/DuncanIndex.csv")
 DIdta <- DIdta[,-5]
 DIdta <- gather(DIdta, "ind", "value",3:9) 
+DIdta <- na.omit(DIdta)
 DIdta <- setDT(DIdta)[, ImprovementRate :=
                                   (abs(last(value))/abs(first(value)))-1,
                                 by = list(la, ind)

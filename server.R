@@ -1688,7 +1688,7 @@ shinyServer(function(input, output, session) {
     DIdta$coloursch <- ifelse(DIdta$la ==input$LA1, "CPP", "Comp")
     lstDi <- lapply(1:7,FUN = function(y){
       dta <- DIdta[DIdta$ind == indList[y],]
-      DDta <- filter(dta, year == 2017)
+      DDta <- filter(dta, year == last(year))
       CDot <- if_else(DDta$Higher == T && DDta$IRHigher == T, "green", if_else(DDta$Higher == F && DDta$IRHigher == F, "red", "yellow"))
       ggplot(dta, aes(x = year, y = value))+
         geom_line(data = dta[!is.na(dta$value),], aes(group = coloursch, colour = coloursch), size = 1)+

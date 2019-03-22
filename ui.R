@@ -425,19 +425,20 @@ body <- dashboardBody(
           fluidPage(
             fluidRow(
               column(4,
-                     uiOutput("ICompUI")),
+                     uiOutput("ICompUI"))
          #   column(3,
         #           selectInput("InqYr", "Select Year", unique(IGZdta$Year)[1:match(RcntYear, unique(IGZdta$Year))], selected = RcntYear)),
-            column(5, style = "margin-top:1px",div(style = "display:block",tags$img(style = "margin-right:2px",src = "Legend - Selection.png"),
-                   span(textOutput("CPPLgndInq"), style = "font-size:1.4vw;; font-weight:bold; display:inline-block")),
-                   div(style = "display:block",tags$img(style = "margin-right:2px",src = "Legend - Comp.png"),
-                   span(textOutput("CompLgndInq"), style = "font-size:1.4vw;; font-weight:bold; display:inline-block"))
-                   )
+
             ),
-    h3("Inequality Between Most and Least Deprived Communities"),
+    div(h3("Inequality Between Most and Least Deprived Communities", style = "margin-top:1px"), style = "margin-top:1px"),
      tableOutput("inqTbl"),
      hr(style = "height:2px;background-color:black;color:black"),
-     h3("Inequality Across All Communities"),
+     fluidRow(column(5,h3("Inequality Across All Communities", style = "margin-top:2px")),
+              column(5, style = "margin-top:1px",div(style = "display:block",tags$img(style = "margin-right:2px",src = "Legend - Selection.png"),
+                    span(textOutput("CPPLgndInq"), style = "font-size:1.4vw;; font-weight:bold; display:inline-block")),
+        div(style = "display:block",tags$img(style = "margin-right:2px",src = "Legend - Comp.png"),
+              span(textOutput("CompLgndInq"), style = "font-size:1.4vw;; font-weight:bold; display:inline-block"))
+              )),
      plotOutput("InqGrp"),
      fluidRow(),
     div(em("These graphs will help you understand inequality in outcomes across the whole of the CPP, with 0 indicating perfect equality, values between 0 and 1 indicating that income deprived people experience poorer outcomes, and values between -1 and 0 indicating that non-income deprived people experience poorer outcomes. Please note that this is experimental analysis which makes use of modelled data alongside raw data."),
