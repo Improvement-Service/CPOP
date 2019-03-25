@@ -467,7 +467,7 @@ body <- dashboardBody(
                      downloadBttn("DLDta",label = "Download All CPP Data"),
                      downloadBttn("DLIZDta", label = "Download All Community Data", style = "fill", color = "success"),
                      hr()),
-            fluidRow(h3("Methodology"), p("You can find details on the methodology used to collect and prepare all of our indicators", style = "display:inline"), a("here", href = "https://drive.google.com/file/d/18sfKvo7b9WtIe31NBY-x4ASw6vwcJvX3/view", target = "_blank"), hr()),
+            fluidRow(h3("Methodology"), p("You can find details on the methodology used to collect and prepare all of our indicators", style = "display:inline"), a("here", href = "https://drive.google.com/open?id=1Iy7LOEzHen47hz0ze3qgYIFzSM-9UUol", target = "_blank"), hr()),
             fluidRow(h3("Other Profiling Tools and Data Sources"), p("There are a number of other profiling tools available, some of these are listed below.\nYou can also find sources for some of the data used in this tool"),
                                                     tags$ul( 
                                                       #Link to ScotPHO

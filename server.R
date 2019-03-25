@@ -724,10 +724,10 @@ shinyServer(function(input, output, session) {
     CompleteSet <- CompleteSet[c(2,28,3:27)]
     
     ##Some nice regex to change names dynamically
-    names(CompleteSet)[1:2] <- c(
-      " ",
+    names(CompleteSet)[1:3] <- c(
       "Vulnerability",
-      "Name")
+      "Name",
+      "Improvement rate compared to the CPP average")
     names(CompleteSet) <-gsub(".+Change", "Improvement rate compared to the CPP average", names(CompleteSet), perl = T)
     names(CompleteSet) <-gsub("(.+_)", "", names(CompleteSet), perl = T)
     
