@@ -27,7 +27,7 @@ IGZData <- IGZData[-2]
 #Calculations for table 1 --------------------------------------------------------------------------------
 #Calculate Change and CPPChangeScore----------------------------------------------------------------------
 IGZData$HighIsPos <- "No"
-IGZData$HighIsPos[IGZData$Indicator %in% c("Average Highest Attainment", "Positive Destinations")] <- "Yes"
+IGZData$HighIsPos[IGZData$Indicator %in% c("Attainment", "Positive Destinations")] <- "Yes"
 
 #Calculate %Change from First year to last year
 TableData <- IGZData %>%
@@ -48,7 +48,7 @@ TableData <- ddply(
 
 TableData <- ddply(
   TableData,. 
-  (CPP, Indicator, Year),
+  (CPP, Indicator, YearRef),
   transform, 
   CPPChangeMean = mean(Change)
 )
@@ -57,7 +57,7 @@ TableData <- ddply(
 
 TableData <- ddply(
   TableData,. 
-  (CPP, Indicator, Year),
+  (CPP, Indicator, YearRef),
   transform, 
   CPPChangeSD = sd(Change)
 )
@@ -83,7 +83,7 @@ TableData$CPPChangeScore[TableData$HighIsPos == "No"] <- TableData$CPPChangeScor
 
 TableData <- ddply(
   TableData,. 
-  (IGZ, Year),
+  (IGZ, YearRef),
   transform, 
   CombinedCPPChangeScore = sum(CPPChangeScore)
 )
@@ -97,7 +97,7 @@ TableData <- TableData[,-11]
 
 TableData <- ddply(
   TableData,. 
-  (CPP, Indicator, Year),
+  (CPP, Indicator, YearRef),
   transform, 
   CPPAverage = mean(value)
 )
@@ -138,7 +138,7 @@ ChangeData <- ChangeData %>% unite(DataSpec, Indicator, Year, Label, sep = "_")
 
 ChangeData <- ChangeData %>% spread(DataSpec, Rate)
 
-#Only want to keep 1 year for each outcome so remove 06/07 values
+#Only want to keep 1 year for each outcome so remove first year values
 
 ChangeData <- ChangeData[,-c(5,7,9,11,13,15,17,19)]
 
