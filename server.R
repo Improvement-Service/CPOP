@@ -1646,8 +1646,7 @@ shinyServer(function(input, output, session) {
     #dd <- dd[-2]
     dd <- dd %>% unite(Titles, Indicator, Year, sep = " - ")
     dd <- spread(dd, Titles, value)
-    ##Rearrange indicators - if adding OOWB make: dd[c(2,1,3:10)]
-    dd <- dd[c(2,1,3:7,9:10)]
+    dd <- dd[c(2,1,3:10)]
     dd[2] <- c("Least deprived","Least deprived","Most deprived", "Most deprived")
     OrdCPPs <-c(input$LA1, input$InqComp)
     dd <- arrange(dd,match(CouncilName, OrdCPPs), desc(CouncilName))
