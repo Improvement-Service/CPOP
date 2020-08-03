@@ -52,9 +52,9 @@ saveRDS(SpPolysDF, file = "C:/Users/cassidy.nicholas/OneDrive - IS/CPOP/data/Sha
 
 ## Intermediate Geography Shapes
 #Read shapes
-SpPolysIZ <- readRDS("C:/Users/cassidy.nicholas/OneDrive - IS/CMaps - 2011/IZ11.rds")
+SpPolysIZ <- readRDS("C:/Users/cassidy.nicholas/OneDrive - IS/CPOP/data/IZ11.rds")
 #Read CPOP data, merge with shapes, clean the ranks into LA "sevenths" (septiles?)
-##This is old data, but will be replaced later anyway
+##This is old data, but will be replaced later anyway in the Preprocessing Ranks code
 CPdta <- read_excel("C:/Users/cassidy.nicholas/OneDrive - IS/CPOP/data/ranks for igzs.xlsx", sheet = 1)
 SpPolysIZ@data <- left_join(SpPolysIZ@data, CPdta, by = c("InterZone" = "IGZ code"))
 colnames(SpPolysIZ@data)[11] <- "council"

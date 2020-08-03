@@ -244,7 +244,7 @@ body <- dashboardBody(
                     tags$head(
                       tags$style(HTML("
                               .multicol {
-                              height:75px;
+                              height:90px;
                               
                               -webkit-column-count: 3; /* Chrome, Safari, Opera */
                               
@@ -299,7 +299,7 @@ body <- dashboardBody(
               tags$head(
                 tags$style(HTML("
                               .multicol {
-                              height:75px;
+                              height:90px;
                               
                               -webkit-column-count: 3; /* Chrome, Safari, Opera */
                               
@@ -349,12 +349,12 @@ body <- dashboardBody(
                   plotOutput("CPplots", height = "700px"),
                   fluidRow(
                     column(
-                      7,
+                      6,
                       uiOutput("LineChoicesCP")
                     ),
                     column(
-                      5,
-                      tags$img(style = "max-width:100%;",src = "ComPrflLgnd.PNG")
+                      6, style = "padding-top:18px",
+                      tags$img(style = "max-width:100%; max-height:fit-content",src = "ComPrflLgnd.PNG")
                       )
                   ),
                   fluidRow(
@@ -388,7 +388,7 @@ body <- dashboardBody(
                         checkbox = TRUE
                       )
                     ),
-                    column(5,img(style = "max-width:100%;", src = "DashedLine.PNG"))
+                    column(5, style = "padding-top:10px",img(style = "max-width:100%;", src = "DashedLine.PNG"))
                   )
                 )
             )
@@ -467,7 +467,7 @@ body <- dashboardBody(
                      downloadBttn("DLDta",label = "Download All CPP Data"),
                      downloadBttn("DLIZDta", label = "Download All Community Data", style = "fill", color = "success"),
                      hr()),
-            fluidRow(h3("Methodology"), p("You can find details on the methodology used to collect and prepare all of our indicators", style = "display:inline"), a("here", href = "https://drive.google.com/open?id=1Iy7LOEzHen47hz0ze3qgYIFzSM-9UUol", target = "_blank"), hr()),
+            fluidRow(h3("Methodology"), p("You can find details on the methodology used to collect and prepare all of our indicators", style = "display:inline"), a("here", href = "https://drive.google.com/file/d/1NlcrELAJLZyCMZlqaPxxl8JgHpw3aOy2", target = "_blank"), hr()),
             fluidRow(h3("Other Profiling Tools and Data Sources"), p("There are a number of other profiling tools available, some of these are listed below.\nYou can also find sources for some of the data used in this tool"),
                                                     tags$ul( 
                                                       #Link to ScotPHO

@@ -1,11 +1,15 @@
+##This needs to be run before vulnerable community calcs if we want to update the IGZs that
+#are most vulnerable in the "Vulnerable Communities" page of the CPOP
+#Without this it uses 2006 data to calculate the most vulnerable, so this can change it to 2007
+
 library(tidyverse)
 library(plyr)
 library(DT)
 library(data.table)
 
 #Store value for the start year and most recent year data is available, this needs to be changed when data is refreshed annually
-StrtYear <- "2006/07"
-RcntYear <- "2017/18"
+StrtYear <- "2007/08"
+RcntYear <- "2018/19"
 
 CPPdta <- read_csv("data/CPPcleandata.csv")
 IGZdta <- read_csv("data/IGZcleandata.csv")

@@ -221,7 +221,7 @@ shinyServer(function(input, output, session) {
     indi <- indis
     ##calculate maximum limit for y axis  
       maxAx <- max(dtaNoScot[dtaNoScot$Indicator == indi[[this_i]],5])*1.05
-      minAx <- ifelse(indi[[this_i]] == "Carbon Emissions",-5,0)
+      minAx <- 0
       ggplot(data = filter(dtaNoScot, Indicator == indi[[this_i]])) +
         geom_bar(aes(
           x = if((first(`High is Positive?`))== "Yes"){reorder(CPP, value)}else{reorder(CPP, -value)}, 
@@ -280,7 +280,7 @@ shinyServer(function(input, output, session) {
                             Indicator == indi[[that_i]] &
                             CPP == "Scotland")$value
         maxAx <- max(c(dta[dta$Indicator == indi[[that_i]],]$value, ScotVal))*1.05
-        minAx <- ifelse(indi[[that_i]] == "Carbon Emissions" & FGroup %in% c(2,3),-5,0)
+        minAx <- 0
         ggplot(data = filter(dta, Indicator == indi[[that_i]])) +
           geom_bar(aes(
             x = if(first(`High is Positive?`)== "Yes"){reorder(CPP, value)}else{reorder(CPP, -value)}, 
@@ -917,13 +917,13 @@ shinyServer(function(input, output, session) {
     
     # add 4 empty columns so that there is space in between each column in the table
     
-    MyCommunitiesDta[,ncol(MyCommunitiesDta) + 1] <- NA
+    MyCommunitiesDta$empt1 <- NA
     MyCommunitiesDta <- MyCommunitiesDta[,c(1,9,2,3,4,5,6,7,8)]
     
-    MyCommunitiesDta[,ncol(MyCommunitiesDta) +1] <- NA
+    MyCommunitiesDta$empt2 <- NA
     MyCommunitiesDta <- MyCommunitiesDta[,c(1,2,3,10,4,5,6,7,8,9)]
     
-    MyCommunitiesDta[,ncol(MyCommunitiesDta) + 1] <- NA
+    MyCommunitiesDta$empt3 <- NA
     MyCommunitiesDta <- MyCommunitiesDta[,c(1,2,3,4,5,11,6,7,8,9,10)]
     
     colnames(MyCommunitiesDta)[c(2,4,6)] <- ""
@@ -957,7 +957,10 @@ shinyServer(function(input, output, session) {
     )
     
     Top10 <- head(MyCommunitiesDta, Top10Rows)
-    Top10[nrow(Top10) + 2,] <- NA
+    Top10 <- Top10 %>% add_row() %>% add_row()
+    names(Top10)[2] <-""
+    names(Top10)[4] <-""
+    names(Top10)[6] <-""
     Bottom10 <- tail(MyCommunitiesDta, Bottom10Rows)
     TopBottom10 <- rbind(Top10, Bottom10)
     
@@ -982,9 +985,13 @@ shinyServer(function(input, output, session) {
     )
     
     Top5 <- head(MyCommunitiesDta,Top5Rows)
-    Top5[nrow(Top5)+2,] <- NA
+    Top5 <- Top5 %>% add_row() %>% add_row()
+    names(Top5)[2] <-""
+    names(Top5)[4] <-""
+    names(Top5)[6] <-""
     Bottom5 <- tail(MyCommunitiesDta, Bottom5Rows)
     TopBottom5 <- rbind(Top5, Bottom5)
+   
     
     Display <- input$View
     if(Display == "Top/bottom 10") {MyCommunitiesDta <- TopBottom10}
@@ -1208,7 +1215,7 @@ shinyServer(function(input, output, session) {
     
     # add empty column so that there is space between the columns in the table
     
-    CommunityProfileDta[,ncol(CommunityProfileDta)+1] <- NA
+    CommunityProfileDta$empt1 <- NA
     CommunityProfileDta <- CommunityProfileDta[,c(1,7,2,3,4,5,6)]
     colnames(CommunityProfileDta)[2] <- ""
     
@@ -1241,9 +1248,11 @@ shinyServer(function(input, output, session) {
     )
     
     Top10 <- head(CommunityProfileDta,Top10Rows)
-    Top10[nrow(Top10) +2,] <- NA
+    Top10 <- Top10 %>% add_row() %>% add_row()
+    names(Top10)[2] <-""
     Bottom10 <- tail(CommunityProfileDta, Bottom10Rows)
     TopBottom10 <- rbind(Top10, Bottom10)
+    colnames(TopBottom10)[2] <-""
     
     Top5Rows <- if_else(
       NoIGZ < 10,
@@ -1266,9 +1275,11 @@ shinyServer(function(input, output, session) {
     )
     
     Top5 <- head(CommunityProfileDta,Top5Rows)
-    Top5[nrow(Top5)+2,] <- NA
+    Top5 <- Top5 %>% add_row() %>% add_row()
     Bottom5 <- tail(CommunityProfileDta, Bottom5Rows)
+    names(Top5)[2] <-""
     TopBottom5 <- rbind(Top5, Bottom5)
+    colnames(TopBottom5)[2] <-""
     
     Display <- input$ViewCP
     if(Display == "Top/bottom 10"){CommunityProfileDta <- TopBottom10}
@@ -1700,11 +1711,16 @@ shinyServer(function(input, output, session) {
           vjust = 1
         )+
         ggtitle(indList[y])+
+        theme_bw()+
         scale_y_continuous(limits = c(-0.23,0.5))+
         scale_x_continuous(breaks = seq(2007,2017, by  =2))+
         geom_hline(yintercept = 0)+
         scale_colour_manual(breaks = c("Comp", "CPP"), values = c("blue", "red"))+
-        guides(colour = FALSE)
+        guides(colour = FALSE)+
+        theme(panel.grid.major = element_blank(), 
+              panel.grid.minor = element_blank(), 
+              panel.background = element_blank(), 
+              axis.line = element_line(colour="black"))
     })
     #lstDI <- list()
     #lstDI[[1]] <- ggdraw()+draw_text(descText,x = 0.5,y = 0.5, size = 10)
@@ -2001,7 +2017,7 @@ shinyServer(function(input, output, session) {
     output$DLDta <- downloadHandler(
     filename = paste("CPP Data", ".zip", sep = ""),
     content = function(con) {
-      file.copy("data/CPP Data - Mar.zip", con)
+      file.copy("data/CPP Data - Jul 2020.zip", con)
     },
     contentType = "application/zip"
     )
@@ -2010,7 +2026,7 @@ shinyServer(function(input, output, session) {
     output$DLIZDta <- downloadHandler(
       filename = paste("IGZ Data", ".zip", sep = ""),
       content = function(con) {
-        file.copy("data/IGZ Data - Mar.zip", con)
+        file.copy("data/IGZ Data - Jul 2020.zip", con)
       },
       contentType = "application/zip"
     )

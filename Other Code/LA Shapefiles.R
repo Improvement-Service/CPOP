@@ -1,3 +1,5 @@
+##No need to run this code, as it only tidies up the shapefiles
+
 library(rgdal)
 library(sp)
 library(rgeos)

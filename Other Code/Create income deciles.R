@@ -1,31 +1,33 @@
 ###Calculate the rankings and deciles for income deprivation 
 
+#Run this before PrepDecileData.R
+
 library(readxl)
 library(dplyr)
 library(readr)
 ##read dataset
 DZdta <- read_excel("C:/Users/cassidy.nicholas/OneDrive - IS/CPOP/data/DZ & IGZ income data.xlsx", sheet = 2)
 IGZdta <- read_excel("C:/Users/cassidy.nicholas/OneDrive - IS/CPOP/data/DZ & IGZ income data.xlsx", sheet = 3)[-4]
-
+names(IGZdta)[5] <- "CPP"
 ##get count of dzs, get ranks and deciles
 DZdta$count <- ave(DZdta$Council_area, DZdta$Council_area, FUN = length)
 DZdta <- DZdta %>% group_by(Council_area) %>%
   mutate(decl = ntile(`%`, 10))%>% ungroup()
 
 #just double check IGZ ranks
-IGZdta$count <- ave(IGZdta$X__2, IGZdta$X__2, FUN = length)
-IGZdta<- IGZdta %>% group_by(X__2) %>%
+IGZdta$count <- ave(IGZdta$CPP, IGZdta$CPP, FUN = length)
+IGZdta<- IGZdta %>% group_by(CPP) %>%
   mutate(decl = ntile(`% of income deprived`, 10)) %>% ungroup()
 sum(IGZdta$`Decile with CPP` != IGZdta$decl)
-#so 223 don't match - which ones?
+#so 345 don't match - which ones?
 noMatch <- IGZdta[IGZdta$decl != IGZdta$`Decile with CPP`,]
 
 ##most mismatches are to do with rounding, but some issues e.g. Eilean SIar has
 #no decile 1 in previous figs, so will keep new deciles
 ##Need to make decile 9 for isles into decile 10 as they have below 10 IGZs
-IGZdta[IGZdta$X__2== "Shetland Islands"&IGZdta$decl== 9, "decl"] <- 10
-IGZdta[IGZdta$X__2== "Orkney Islands"&IGZdta$decl== 9, "decl"] <- 10
-IGZdta[IGZdta$X__2== "Eilean Siar"&IGZdta$decl== 9, "decl"] <- 10
+IGZdta[IGZdta$CPP== "Shetland Islands"&IGZdta$decl== 7, "decl"] <- 10
+IGZdta[IGZdta$CPP== "Orkney Islands"&IGZdta$decl== 6, "decl"] <- 10
+IGZdta[IGZdta$CPP== "Eilean Siar"&IGZdta$decl== 9, "decl"] <- 10
 
 ##Get Scotland deciles
 IGZdta <- IGZdta %>% mutate(ScotDecl = ntile(`% of income deprived`, 10))

@@ -1,3 +1,7 @@
+##This code creates a tidy table for the "Vulnerabel Communities" page
+##Note that the IGZs selected as most vulnerable do not change, but they can be updated to reflect
+##new data using the "Calculate most vuln communities.R" code
+
 library(tidyverse)
 library(plyr)
 
@@ -32,8 +36,10 @@ IGZData$HighIsPos[IGZData$Indicator %in% c("Attainment", "Positive Destinations"
 #Calculate %Change from First year to last year
 TableData <- IGZData %>%
   group_by(Indicator) %>% 
-  filter(Year %in% c(first(Year), last(Year))) %>%
-  mutate(YearRef = if_else(Year == first(Year),1,2))
+  filter(Year %in% c(first(Year), last(Year))) 
+yrs1 <- TableData %>% group_by(Indicator) %>%filter(Year == first(Year)) %>% mutate(YearRef = 1)
+yrs2 <- TableData %>% group_by(Indicator) %>%filter(Year == last(Year)) %>% mutate(YearRef = 2)
+TableData <-rbind(yrs1,yrs2)
 TableData <- TableData[order(TableData$YearRef),]
 TableData[,7] <- round(TableData[,7],2)
 
@@ -104,7 +110,7 @@ TableData <- ddply(
 
 #Format data table-----------------------------------------------------------------------------------------
 
-#Seperate out change values only and format
+#Separate out change values only and format
 
 ChangeData <- TableData[,c(1,2,3,4,5,6,8,9,10,12)]
 ChangeData$Label <- "Change"

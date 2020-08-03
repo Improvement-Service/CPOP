@@ -10,8 +10,8 @@ library(data.table)
 
 
 #Store value for the start year and most recent year data is available, this needs to be changed when data is refreshed annually
-StrtYear <- "2006/07"
-RcntYear <- "2017/18"
+StrtYear <- "2007/08"
+RcntYear <- "2018/19"
 
 SpPolysDF <- read_rds("data/Shapes.rds")
 SpPolysIZ <- read_rds("data/IZshapes.rds")
@@ -221,7 +221,7 @@ IGZ_change$TypeChangeScore <- IGZ_change$Differences / IGZ_change$StdDev
 IGZ_change <- select(IGZ_change, c(-TypeMean, -Differences, -StdDev))
 
 
-# Add Z score column to SpDF to allow ranking in this DataFrame --------------------- 
+# Add Z score column to SpPolysDF to allow ranking in this DataFrame --------------------- 
 
 
 decs <- c()
