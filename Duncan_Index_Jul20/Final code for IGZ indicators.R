@@ -64,6 +64,6 @@ la.tab <- combined.tab %>%
   )
 
 la.tab
-la.tab %>% write.csv('DIData/Duncan index by FINALJUl20.csv')
+la.tab %>% write.csv('DIData/Duncan index by FINALAug20.csv')
 
 ##  End

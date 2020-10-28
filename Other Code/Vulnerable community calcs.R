@@ -148,7 +148,7 @@ ChangeData <- ChangeData %>% spread(DataSpec, Rate)
 
 ChangeData <- ChangeData[,-c(5,7,9,11,13,15,17,19)]
 
-#Seperate out CPPScores only and format
+#Separate out CPPScores only and format
 
 CPPScoreData <- TableData[,c(1,2,3,4,5,6,8,9,11)]
 CPPScoreData$Label <- "CPPScore"
