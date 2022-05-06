@@ -1,4 +1,5 @@
-##Code runnning order
+##Code running order - because of issues when plyr is loaded after dplyr you should restart
+#####R after running each code
 
 ##Clean data
 

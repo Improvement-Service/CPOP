@@ -20,17 +20,17 @@ library(formattable)
 
 
 #Store value for the most recent year data is available, this needs to be changed when data is refreshed annually
-FrstYear <- "2007/08"
-RcntYear <- "2018/19"
-ProjYear <- "2021/22"
+FrstYear <- "2008/09"
+RcntYear <- "2019/20"
+ProjYear <- "2022/23"
 
 #First and last years for Duncan Index graphs
 DIFrYr <- substr(FrstYear,1,4)
 DIRcYr <- substr(RcntYear,1,4)
 
-LblFrst <- "07/08"
-LblRcnt <- "18/19"
-LblProj <- "21/22"
+LblFrst <- "08/09"
+LblRcnt <- "19/20"
+LblProj <- "22/23"
 
 SpPolysDF <- read_rds("data/Shapes_decs.rds")
 SpPolysIZ <- read_rds("data/IZshapes_decs.rds")
@@ -56,6 +56,11 @@ CPPMapDta <- SpPolysDF@data
 ##convert to numeric
 CPPMapDta[[15]] <- as.numeric(CPPMapDta[[15]])
 CPPMapDta[[14]] <- as.numeric(CPPMapDta[[14]])
+
+
+##read in Fife data for MyCommunity
+IGZ_latest_Fife <- read_csv("data/IGZ_latest_Fife.csv")
+IGZ_change_Fife <- read_csv("data/IGZ_change_Fife.csv")
 
 #family groups=========================
 #read in family group data
@@ -189,7 +194,7 @@ popOvs <- function(pltnm,Title,Def,Tm,Src, plc = "top", pltHght = "25vh"){
                      Src
                    ),
                    placement = plc,
-                   trigger = "click",
+                   trigger = "hover",
                    options = list(container = "body")
          )
   )

@@ -1,5 +1,11 @@
 shinyServer(function(input, output, session) {
  
+  
+  output$clock <- renderText({
+    invalidateLater(5000)
+    Sys.time()
+  })
+    
   # Create Ui ouputs for CPP over time page - PAGE1------------------------------------------------------
   output$CPPLgnd <- renderText({
     txt <- input$LA1
@@ -236,7 +242,7 @@ shinyServer(function(input, output, session) {
         sclFll+
         #scale_x_discrete(label = function(x) abbreviate(x, minlength = 4))+
         scale_y_continuous(expand = c(0,0), limits = c(minAx, maxAx))+    
-        guides(fill = FALSE) +
+        guides(fill = "none") +
         ggtitle(indi[[this_i]])+
         xlab("")+
         ylab("")+
@@ -293,7 +299,7 @@ shinyServer(function(input, output, session) {
           ) +
           scale_x_discrete(label = function(x) abbreviate(x, minlength = 10))+
           scale_fill_manual(values = c("lightblue2","red2"), breaks = c("Other", "Sel1")) +
-          guides(fill = FALSE) +
+          guides(fill = "none") +
           scale_y_continuous(expand = c(0,0), limits = c(minAx,maxAx))+       
           ggtitle(indi[[that_i]])+
           xlab("")+
@@ -730,7 +736,7 @@ shinyServer(function(input, output, session) {
       "Improvement rate compared to the CPP average")
     names(CompleteSet) <-gsub(".+Change", "Improvement rate compared to the CPP average", names(CompleteSet), perl = T)
     names(CompleteSet) <-gsub("(.+_)", "", names(CompleteSet), perl = T)
-    
+
     CompleteSet <- 
       knitr::kable(CompleteSet,"html", escape = F) %>% 
       kable_styling(bootstrap_options = c("bordered", "hover", "responsive"), 
@@ -752,8 +758,7 @@ shinyServer(function(input, output, session) {
         "Average Highest Attainment" = 3
       ),
       background = "black",
-      color = "white",
-      include_empty = T
+      color = "white"
       ) %>%
       footnote(symbol = "Crime data is a three year rolled average based on modelled data")%>%
       scroll_box(width = "160%") 
@@ -786,11 +791,17 @@ shinyServer(function(input, output, session) {
     req(input$LA1)
     
     # rankings for outcomes
-    
+   if(input$LA1 == "Fife" & input$Fife_SA != "All"){
+      IGZBest <- left_join(IGZ_latest, IGZ_latest_Fife, by = c("InterZone", "Indicator")) %>% 
+        filter(CPP == "Fife" & `Strategic Area` == input$Fife_SA & Indicator %in% input$IndiMyCom) %>%
+        select(-CPPScore)
+      IGZBest <-setDT(IGZBest)[, CombinedCPPScore := sum(SAScore), by = InterZone]
+      IGZBest <-setDT(IGZBest)[, CombinedTypeScore := sum(TypeScore), by = InterZone]
+      }else{
     IGZBest <- filter(IGZ_latest, CPP %in% input$LA1 & Indicator %in% input$IndiMyCom)
     IGZBest <-setDT(IGZBest)[, CombinedCPPScore := sum(CPPScore), by = InterZone]
     IGZBest <-setDT(IGZBest)[, CombinedTypeScore := sum(TypeScore), by = InterZone]
-    
+      }
     # Filter data so that combined scores are only displayed once for each IGZ
     
     IGZBest <- setDT(IGZBest)[, FilterRef:= first(Indicator), by = InterZone]
@@ -806,11 +817,17 @@ shinyServer(function(input, output, session) {
       req(input$LA1)
       IGZBest <- IGZBest()
     # rankings for improvement 
-    
+      if(input$LA1 == "Fife" & input$Fife_SA != "All"){
+        IGZImprovement <- left_join(IGZ_change, IGZ_change_Fife, by = c("InterZone", "Indicator")) %>% 
+          filter(CPP == "Fife" & `Strategic.Area` == input$Fife_SA & Indicator %in% input$IndiMyCom) %>%
+          select(-CPPChangeScore)
+        IGZImprovement <- setDT(IGZImprovement)[,CombinedCPPChangeScore := sum(SAChangeScore), by = InterZone]
+        IGZImprovement <- setDT(IGZImprovement)[,CombinedTypeChangeScore := sum(TypeChangeScore), by = InterZone]
+        }else{
     IGZImprovement <- filter(IGZ_change, CPP %in% input$LA1 & Indicator %in% input$IndiMyCom)
     IGZImprovement <- setDT(IGZImprovement)[,CombinedCPPChangeScore := sum(CPPChangeScore), by = InterZone]
     IGZImprovement <- setDT(IGZImprovement)[,CombinedTypeChangeScore := sum(TypeChangeScore), by = InterZone]
-    
+        }
     # Filter data so that combined scores are only displayed once for each IGZ
     
     IGZImprovement <- setDT(IGZImprovement)[, FilterRef := first(Indicator), by = InterZone]
@@ -1610,7 +1627,7 @@ shinyServer(function(input, output, session) {
           breaks = c("Com", "CPP", "Scot"), 
           values = c("red", "green4","blue")
         )+
-        guides(colour = FALSE)+
+        guides(colour = "none")+
         theme(panel.grid.major = element_blank(), 
               panel.grid.minor = element_blank(),
               panel.border = element_blank(),
@@ -1639,7 +1656,7 @@ shinyServer(function(input, output, session) {
   ##Value box for community progress========
   output$comProgressBox <- renderValueBox({
     IGZBest <- IGZBest()
-    pBetter <- round((sum(IGZBest$TypeScore>0)/nrow(IGZBest))*100,0)
+    pBetter <- round((sum(IGZBest$CombinedTypeScore>0)/nrow(IGZBest))*100,0)
     bCol <- if(pBetter <50) {"red"}else{"green"}
     valueBox(
     paste0(pBetter, "%"), "Communities Performing Better than Expected", icon = icon("percent"),
@@ -1716,7 +1733,7 @@ shinyServer(function(input, output, session) {
         scale_x_continuous(breaks = seq(2007,2017, by  =2))+
         geom_hline(yintercept = 0)+
         scale_colour_manual(breaks = c("Comp", "CPP"), values = c("blue", "red"))+
-        guides(colour = FALSE)+
+        guides(colour = "none")+
         theme(panel.grid.major = element_blank(), 
               panel.grid.minor = element_blank(), 
               panel.background = element_blank(), 
@@ -2017,7 +2034,7 @@ shinyServer(function(input, output, session) {
     output$DLDta <- downloadHandler(
     filename = paste("CPP Data", ".zip", sep = ""),
     content = function(con) {
-      file.copy("data/CPP Data - Jul 2020.zip", con)
+      file.copy("data/CPP Data - Apr 22.zip", con)
     },
     contentType = "application/zip"
     )
@@ -2026,7 +2043,7 @@ shinyServer(function(input, output, session) {
     output$DLIZDta <- downloadHandler(
       filename = paste("IGZ Data", ".zip", sep = ""),
       content = function(con) {
-        file.copy("data/IGZ Data - Jul 2020.zip", con)
+        file.copy("data/IGZ Data - Apr 22.zip", con)
       },
       contentType = "application/zip"
     )
