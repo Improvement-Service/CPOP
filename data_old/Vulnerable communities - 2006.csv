@@ -1,0 +1,1280 @@
+InterZone,total,InterZone_Name,CPP,rank,revRank
+S02001236,4.262271441,Culter,Aberdeen City,15,35
+S02001237,9.235058127,"Cults, Bieldside and Milltimber West",Aberdeen City,1,49
+S02001238,9.191988159,"Cults, Bieldside and Milltimber East",Aberdeen City,2,48
+S02001239,-3.317226869,Garthdee,Aberdeen City,34,16
+S02001240,5.186217614,"Braeside, Mannofield, Broomhill and Seafield East",Aberdeen City,13,37
+S02001241,7.309906216,"Braeside, Mannofield, Broomhill and Seafield South",Aberdeen City,5,45
+S02001242,8.80525612,"Braeside, Mannofield, Broomhill and Seafield North",Aberdeen City,3,47
+S02001243,5.403955347,Hazlehead,Aberdeen City,11,39
+S02001244,-2.794963227,Summerhill,Aberdeen City,32,18
+S02001245,4.15023991,Midstocket,Aberdeen City,16,34
+S02001246,1.186973701,Rosemount,Aberdeen City,25,25
+S02001247,6.195959831,West End North,Aberdeen City,8,42
+S02001248,5.637620087,West End South,Aberdeen City,10,40
+S02001249,-5.014338253,City Centre West,Aberdeen City,39,11
+S02001250,-6.677438189,City Centre East,Aberdeen City,41,9
+S02001251,2.224459006,Ferryhill North,Aberdeen City,22,28
+S02001252,4.974501955,Ferryhill South,Aberdeen City,14,36
+S02001253,-2.613971516,"Kincorth, Leggart and Nigg North",Aberdeen City,29,21
+S02001254,1.747081717,"Kincorth, Leggart and Nigg South",Aberdeen City,23,27
+S02001255,3.64432191,Cove South,Aberdeen City,18,32
+S02001256,1.195342061,Cove North,Aberdeen City,24,26
+S02001257,-6.885537289,Torry West,Aberdeen City,43,7
+S02001258,-10.43245347,Torry East,Aberdeen City,47,3
+S02001259,-3.070280513,Hanover South,Aberdeen City,33,17
+S02001260,-4.988521475,Hanover North,Aberdeen City,38,12
+S02001261,-4.104062744,George Street,Aberdeen City,37,13
+S02001262,-3.500562065,Ashgrove,Aberdeen City,35,15
+S02001263,-2.06995847,"Froghall, Powis and Sunnybank",Aberdeen City,28,22
+S02001264,-8.043743155,Seaton,Aberdeen City,46,4
+S02001265,-3.576540285,Old Aberdeen,Aberdeen City,36,14
+S02001266,-6.840682531,Tillydrone,Aberdeen City,42,8
+S02001267,-12.40424234,Woodside,Aberdeen City,48,2
+S02001268,-0.088528069,Hilton,Aberdeen City,27,23
+S02001269,-2.686289175,Stockethill,Aberdeen City,31,19
+S02001270,-6.101652189,Mastrick,Aberdeen City,40,10
+S02001271,-2.653455975,Sheddocksley,Aberdeen City,30,20
+S02001272,-7.538363051,Cummings Park,Aberdeen City,44,6
+S02001273,-7.597124925,Northfield,Aberdeen City,45,5
+S02001274,-12.94267469,Heathryfold and Middlefield,Aberdeen City,49,1
+S02001275,5.754909069,Kingswells,Aberdeen City,9,41
+S02001276,3.119584174,Bucksburn South,Aberdeen City,20,30
+S02001277,3.187930318,Bucksburn North,Aberdeen City,19,31
+S02001278,2.791504086,Dyce,Aberdeen City,21,29
+S02001279,7.612391179,Danestone,Aberdeen City,4,46
+S02001280,4.044316354,Oldmachar West,Aberdeen City,17,33
+S02001281,6.248358699,Oldmachar East,Aberdeen City,7,43
+S02001282,0.550488505,Balgownie and Donmouth West,Aberdeen City,26,24
+S02001283,5.202122912,Balgownie and Donmouth East,Aberdeen City,12,38
+S02001284,7.079851969,Denmore,Aberdeen City,6,44
+S02001285,0.025232212,East Cairngorms,Aberdeenshire,36,24
+S02001286,-0.36807005,Aboyne and South Deeside,Aberdeenshire,39,21
+S02001287,0.546752104,Mearns and Laurencekirk,Aberdeenshire,32,28
+S02001288,0.691283221,Mearns South and Benholm,Aberdeenshire,31,29
+S02001289,0.048629383,Mearns North and Inverbervie,Aberdeenshire,35,25
+S02001290,5.639375662,"Fetteresso, Netherley and Catter",Aberdeenshire,6,54
+S02001291,-0.228979191,Stonehaven South,Aberdeenshire,37,23
+S02001292,1.7946982,Stonehaven North,Aberdeenshire,26,34
+S02001293,4.71238434,Newtonhill,Aberdeenshire,10,50
+S02001294,0.328784116,Portlethen,Aberdeenshire,33,27
+S02001295,1.367215014,Banchory-Devenick and Findon,Aberdeenshire,27,33
+S02001296,6.532559767,"Dunecht, Durris and Drumoak",Aberdeenshire,5,55
+S02001297,4.343746933,Banchory East,Aberdeenshire,13,47
+S02001298,2.849553454,Banchory West,Aberdeenshire,23,37
+S02001299,3.690535102,Crathes and Torphins,Aberdeenshire,18,42
+S02001300,0.943127268,Cromar and Kildrummy,Aberdeenshire,30,30
+S02001301,7.063490342,Howe of Alford,Aberdeenshire,4,56
+S02001302,-3.092221916,Kemnay,Aberdeenshire,46,14
+S02001303,0.073870967,Inverurie North,Aberdeenshire,34,26
+S02001304,-4.995108459,Inverurie South,Aberdeenshire,52,8
+S02001305,7.248529548,Durno-Chapel of Garioch,Aberdeenshire,3,57
+S02001306,4.111072905,Kintore,Aberdeenshire,14,46
+S02001307,4.074331626,Blackburn,Aberdeenshire,15,45
+S02001308,8.441421473,Westhill North and South,Aberdeenshire,1,59
+S02001309,3.454567962,Westhill Central,Aberdeenshire,20,40
+S02001310,7.286826443,Garlogie and Elrick,Aberdeenshire,2,58
+S02001311,4.567385292,Newmachar and Fintray,Aberdeenshire,12,48
+S02001312,3.02774212,Balmedie and Potterton,Aberdeenshire,22,38
+S02001313,3.719215177,Ellon East,Aberdeenshire,17,43
+S02001314,1.336557866,Ellon West,Aberdeenshire,28,32
+S02001315,5.275339717,Ythanside,Aberdeenshire,7,53
+S02001316,2.781776882,Ythsie,Aberdeenshire,24,36
+S02001317,3.725460296,Barrahill,Aberdeenshire,16,44
+S02001318,4.844062025,Fyvie-Rothie,Aberdeenshire,8,52
+S02001319,4.750262748,"Insch, Oyne and Ythanwells",Aberdeenshire,9,51
+S02001320,3.61221973,Clashindarroch,Aberdeenshire,19,41
+S02001321,-6.178030195,Huntly,Aberdeenshire,53,7
+S02001322,-0.258224452,Auchterless and Monquhitter,Aberdeenshire,38,22
+S02001323,-1.528393165,Turriff,Aberdeenshire,41,19
+S02001324,-0.901585917,"Portsoy, Fordyce and Cornhill",Aberdeenshire,40,20
+S02001325,-3.323034457,Aberchirder and Whitehills,Aberdeenshire,47,13
+S02001326,-9.372332052,Banff,Aberdeenshire,55,5
+S02001327,-4.498249133,Macduff,Aberdeenshire,49,11
+S02001328,-1.873879289,Gardenstown and King Edward,Aberdeenshire,42,18
+S02001329,-4.673319911,New Pitsligo,Aberdeenshire,50,10
+S02001330,-2.097750392,Deer and Mormond,Aberdeenshire,44,16
+S02001331,-2.816921685,Mintlaw,Aberdeenshire,45,15
+S02001332,4.697345928,Auchnagatt,Aberdeenshire,11,49
+S02001333,-2.068597436,Cruden,Aberdeenshire,43,17
+S02001334,-4.857550151,Peterhead Links,Aberdeenshire,51,9
+S02001335,-12.19400226,Peterhead Bay,Aberdeenshire,57,3
+S02001336,-15.5147017,Peterhead Harbour,Aberdeenshire,58,2
+S02001337,1.132659962,Peterhead Ugieside,Aberdeenshire,29,31
+S02001338,2.212538809,Longside and Rattray,Aberdeenshire,25,35
+S02001339,-3.603136479,Rosehearty and Strathbeg,Aberdeenshire,48,12
+S02001340,3.193446484,Fraserburgh Smiddyhill,Aberdeenshire,21,39
+S02001341,-11.42191858,Fraserburgh Lochpots,Aberdeenshire,56,4
+S02001342,-7.175942689,Fraserburgh Central-Academy,Aberdeenshire,54,6
+S02001343,-21.10205153,Fraserburgh Harbour and Broadsea,Aberdeenshire,59,1
+S02001344,5.355312978,South Angus,Angus,6,21
+S02001345,6.478098984,Monikie,Angus,3,24
+S02001346,4.450807805,Monifieth West,Angus,8,19
+S02001347,6.680863636,Monifieth East,Angus,1,26
+S02001348,2.051539743,Carnoustie West,Angus,11,16
+S02001349,5.714558755,Carnoustie East,Angus,5,22
+S02001350,4.707668035,Arbroath Landward,Angus,7,20
+S02001351,1.054580989,Arbroath Kirkton,Angus,14,13
+S02001352,0.500862783,Arbroath Keptie,Angus,15,12
+S02001353,-12.34733257,Arbroath Harbour,Angus,26,1
+S02001354,-4.559881211,Arbroath Cliffburn,Angus,21,6
+S02001355,-9.630209858,Arbroath Warddykes,Angus,24,3
+S02001356,0.018096241,Lunan,Angus,17,10
+S02001357,-6.239028082,Montrose South,Angus,22,5
+S02001358,-4.135054684,Montrose North,Angus,20,7
+S02001359,6.639700902,Hillside,Angus,2,25
+S02001360,1.995828462,Friockheim,Angus,12,15
+S02001361,-6.704124014,Brechin East,Angus,23,4
+S02001362,-2.715684164,Brechin West,Angus,19,8
+S02001363,2.642351964,Letham and Glamis,Angus,10,17
+S02001364,5.828400699,Forfar East,Angus,4,23
+S02001365,-11.3002764,Forfar Central,Angus,25,2
+S02001366,-2.560847991,Forfar West,Angus,18,9
+S02001367,4.150643253,Kirriemuir Landward,Angus,9,18
+S02001368,0.354516518,Kirriemuir,Angus,16,11
+S02001369,1.568607225,Angus Glens,Angus,13,14
+S02001370,2.690673606,"Mull, Iona, Coll and Tiree",Argyll and Bute,9,15
+S02001371,-4.165069062,Oban South,Argyll and Bute,17,7
+S02001372,0.654024061,Oban North,Argyll and Bute,13,11
+S02001373,7.045647956,Benderloch Trail,Argyll and Bute,2,22
+S02001374,4.997066927,Loch Awe,Argyll and Bute,4,20
+S02001375,9.000049768,Mid Argyll,Argyll and Bute,1,23
+S02001376,-4.374905496,Greater Lochgilphead,Argyll and Bute,18,6
+S02001377,3.193051536,Knapdale,Argyll and Bute,8,16
+S02001378,0.593232535,Whisky Isles,Argyll and Bute,14,10
+S02001379,1.167136007,Kintyre Trail,Argyll and Bute,12,12
+S02001380,-9.372998394,Campbeltown,Argyll and Bute,22,2
+S02001381,-2.478012864,Bute,Argyll and Bute,15,9
+S02001382,-6.260478618,Rothesay Town,Argyll and Bute,21,3
+S02001383,1.845939579,Cowal South,Argyll and Bute,10,14
+S02001384,1.192106666,Cowal North,Argyll and Bute,11,13
+S02001385,-4.796859951,Hunter's Quay,Argyll and Bute,19,5
+S02001386,-9.614553912,Dunoon,Argyll and Bute,23,1
+S02001387,5.649116978,Garelochhead,Argyll and Bute,3,21
+S02001388,4.589636441,Helensburgh West and Rhu,Argyll and Bute,5,19
+S02001389,4.183756596,Helensburgh North,Argyll and Bute,6,18
+S02001390,-5.868112408,Helensburgh Centre,Argyll and Bute,20,4
+S02001391,-3.641831992,Helensburgh East,Argyll and Bute,16,8
+S02001392,3.771384041,Lomond Shore,Argyll and Bute,7,17
+S02001393,-1.513810046,Tullibody South,Clackmannanshire,8,5
+S02001394,-7.184636933,Tullibody North and Glenochil,Clackmannanshire,11,2
+S02001395,8.094420154,Menstrie,Clackmannanshire,2,11
+S02001396,2.579061851,Alva,Clackmannanshire,4,9
+S02001397,1.432506619,"Fishcross, Devon Village and Coalsnaughton",Clackmannanshire,5,8
+S02001398,-0.040391867,Tillicoultry,Clackmannanshire,6,7
+S02001399,9.890798647,Dollar and Muckhart,Clackmannanshire,1,12
+S02001400,-0.099524685,"Clackmannan, Kennet and Forestmill",Clackmannanshire,7,6
+S02001401,-2.942942269,Sauchie,Clackmannanshire,10,3
+S02001402,-13.23494097,Alloa South and East,Clackmannanshire,12,1
+S02001403,-1.671895007,Alloa North,Clackmannanshire,9,4
+S02001404,4.691354503,Alloa West,Clackmannanshire,3,10
+S02001405,-9.646908183,Stranraer West,Dumfries and Galloway,38,3
+S02001406,-11.07565488,Stranraer East,Dumfries and Galloway,39,2
+S02001407,-5.21144024,Stranraer South,Dumfries and Galloway,33,8
+S02001408,-3.825781596,Rhins North,Dumfries and Galloway,31,10
+S02001409,-2.032018452,Rhins South,Dumfries and Galloway,28,13
+S02001410,1.105217927,Machars North,Dumfries and Galloway,23,18
+S02001411,-3.29356046,Machars South,Dumfries and Galloway,29,12
+S02001412,-1.142661796,Newton Stewart,Dumfries and Galloway,25,16
+S02001413,5.70034627,Gatehouse,Dumfries and Galloway,6,35
+S02001414,2.262881797,Kirkcudbright,Dumfries and Galloway,17,24
+S02001415,-1.249683328,Castle Douglas,Dumfries and Galloway,26,15
+S02001416,-0.254706595,Dalbeattie,Dumfries and Galloway,24,17
+S02001417,2.723128998,Dalbeattie Rural,Dumfries and Galloway,16,25
+S02001418,4.331314704,Glenkens,Dumfries and Galloway,8,33
+S02001419,-6.891307678,Upper Nithsdale,Dumfries and Galloway,36,5
+S02001420,3.457306336,Thornhill,Dumfries and Galloway,11,30
+S02001421,6.252486541,Mid Nithsdale,Dumfries and Galloway,4,37
+S02001422,5.62496922,Shawhead,Dumfries and Galloway,7,34
+S02001423,-11.87866263,Lochside and Lincluden,Dumfries and Galloway,40,1
+S02001424,-6.474074702,Summerville,Dumfries and Galloway,35,6
+S02001425,3.27510731,Troqueer,Dumfries and Galloway,12,29
+S02001426,3.798220506,New Abbey,Dumfries and Galloway,9,32
+S02001427,2.145349163,Kingholm,Dumfries and Galloway,19,22
+S02001428,3.139791832,Calside,Dumfries and Galloway,14,27
+S02001429,1.96637883,Georgetown,Dumfries and Galloway,20,21
+S02001430,-8.565339418,Dumfries Central,Dumfries and Galloway,37,4
+S02001431,-5.867019198,Nunholm,Dumfries and Galloway,34,7
+S02001432,-4.826517397,Locharbriggs,Dumfries and Galloway,32,9
+S02001433,5.724264272,Heathhall,Dumfries and Galloway,5,36
+S02001434,6.624984656,Collin,Dumfries and Galloway,3,38
+S02001435,8.179755952,Lochmaben,Dumfries and Galloway,1,40
+S02001436,1.332942163,Lockerbie,Dumfries and Galloway,22,19
+S02001437,1.506548788,Moffat,Dumfries and Galloway,21,20
+S02001438,6.693506665,Langholm and Eskdale,Dumfries and Galloway,2,39
+S02001439,3.210493228,Annandale East,Dumfries and Galloway,13,28
+S02001440,2.731015431,Annandale West,Dumfries and Galloway,15,26
+S02001441,-1.793290465,Annan West,Dumfries and Galloway,27,14
+S02001442,-3.660169446,Annan East,Dumfries and Galloway,30,11
+S02001443,2.257903132,Eastriggs,Dumfries and Galloway,18,23
+S02001444,3.644882749,Gretna,Dumfries and Galloway,10,31
+S02001445,7.845747958,Westend,Dundee City,3,29
+S02001446,-5.140098303,Perth Road,Dundee City,26,6
+S02001447,-2.036674695,Logie and Blackness,Dundee City,18,14
+S02001448,-6.843076324,City Centre,Dundee City,28,4
+S02001449,-4.609337427,Docks and Wellgate,Dundee City,24,8
+S02001450,-7.46138215,Hilltown,Dundee City,29,3
+S02001451,-4.225192544,The Glens,Dundee City,22,10
+S02001452,0.913973635,Stobswell,Dundee City,13,19
+S02001453,5.521023623,Baxter Park,Dundee City,9,23
+S02001454,3.387375718,Craigie and  Craigiebank,Dundee City,10,22
+S02001455,-4.123365608,Douglas West,Dundee City,21,11
+S02001456,6.54812144,West Ferry,Dundee City,8,24
+S02001457,-10.58250107,Douglas East,Dundee City,31,1
+S02001458,6.854678108,Broughty Ferry West,Dundee City,7,25
+S02001459,7.352352067,Broughty Ferry East,Dundee City,4,28
+S02001460,8.013498592,Barnhill,Dundee City,2,30
+S02001461,7.140217833,West Pitkerro,Dundee City,6,26
+S02001462,-6.418256545,Whitfield,Dundee City,27,5
+S02001463,-0.732697456,Fintry,Dundee City,16,16
+S02001464,-7.586739593,Linlathen and Midcraigie,Dundee City,30,2
+S02001465,0.652952253,Caird Park,Dundee City,14,18
+S02001466,-4.269971898,Kirkton,Dundee City,23,9
+S02001467,3.106720801,Downfield,Dundee City,11,21
+S02001468,2.469994404,Fairmuir,Dundee City,12,20
+S02001469,-0.728669733,Law,Dundee City,15,17
+S02001470,7.207989128,Balgay,Dundee City,5,27
+S02001471,-1.717014316,Menzieshill,Dundee City,17,15
+S02001472,-4.909157696,Charleston,Dundee City,25,7
+S02001473,-2.358835709,Lochee,Dundee City,19,13
+S02001474,-3.236729494,Ardler and St Marys,Dundee City,20,12
+S02001475,9.965055004,Western Edge,Dundee City,1,31
+S02001476,-8.896510728,Doon Valley South,East Ayrshire,28,3
+S02001477,-1.879602298,Doon Valley North,East Ayrshire,21,10
+S02001478,0.182441193,Mauchline Rural,East Ayrshire,15,16
+S02001479,-3.146479453,Drongan,East Ayrshire,23,8
+S02001480,4.198501372,Mauchline,East Ayrshire,6,25
+S02001481,-0.775801417,Cumnock Rural,East Ayrshire,19,12
+S02001482,-4.663451215,New Cumnock,East Ayrshire,25,6
+S02001483,-3.513553088,Cumnock South and Craigens,East Ayrshire,24,7
+S02001484,-0.31858439,Cumnock North,East Ayrshire,17,14
+S02001485,-8.086884856,Auchinleck,East Ayrshire,27,4
+S02001486,10.84323261,Northern and Irvine Valley Rural,East Ayrshire,1,30
+S02001487,4.048987047,Stewarton East,East Ayrshire,7,24
+S02001488,-0.110947138,Stewarton West,East Ayrshire,16,15
+S02001489,3.097151386,Darvel,East Ayrshire,9,22
+S02001490,-0.498895697,Newmilns,East Ayrshire,18,13
+S02001491,1.669962245,Galston,East Ayrshire,12,19
+S02001492,-3.039794753,Earlston and Hurlford Rural,East Ayrshire,22,9
+S02001493,-9.467839062,Shortlees,East Ayrshire,29,2
+S02001494,0.327082221,Bellfield and Kirkstyle,East Ayrshire,14,17
+S02001495,-0.935035196,Kilmarnock South Central and Caprington,East Ayrshire,20,11
+S02001496,3.396515859,Piersland,East Ayrshire,8,23
+S02001497,1.889190207,New Farm Loch South,East Ayrshire,11,20
+S02001498,2.639438288,Dean and New Farm Loch North,East Ayrshire,10,21
+S02001499,8.831288709,Southcraig and Beansburn,East Ayrshire,3,28
+S02001500,-5.996450135,Altonhill North and Onthank,East Ayrshire,26,5
+S02001501,-12.94249696,"Altonhill South, Longpark and Hillhead",East Ayrshire,30,1
+S02001502,1.368205751,Bonnyton and Town Centre,East Ayrshire,13,18
+S02001503,10.71064194,"Grange, Howard and Gargieston",East Ayrshire,2,29
+S02001504,6.254746389,"Crosshouse, Gatehead and Kilmaurs Rural",East Ayrshire,4,27
+S02001505,4.814941162,Kilmaurs,East Ayrshire,5,26
+S02001506,5.104074804,West Clober and Mains Estate,East Dunbartonshire,5,24
+S02001507,-6.461888307,East Clober and Mains Estate,East Dunbartonshire,25,4
+S02001508,3.566845982,Barloch,East Dunbartonshire,12,17
+S02001509,0.119362411,Keystone and Dougalston,East Dunbartonshire,18,11
+S02001510,4.775617163,Kilmardinny East,East Dunbartonshire,6,23
+S02001511,5.92392165,Kilmardinny West,East Dunbartonshire,2,27
+S02001512,6.398279581,North Castlehill and Thorn,East Dunbartonshire,1,28
+S02001513,2.15333171,South Castlehill and Thorn,East Dunbartonshire,14,15
+S02001514,3.883305335,Westerton West,East Dunbartonshire,9,20
+S02001515,2.540066311,Westerton East,East Dunbartonshire,13,16
+S02001516,5.395189876,Kessington West,East Dunbartonshire,3,26
+S02001517,4.679914319,Kessington East,East Dunbartonshire,7,22
+S02001518,-0.232140285,Torrance and Balmore,East Dunbartonshire,19,10
+S02001519,0.602887737,Bishopbriggs North and Kenmure,East Dunbartonshire,17,12
+S02001520,5.124200908,Bishopbriggs West and Cadder,East Dunbartonshire,4,25
+S02001521,-8.141423621,Auchinairn,East Dunbartonshire,26,3
+S02001522,3.760946302,Woodhill East,East Dunbartonshire,10,19
+S02001523,1.089208931,Woodhill West,East Dunbartonshire,15,14
+S02001524,1.082980973,Lenzie North,East Dunbartonshire,16,13
+S02001525,4.275078198,Lenzie South,East Dunbartonshire,8,21
+S02001526,-2.278115059,Kirkintilloch South,East Dunbartonshire,21,8
+S02001527,-5.994313866,Kirkintilloch West,East Dunbartonshire,24,5
+S02001528,-18.48755883,Hillhead,East Dunbartonshire,28,1
+S02001529,3.718291789,Rosebank and Waterside,East Dunbartonshire,11,18
+S02001530,-4.720970463,Twechar and Harestanes East,East Dunbartonshire,22,7
+S02001531,-10.04022058,Harestanes,East Dunbartonshire,27,2
+S02001532,-2.045226329,Milton of Campsie,East Dunbartonshire,20,9
+S02001533,-5.791646635,Lennoxtown,East Dunbartonshire,23,6
+S02001534,-4.179175781,Whitecraig and Wallyford,East Lothian,16,7
+S02001535,-1.025931711,Musselburgh South,East Lothian,13,10
+S02001536,3.668191892,Musselburgh West,East Lothian,9,14
+S02001537,-6.913270113,Musselburgh North,East Lothian,20,3
+S02001538,-4.725214011,Musselburgh East,East Lothian,17,6
+S02001539,-9.553070876,Musselburgh Levenhall,East Lothian,22,1
+S02001540,-6.723873779,Prestonpans North,East Lothian,19,4
+S02001541,-7.6569984,Prestonpans South,East Lothian,21,2
+S02001542,0.494931526,Cockenzie and Port Seton,East Lothian,11,12
+S02001543,-5.817629668,Tranent North,East Lothian,18,5
+S02001544,-0.46780976,Tranent South,East Lothian,12,11
+S02001545,-1.881496351,Ormiston,East Lothian,14,9
+S02001546,6.912541275,"Macmerry, Longniddry and Aberlady",East Lothian,2,21
+S02001547,6.864799201,Haddington Rural,East Lothian,3,20
+S02001548,4.004755679,Haddington North,East Lothian,7,16
+S02001549,-4.130358881,Haddington South,East Lothian,15,8
+S02001550,8.405858154,Gullane and Drem,East Lothian,1,22
+S02001551,4.068982108,North Berwick North,East Lothian,6,17
+S02001552,5.969545061,North Berwick South,East Lothian,4,19
+S02001553,5.291819366,East Linton and Dunbar Rural,East Lothian,5,18
+S02001554,3.902300264,Dunbar West,East Lothian,8,15
+S02001555,3.491104805,Dunbar East,East Lothian,10,13
+S02001556,-5.141581428,West Neilston and Uplawmoor,East Renfrewshire,18,3
+S02001557,-1.123791726,Cross Stobbs,East Renfrewshire,13,8
+S02001558,-15.09678756,"Dunterlie, East Arthurlie and Dovecothall",East Renfrewshire,19,2
+S02001559,-3.212069167,West Arthurlie and North Neilston,East Renfrewshire,17,4
+S02001560,-15.41709802,Auchenback,East Renfrewshire,20,1
+S02001561,6.151047124,Crookfur and Fruin,East Renfrewshire,2,19
+S02001562,-2.117335216,"Mearns Village, Westacres and Greenfarm",East Renfrewshire,14,7
+S02001563,5.343610436,Whitecraigs and Broom,East Renfrewshire,3,18
+S02001564,4.239681378,Mearnskirk and South Kirkhill,East Renfrewshire,7,14
+S02001565,3.020916716,Eaglesham and Waterfoot,East Renfrewshire,9,12
+S02001566,4.552881967,North Kirkhill,East Renfrewshire,5,16
+S02001567,-2.820014581,Busby,East Renfrewshire,16,5
+S02001568,4.480808516,Clarkston and Sheddens,East Renfrewshire,6,15
+S02001569,8.267102286,Williamwood,East Renfrewshire,1,20
+S02001570,1.34271951,Stamperland,East Renfrewshire,11,10
+S02001571,3.311127829,Netherlee,East Renfrewshire,8,13
+S02001572,2.322481758,Merrylee and Braidbar,East Renfrewshire,10,11
+S02001573,4.574753713,Lower Whitecraigs and South Giffnock,East Renfrewshire,4,17
+S02001574,-0.001030872,North Giffnock and North Thornliebank,East Renfrewshire,12,9
+S02001575,-2.677422667,South Thornliebank and Woodfarm,East Renfrewshire,15,6
+S02001576,3.511013596,Balerno and Bonnington Village,"Edinburgh, City of",37,75
+S02001577,7.803335048,Currie West,"Edinburgh, City of",4,108
+S02001578,6.517926371,Currie East,"Edinburgh, City of",8,104
+S02001579,5.343604516,Baberton and Juniper Green,"Edinburgh, City of",17,95
+S02001580,7.834268108,Bonaly and The Pentlands,"Edinburgh, City of",3,109
+S02001581,4.241663233,Colinton and Kingsknowe,"Edinburgh, City of",31,81
+S02001582,-10.62751812,Clovenstone and Wester Hailes,"Edinburgh, City of",108,4
+S02001583,-6.893000511,The Calders,"Edinburgh, City of",94,18
+S02001584,-11.28715638,Murrayburn and Wester Hailes North,"Edinburgh, City of",110,2
+S02001585,-0.156245286,Parkhead and Sighthill,"Edinburgh, City of",70,42
+S02001586,-10.71149652,Broomhouse and Bankhead,"Edinburgh, City of",109,3
+S02001587,-7.748369623,Stenhouse and Saughton Mains,"Edinburgh, City of",97,15
+S02001588,-1.918268927,Longstone and Saughton,"Edinburgh, City of",75,37
+S02001589,-2.105469691,Slateford and Chesser,"Edinburgh, City of",76,36
+S02001590,1.340441191,Gorgie West,"Edinburgh, City of",61,51
+S02001591,-3.17187467,Gorgie East,"Edinburgh, City of",80,32
+S02001592,4.023877118,Shandon,"Edinburgh, City of",35,77
+S02001593,7.572298562,Craiglockhart,"Edinburgh, City of",5,107
+S02001594,4.266050496,Morningside and Craighouse,"Edinburgh, City of",30,82
+S02001595,5.055430443,Greenbank and The Braids,"Edinburgh, City of",19,93
+S02001596,1.236082886,Colinton Mains and Firrhill,"Edinburgh, City of",62,50
+S02001597,-2.757998367,Oxgangs,"Edinburgh, City of",77,35
+S02001598,4.608169256,Comiston and Swanston,"Edinburgh, City of",28,84
+S02001599,8.342719227,Fairmilehead,"Edinburgh, City of",2,110
+S02001600,3.235813163,Gilmerton South and the Murrays,"Edinburgh, City of",38,74
+S02001601,4.139197677,Mortonhall and Anwickhill,"Edinburgh, City of",33,79
+S02001602,-8.502554038,"Gracemount, Southhouse and Burdiehouse","Edinburgh, City of",100,12
+S02001603,-5.697854887,Hyvots and Gilmerton,"Edinburgh, City of",87,25
+S02001604,-6.806745457,Fernieside and Moredun South,"Edinburgh, City of",93,19
+S02001605,-7.781316091,Moredun and Craigour,"Edinburgh, City of",98,14
+S02001606,2.568687072,Liberton East,"Edinburgh, City of",48,64
+S02001607,2.926404238,Liberton West and Braid Hills,"Edinburgh, City of",44,68
+S02001608,-5.849373848,The Inch,"Edinburgh, City of",88,24
+S02001609,4.992718694,"Blackford, West Mains and Mayfield Road","Edinburgh, City of",20,92
+S02001610,-1.152138185,Prestonfield,"Edinburgh, City of",73,39
+S02001611,2.810658152,Newington and Dalkeith Road,"Edinburgh, City of",46,66
+S02001612,5.614606579,The Grange,"Edinburgh, City of",15,97
+S02001613,2.523578308,Marchmont East and Sciennes,"Edinburgh, City of",49,63
+S02001614,4.213042142,Marchmont West,"Edinburgh, City of",32,80
+S02001615,6.030270166,Morningside,"Edinburgh, City of",12,100
+S02001616,4.57675932,Merchiston and Greenhill,"Edinburgh, City of",29,83
+S02001617,4.791028474,Bruntsfield,"Edinburgh, City of",24,88
+S02001618,3.214171922,Polwarth,"Edinburgh, City of",40,72
+S02001619,-3.002390273,Dalry and Fountainbridge,"Edinburgh, City of",78,34
+S02001620,-6.538129636,Tollcross,"Edinburgh, City of",92,20
+S02001621,1.931777078,Meadows and Southside,"Edinburgh, City of",53,59
+S02001622,-10.13512966,"Old Town, Princes Street and Leith Street","Edinburgh, City of",104,8
+S02001623,-3.795191563,"Canongate, Southside and Dumbiedykes","Edinburgh, City of",82,30
+S02001624,0.311689847,Abbeyhill,"Edinburgh, City of",67,45
+S02001625,1.626971968,Meadowbank and Abbeyhill North,"Edinburgh, City of",55,57
+S02001626,1.427193494,Willowbrae and Duddingston Village,"Edinburgh, City of",59,53
+S02001627,-17.4625823,Craigmillar,"Edinburgh, City of",111,1
+S02001628,-10.52251003,Niddrie,"Edinburgh, City of",107,5
+S02001629,-8.815741992,"Bingham, Magdalene and The Christians","Edinburgh, City of",101,11
+S02001630,1.092091767,"Jewel, Brunstane and Newcraighall","Edinburgh, City of",64,48
+S02001631,2.986179185,Joppa,"Edinburgh, City of",42,70
+S02001632,-1.719217451,Portobello,"Edinburgh, City of",74,38
+S02001633,4.958710663,Duddingston and Portobello South,"Edinburgh, City of",22,90
+S02001634,2.007608431,Mountcastle,"Edinburgh, City of",51,61
+S02001635,-1.133381085,Northfield and Piershill,"Edinburgh, City of",72,40
+S02001636,4.068960678,Craigentinny,"Edinburgh, City of",34,78
+S02001637,-5.9366088,Restalrig (Loganlea) and Craigentinny West,"Edinburgh, City of",89,23
+S02001638,-7.849568758,Restalrig and Lochend,"Edinburgh, City of",99,13
+S02001639,0.781670161,Leith (Hermitage and Prospect Bank),"Edinburgh, City of",66,46
+S02001640,-3.368155142,Western Harbour and Leith Docks,"Edinburgh, City of",81,31
+S02001641,-7.19356147,North Leith and Newhaven,"Edinburgh, City of",95,17
+S02001642,-6.100201389,The Shore and Constitution Street,"Edinburgh, City of",90,22
+S02001643,-10.52018834,Great Junction Street,"Edinburgh, City of",106,6
+S02001644,-6.473379727,South Leith,"Edinburgh, City of",91,21
+S02001645,-5.168599022,Easter Road and Hawkhill Avenue,"Edinburgh, City of",84,28
+S02001646,-0.065369297,Leith (Albert Street),"Edinburgh, City of",69,43
+S02001647,0.865203854,Hillside and Calton Hill,"Edinburgh, City of",65,47
+S02001648,-5.311780643,Pilrig,"Edinburgh, City of",85,27
+S02001649,0.29960288,Bonnington,"Edinburgh, City of",68,44
+S02001650,1.423647384,Trinity East and The Dudleys,"Edinburgh, City of",60,52
+S02001651,4.974728729,Trinity,"Edinburgh, City of",21,91
+S02001652,2.948122806,"Inverleith, Goldenacre and Warriston","Edinburgh, City of",43,69
+S02001653,2.752464205,Broughton North and Powderhall,"Edinburgh, City of",47,65
+S02001654,3.232873836,Broughton South,"Edinburgh, City of",39,73
+S02001655,1.786496817,New Town East and Gayfield,"Edinburgh, City of",54,58
+S02001656,6.572886746,New Town West,"Edinburgh, City of",7,105
+S02001657,5.447221457,Canonmills and New Town North,"Edinburgh, City of",16,96
+S02001658,1.124912305,Stockbridge,"Edinburgh, City of",63,49
+S02001659,5.687793479,Comely Bank,"Edinburgh, City of",14,98
+S02001660,4.807827711,Deans Village,"Edinburgh, City of",23,89
+S02001661,1.624482506,Balgreen and Roseburn,"Edinburgh, City of",56,56
+S02001662,8.379847992,Murrayfield and Ravelston,"Edinburgh, City of",1,111
+S02001663,4.757249663,"Craigleith, Orchard Brae and Crewe Toll","Edinburgh, City of",26,86
+S02001664,6.139340497,Blackhall,"Edinburgh, City of",9,103
+S02001665,-4.82609687,Drylaw,"Edinburgh, City of",83,29
+S02001666,-9.427732346,West Pilton,"Edinburgh, City of",103,9
+S02001667,-0.798512542,Boswall and Pilton,"Edinburgh, City of",71,41
+S02001668,-10.19324878,Granton South and Wardieburn,"Edinburgh, City of",105,7
+S02001669,-7.470581833,Granton and Royston Mains,"Edinburgh, City of",96,16
+S02001670,-5.620543729,Granton West and Salvesen,"Edinburgh, City of",86,26
+S02001671,-8.870210275,Muirhouse,"Edinburgh, City of",102,10
+S02001672,4.728247092,Siverknowes and Davidson's Mains,"Edinburgh, City of",27,85
+S02001673,7.189695939,Cramond,"Edinburgh, City of",6,106
+S02001674,6.069483694,"Barnton, Cammo and Cramond South","Edinburgh, City of",11,101
+S02001675,-3.026266885,Clermiston and Drumbrae,"Edinburgh, City of",79,33
+S02001676,2.876659857,East Craigs North,"Edinburgh, City of",45,67
+S02001677,6.106036005,East Craigs South,"Edinburgh, City of",10,102
+S02001678,5.698638601,Corstorphine North,"Edinburgh, City of",13,99
+S02001679,3.123245952,Corstorphine,"Edinburgh, City of",41,71
+S02001680,1.592708838,Carrick Knowe,"Edinburgh, City of",57,55
+S02001681,2.181176002,Corstorphine South,"Edinburgh, City of",50,62
+S02001682,5.339560327,South Gyle,"Edinburgh, City of",18,94
+S02001683,1.592106928,"Ratho, Ingliston and Gogar","Edinburgh, City of",58,54
+S02001684,4.769945409,"Dalmeny, Kirkliston and Newbridge","Edinburgh, City of",25,87
+S02001685,1.970753361,Queensferry East,"Edinburgh, City of",52,60
+S02001686,3.922630345,Queensferry West,"Edinburgh, City of",36,76
+S02001687,0.450746543,Barra and South Uist,Eilean Siar,4,6
+S02001688,-0.955645449,Benbecula and North Uist,Eilean Siar,5,5
+S02001689,0.623971679,Harris,Eilean Siar,3,7
+S02001690,-1.806270955,South Lewis,Eilean Siar,6,4
+S02001691,-2.183259069,Northwest Lewis,Eilean Siar,7,3
+S02001692,5.525029344,Broadbay,Eilean Siar,2,8
+S02001693,-4.563252453,Stornoway West,Eilean Siar,9,1
+S02001694,-3.245677082,Stornoway East,Eilean Siar,8,2
+S02001695,6.154357443,Point,Eilean Siar,1,9
+S02001696,-3.324218639,Dunipace,Falkirk,31,12
+S02001697,-1.492261251,"Fankerton, Stoneywood and Denny Town",Falkirk,27,16
+S02001698,1.117200621,Denny - Nethermains,Falkirk,19,24
+S02001699,4.576038665,Head of Muir and Dennyloanhead,Falkirk,10,33
+S02001700,2.859253539,"Banknock, Haggs and Longcroft",Falkirk,15,28
+S02001701,-1.573708224,Bonnybridge,Falkirk,28,15
+S02001702,4.938040233,High Bonnybridge and Greenhill,Falkirk,8,35
+S02001703,4.915907401,Larbert - North Broomage and Inches,Falkirk,9,34
+S02001704,8.139497267,Larbert - South Broomage and Village,Falkirk,2,41
+S02001705,-6.15330725,Stenhousemuir West,Falkirk,36,7
+S02001706,2.485441236,Stenhousemuir East,Falkirk,16,27
+S02001707,7.134915847,Stenhousemuir - Antonshill,Falkirk,4,39
+S02001708,6.020078498,Carron,Falkirk,6,37
+S02001709,0.957791173,Carronshore,Falkirk,20,23
+S02001710,3.298700664,Carse and Grangemouth Old Town,Falkirk,12,31
+S02001711,-12.47626353,Falkirk - Bainsford and Langlees,Falkirk,42,1
+S02001712,3.250309731,Falkirk - Merchiston and New Carron Village,Falkirk,14,29
+S02001713,-4.908092762,Falkirk - Grahamston,Falkirk,33,10
+S02001714,-5.919803452,Falkirk - Middlefield,Falkirk,35,8
+S02001715,-0.308553657,Falkirk - Town Centre and Callendar Park,Falkirk,23,20
+S02001716,3.295857577,Falkirk - Bantaskin,Falkirk,13,30
+S02001717,-8.089545887,Falkirk - Camelon East,Falkirk,40,3
+S02001718,-8.81425968,Falkirk - Camelon West,Falkirk,41,2
+S02001719,-3.453251668,Falkirk - Tamfourhill,Falkirk,32,11
+S02001720,10.38042042,Falkirk - Lochgreen and Lionthorn,Falkirk,1,42
+S02001721,-1.592220844,Hallglen and Glen Village,Falkirk,29,14
+S02001722,1.679086443,Shieldhill,Falkirk,17,26
+S02001723,-5.720395744,Braes Villages,Falkirk,34,9
+S02001724,7.116963524,Reddingmuirhead and Overton,Falkirk,5,38
+S02001725,5.623480161,Brightons and Wallacestone,Falkirk,7,36
+S02001726,3.455590783,Maddiston and Rumford,Falkirk,11,32
+S02001727,7.48234773,Polmont,Falkirk,3,40
+S02001728,-1.306061888,Redding,Falkirk,25,18
+S02001729,-0.078709035,Laurieston and Westquarter,Falkirk,22,21
+S02001730,-6.912320493,Grangemouth - Newlands,Falkirk,38,5
+S02001731,0.262465376,Grangemouth - Town Centre,Falkirk,21,22
+S02001732,-1.804759389,Grangemouth - Kersiebank,Falkirk,30,13
+S02001733,-7.978506064,Grangemouth - Bowhouse,Falkirk,39,4
+S02001734,-1.479545345,Bo'ness - Douglas,Falkirk,26,17
+S02001735,-0.703752748,Bo'ness - Newtown,Falkirk,24,19
+S02001736,-6.512065742,Bo'ness - Kinneil,Falkirk,37,6
+S02001737,1.612216406,"Blackness, Bo'ness - Carriden and Grahamsdyke",Falkirk,18,25
+S02001738,2.82658112,Kincardine,Fife,34,71
+S02001739,-4.018743887,Oakley Comrie and Blairhall,Fife,81,24
+S02001740,5.190937385,Saline and Gowkhall,Fife,22,83
+S02001741,-0.721322852,Valleyfield Culross and Torryburn,Fife,59,46
+S02001742,7.104252937,Cairneyhill and Crombie,Fife,14,91
+S02001743,7.581439377,Crossford Charlestown and Limekilns,Fife,12,93
+S02001744,2.669608627,Dunfermline Milesmark and Wellwood,Fife,35,70
+S02001745,-1.380835981,Dunfermline Baldridgeburn,Fife,65,40
+S02001746,-1.148488886,Dunfermline Headwell,Fife,62,43
+S02001747,0.270326615,Dunfermline Central,Fife,52,53
+S02001748,-3.128266066,Dunfermline Brucefield,Fife,75,30
+S02001749,8.209891764,Dunfermline Garvock Hill,Fife,7,98
+S02001750,0.136333814,Dunfermline Bellyeoman and Townhill,Fife,53,52
+S02001751,11.10307993,Dunfermline Duloch North and Lynebank,Fife,2,103
+S02001752,-2.64956672,Dunfermline Touch and Woodmill,Fife,72,33
+S02001753,-8.683916068,Dunfermline Abbeyview North,Fife,97,8
+S02001754,-1.039445291,Dunfermline Abbeyview South,Fife,61,44
+S02001755,9.242290258,Dunfermline Duloch South,Fife,4,101
+S02001756,11.50238942,Dunfermline Masterton,Fife,1,104
+S02001757,8.43700215,Dunfermline Pitcorthie East,Fife,5,100
+S02001758,5.018701925,Dunfermline Pitcorthie West,Fife,23,82
+S02001759,0.511754397,Rosyth North,Fife,49,56
+S02001760,-3.567881655,Rosyth East,Fife,79,26
+S02001761,-7.922532046,Rosyth Central,Fife,94,11
+S02001762,-3.00840196,Rosyth South,Fife,73,32
+S02001763,0.451761483,North Queensferry and Inverkeithing West,Fife,50,55
+S02001764,-2.050016243,Inverkeithing East,Fife,68,37
+S02001765,7.718414155,Dalgety Bay West and Hillend,Fife,10,95
+S02001766,7.561968508,Dalgety Bay Central,Fife,13,92
+S02001767,6.254176195,Dalgety Bay East,Fife,17,88
+S02001768,2.449554486,Crossgates and Halbeath,Fife,36,69
+S02001769,-3.561065792,Hill of Beath and Kingseat,Fife,77,28
+S02001770,-7.121341231,Cowdenbeath South,Fife,90,15
+S02001771,-1.232058483,Cowdenbeath North,Fife,63,42
+S02001772,-5.042655603,Kelty West,Fife,84,21
+S02001773,1.751286786,Kelty East,Fife,39,66
+S02001774,-5.489568369,Lochore and Crosshill,Fife,85,20
+S02001775,-9.076992005,Ballingry,Fife,100,5
+S02001776,-4.4968207,Cardenden,Fife,83,22
+S02001777,-2.211548911,Lochgelly East,Fife,69,36
+S02001778,-6.071413438,Lochgelly West and Lumphinnans,Fife,88,17
+S02001779,5.421999672,Aberdour and Auchtertool,Fife,21,84
+S02001780,-2.403265226,Burntisland West,Fife,71,34
+S02001781,4.567348532,Burntisland East,Fife,25,80
+S02001782,2.234768263,Kinghorn,Fife,38,67
+S02001783,-3.071707642,Kirkcaldy Linktown & Seafield,Fife,74,31
+S02001784,-3.288995419,Kirkcaldy Central,Fife,76,29
+S02001785,0.663781022,Kirkcaldy Bennochy East,Fife,47,58
+S02001786,-0.374782858,Kirkcaldy Bennochy West,Fife,58,47
+S02001787,6.709994273,Kirkcaldy Raith,Fife,16,89
+S02001788,1.444088863,Kirkcaldy Newliston and Redcraigs,Fife,42,63
+S02001789,-6.125212385,Kirkcaldy Templehall West,Fife,89,16
+S02001790,-7.690988715,Kirkcaldy Templehall East,Fife,91,14
+S02001791,5.500635176,Kirkcaldy Dunnikier,Fife,18,87
+S02001792,1.062384118,Kirkcaldy Chapel,Fife,44,61
+S02001793,-10.19931085,Kirkcaldy Hayfield and Smeaton,Fife,101,4
+S02001794,-0.754867728,Kirkcaldy Pathhead,Fife,60,45
+S02001795,-8.880700344,Kirkcaldy Gallatown and Sinclairtown,Fife,99,6
+S02001796,-5.498995797,Dysart,Fife,86,19
+S02001797,-0.212478516,Wemyss,Fife,57,48
+S02001798,-1.837347967,Thornton and Kinglassie,Fife,67,38
+S02001799,-0.052421598,Leslie and Newcastle,Fife,55,50
+S02001800,-12.55844968,Glenrothes Macedonia and Tanshall,Fife,103,2
+S02001801,-5.709273886,Glenrothes South Parks,Fife,87,18
+S02001802,-1.250929428,Glenrothes Caskieberran and Rimbleton,Fife,64,41
+S02001803,-8.502183626,Glenrothes Auchmuty,Fife,96,9
+S02001804,1.076737882,Glenrothes Stenton and Finglassie,Fife,43,62
+S02001805,0.587883001,Glenrothes Pitteuchar,Fife,48,57
+S02001806,0.034198305,Glenrothes Woodside,Fife,54,51
+S02001807,1.454238932,Glenrothes Balgeddie and Town Park,Fife,41,64
+S02001808,-7.896472932,Glenrothes Collydean,Fife,92,13
+S02001809,-8.209636942,Glenrothes Cadham and Pitcoudie,Fife,95,10
+S02001810,0.369184962,Glenrothes Balfarg Pitcairn and Coul,Fife,51,54
+S02001811,4.233282272,Markinch and Star,Fife,27,78
+S02001812,3.067299422,Windygates and Coaltown,Fife,32,73
+S02001813,-7.911173002,"Buckhaven, Denbeath and Muiredge",Fife,93,12
+S02001814,-8.852353372,Methil Methilhill,Fife,98,7
+S02001815,-14.56218627,Methil West,Fife,104,1
+S02001816,-11.1604265,Methil East,Fife,102,3
+S02001817,-2.253774262,Leven East,Fife,70,35
+S02001818,-1.733224529,Leven West,Fife,66,39
+S02001819,-4.167006374,Leven North,Fife,82,23
+S02001820,3.632991883,Largo,Fife,29,76
+S02001821,-3.944610542,Kennoway and Bonnybank,Fife,80,25
+S02001822,3.279488378,Kettle and Ladybank,Fife,31,74
+S02001823,4.770771292,Falkland and Freuchie,Fife,24,81
+S02001824,2.43190501,Auchtermuchty and Gateside,Fife,37,68
+S02001825,3.008642866,Newburgh,Fife,33,72
+S02001826,3.696154355,Cupar West and Springfield,Fife,28,77
+S02001827,-3.564828803,Cupar Central,Fife,78,27
+S02001828,4.360967601,Cupar East,Fife,26,79
+S02001829,8.348286859,Dairsie Ceres and Dunino,Fife,6,99
+S02001830,8.151764619,Elie Colinsburgh and Largoward,Fife,8,97
+S02001831,-0.153650441,St Monans and Pittenweem,Fife,56,49
+S02001832,1.628099456,Anstruther,Fife,40,65
+S02001833,7.674731762,Crail and Boarhills,Fife,11,94
+S02001834,0.932177048,St Andrews South East,Fife,45,60
+S02001835,5.496514612,St Andrews Central,Fife,19,86
+S02001836,9.937646073,St Andrews South West,Fife,3,102
+S02001837,8.014897228,St Andrews North and Strathkinness,Fife,9,96
+S02001838,3.431222237,Leuchars and Guardbridge,Fife,30,75
+S02001839,5.489364703,Balmullo and Gauldry,Fife,20,85
+S02001840,0.796629766,Tayport,Fife,46,59
+S02001841,6.942306047,Newport and Wormit,Fife,15,90
+S02001842,-0.599753034,Darnley East,Glasgow City,70,67
+S02001843,4.453251573,Darnley North,Glasgow City,35,102
+S02001844,6.102514814,Darnley West,Glasgow City,23,114
+S02001845,-3.714752842,Nitshill,Glasgow City,106,31
+S02001846,-3.427396484,Crookston South,Glasgow City,103,34
+S02001847,-0.47922183,Crookston North,Glasgow City,68,69
+S02001848,6.85792654,Pollok South and West,Glasgow City,17,120
+S02001849,-1.586721401,Pollok North and East,Glasgow City,82,55
+S02001850,-1.322066283,Cardonald South and East,Glasgow City,81,56
+S02001851,1.237487965,Cardonald North,Glasgow City,51,86
+S02001852,4.513827661,Cardonald West and Central,Glasgow City,33,104
+S02001853,-2.039218876,Penilee,Glasgow City,85,52
+S02001854,3.655514765,Hillington,Glasgow City,36,101
+S02001855,-2.300278289,Drumoyne and Shieldhall,Glasgow City,87,50
+S02001856,-6.568381901,Govan and Linthouse,Glasgow City,123,14
+S02001857,0.232053928,Craigton,Glasgow City,63,74
+S02001858,0.58803022,Mosspark,Glasgow City,57,80
+S02001859,-6.986587305,Ibrox,Glasgow City,126,11
+S02001860,-6.349583721,Ibrox East and Cessnock,Glasgow City,119,18
+S02001861,-1.010052161,Kinning Park and Festival Park,Glasgow City,75,62
+S02001862,-0.948736104,Kingston West and Dumbreck,Glasgow City,74,63
+S02001863,5.627266271,Pollokshields West,Glasgow City,25,112
+S02001864,2.359590602,Pollokshields East,Glasgow City,43,94
+S02001865,0.221996248,Govanhill West,Glasgow City,64,73
+S02001866,-1.74041864,Govanhill East and Aikenhead,Glasgow City,83,54
+S02001867,1.419743438,Battlefield,Glasgow City,49,88
+S02001868,3.051635588,Strathbungo,Glasgow City,40,97
+S02001869,8.691241613,Maxwell Park,Glasgow City,7,130
+S02001870,3.299708805,Shawlands West,Glasgow City,37,100
+S02001871,3.244526164,Shawlands East,Glasgow City,38,99
+S02001872,7.872791995,Langside,Glasgow City,10,127
+S02001873,-3.657607732,Pollokshaws,Glasgow City,105,32
+S02001874,-2.581373852,Carnwadric West,Glasgow City,91,46
+S02001875,2.093518734,Carnwadric East,Glasgow City,45,92
+S02001876,6.484533048,Newlands,Glasgow City,20,117
+S02001877,6.188859977,Merrylee and Millbrae,Glasgow City,22,115
+S02001878,6.676558621,Muirend and Old Cathcart,Glasgow City,19,118
+S02001879,9.640600251,Carmunnock North,Glasgow City,4,133
+S02001880,-2.701197417,Carmunnock South,Glasgow City,93,44
+S02001881,-3.411334136,Glenwood South,Glasgow City,102,35
+S02001882,-4.966141153,Glenwood North,Glasgow City,114,23
+S02001883,0.456482537,Castlemilk,Glasgow City,59,78
+S02001884,4.596057125,Kingspark South,Glasgow City,32,105
+S02001885,5.865971954,Kingspark North,Glasgow City,24,113
+S02001886,4.862265113,Cathcart,Glasgow City,28,109
+S02001887,3.044102762,Mount Florida,Glasgow City,41,96
+S02001888,-0.788081258,Toryglen and Oatlands,Glasgow City,73,64
+S02001889,-7.790176827,Gorbals and Hutchesontown,Glasgow City,129,8
+S02001890,-7.076632974,Laurieston and Tradeston,Glasgow City,127,10
+S02001891,-4.816317485,Calton and Gallowgate,Glasgow City,113,24
+S02001892,-3.593818747,Bridgeton,Glasgow City,104,33
+S02001893,-3.115712946,Dalmarnock,Glasgow City,100,37
+S02001894,-6.861288603,Parkhead West and Barrowfield,Glasgow City,124,13
+S02001895,0.904850915,Parkhead East and Braidfauld North,Glasgow City,54,83
+S02001896,-3.052642263,Braidfauld,Glasgow City,97,40
+S02001897,6.919747683,Shettleston South,Glasgow City,16,121
+S02001898,4.956896127,Carmyle and Mount Vernon South,Glasgow City,27,110
+S02001899,8.856040581,Mount Vernon North and Sandyhills,Glasgow City,5,132
+S02001900,1.431333504,Baillieston West,Glasgow City,48,89
+S02001901,4.776335466,Baillieston East,Glasgow City,31,106
+S02001902,7.679148197,Garrowhill West,Glasgow City,12,125
+S02001903,8.306496895,Garrowhill East and Swinton,Glasgow City,9,128
+S02001904,-3.060095081,Easterhouse East,Glasgow City,98,39
+S02001905,-8.775996074,Central Easterhouse,Glasgow City,130,7
+S02001906,0.837004002,"Garthamlock, Auchinlea and Gartloch",Glasgow City,56,81
+S02001907,-10.88978121,North Barlanark and Easterhouse South,Glasgow City,136,1
+S02001908,-2.592391344,Barlanark,Glasgow City,92,45
+S02001909,0.126920437,Greenfield,Glasgow City,65,72
+S02001910,0.8553045,Shettleston North,Glasgow City,55,82
+S02001911,-2.825908499,Tollcross,Glasgow City,95,42
+S02001912,-0.430889911,Old Shettleston and Parkhead North,Glasgow City,67,70
+S02001913,-0.570424068,Carntyne,Glasgow City,69,68
+S02001914,-4.282668447,"Cranhill, Lightburn and Queenslie South",Glasgow City,109,28
+S02001915,-5.392103191,Craigend and Ruchazie,Glasgow City,116,21
+S02001916,-1.898208276,Riddrie and Hogganfield,Glasgow City,84,53
+S02001917,-1.138230495,Blackhill and Barmulloch East,Glasgow City,78,59
+S02001918,7.693589306,Robroyston and Millerston,Glasgow City,11,126
+S02001919,-1.118777135,Balornock,Glasgow City,77,60
+S02001920,0.390231115,Barmulloch,Glasgow City,61,76
+S02001921,-6.352754016,Petershill,Glasgow City,120,17
+S02001922,-6.940023268,Springburn,Glasgow City,125,12
+S02001923,-2.742780364,Springburn East and Cowlairs,Glasgow City,94,43
+S02001924,-6.494870392,Cowlairs and Port Dundas,Glasgow City,122,15
+S02001925,-9.20481133,Sighthill,Glasgow City,131,6
+S02001926,-4.709875645,"Roystonhill, Blochairn, and Provanmill",Glasgow City,112,25
+S02001927,1.243617305,Dennistoun North,Glasgow City,50,87
+S02001928,-0.605549479,Alexandra Parade,Glasgow City,71,66
+S02001929,-6.233336633,Carntyne West and Haghill,Glasgow City,118,19
+S02001930,3.129409135,Dennistoun,Glasgow City,39,98
+S02001931,-2.354452422,Gallowgate North and Bellgrove,Glasgow City,88,49
+S02001932,-4.557968704,City Centre East,Glasgow City,111,26
+S02001933,-3.925164775,City Centre West,Glasgow City,107,30
+S02001934,-9.454547513,City Centre South,Glasgow City,133,4
+S02001935,-1.270494729,Anderston,Glasgow City,80,57
+S02001936,0.412800945,Finnieston and Kelvinhaugh,Glasgow City,60,77
+S02001937,6.682515247,Woodlands,Glasgow City,18,119
+S02001938,-3.084755171,Woodside,Glasgow City,99,38
+S02001939,-0.100628993,Firhill,Glasgow City,66,71
+S02001940,-9.332114611,Keppochhill,Glasgow City,132,5
+S02001941,0.927822271,Ruchill,Glasgow City,53,84
+S02001942,-6.482702634,Possil Park,Glasgow City,121,16
+S02001943,-4.00708283,Milton West,Glasgow City,108,29
+S02001944,-7.176533938,Milton East,Glasgow City,128,9
+S02001945,4.790885575,Summerston Central and West,Glasgow City,30,107
+S02001946,-1.259864054,Summerston North,Glasgow City,79,58
+S02001947,-2.898149129,Maryhill East,Glasgow City,96,41
+S02001948,-3.411058433,Maryhill West,Glasgow City,101,36
+S02001949,-2.557730199,Wyndford,Glasgow City,90,47
+S02001950,7.478209481,Kelvindale,Glasgow City,14,123
+S02001951,6.427322612,North Kelvin,Glasgow City,21,116
+S02001952,8.599121141,Kelvingrove and University,Glasgow City,8,129
+S02001953,4.799081328,Hillhead,Glasgow City,29,108
+S02001954,1.973080632,Glasgow Harbour and Partick South,Glasgow City,46,91
+S02001955,2.362424623,Partick,Glasgow City,42,95
+S02001956,7.079301157,Partickhill and Hyndland,Glasgow City,15,122
+S02001957,10.11169362,Dowanhill,Glasgow City,1,136
+S02001958,9.659963545,Kelvinside and Jordanhill,Glasgow City,3,134
+S02001959,9.847002536,Broomhill,Glasgow City,2,135
+S02001960,8.706395009,Victoria Park,Glasgow City,6,131
+S02001961,-2.440395408,Whiteinch,Glasgow City,89,48
+S02001962,4.4559928,Scotstoun North and East,Glasgow City,34,103
+S02001963,-4.999700683,Scotstoun South and West,Glasgow City,115,22
+S02001964,-1.065277488,Yoker South,Glasgow City,76,61
+S02001965,0.562639795,Yoker North,Glasgow City,58,79
+S02001966,0.308862226,Knightswood West,Glasgow City,62,75
+S02001967,0.999151294,Knightswood East,Glasgow City,52,85
+S02001968,-2.046696456,Knightswood Park West,Glasgow City,86,51
+S02001969,1.44293349,Knightswood Park East,Glasgow City,47,90
+S02001970,7.557076302,Anniesland East,Glasgow City,13,124
+S02001971,2.109011411,Anniesland West,Glasgow City,44,93
+S02001972,-0.644259422,Blairdardie East,Glasgow City,72,65
+S02001973,5.488399172,Blairdardie West,Glasgow City,26,111
+S02001974,-6.205444766,Drumchapel South,Glasgow City,117,20
+S02001975,-10.22279058,Drumchapel North,Glasgow City,134,3
+S02001976,-10.4962871,Drumry East,Glasgow City,135,2
+S02001977,-4.487600542,Drumry West,Glasgow City,110,27
+S02001978,4.094385838,Lochaber West,Highland,11,46
+S02001979,-1.288926823,Fort William North,Highland,39,18
+S02001980,-4.411825052,Fort William South,Highland,45,12
+S02001981,0.274234591,Lochaber East and North,Highland,34,23
+S02001982,0.630110473,Badenoch and Strathspey South,Highland,32,25
+S02001983,1.908572057,Badenoch and Strathspey Central,Highland,23,34
+S02001984,2.579714465,Badenoch and Strathspey North,Highland,19,38
+S02001985,6.160755377,Nairn Rural,Highland,5,52
+S02001986,-6.248128441,Nairn East,Highland,49,8
+S02001987,-0.037465068,Nairn West,Highland,36,21
+S02001988,0.919970042,Inverness East Rural,Highland,31,26
+S02001989,3.984277231,Inverness Culloden and Balloch,Highland,12,45
+S02001990,-2.047773927,Inverness Smithton,Highland,41,16
+S02001991,3.060931116,Inverness Westhill,Highland,17,40
+S02001992,10.56659984,Inverness Inshes,Highland,2,55
+S02001993,11.61827696,Inverness Slackbuie,Highland,1,56
+S02001994,7.530920251,Inverness Lochardil and Holm Mains,Highland,3,54
+S02001995,-0.517902368,Inverness Drummond,Highland,37,20
+S02001996,3.378281525,Inverness Hilton,Highland,14,43
+S02001997,4.577305007,Inverness Drakies,Highland,8,49
+S02001998,-11.02830671,"Inverness Central, Raigmore and Longman",Highland,54,3
+S02001999,2.233637877,Inverness Crown and Haugh,Highland,20,37
+S02002000,-11.42918117,Inverness Ballifeary and Dalneigh,Highland,55,2
+S02002001,-4.868936507,Inverness Muirtown,Highland,47,10
+S02002002,-22.67256931,Inverness Merkinch,Highland,56,1
+S02002003,1.489312213,Inverness Scorguie,Highland,27,30
+S02002004,1.238523899,Inverness Kinmylies and South West,Highland,28,29
+S02002005,4.958330584,Inverness West Rural,Highland,7,50
+S02002006,4.1851159,Loch Ness,Highland,10,47
+S02002007,1.122880658,Lochlash,Highland,30,27
+S02002008,1.935539408,Skye South,Highland,22,35
+S02002009,1.205643895,Skye North East,Highland,29,28
+S02002010,-0.768471175,Skye North West,Highland,38,19
+S02002011,3.978471694,Ross and Cromarty South West,Highland,13,44
+S02002012,4.494338547,Ross and Cromarty North West,Highland,9,48
+S02002013,1.584698145,Ross and Cromarty Central,Highland,26,31
+S02002014,1.792477076,Ross and Cromarty East,Highland,24,33
+S02002015,3.089106191,Muir of Ord,Highland,16,41
+S02002016,3.112750401,Conon,Highland,15,42
+S02002017,-2.968580205,Dingwall,Highland,44,13
+S02002018,7.070595858,Black Isle South,Highland,4,53
+S02002019,6.108789757,Black Isle North,Highland,6,51
+S02002020,-8.996949541,Alness,Highland,52,5
+S02002021,-6.423859408,Invergordon,Highland,50,7
+S02002022,-1.52874383,Seaboard,Highland,40,17
+S02002023,-2.887213014,Tain,Highland,43,14
+S02002024,2.828284372,Sutherland South,Highland,18,39
+S02002025,0.447999685,Sutherland East,Highland,33,24
+S02002026,-7.239082123,Caithness South,Highland,51,6
+S02002027,-10.31277918,Wick South,Highland,53,4
+S02002028,-5.751849422,Wick North,Highland,48,9
+S02002029,1.762090195,Caithness North East,Highland,25,32
+S02002030,1.954680053,Caithness North West,Highland,21,36
+S02002031,-4.52014885,Thurso East,Highland,46,11
+S02002032,-2.192381913,Thurso West,Highland,42,15
+S02002033,0.263472857,Sutherland North and West,Highland,35,22
+S02002034,9.419491974,Kilmacolm Central,Inverclyde,1,17
+S02002035,6.698394766,"Kilmacolm, Quarriers, Greenock Upper East/Central",Inverclyde,5,13
+S02002036,8.858922386,Inverkip and Wemyss Bay,Inverclyde,2,16
+S02002037,3.193260404,"West Braeside, East Inverkip and West Gourock",Inverclyde,6,12
+S02002038,6.951851064,Gourock Upper and West Central and Upper Larkfield,Inverclyde,4,14
+S02002039,2.06034293,"Gourock Central, Upper East and IRH",Inverclyde,8,10
+S02002040,-5.271745838,"Braeside, Branchton, Lower Larkfield and Ravenscraig",Inverclyde,12,6
+S02002041,-5.370836497,"Lower Bow and Larkfield, Fancy Farm, Mallard Bowl",Inverclyde,13,5
+S02002042,7.788067401,"Gourock East, Greenock West and Lyle Road",Inverclyde,3,15
+S02002043,2.506046468,Greenock West and Central,Inverclyde,7,11
+S02002044,0.378571507,"Bow Farm, Barrs Cottage, Cowdenknowes and Overton",Inverclyde,9,9
+S02002045,-7.1654597,Greenock Upper Central,Inverclyde,15,3
+S02002046,-11.2511616,Greenock Town Centre and East Central,Inverclyde,17,1
+S02002047,-3.604948502,Greenock East,Inverclyde,11,7
+S02002048,-0.302451317,"Port Glasgow Upper, West and Central",Inverclyde,10,8
+S02002049,-9.308532187,"Port Glasgow Mid, East and Central",Inverclyde,16,2
+S02002050,-5.579813265,Port Glasgow Upper East,Inverclyde,14,4
+S02002051,5.76632243,Rural South Midlothian,Midlothian,3,20
+S02002052,3.001488206,Penicuik Southeast,Midlothian,7,16
+S02002053,5.377131745,Penicuik Southwest,Midlothian,4,19
+S02002054,-0.039588536,Penicuik East,Midlothian,13,10
+S02002055,4.924372994,Penicuik North,Midlothian,5,18
+S02002056,1.823307556,Pentland,Midlothian,10,13
+S02002057,2.173755486,Roslin and Bilston,Midlothian,9,14
+S02002058,2.252798854,Straiton,Midlothian,8,15
+S02002059,0.584607027,Loanhead,Midlothian,12,11
+S02002060,-0.411783525,Bonnyrigg South,Midlothian,14,9
+S02002061,-1.882994806,Bonnyrigg North,Midlothian,15,8
+S02002062,10.54302892,Newbattle and Dalhousie,Midlothian,1,22
+S02002063,8.235446207,Eskbank,Midlothian,2,21
+S02002064,1.223847956,Shawfair,Midlothian,11,12
+S02002065,-2.645150607,Thornybank,Midlothian,16,7
+S02002066,-11.91109689,Dalkeith,Midlothian,22,1
+S02002067,4.239543658,Pathhead and Rural East Midlothian,Midlothian,6,17
+S02002068,-8.812183459,Easthouses,Midlothian,20,3
+S02002069,-5.73586741,Mayfield,Midlothian,19,4
+S02002070,-3.832346266,Newtongrange,Midlothian,17,6
+S02002071,-9.454522606,North Gorebridge,Midlothian,21,2
+S02002072,-5.420116931,Gorebridge and Middleton,Midlothian,18,5
+S02002073,3.529194441,South Speyside and the Cabrach,Moray,5,20
+S02002074,2.396925811,North Speyside,Moray,8,17
+S02002075,6.491051638,Rural Keith and Strathisla,Moray,3,22
+S02002076,-1.699200378,Keith and Fife Keith,Moray,17,8
+S02002077,0.337462875,"Cullen, Portknockie, Findochty, Drybridge and Berryhillock",Moray,11,14
+S02002078,-6.010542779,Buckie Central East,Moray,23,2
+S02002079,-1.473441596,Buckie West and Mains of Buckie,Moray,16,9
+S02002080,2.459486181,"Mosstodloch, Portgordon and seaward",Moray,7,18
+S02002081,0.309957759,"Fochabers, Aultmore, Clochan and Ordiquish",Moray,12,13
+S02002082,7.436810528,"Heldon West, Fogwatt to Inchberry",Moray,2,23
+S02002083,-2.561059121,"Lhanbryde, Urquhart, Pitgavney and seaward",Moray,18,7
+S02002084,-10.09188675,Elgin Cathedral to Ashgrove and Pinefield,Moray,24,1
+S02002085,-0.975658259,New Elgin East,Moray,14,11
+S02002086,0.781212949,New Elgin West,Moray,10,15
+S02002087,4.188869593,Elgin Central West,Moray,4,21
+S02002088,-5.17868133,Elgin Bishopmill East and Ladyhill,Moray,22,3
+S02002089,1.634369209,Elgin Bishopmill West and Newfield,Moray,9,16
+S02002090,-3.628161342,Lossiemouth East and Seatown,Moray,20,5
+S02002091,-3.198342724,Lossiemouth West,Moray,19,6
+S02002092,-0.144709473,"Burghead, Roseisle and Laich",Moray,13,12
+S02002093,8.24064868,"Findhorn, Kinloss and Pluscarden Valley",Moray,1,24
+S02002094,-1.468777188,Forres Central East and seaward,Moray,15,10
+S02002095,-4.523192519,Forres South West and Mannachie,Moray,21,4
+S02002096,3.147663797,"Rafford, Dallas, Dyke to Dava",Moray,6,19
+S02002097,4.63899664,Arran,North Ayrshire,9,30
+S02002098,2.75589465,Springside and Rural,North Ayrshire,12,27
+S02002099,3.649960924,Irvine Tarryholme,North Ayrshire,11,28
+S02002100,0.856445115,Dreghorn,North Ayrshire,15,24
+S02002101,-4.79432164,Irvine Broomlands,North Ayrshire,31,8
+S02002102,-4.436246087,Irvine Bourtreehill,North Ayrshire,29,10
+S02002103,4.77140288,Irvine Girdle Toll and Staneca,North Ayrshire,8,31
+S02002104,2.421684647,Irvine Perceton and Lawthorn,North Ayrshire,14,25
+S02002105,-3.636958383,Irvine Castlepark North,North Ayrshire,28,11
+S02002106,-8.211997769,Irvine Castlepark South,North Ayrshire,36,3
+S02002107,0.471717164,Irvine East,North Ayrshire,16,23
+S02002108,-2.845290542,Irvine Central,North Ayrshire,26,13
+S02002109,-9.50119128,Irvine Fullarton,North Ayrshire,38,1
+S02002110,-5.95E-04,Stevenston Ardeer,North Ayrshire,19,20
+S02002111,-8.788343157,Saltcoats Central,North Ayrshire,37,2
+S02002112,-7.398835754,Ardrossan Central,North Ayrshire,34,5
+S02002113,6.577346268,Ardrossan North West,North Ayrshire,6,33
+S02002114,-1.736420681,Ardrossan North East,North Ayrshire,25,14
+S02002115,5.535205706,Saltcoats North West,North Ayrshire,7,32
+S02002116,-3.414821396,Saltcoats North East,North Ayrshire,27,12
+S02002117,-1.396468053,Stevenston North West,North Ayrshire,24,15
+S02002118,-7.90953465,Stevenston Hayocks,North Ayrshire,35,4
+S02002119,7.391788037,Kilwinning Whitehirst Park and Woodside,North Ayrshire,5,34
+S02002120,-4.461442191,Kilwinning Pennyburn,North Ayrshire,30,9
+S02002121,-5.89572046,Kilwinning West and Blacklands,North Ayrshire,33,6
+S02002122,-0.718139166,Kilwinning Central and North,North Ayrshire,23,16
+S02002123,-0.18274241,Dalry East and Rural,North Ayrshire,20,19
+S02002124,0.462260192,Dalry West,North Ayrshire,17,22
+S02002125,9.344597248,Fairlie and Rural,North Ayrshire,2,37
+S02002126,3.989871876,West Kilbride and Seamill,North Ayrshire,10,29
+S02002127,7.821149613,Largs South,North Ayrshire,4,35
+S02002128,-0.336350889,Largs Central and Cumbrae,North Ayrshire,22,17
+S02002129,10.30216718,Largs North,North Ayrshire,1,38
+S02002130,7.821292471,Skelmorlie and Rural,North Ayrshire,3,36
+S02002131,-0.23434844,Kilbirnie North,North Ayrshire,21,18
+S02002132,-5.600705236,Kilbirnie South and Longbar,North Ayrshire,32,7
+S02002133,0.188902117,Beith West,North Ayrshire,18,21
+S02002134,2.499789983,Beith East and Rural,North Ayrshire,13,26
+S02002135,-2.017940882,Overtown,North Lanarkshire,49,30
+S02002136,2.392446082,Netherton and Kirkhill,North Lanarkshire,29,50
+S02002137,2.236616796,Muirhouse,North Lanarkshire,30,49
+S02002138,8.201908934,Muirhouse and Knowetop,North Lanarkshire,6,73
+S02002139,-15.90780909,Craigneuk Wishaw,North Lanarkshire,78,1
+S02002140,-4.772887853,Pather,North Lanarkshire,63,16
+S02002141,-2.679309669,Wishaw South,North Lanarkshire,53,26
+S02002142,3.017422875,Wishaw North,North Lanarkshire,23,56
+S02002143,4.643395489,Coltness,North Lanarkshire,16,63
+S02002144,3.836511697,Wishaw East,North Lanarkshire,20,59
+S02002145,-3.913619026,Newmains,North Lanarkshire,58,21
+S02002146,3.0122702,Allanton - Newmains Rural,North Lanarkshire,24,55
+S02002147,0.316046608,Shotts,North Lanarkshire,36,43
+S02002148,-5.513928905,Stane,North Lanarkshire,66,13
+S02002149,0.127032714,Harthill and Salsburgh,North Lanarkshire,39,40
+S02002150,4.121639723,Cleland,North Lanarkshire,18,61
+S02002151,2.621892803,Newarthill,North Lanarkshire,26,53
+S02002152,2.71464515,Carfin North,North Lanarkshire,25,54
+S02002153,0.063129992,Clydesdale and New Stevenston,North Lanarkshire,41,38
+S02002154,-1.292602785,Carfin and Cleekhimin,North Lanarkshire,48,31
+S02002155,-8.445937939,Motherwell South,North Lanarkshire,75,4
+S02002156,12.1303658,Ladywell,North Lanarkshire,2,77
+S02002157,-2.254148988,Motherwell West,North Lanarkshire,51,28
+S02002158,-6.830320761,Motherwell North,North Lanarkshire,71,8
+S02002159,-7.837255314,Forgewood,North Lanarkshire,73,6
+S02002160,0.544460126,Holytown,North Lanarkshire,34,45
+S02002161,-4.492371742,Milnwood,North Lanarkshire,61,18
+S02002162,-4.443014625,Orbiston,North Lanarkshire,60,19
+S02002163,-4.922546693,Bellshill South,North Lanarkshire,65,14
+S02002164,0.245571914,Hattonrigg,North Lanarkshire,38,41
+S02002165,-2.134740275,Bellshill Central,North Lanarkshire,50,29
+S02002166,-2.963949379,Fallside,North Lanarkshire,54,25
+S02002167,-7.823895807,Viewpark,North Lanarkshire,72,7
+S02002168,6.317986348,Birkenshaw,North Lanarkshire,10,69
+S02002169,-5.804568025,Kirkwood and Bargeddie,North Lanarkshire,67,12
+S02002170,-3.452271468,Kirkshaws,North Lanarkshire,56,23
+S02002171,-5.822984176,Dundyvan,North Lanarkshire,68,11
+S02002172,-4.78940473,Drumpellier and Langloan,North Lanarkshire,64,15
+S02002173,-0.852348738,Coatbridge West,North Lanarkshire,45,34
+S02002174,-4.707748933,Townhead,North Lanarkshire,62,17
+S02002175,-1.246623022,Sunnyside and Cliftonville,North Lanarkshire,47,32
+S02002176,-9.931498996,Cliftonville,North Lanarkshire,76,3
+S02002177,-0.815259461,Shawhead and Whifflet,North Lanarkshire,44,35
+S02002178,-0.503775012,Greenend and Carnbroe,North Lanarkshire,43,36
+S02002179,-2.661010572,Calderbank and Brownsburn,North Lanarkshire,52,27
+S02002180,0.492462843,Chapelhall West,North Lanarkshire,35,44
+S02002181,5.261502233,Chapelhall East,North Lanarkshire,15,64
+S02002182,6.123227878,Craigneuk Airdrie,North Lanarkshire,11,68
+S02002183,-4.188416714,Petersburn,North Lanarkshire,59,20
+S02002184,-3.785701154,Gartlea,North Lanarkshire,57,22
+S02002185,5.268031991,Cairnhill,North Lanarkshire,14,65
+S02002186,-1.113277232,Coatdyke and Whinhall,North Lanarkshire,46,33
+S02002187,-8.059912972,Thrashbush,North Lanarkshire,74,5
+S02002188,-10.47045448,Airdrie North,North Lanarkshire,77,2
+S02002189,0.704116789,Drumgelloch,North Lanarkshire,33,46
+S02002190,-6.539769538,Caldercruix and Plains,North Lanarkshire,70,9
+S02002191,6.770844139,Glenmavis and Greengairs,North Lanarkshire,9,70
+S02002192,6.930918372,Gartcosh and Marnock,North Lanarkshire,8,71
+S02002193,5.720598789,Cardowan and Millerston,North Lanarkshire,12,67
+S02002194,9.545084097,Stepps,North Lanarkshire,3,76
+S02002195,2.599546845,Chryston and Muirhead,North Lanarkshire,27,52
+S02002196,-3.007976908,Moodiesburn West,North Lanarkshire,55,24
+S02002197,4.225895795,Moodiesburn East,North Lanarkshire,17,62
+S02002198,9.308492167,Westfield,North Lanarkshire,5,74
+S02002199,5.556299699,Condorrat,North Lanarkshire,13,66
+S02002200,4.035947378,Greenfaulds,North Lanarkshire,19,60
+S02002201,0.248261892,Seafar,North Lanarkshire,37,42
+S02002202,-6.100024334,Cumbernauld Central,North Lanarkshire,69,10
+S02002203,0.083412088,Kildrum,North Lanarkshire,40,39
+S02002204,1.868253736,Abronhill South,North Lanarkshire,32,47
+S02002205,2.47953271,Abronhill North,North Lanarkshire,28,51
+S02002206,-0.445964866,Village and Castlecary,North Lanarkshire,42,37
+S02002207,9.516761129,Carrickstone,North Lanarkshire,4,75
+S02002208,12.600458,Balloch West,North Lanarkshire,1,78
+S02002209,3.748601142,Balloch East,North Lanarkshire,22,57
+S02002210,7.137401075,Kilsyth East and Croy,North Lanarkshire,7,72
+S02002211,2.013117192,Kilsyth Bogside,North Lanarkshire,31,48
+S02002212,3.763159837,Balmalloch,North Lanarkshire,21,58
+S02002213,-0.518085801,"Stromness, Sandwick and Stenness",Orkney Islands,4,3
+S02002214,1.996505737,West Mainland,Orkney Islands,2,5
+S02002215,8.658797051,East Mainland,Orkney Islands,1,6
+S02002216,-4.031703828,West Kirkwall,Orkney Islands,5,2
+S02002217,-5.70505331,East Kirkwall,Orkney Islands,6,1
+S02002218,-0.400459849,Isles,Orkney Islands,3,4
+S02002219,4.950169143,"Powmill, Cleish and Scotlandwell",Perth and Kinross,5,31
+S02002220,0.356842399,Kinross,Perth and Kinross,22,14
+S02002221,5.437769302,Milnathort and Crook of Devon,Perth and Kinross,4,32
+S02002222,6.131522885,"Muthill, Greenloaning and Gleneagles",Perth and Kinross,1,35
+S02002223,1.969405615,Auchterarder,Perth and Kinross,17,19
+S02002224,2.959459178,"Comrie, Gilmerton and St Fillans",Perth and Kinross,12,24
+S02002225,4.522060652,Crieff North,Perth and Kinross,7,29
+S02002226,-3.46385887,Crieff South,Perth and Kinross,27,9
+S02002227,2.472158596,Aberuthven and Almondbank,Perth and Kinross,14,22
+S02002228,5.978048287,"Glenfarg, Dunning and Rhynd",Perth and Kinross,2,34
+S02002229,2.5776486,Bridge of Earn and Abernethy,Perth and Kinross,13,23
+S02002230,-3.784296942,Moncrieffe and Friarton,Perth and Kinross,28,8
+S02002231,4.943127263,"Viewlands, Craigie and Wellshill",Perth and Kinross,6,30
+S02002232,4.3313799,Burghmuir and Oakbank,Perth and Kinross,8,28
+S02002233,3.331721883,Western Edge,Perth and Kinross,10,26
+S02002234,-8.784654319,Letham,Perth and Kinross,31,5
+S02002235,-11.1176727,"Hillyland, Tulloch and Inveralmond",Perth and Kinross,33,3
+S02002236,-3.864777722,North Muirton and Old Scone,Perth and Kinross,29,7
+S02002237,-12.15070189,Muirton,Perth and Kinross,35,1
+S02002238,-9.622116625,North Inch,Perth and Kinross,32,4
+S02002239,-11.30602162,Central and South Inch,Perth and Kinross,34,2
+S02002240,-0.15579633,Gannochy and Walnut Grove,Perth and Kinross,24,12
+S02002241,0.827536478,Scone,Perth and Kinross,20,16
+S02002242,2.964597075,"Guildtown, Balbeggie and St Madoes",Perth and Kinross,11,25
+S02002243,5.525807202,Errol and Inchture,Perth and Kinross,3,33
+S02002244,0.429566985,"Invergowrie, Longforgan and Abernyte",Perth and Kinross,21,15
+S02002245,0.035560577,Coupar Angus and Meigle,Perth and Kinross,23,13
+S02002246,-0.747077526,Alyth,Perth and Kinross,26,10
+S02002247,4.182188191,"Blair Atholl, Strathardle and Glenshee",Perth and Kinross,9,27
+S02002248,-6.500295743,Blairgowrie East (Rattray),Perth and Kinross,30,6
+S02002249,-0.663128344,Blairgowrie West,Perth and Kinross,25,11
+S02002250,1.729313033,Stanley and Murthly,Perth and Kinross,19,17
+S02002251,2.419773935,Luncarty and Dunkeld,Perth and Kinross,15,21
+S02002252,1.899831752,Pitlochry,Perth and Kinross,18,18
+S02002253,2.1849097,Rannoch and Aberfeldy,Perth and Kinross,16,20
+S02002254,1.214244331,Lochwinnoch,Renfrewshire,17,22
+S02002255,5.310187586,Renfrewshire Rural South and Howwood,Renfrewshire,9,30
+S02002256,9.341780522,Renfrewshire Rural North and Langbank,Renfrewshire,2,37
+S02002257,3.428693765,Kilbarchan,Renfrewshire,12,27
+S02002258,-1.936775545,Johnstone South West,Renfrewshire,25,14
+S02002259,-8.424332841,Johnstone North West,Renfrewshire,36,3
+S02002260,-4.462993274,Johnstone North East,Renfrewshire,30,9
+S02002261,-3.650013028,Johnstone South East,Renfrewshire,27,12
+S02002262,0.681219362,Elderslie and Phoenix,Renfrewshire,18,21
+S02002263,-16.47171644,Paisley Ferguslie,Renfrewshire,38,1
+S02002264,-12.74576907,Paisley North West,Renfrewshire,37,2
+S02002265,0.374046451,Paisley West,Renfrewshire,20,19
+S02002266,-2.613191741,Paisley Foxbar,Renfrewshire,26,13
+S02002267,7.572254645,Paisley South West,Renfrewshire,6,33
+S02002268,-4.033996304,Paisley Glenburn West,Renfrewshire,29,10
+S02002269,-1.269736397,Paisley Glenburn East,Renfrewshire,22,17
+S02002270,3.372680717,Paisley South,Renfrewshire,13,26
+S02002271,0.31339601,Paisley South East,Renfrewshire,21,18
+S02002272,5.833561956,Paisley Dykebar,Renfrewshire,8,31
+S02002273,-6.654155929,Paisley East,Renfrewshire,33,6
+S02002274,-6.92080477,Paisley Central,Renfrewshire,34,5
+S02002275,-1.424689385,Paisley North East,Renfrewshire,23,16
+S02002276,7.808676719,Paisley Ralston,Renfrewshire,5,34
+S02002277,-6.241676332,Paisley Gallowhill and Hillington,Renfrewshire,32,7
+S02002278,-7.061431421,Paisley North,Renfrewshire,35,4
+S02002279,-3.94836026,Renfrew West,Renfrewshire,28,11
+S02002280,0.419831697,Renfrew South,Renfrewshire,19,20
+S02002281,3.019199527,Renfrew East,Renfrewshire,14,25
+S02002282,-5.277234905,Renfrew North,Renfrewshire,31,8
+S02002283,7.044466824,Erskine East and Inchinnan,Renfrewshire,7,32
+S02002284,2.373499635,Erskine Central,Renfrewshire,15,24
+S02002285,3.796359753,Erskine West,Renfrewshire,11,28
+S02002286,8.210618647,Bishopton,Renfrewshire,4,35
+S02002287,-1.890830111,Linwood South,Renfrewshire,24,15
+S02002288,1.650441409,Linwood North,Renfrewshire,16,23
+S02002289,9.20722189,Houston South,Renfrewshire,3,36
+S02002290,9.61658018,Houston North,Renfrewshire,1,38
+S02002291,4.438746124,Bridge of Weir,Renfrewshire,10,29
+S02002292,7.905010713,Tweeddale West Area,Scottish Borders,1,30
+S02002293,-4.924894382,Peebles North,Scottish Borders,26,5
+S02002294,6.489635627,Peebles South,Scottish Borders,4,27
+S02002295,3.840690057,Tweeddale East Area,Scottish Borders,11,20
+S02002296,6.792136662,Earlston Stow and Clovernfords Area,Scottish Borders,3,28
+S02002297,-3.020776159,Galashiels North,Scottish Borders,22,9
+S02002298,-8.150959643,Galashiels West,Scottish Borders,28,3
+S02002299,-1.751805953,Galashiels South,Scottish Borders,19,12
+S02002300,-15.1781739,Langlee,Scottish Borders,30,1
+S02002301,5.366292939,Melrose and Tweedbank Area,Scottish Borders,6,25
+S02002302,5.274173163,Lauder and Area,Scottish Borders,7,24
+S02002303,4.066011337,Berwickshire Central,Scottish Borders,10,21
+S02002304,0.953844761,Duns,Scottish Borders,15,16
+S02002305,2.021197222,Berwickshire East,Scottish Borders,13,18
+S02002306,-6.172307821,Eyemouth,Scottish Borders,27,4
+S02002307,3.056776619,Chirnside and Area,Scottish Borders,12,19
+S02002308,-0.308164793,Coldstream and Area,Scottish Borders,16,15
+S02002309,4.825224038,Cheviot East,Scottish Borders,8,23
+S02002310,1.303378002,Kelso North,Scottish Borders,14,17
+S02002311,-0.774494861,Kelso South,Scottish Borders,17,14
+S02002312,6.046877518,Cheviot West,Scottish Borders,5,26
+S02002313,-1.012509636,St Boswells and Newtown Area,Scottish Borders,18,13
+S02002314,-3.101844999,Jedburgh,Scottish Borders,23,8
+S02002315,7.114402218,Denholm and Hermitage,Scottish Borders,2,29
+S02002316,-12.32179072,Burnfoot,Scottish Borders,29,2
+S02002317,-4.143759489,Hawick Central,Scottish Borders,25,6
+S02002318,-2.297242977,Hawick West End,Scottish Borders,20,11
+S02002319,-3.60162884,Hawick North,Scottish Borders,24,7
+S02002320,4.228485724,Ettrick Yarrow and Liliesleaf Area,Scottish Borders,9,22
+S02002321,-2.523782429,Selkirk,Scottish Borders,21,10
+S02002322,2.460670776,Shetland South,Shetland Islands,3,5
+S02002323,-2.049861822,Lerwick South,Shetland Islands,5,3
+S02002324,-7.742914851,Lerwick North,Shetland Islands,7,1
+S02002325,1.457530876,Central Shetland,Shetland Islands,4,4
+S02002326,7.45651241,East and West Mainland,Shetland Islands,1,7
+S02002327,-4.95074877,North Mainland,Shetland Islands,6,2
+S02002328,3.368811381,North and East Isles,Shetland Islands,2,6
+S02002329,1.634277878,Carrick South,South Ayrshire,13,13
+S02002330,-3.825011224,Girvan Glendoune,South Ayrshire,21,5
+S02002331,-3.389646786,Girvan Ailsa,South Ayrshire,20,6
+S02002332,-2.100475472,Maybole,South Ayrshire,17,9
+S02002333,5.047824123,Carrick North,South Ayrshire,5,21
+S02002334,4.510681559,Coylton,South Ayrshire,7,19
+S02002335,10.09280424,Alloway and Doonfoot,South Ayrshire,1,25
+S02002336,-2.386888131,Castlehill and Kincaidston,South Ayrshire,18,8
+S02002337,4.496154075,Belmont,South Ayrshire,8,18
+S02002338,4.07404502,Holmston and Forehill,South Ayrshire,10,16
+S02002339,-2.589810643,Ayr South Harbour and Town Centre,South Ayrshire,19,7
+S02002340,-13.40670825,"Ayr North Harbour, Wallacetown and Newton South",South Ayrshire,24,2
+S02002341,-7.893404802,Craigie,South Ayrshire,23,3
+S02002342,-7.130737513,Dalmilling,South Ayrshire,22,4
+S02002343,-13.73378554,"Lochside, Braehead and Whitletts",South Ayrshire,25,1
+S02002344,-1.410624635,Newton North,South Ayrshire,15,11
+S02002345,2.599852439,Heathfield,South Ayrshire,11,15
+S02002346,5.111094636,Prestwick West,South Ayrshire,4,22
+S02002347,4.353518849,Prestwick East,South Ayrshire,9,17
+S02002348,5.497782809,Prestwick Airport and Monkton,South Ayrshire,3,23
+S02002349,-1.932235421,"Annbank, Mossblown and Tarbolton - the Coalfields",South Ayrshire,16,10
+S02002350,2.489459943,"Dundonald, Loans and Symington",South Ayrshire,12,14
+S02002351,4.567622944,Muirhead,South Ayrshire,6,20
+S02002352,-0.270110602,Barassie,South Ayrshire,14,12
+S02002353,5.594320505,Troon,South Ayrshire,2,24
+S02002354,4.226862212,Clydesdale South,South Lanarkshire,20,63
+S02002355,7.274218937,"Biggar, Symington, Thankerton and Dolphinton",South Lanarkshire,10,73
+S02002356,-1.714129823,"Carstairs, Carstairs Junction and Carnwath",South Lanarkshire,53,30
+S02002357,-2.104723109,"Forth, Braehead and Auchengray",South Lanarkshire,55,28
+S02002358,0.444104395,Law,South Lanarkshire,42,41
+S02002359,7.903589051,Carluke West,South Lanarkshire,6,77
+S02002360,-1.218216803,Carluke North,South Lanarkshire,51,32
+S02002361,-3.997547622,Carluke East,South Lanarkshire,60,23
+S02002362,0.412605303,Carluke South,South Lanarkshire,43,40
+S02002363,5.50044568,"Crossford, Braidwood and Yieldshields",South Lanarkshire,16,67
+S02002364,3.595517109,Lanark North West,South Lanarkshire,23,60
+S02002365,-2.74043322,Lanark North East,South Lanarkshire,58,25
+S02002366,-0.278857135,Lanark South,South Lanarkshire,48,35
+S02002367,6.30068038,Hazelbank and Kirkfieldbank,South Lanarkshire,15,68
+S02002368,-7.109494683,"Douglas, Coalburn and Rigside",South Lanarkshire,73,10
+S02002369,1.126490273,Lesmahagow,South Lanarkshire,35,48
+S02002370,2.113938886,Kirkmuirhill and Blackwood,South Lanarkshire,29,54
+S02002371,-3.03583793,Ashgill and Netherburn,South Lanarkshire,59,24
+S02002372,3.175957646,Merryton and Meadowhill,South Lanarkshire,25,58
+S02002373,-0.889065036,"Larkhall Central, Raploch, Millheugh and Burnhead",South Lanarkshire,50,33
+S02002374,-4.654032263,Hareleeshill,South Lanarkshire,65,18
+S02002375,-9.744103617,Strutherhill,South Lanarkshire,78,5
+S02002376,-1.31423934,Stonehouse,South Lanarkshire,52,31
+S02002377,2.3969675,Strathaven South,South Lanarkshire,28,55
+S02002378,6.535463528,Strathaven North,South Lanarkshire,13,70
+S02002379,7.501838178,"Chapelton, Glengavel and Sandford",South Lanarkshire,7,76
+S02002380,9.641949878,"Glassford, Quarter and Allanton",South Lanarkshire,2,81
+S02002381,1.005585538,Eddlewood,South Lanarkshire,38,45
+S02002382,-5.106528136,Low Waters,South Lanarkshire,67,16
+S02002383,7.460179311,Silvertonhill,South Lanarkshire,9,74
+S02002384,0.061688324,Hamilton Centre and Low Parks,South Lanarkshire,47,36
+S02002385,-2.386429952,Laighstonehall,South Lanarkshire,57,26
+S02002386,-12.43175776,Fairhill,South Lanarkshire,82,1
+S02002387,-4.090146526,Woodhead and Meikle Earnock,South Lanarkshire,61,22
+S02002388,4.127576058,Little Earnock,South Lanarkshire,21,62
+S02002389,9.169506862,Earnock,South Lanarkshire,3,80
+S02002390,-9.638239152,Hillhouse,South Lanarkshire,75,8
+S02002391,-9.160625003,High Blantyre,South Lanarkshire,74,9
+S02002392,-6.545835196,Blantyre South and Wheatlands,South Lanarkshire,72,11
+S02002393,5.105217345,Low Blantyre and Bardykes,South Lanarkshire,17,66
+S02002394,-4.301081027,Blantytre North and Coatshill,South Lanarkshire,63,20
+S02002395,-6.386144597,Burnbank North,South Lanarkshire,71,12
+S02002396,-9.723727543,Burnbank Central and Udston,South Lanarkshire,77,6
+S02002397,-2.285110536,Burnbank South and Chantinghall,South Lanarkshire,56,27
+S02002398,-11.92179451,Whitehill,South Lanarkshire,81,2
+S02002399,8.073537375,Bothwell South,South Lanarkshire,5,78
+S02002400,3.322012168,Bothwell North,South Lanarkshire,24,59
+S02002401,5.028465168,Uddingston and Gardenside,South Lanarkshire,18,65
+S02002402,7.474900157,"Halfway, Hallside and Drumsagard",South Lanarkshire,8,75
+S02002403,-4.433166052,Westburn and Newton,South Lanarkshire,64,19
+S02002404,-4.968839577,Vicarland and Cairns,South Lanarkshire,66,17
+S02002405,-6.166971717,Whitlawburn and Greenlees,South Lanarkshire,70,13
+S02002406,1.825597692,Cambuslang Central,South Lanarkshire,31,52
+S02002407,3.805561399,"Burgh, Eastfield and Silverbank",South Lanarkshire,22,61
+S02002408,-4.149511349,Farme Cross and Gallowflat North,South Lanarkshire,62,21
+S02002409,-9.667332008,Shawfield and Clincarthill,South Lanarkshire,76,7
+S02002410,-10.76499146,Burnhill and Bankhead North,South Lanarkshire,80,3
+S02002411,1.325200321,Bankhead South,South Lanarkshire,33,50
+S02002412,-10.36888233,Spittal,South Lanarkshire,79,4
+S02002413,8.261321122,High Crosshill,South Lanarkshire,4,79
+S02002414,0.50367359,Burnside and Springhall,South Lanarkshire,41,42
+S02002415,-5.489564871,Fernhill and Cathkin,South Lanarkshire,68,15
+S02002416,6.381821356,Nerston and EK Landward Area,South Lanarkshire,14,69
+S02002417,0.095682108,Calderwood East,South Lanarkshire,46,37
+S02002418,0.249778777,Calderwood Central,South Lanarkshire,45,38
+S02002419,1.114579433,Calderwood West and Nerston,South Lanarkshire,36,47
+S02002420,4.822366334,St Leonards North,South Lanarkshire,19,64
+S02002421,2.592827445,St Leonards South,South Lanarkshire,27,56
+S02002422,0.89469738,East Mains,South Lanarkshire,40,43
+S02002423,1.049203522,West Mains,South Lanarkshire,37,46
+S02002424,6.9587621,Stewartfield East,South Lanarkshire,11,72
+S02002425,6.827623361,Stewartfield West,South Lanarkshire,12,71
+S02002426,12.19364676,"Thorntonhall, Jackton and Gardenhall",South Lanarkshire,1,82
+S02002427,2.813557874,Hairmyres and Westwood West,South Lanarkshire,26,57
+S02002428,1.858642255,Mossneuk and Newlandsmuir,South Lanarkshire,30,53
+S02002429,0.29432366,Crosshouse and Lindsayfield,South Lanarkshire,44,39
+S02002430,-1.73456582,Whitehills West,South Lanarkshire,54,29
+S02002431,-5.70019539,Greenhills,South Lanarkshire,69,14
+S02002432,1.16933507,Westwood South,South Lanarkshire,34,49
+S02002433,0.990252843,Westwood East,South Lanarkshire,39,44
+S02002434,-0.366217516,The Murray,South Lanarkshire,49,34
+S02002435,1.580586951,"Birniehill, Kelvin and Whitehills East",South Lanarkshire,32,51
+S02002436,5.70110726,Blane Valley,Stirling,4,21
+S02002437,3.818086316,Balfron and Drymen,Stirling,10,15
+S02002438,4.11919527,Kippen and Fintry,Stirling,8,17
+S02002439,3.912240667,Cambusbarron,Stirling,9,16
+S02002440,-5.123835623,Plean and Rural SE,Stirling,21,4
+S02002441,-7.081803213,Cowie,Stirling,22,3
+S02002442,-4.903789704,Fallin,Stirling,20,5
+S02002443,-2.217060626,Bannockburn,Stirling,15,10
+S02002444,-2.497529408,Hillpark,Stirling,16,9
+S02002445,-2.982306507,Broomridge,Stirling,17,8
+S02002446,-4.792259576,Borestone,Stirling,19,6
+S02002447,2.387792562,King's Park and Torbrex,Stirling,11,14
+S02002448,-1.488094722,Braehead,Stirling,14,11
+S02002449,-7.393125586,City Centre,Stirling,23,2
+S02002450,-16.5868301,Raploch,Stirling,24,1
+S02002451,-3.901395688,Cornton,Stirling,18,7
+S02002452,5.375744919,Causewayhead,Stirling,5,20
+S02002453,5.910960861,Bridge of Allan and University,Stirling,3,22
+S02002454,0.889891888,Forth,Stirling,13,12
+S02002455,7.930501452,Dunblane East,Stirling,1,24
+S02002456,7.45023269,Dunblane West,Stirling,2,23
+S02002457,5.369496975,Carse of Stirling,Stirling,6,19
+S02002458,1.031295754,Callander and Trossachs,Stirling,12,13
+S02002459,5.071484141,Highland,Stirling,7,18
+S02002460,-8.073863479,Whitecrook,West Dunbartonshire,17,2
+S02002461,-9.298786218,Singer & Clydebank South,West Dunbartonshire,18,1
+S02002462,-4.65226071,Drumry,West Dunbartonshire,15,4
+S02002463,2.257888767,Clydebank,West Dunbartonshire,6,13
+S02002464,5.888669412,Clydebank North,West Dunbartonshire,4,15
+S02002465,-5.697891928,Clydebank East,West Dunbartonshire,16,3
+S02002466,7.414592111,Duntocher,West Dunbartonshire,2,17
+S02002467,-4.130532497,Dalmuir,West Dunbartonshire,14,5
+S02002468,6.551615768,Kilpatrick,West Dunbartonshire,3,16
+S02002469,9.212648824,Bowling,West Dunbartonshire,1,18
+S02002470,-0.94260462,Dumbarton East,West Dunbartonshire,11,8
+S02002471,5.874637211,Dumbarton,West Dunbartonshire,5,14
+S02002472,-2.562692881,Dalreoch,West Dunbartonshire,12,7
+S02002473,0.99760567,Leven,West Dunbartonshire,7,12
+S02002474,-0.631420342,Bonhill,West Dunbartonshire,10,9
+S02002475,-3.709422819,Alexandria,West Dunbartonshire,13,6
+S02002476,0.592902711,Balloch,West Dunbartonshire,9,10
+S02002477,0.908915022,Lomond,West Dunbartonshire,8,11
+S02002478,-5.43145335,Fauldhouse,West Lothian,30,8
+S02002479,-3.20449886,Breich Valley,West Lothian,26,12
+S02002480,2.856198746,West Calder and Polbeth,West Lothian,10,28
+S02002481,2.601983811,"Bellsquarry, Adambrae and Kirkton",West Lothian,11,27
+S02002482,11.80042403,Bankton and Murieston,West Lothian,1,37
+S02002483,-8.164383925,Dedridge East,West Lothian,35,3
+S02002484,8.150185202,Mid Calder and Kirknewton,West Lothian,5,33
+S02002485,7.91438184,East Calder,West Lothian,6,32
+S02002486,-2.544155363,Pumpherston and Uphall Station,West Lothian,24,14
+S02002487,-10.01953522,Craigshill,West Lothian,37,1
+S02002488,-7.708064795,Howden,West Lothian,34,4
+S02002489,1.767344516,Livingston Village and Eliburn South,West Lothian,15,23
+S02002490,-5.701299175,Ladywell,West Lothian,31,7
+S02002491,-5.979340303,Knightsridge,West Lothian,32,6
+S02002492,5.5085049,Knightsridge and Deans North,West Lothian,7,31
+S02002493,-3.520975044,Deans,West Lothian,27,11
+S02002494,4.546856829,Carmondean and Eliburn North,West Lothian,8,30
+S02002495,-2.516908605,Seafield,West Lothian,23,15
+S02002496,-3.933851791,Blackburn,West Lothian,28,10
+S02002497,-1.266863262,Blaeberry Hill and East Whitburn,West Lothian,21,17
+S02002498,-8.463018032,Whitburn Central,West Lothian,36,2
+S02002499,3.908211214,"Whitburn, Croftmalloch and Greenrigg",West Lothian,9,29
+S02002500,0.347450576,Armadale,West Lothian,18,20
+S02002501,-6.188538556,Armadale South,West Lothian,33,5
+S02002502,0.351566976,"Bathgate, Wester Inch and Inchcross",West Lothian,17,21
+S02002503,-2.180223384,Bathgate and Boghall,West Lothian,22,16
+S02002504,-5.354383276,Bathgate East,West Lothian,29,9
+S02002505,-0.68737317,Bathgate West,West Lothian,19,19
+S02002506,-1.125180463,"Blackridge, Westfield and Torphichen",West Lothian,20,18
+S02002507,9.91457218,Linlithgow South,West Lothian,3,35
+S02002508,8.194702925,Linlithgow Bridge,West Lothian,4,34
+S02002509,11.33244854,Linlithgow North,West Lothian,2,36
+S02002510,2.221495274,"Winchburgh, Bridgend and Philpstoun",West Lothian,12,26
+S02002511,-2.975293436,Broxburn Kirkhill,West Lothian,25,13
+S02002512,1.313047635,"Uphall, Dechmont and Ecclesmachan",West Lothian,16,22
+S02002513,2.095223135,Broxburn South,West Lothian,14,24
+S02002514,2.140741681,Broxburn East,West Lothian,13,25
