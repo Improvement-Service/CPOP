@@ -218,7 +218,7 @@ body <- dashboardBody(
                            fluidRow(splitLayout(cellWidths = c("33%", "33%", "33%"),
                         h4("Percentage of Children in Poverty"), 
                         h4("Average Highest Attainment"), 
-                        h4("% School Leavers Entering Positive Destinations"))
+                        h4("% Aged 16-64 Receiving Out of Work Benefits"))
                      ),
                        fluidRow(splitLayout(cellWidths = c("33%", "33%", "33%"),
                             leafletOutput("newplot"), 
@@ -228,15 +228,13 @@ body <- dashboardBody(
             conditionalPanel("input.CPP != 'Select a CPP'",
                fluidRow(
               splitLayout(cellWidths = c("33%", "33%", "33%"),
-                      h4("% Aged 16-64 Receiving Out of Work Benefits"), 
                       h4("Number of SIMD Crimes per 10,000 People"), 
-                      h4("Emergency Admissions (65+) per 100,000 People"))
+                      h4("Emergency Hospital Admissions per 100,000 people aged 65+"))
                 ),  
                 fluidRow(
                   splitLayout(cellWidths = c("33%", "33%", "33%"),
                      leafletOutput("newplot4"), 
-                     leafletOutput("newplot5"), 
-                     leafletOutput("newplot6")))
+                     leafletOutput("newplot5")))
             )
             
           ) 
@@ -471,7 +469,7 @@ body <- dashboardBody(
                      downloadBttn("DLDta",label = "Download All CPP Data"),
                      downloadBttn("DLIZDta", label = "Download All Community Data", style = "fill", color = "success"),
                      hr()),
-            fluidRow(h3("Methodology"), p("You can find details on the methodology used to collect and prepare all of our indicators", style = "display:inline"), a("here", href = "https://drive.google.com/file/d/1adbC4jr2XPHqvGFC9tV2McW2E55EkmXM/view?usp=sharing", target = "_blank"), hr()),
+            fluidRow(h3("Methodology"), p("You can find details on the methodology used to collect and prepare all of our indicators", style = "display:inline"), a("here", href = "https://drive.google.com/file/d/1mQHd4FnhF1ti4LfsgZp4az3JFnLtEozt/view?usp=sharing", target = "_blank"), hr()),
             fluidRow(h3("Other Profiling Tools and Data Sources"), p("There are a number of other profiling tools available, some of these are listed below.\nYou can also find sources for some of the data used in this tool"),
                                                     tags$ul( 
                                                       #Link to ScotPHO
