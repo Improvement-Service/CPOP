@@ -20,17 +20,17 @@ library(formattable)
 
 
 #Store value for the most recent year data is available, this needs to be changed when data is refreshed annually
-FrstYear <- "2008/09"
-RcntYear <- "2019/20"
-ProjYear <- "2022/23"
+FrstYear <- "2009/10"
+RcntYear <- "2020/21"
+ProjYear <- "2023/24"
 
 #First and last years for Duncan Index graphs
 DIFrYr <- substr(FrstYear,1,4)
 DIRcYr <- substr(RcntYear,1,4)
 
-LblFrst <- "08/09"
-LblRcnt <- "19/20"
-LblProj <- "22/23"
+LblFrst <- "09/10"
+LblRcnt <- "20/21"
+LblProj <- "23/24"
 
 SpPolysDF <- read_rds("data/Shapes_decs.rds")
 SpPolysIZ <- read_rds("data/IZshapes_decs.rds")
