@@ -393,22 +393,6 @@ shinyServer(function(input, output, session) {
   })
   
   output$newplot3 <- renderLeaflet({
-    mapCols <- if(input$CBCols){~posPalCB(`posDecs`)}else{~posPal(`posDecs`)}
-    p <- leaflet(plydata())%>%
-      addTiles()%>%
-      addPolygons(
-        smoothFactor = 0.5, 
-        weight = 1.5, 
-        fillOpacity = 0.7,
-        layerId = ~DataZone, 
-        fillColor = mapCols, 
-        color = "black"
-      )
-    
-    return(p)
-  })
-  
-  output$newplot4 <- renderLeaflet({
     mapCols <- if(input$CBCols){~benPalCB(`benDecs`)}else{~benPal(`benDecs`)}
     p <- leaflet(plydata())%>%
       addTiles()%>%
@@ -424,7 +408,7 @@ shinyServer(function(input, output, session) {
     return(p)
   })
   
-  output$newplot5 <- renderLeaflet({
+  output$newplot4 <- renderLeaflet({
     mapCols <- if(input$CBCols){~crimePalCB(`crimeDecs`)}else{~crimePal(`crimeDecs`)}
     p <- leaflet(plydata())%>%
       addTiles()%>%
@@ -440,7 +424,7 @@ shinyServer(function(input, output, session) {
     return(p)
   })
   
-  output$newplot6 <- renderLeaflet({
+  output$newplot5 <- renderLeaflet({
     mapCols <- if(input$CBCols){~admisPalCB(`admisDecs`)}else{~admisPal(`admisDecs`)}
     p <- leaflet(plydata())%>%
       addTiles()%>%
@@ -520,7 +504,7 @@ shinyServer(function(input, output, session) {
       tags$h4(as.character(unique(selectedDZ$DataZone))),
       sprintf(
         "%s: %s\n",
-        "Positive Destinations (%)", 
+        "Out of Work Benefits (%)", 
         round(unique(selectedDZ[15]),2)
       ), 
       tags$br()
@@ -548,7 +532,7 @@ shinyServer(function(input, output, session) {
       tags$h4(as.character(unique(selectedDZ$DataZone))),
       sprintf(
         "%s: %s\n",
-        "Out of Work Benefits (%)", 
+        "SIMD Crimes per 10,000", 
         round(unique(selectedDZ[16]),2)
       ), 
       tags$br()
@@ -576,7 +560,7 @@ shinyServer(function(input, output, session) {
       tags$h4(as.character(unique(selectedDZ$DataZone))),
       sprintf(
         "%s: %s\n",
-        "SIMD Crimes per 10,000", 
+        "Emergency Admissions per 100,000", 
         round(unique(selectedDZ[17]),2)
       ), 
       tags$br()
@@ -593,34 +577,6 @@ shinyServer(function(input, output, session) {
       return()
     isolate({
       showDZPopup5(event$id, event$lat, event$lng)
-    })
-  })
-  
-  # Clickable popups for map6
-  
-  showDZPopup6 <- function(group, lat, lng) {
-    selectedDZ <- CPPMapDta[CPPMapDta$DataZone == group,]
-    content <- as.character(tagList(
-      tags$h4(as.character(unique(selectedDZ$DataZone))),
-      sprintf(
-        "%s: %s\n",
-        "Emergency Admissions per 100,000", 
-        round(unique(selectedDZ[18]),2)
-      ), 
-      tags$br()
-    ))
-    leafletProxy("newplot6") %>% addPopups(lng, lat, content, layerId = group)
-  }
-  
-  # Makes the popups appear and clears old popups
-  
-  observe({
-    leafletProxy("newplot6") %>% clearPopups()
-    event <- input$newplot6_shape_click
-    if (is.null(event))
-      return()
-    isolate({
-      showDZPopup6(event$id, event$lat, event$lng)
     })
   })
   
@@ -754,7 +710,7 @@ shinyServer(function(input, output, session) {
         "Early Mortality" = 3,
         "Emergency Admissions" = 3,
         "Out of Work Benefits" = 3,
-        "Positive Destinations" = 3,
+        "Participation Rate" = 3,
         "Average Highest Attainment" = 3
       ),
       background = "black",
@@ -1730,7 +1686,7 @@ shinyServer(function(input, output, session) {
         ggtitle(indList[y])+
         theme_bw()+
         scale_y_continuous(limits = c(-0.23,0.5))+
-        scale_x_continuous(breaks = seq(2007,2017, by  =2))+
+        scale_x_continuous(breaks = seq(2008,2020, by  =2))+
         geom_hline(yintercept = 0)+
         scale_colour_manual(breaks = c("Comp", "CPP"), values = c("blue", "red"))+
         guides(colour = "none")+
@@ -2034,7 +1990,7 @@ shinyServer(function(input, output, session) {
     output$DLDta <- downloadHandler(
     filename = paste("CPP Data", ".zip", sep = ""),
     content = function(con) {
-      file.copy("data/CPP Data - Apr 22.zip", con)
+      file.copy("data/CPP Data - Aug 22.zip", con)
     },
     contentType = "application/zip"
     )
@@ -2043,7 +1999,7 @@ shinyServer(function(input, output, session) {
     output$DLIZDta <- downloadHandler(
       filename = paste("IGZ Data", ".zip", sep = ""),
       content = function(con) {
-        file.copy("data/IGZ Data - Apr 22.zip", con)
+        file.copy("data/IGZ Data - Aug 22.zip", con)
       },
       contentType = "application/zip"
     )
