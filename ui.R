@@ -1,23 +1,13 @@
 sidebar <- dashboardSidebar(
-  selectizeInput("LA1", "",
-                 choices =CPPNames, options = list(placeholder = "Select a CPP",
+  selectizeInput("LA1", "Select a CPP:",
+                 choices =CPPNames, options = list(placeholder = "CPP",
                   onInitialize = I('function() { this.setValue(""); }'))),
   
   sidebarMenu(id = "tabs",
-  menuItem("Community Map", tabName = "Map1", icon = icon("map")),
-  menuItem("CPP Over Time", tabName = "P1", icon = icon("line-chart")),
-  menuItem("Compare All CPPs", tabName = "P2", icon = icon("bar-chart")),
-  menuItem("Compare Similar CPPs", tabName = "P3", icon = icon("area-chart")),
-  menuItem("Inequality Over Time", tabName = "InQ", icon = icon("arrows-v")),
-  menuItem("Vulnerable Communities", tabName = "Vuln",icon = icon("table")),
-  menuItem("My Communities", tabName = "MyCom", icon = icon("columns")),
-  menuItem("Community Profile", tabName = "CP", icon = icon("arrow-down")),
-  conditionalPanel(condition = "input.tabs == `CP`", uiOutput("CommCP")),
-  menuItem("All Communities", tabName = "allCom", icon = icon("picture-o")),
-  menuItem("Data Zone Comparison", tabName = "Map2", icon = icon("globe")),
-  menuItem("About/ Data Download", tabName = "DtaDL", icon = icon("download")),
-  awesomeCheckbox("CBCols", "Colour Blind Colour Scheme", value = FALSE),
-  tags$footer(a("Contact us", href = "mailto:benchmarking@improvementservice.org.uk"), style = "position:fixed; bottom:0; margin-left:2px")
+              menuItem("Community Map", tabName = "Map1", icon = icon("map")),
+              uiOutput("sidebar"), #placeholder for hidden menu items (shown only when user selects LA)
+              awesomeCheckbox("CBCols", "Colour Blind Colour Scheme", value = FALSE),
+              tags$footer(a("Contact us", href = "mailto:benchmarking@improvementservice.org.uk"), style = "position:fixed; bottom:0; margin-left:2px")
   )
 )
 
