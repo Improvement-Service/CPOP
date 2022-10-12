@@ -12,36 +12,40 @@ sidebar <- dashboardSidebar(
 )
 
 body <- dashboardBody(
-  tags$head(tags$style(
-    ".leaflet{height:36vh !important; border-style:solid; border-width:1px; margin-top:6px}",
-    "#communityMap{height:91vh !important;border-style:solid;border-width:1px; margin-left:3px}",
-    "#scotMap{height:91vh !important;border-style:solid;border-width:1px; margin-left:3px}",
-    ".content{padding-top:1px}",
-    ".col-sm-1{padding-left:2px; z-index:1}",
-    ".col-sm-10{z-index:2}",
-    ".content-wrapper, .right-side {
+  tags$head(  #the following three lines pertain to 
+    HTML("<script src='https://cc.cdn.civiccomputing.com/9/cookieControl-9.x.min.js'></script>"),
+    includeHTML("google-analytics.html"),
+    tags$script(src = "cookie_control_cpop.js"),
+    tags$style(
+      ".leaflet{height:36vh !important; border-style:solid; border-width:1px; margin-top:6px}",
+      "#communityMap{height:91vh !important;border-style:solid;border-width:1px; margin-left:3px}",
+      "#scotMap{height:91vh !important;border-style:solid;border-width:1px; margin-left:3px}",
+      ".content{padding-top:1px}",
+      ".col-sm-1{padding-left:2px; z-index:1}",
+      ".col-sm-10{z-index:2}",
+      ".content-wrapper, .right-side {
       background-color: #ffffff;
     }",
-    "#comProgressBox{width:80%; padding-right:0px; padding-left:0px}",
-    "#SimCPP{height:90vh !important}",
-    "#CompCPP{height:75vh !important; margin-top:15px}",
-    ".main-header .logo {text-align:left; padding-left:0px}",
-    "#DLDta_bttn{margin-right:10px}",
-    "#Map1P1{margin-left:20px}",
-    "#P1P1{margin-left:20px}",
-    "#MyComP1{margin-left:20px}",
-    "#MyComP2{margin-left:20px}",
-    "#CPP1{margin-left:20px}",
-    "#CPP2{margin-left:20px}",
-    ".popover{width:40vw; max-width:450px}",
-    ".btn-group.bootstrap-select.form-control {background: border-box}",
-    ".skin-blue {padding-right:0px}",
-    "#VulnTable {margin-top:10px}",
-    "#HeaderVuln {font-style:italic;
+      "#comProgressBox{width:80%; padding-right:0px; padding-left:0px}",
+      "#SimCPP{height:90vh !important}",
+      "#CompCPP{height:75vh !important; margin-top:15px}",
+      ".main-header .logo {text-align:left; padding-left:0px}",
+      "#DLDta_bttn{margin-right:10px}",
+      "#Map1P1{margin-left:20px}",
+      "#P1P1{margin-left:20px}",
+      "#MyComP1{margin-left:20px}",
+      "#MyComP2{margin-left:20px}",
+      "#CPP1{margin-left:20px}",
+      "#CPP2{margin-left:20px}",
+      ".popover{width:40vw; max-width:450px}",
+      ".btn-group.bootstrap-select.form-control {background: border-box}",
+      ".skin-blue {padding-right:0px}",
+      "#VulnTable {margin-top:10px}",
+      "#HeaderVuln {font-style:italic;
           font-family: sans-serif;
         font-size:3vh; margin-top:5px;
     }",
-    HTML(" h5{height: 18px;
+      HTML(" h5{height: 18px;
          margin-top:2px;
          margin-bottom:0px;
          text-align:centre;
@@ -63,7 +67,10 @@ body <- dashboardBody(
         strong{float:right;}
           .small-box {margin-bottom:1px}
           .small-box >.inner {padding:5px}
-         "))),
+         "))
+    ),
+  
+
   
   tabItems(
 ###====First tab: all CPPs over time===###    
