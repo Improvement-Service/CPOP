@@ -15,7 +15,8 @@ body <- dashboardBody(
   tags$head(  #the following three lines pertain to 
     HTML("<script src='https://cc.cdn.civiccomputing.com/9/cookieControl-9.x.min.js'></script>"),
     includeHTML("google-analytics.html"),
-    tags$script(src = "cookie_control_cpop.js"),
+    #tags$script(src = "cookie_control_cpop.html"),
+    includeHTML("cookie-control-cpop.html"),
     tags$style(
       ".leaflet{height:36vh !important; border-style:solid; border-width:1px; margin-top:6px}",
       "#communityMap{height:91vh !important;border-style:solid;border-width:1px; margin-left:3px}",

@@ -1,4 +1,5 @@
-
+<!DOCTYPE HTML>
+<script>
   var config = {
     apiKey: '4046f32b1e29040a42de6279781f4c78e7aef922',
     product: 'community',
@@ -26,4 +27,4 @@
   };
   
 CookieControl.load( config );
-  
+</script>
