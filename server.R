@@ -1,9 +1,42 @@
 shinyServer(function(input, output, session) {
  
+  shinyalert(title = "", 
+             text = tags$div(class="header", 
+                             checked=NA,
+                             tags$i(class = "fa-solid fa-circle-info", style="font-size: 42px; color:#295D8A; padding: 15px 15px"),
+                             tags$p("Welcome", style = "color:#295D8A; font-size: 26px"),
+                             tags$br(),
+                             tags$p("The Community Planning Outcomes Profiler is for tracking improvement in communities across Scotland.", style="color:#4682B4"),
+                             tags$br(),
+                             HTML("<p style = color:#4682B4><b>To get started </b> use the map (or the dropdown in the sidebar) to select a CPP, then use the menu on the left to explore the data.</p>"),
+                             ),
+             html = TRUE)
+
+  
+  
+  
   
   output$clock <- renderText({
     invalidateLater(5000)
     Sys.time()
+  })
+  
+  output$sidebar <- renderUI({
+    menu_items <- list(menuItem("CPP Over Time", tabName = "P1", icon = icon("line-chart")),
+                       menuItem("Compare All CPPs", tabName = "P2", icon = icon("bar-chart")),
+                       menuItem("Compare Similar CPPs", tabName = "P3", icon = icon("area-chart")),
+                       menuItem("Inequality Over Time", tabName = "InQ", icon = icon("arrows-v")),
+                       menuItem("Vulnerable Communities", tabName = "Vuln",icon = icon("table")),
+                       menuItem("My Communities", tabName = "MyCom", icon = icon("columns")),
+                       menuItem("Community Profile", tabName = "CP", icon = icon("arrow-down")),
+                       conditionalPanel(condition = "input.tabs == `CP`", uiOutput("CommCP")),
+                       menuItem("All Communities", tabName = "allCom", icon = icon("picture-o")),
+                       menuItem("Data Zone Comparison", tabName = "Map2", icon = icon("globe")),
+                       menuItem("About/ Data Download", tabName = "DtaDL", icon = icon("download"))
+    )
+    if(input$LA1 %in% CPPNames) {
+      sidebarMenu(id = "tabs", menu_items)
+    }
   })
     
   # Create Ui ouputs for CPP over time page - PAGE1------------------------------------------------------
@@ -209,6 +242,7 @@ shinyServer(function(input, output, session) {
       this_i <- i
       plotnameCPP <- paste("plot_CPP", this_i, sep ="_")
       output[[plotnameCPP]] <- renderPlot({
+        
     req(input$LA1)
     dta <- filter(CPP_Imp, Year == RcntYear)
     if(is.null(input$OtherCPP)){
@@ -629,9 +663,9 @@ shinyServer(function(input, output, session) {
         color = "black",
         label = SpPolysLA@data$NAME,
         highlightOptions = highlightOptions(color = "white", weight = 3,bringToFront = TRUE)
-      ) %>%
-      addLabelOnlyMarkers(lng = -20.6, lat = 60.3,label = HTML("<h2>Community Planning Outcomes Profile</h2><h3>Tracking improvement in communities across Scotland</h3><h5>To get started use the map to select a CPP</h5><h5>Select ‘help with this page’ in the top right hand corner of every page for an introduction to how to use each page</h5><h5>To explore other parts of the CPOP use the list on the left to navigate the tool</h5>"),
-                          labelOptions = labelOptions(noHide = T, direction = 'right', offset = c(0,0), textOnly = T, sticky = FALSE))
+      ) #%>%
+     # addLabelOnlyMarkers(lng = -20.6, lat = 60.3,label = HTML("<h2>Community Planning Outcomes Profile</h2><h3>Tracking improvement in communities across Scotland</h3><h5>To get started use the map to select a CPP</h5><h5>Select ‘help with this page’ in the top right hand corner of every page for an introduction to how to use each page</h5><h5>To explore other parts of the CPOP use the list on the left to navigate the tool</h5>"),
+      #                    labelOptions = labelOptions(noHide = T, direction = 'right', offset = c(0,0), textOnly = T, sticky = FALSE))
   })
   
   ##Click to select the CPP
