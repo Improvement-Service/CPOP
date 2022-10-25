@@ -19,7 +19,6 @@ library(shinyWidgets)
 library(formattable)
 library(shinyalert)
 
-
 #Store value for the most recent year data is available, this needs to be changed when data is refreshed annually
 FrstYear <- "2009/10"
 RcntYear <- "2020/21"
@@ -195,7 +194,7 @@ popOvs <- function(pltnm,Title,Def,Tm,Src, plc = "top", pltHght = "25vh"){
                      Src
                    ),
                    placement = plc,
-                   trigger = "hover",
+                   trigger = "click",
                    options = list(container = "body")
          )
   )
