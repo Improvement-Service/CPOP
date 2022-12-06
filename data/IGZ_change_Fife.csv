@@ -1,14 +1,14 @@
 Strategic.Area,InterZone,SAChangeScore,Indicator
-Cowdenbeath,S02001769,0.3090636369585336,Attainment
-Cowdenbeath,S02001770,-1.5174364816322476,Attainment
-Cowdenbeath,S02001771,-0.29705685851242275,Attainment
-Cowdenbeath,S02001772,0.7158694253753878,Attainment
-Cowdenbeath,S02001773,-1.3884509490501,Attainment
-Cowdenbeath,S02001774,0.1701848517375198,Attainment
-Cowdenbeath,S02001775,0.4615577262836136,Attainment
-Cowdenbeath,S02001776,1.2412855383369432,Attainment
-Cowdenbeath,S02001777,1.2117513883998445,Attainment
-Cowdenbeath,S02001778,-0.9067682778970723,Attainment
+Cowdenbeath,S02001769,0.12120234727166888,Attainment
+Cowdenbeath,S02001770,-1.6502846786272887,Attainment
+Cowdenbeath,S02001771,0.4329410605047983,Attainment
+Cowdenbeath,S02001772,0.7090536800941533,Attainment
+Cowdenbeath,S02001773,-1.6198971530238329,Attainment
+Cowdenbeath,S02001774,0.4648456520087822,Attainment
+Cowdenbeath,S02001775,0.034618023847093435,Attainment
+Cowdenbeath,S02001776,1.2551238150147639,Attainment
+Cowdenbeath,S02001777,0.8755786153727958,Attainment
+Cowdenbeath,S02001778,-0.6231813624629341,Attainment
 Cowdenbeath,S02001769,-0.20798600252626676,Child Poverty
 Cowdenbeath,S02001770,-1.8332960238015485,Child Poverty
 Cowdenbeath,S02001771,-0.24505504501045433,Child Poverty
@@ -59,16 +59,16 @@ Cowdenbeath,S02001775,-1.2863755516783069,Emergency Admissions
 Cowdenbeath,S02001776,0.45207157287378325,Emergency Admissions
 Cowdenbeath,S02001777,1.27548922118471,Emergency Admissions
 Cowdenbeath,S02001778,0.12755468511381682,Emergency Admissions
-Cowdenbeath,S02001769,-0.9906135947990201,Out of Work Benefits
-Cowdenbeath,S02001770,0.3923131531146306,Out of Work Benefits
-Cowdenbeath,S02001771,-1.7701814061356311,Out of Work Benefits
-Cowdenbeath,S02001772,1.2289126223612492,Out of Work Benefits
-Cowdenbeath,S02001773,-0.43713123352997035,Out of Work Benefits
-Cowdenbeath,S02001774,0.31347466036606286,Out of Work Benefits
-Cowdenbeath,S02001775,0.6748236757115488,Out of Work Benefits
-Cowdenbeath,S02001776,-0.7406000543867051,Out of Work Benefits
-Cowdenbeath,S02001777,1.3872243227284697,Out of Work Benefits
-Cowdenbeath,S02001778,-0.05822214543063464,Out of Work Benefits
+Cowdenbeath,S02001769,-1.366279791152188,Out of Work Benefits
+Cowdenbeath,S02001770,0.4793725769525159,Out of Work Benefits
+Cowdenbeath,S02001771,-0.948616164716341,Out of Work Benefits
+Cowdenbeath,S02001772,-1.6804784200025022,Out of Work Benefits
+Cowdenbeath,S02001773,1.3323182631026735,Out of Work Benefits
+Cowdenbeath,S02001774,0.33304082873015783,Out of Work Benefits
+Cowdenbeath,S02001775,0.7865096048442658,Out of Work Benefits
+Cowdenbeath,S02001776,0.27555935081944144,Out of Work Benefits
+Cowdenbeath,S02001777,0.014709232896360636,Out of Work Benefits
+Cowdenbeath,S02001778,0.7738645185256157,Out of Work Benefits
 Cowdenbeath,S02001769,0.6273180684080211,Participation Rate
 Cowdenbeath,S02001770,-0.801820516694398,Participation Rate
 Cowdenbeath,S02001771,-0.40674073929550314,Participation Rate
@@ -79,22 +79,22 @@ Cowdenbeath,S02001775,1.7072536145559545,Participation Rate
 Cowdenbeath,S02001776,-0.37620990792938075,Participation Rate
 Cowdenbeath,S02001777,-1.3490004322424047,Participation Rate
 Cowdenbeath,S02001778,0.4048716084713388,Participation Rate
-Dunfermline,S02001744,1.6521994782363418,Attainment
-Dunfermline,S02001745,-0.2961792415693645,Attainment
-Dunfermline,S02001746,-0.9815993469239461,Attainment
-Dunfermline,S02001747,-0.46021510230996004,Attainment
-Dunfermline,S02001748,-0.6050729952747517,Attainment
-Dunfermline,S02001749,-0.27006241208611187,Attainment
-Dunfermline,S02001750,-0.14115760792488544,Attainment
-Dunfermline,S02001751,0.3643752132346835,Attainment
-Dunfermline,S02001752,-1.417036751043016,Attainment
-Dunfermline,S02001753,1.0323159518328666,Attainment
-Dunfermline,S02001754,-1.2046545625851328,Attainment
-Dunfermline,S02001755,0.27695494664677467,Attainment
-Dunfermline,S02001756,2.1296815595844576,Attainment
-Dunfermline,S02001757,0.40244508565306963,Attainment
-Dunfermline,S02001758,0.46618281295555514,Attainment
-Dunfermline,S02001768,-0.9481770284265805,Attainment
+Dunfermline,S02001744,1.272891214907778,Attainment
+Dunfermline,S02001745,-0.18495151451731795,Attainment
+Dunfermline,S02001746,-0.6983992620040411,Attainment
+Dunfermline,S02001747,-0.2152177292337136,Attainment
+Dunfermline,S02001748,-0.1902377437323233,Attainment
+Dunfermline,S02001749,-0.2255453777928445,Attainment
+Dunfermline,S02001750,-0.6539486887315488,Attainment
+Dunfermline,S02001751,-0.07784146440503377,Attainment
+Dunfermline,S02001752,-0.8705486738933734,Attainment
+Dunfermline,S02001753,1.865303629082127,Attainment
+Dunfermline,S02001754,-0.6505783305861748,Attainment
+Dunfermline,S02001755,0.39270111397917645,Attainment
+Dunfermline,S02001756,1.793251410909167,Attainment
+Dunfermline,S02001757,0.5367932512676172,Attainment
+Dunfermline,S02001758,-0.10333606366089552,Attainment
+Dunfermline,S02001768,-1.9903357715885988,Attainment
 Dunfermline,S02001744,-2.888245008964015,Child Poverty
 Dunfermline,S02001745,0.6761512255163136,Child Poverty
 Dunfermline,S02001746,-0.42183232926473024,Child Poverty
@@ -175,22 +175,22 @@ Dunfermline,S02001756,0.516454483761595,Emergency Admissions
 Dunfermline,S02001757,-0.05791862748091729,Emergency Admissions
 Dunfermline,S02001758,0.8865479344455979,Emergency Admissions
 Dunfermline,S02001768,-0.2592325153259456,Emergency Admissions
-Dunfermline,S02001744,-0.377192288929262,Out of Work Benefits
-Dunfermline,S02001745,-0.12800703333678257,Out of Work Benefits
-Dunfermline,S02001746,0.5250329889270611,Out of Work Benefits
-Dunfermline,S02001747,0.4737646403953387,Out of Work Benefits
-Dunfermline,S02001748,0.09555067334350038,Out of Work Benefits
-Dunfermline,S02001749,1.0099916928097479,Out of Work Benefits
-Dunfermline,S02001750,-0.129082879873776,Out of Work Benefits
-Dunfermline,S02001751,-2.6450578846771484,Out of Work Benefits
-Dunfermline,S02001752,1.2522818451473454,Out of Work Benefits
-Dunfermline,S02001753,0.3076711869256765,Out of Work Benefits
-Dunfermline,S02001754,0.2823496630073208,Out of Work Benefits
-Dunfermline,S02001755,-0.19589650283112106,Out of Work Benefits
-Dunfermline,S02001756,-1.771545188011292,Out of Work Benefits
-Dunfermline,S02001757,1.1710080127826428,Out of Work Benefits
-Dunfermline,S02001758,0.07101384822686044,Out of Work Benefits
-Dunfermline,S02001768,0.058117226093888016,Out of Work Benefits
+Dunfermline,S02001744,-1.8607307312032304,Out of Work Benefits
+Dunfermline,S02001745,0.1975174391774301,Out of Work Benefits
+Dunfermline,S02001746,0.6558906548884608,Out of Work Benefits
+Dunfermline,S02001747,0.5789067016405057,Out of Work Benefits
+Dunfermline,S02001748,0.28730002706566027,Out of Work Benefits
+Dunfermline,S02001749,2.2263530427368767,Out of Work Benefits
+Dunfermline,S02001750,-0.4076813889817842,Out of Work Benefits
+Dunfermline,S02001751,-1.2744655953124362,Out of Work Benefits
+Dunfermline,S02001752,0.256084189258212,Out of Work Benefits
+Dunfermline,S02001753,0.6907604073485384,Out of Work Benefits
+Dunfermline,S02001754,-0.06364406550186785,Out of Work Benefits
+Dunfermline,S02001755,-0.5311402778442613,Out of Work Benefits
+Dunfermline,S02001756,-1.6370385782656562,Out of Work Benefits
+Dunfermline,S02001757,0.20123322183543363,Out of Work Benefits
+Dunfermline,S02001758,0.09257626196103344,Out of Work Benefits
+Dunfermline,S02001768,0.5880786911970848,Out of Work Benefits
 Dunfermline,S02001744,-0.762282574847956,Participation Rate
 Dunfermline,S02001745,1.4741658110597335,Participation Rate
 Dunfermline,S02001746,-1.0495619396303089,Participation Rate
@@ -207,20 +207,20 @@ Dunfermline,S02001756,1.2659096613223622,Participation Rate
 Dunfermline,S02001757,-0.5192673310677208,Participation Rate
 Dunfermline,S02001758,-0.493186653222797,Participation Rate
 Dunfermline,S02001768,0.9207690761849558,Participation Rate
-Glenrothes,S02001798,-1.3179953149111716,Attainment
-Glenrothes,S02001799,0.9201131794276257,Attainment
-Glenrothes,S02001800,0.6879106533018083,Attainment
-Glenrothes,S02001801,0.5028274184140971,Attainment
-Glenrothes,S02001802,0.556917745321124,Attainment
-Glenrothes,S02001803,0.676273186513217,Attainment
-Glenrothes,S02001804,-1.5230261209032445,Attainment
-Glenrothes,S02001805,-0.8973213350671807,Attainment
-Glenrothes,S02001806,0.48271161561910414,Attainment
-Glenrothes,S02001807,-1.146310006393715,Attainment
-Glenrothes,S02001808,0.8265105450623935,Attainment
-Glenrothes,S02001809,0.1340342567573318,Attainment
-Glenrothes,S02001810,1.3800421305079884,Attainment
-Glenrothes,S02001811,-1.282687953649378,Attainment
+Glenrothes,S02001798,-1.0740389413757763,Attainment
+Glenrothes,S02001799,0.9459702274037104,Attainment
+Glenrothes,S02001800,1.5736555945676833,Attainment
+Glenrothes,S02001801,-0.10676183292382622,Attainment
+Glenrothes,S02001802,0.5613890354040165,Attainment
+Glenrothes,S02001803,0.9490558533550338,Attainment
+Glenrothes,S02001804,-1.0254478879704017,Attainment
+Glenrothes,S02001805,-1.0037812573982368,Attainment
+Glenrothes,S02001806,0.9574786140392271,Attainment
+Glenrothes,S02001807,-1.2952206056265914,Attainment
+Glenrothes,S02001808,0.8213885993758131,Attainment
+Glenrothes,S02001809,-0.7612968420244174,Attainment
+Glenrothes,S02001810,0.5011706426289317,Attainment
+Glenrothes,S02001811,-1.0435611994551666,Attainment
 Glenrothes,S02001798,0.322211218564342,Child Poverty
 Glenrothes,S02001799,-1.2516141415725406,Child Poverty
 Glenrothes,S02001800,0.4639812200098523,Child Poverty
@@ -291,20 +291,20 @@ Glenrothes,S02001808,-0.013626425258446566,Emergency Admissions
 Glenrothes,S02001809,1.4400376002174282,Emergency Admissions
 Glenrothes,S02001810,-0.9027360659603413,Emergency Admissions
 Glenrothes,S02001811,0.051577289453192905,Emergency Admissions
-Glenrothes,S02001798,0.6858968141235423,Out of Work Benefits
-Glenrothes,S02001799,0.12844240396129114,Out of Work Benefits
-Glenrothes,S02001800,0.418545736872752,Out of Work Benefits
-Glenrothes,S02001801,-1.7338444626564598,Out of Work Benefits
-Glenrothes,S02001802,0.7879904745741103,Out of Work Benefits
-Glenrothes,S02001803,0.2911978613479476,Out of Work Benefits
-Glenrothes,S02001804,-0.25195524271765507,Out of Work Benefits
-Glenrothes,S02001805,-0.9142968696876806,Out of Work Benefits
-Glenrothes,S02001806,-0.21350698665652054,Out of Work Benefits
-Glenrothes,S02001807,1.9986904276389794,Out of Work Benefits
-Glenrothes,S02001808,0.2460157700688372,Out of Work Benefits
-Glenrothes,S02001809,-0.41970672584258334,Out of Work Benefits
-Glenrothes,S02001810,0.6977559545392126,Out of Work Benefits
-Glenrothes,S02001811,-1.7212251555657734,Out of Work Benefits
+Glenrothes,S02001798,-0.30347429451620633,Out of Work Benefits
+Glenrothes,S02001799,0.01687018747499624,Out of Work Benefits
+Glenrothes,S02001800,0.8674793375279254,Out of Work Benefits
+Glenrothes,S02001801,-1.9522441828313666,Out of Work Benefits
+Glenrothes,S02001802,0.689355864731555,Out of Work Benefits
+Glenrothes,S02001803,0.41832897810514647,Out of Work Benefits
+Glenrothes,S02001804,-1.3707620210252949,Out of Work Benefits
+Glenrothes,S02001805,-0.17928818693457466,Out of Work Benefits
+Glenrothes,S02001806,0.1303856872957304,Out of Work Benefits
+Glenrothes,S02001807,2.0141392391627453,Out of Work Benefits
+Glenrothes,S02001808,-0.3874420804105795,Out of Work Benefits
+Glenrothes,S02001809,-0.5414219229411212,Out of Work Benefits
+Glenrothes,S02001810,1.0361409386083043,Out of Work Benefits
+Glenrothes,S02001811,-0.4380675442472604,Out of Work Benefits
 Glenrothes,S02001798,0.8627019544862048,Participation Rate
 Glenrothes,S02001799,0.10120445434043272,Participation Rate
 Glenrothes,S02001800,0.5231981476616707,Participation Rate
@@ -319,23 +319,23 @@ Glenrothes,S02001808,1.101960238230106,Participation Rate
 Glenrothes,S02001809,-0.9778767071447952,Participation Rate
 Glenrothes,S02001810,-0.3171069358780048,Participation Rate
 Glenrothes,S02001811,-1.7061758955369775,Participation Rate
-Kirkcaldy,S02001780,1.7768197929736327,Attainment
-Kirkcaldy,S02001781,-0.9796789325691271,Attainment
-Kirkcaldy,S02001782,-0.7399749046912933,Attainment
-Kirkcaldy,S02001783,-0.11858636566903448,Attainment
-Kirkcaldy,S02001784,0.22046388223186214,Attainment
-Kirkcaldy,S02001785,1.3237236577212834,Attainment
-Kirkcaldy,S02001786,1.7840700210713971,Attainment
-Kirkcaldy,S02001787,0.10041212073464008,Attainment
-Kirkcaldy,S02001788,-0.5886300212976309,Attainment
-Kirkcaldy,S02001789,-0.40440737527943027,Attainment
-Kirkcaldy,S02001790,-0.4193252932075055,Attainment
-Kirkcaldy,S02001791,-0.3232064634194285,Attainment
-Kirkcaldy,S02001792,0.9043941441873505,Attainment
-Kirkcaldy,S02001793,0.6986650941129985,Attainment
-Kirkcaldy,S02001794,-1.406572952417107,Attainment
-Kirkcaldy,S02001795,-1.453409563116602,Attainment
-Kirkcaldy,S02001796,-0.3747568413660057,Attainment
+Kirkcaldy,S02001780,1.613390240933386,Attainment
+Kirkcaldy,S02001781,-0.6981419194468643,Attainment
+Kirkcaldy,S02001782,0.06036629424460762,Attainment
+Kirkcaldy,S02001783,0.13453933563522524,Attainment
+Kirkcaldy,S02001784,0.29738430029157026,Attainment
+Kirkcaldy,S02001785,1.4714384636075384,Attainment
+Kirkcaldy,S02001786,1.4256176718261795,Attainment
+Kirkcaldy,S02001787,0.3997793588346683,Attainment
+Kirkcaldy,S02001788,-0.5265570848584902,Attainment
+Kirkcaldy,S02001789,-0.600486399573908,Attainment
+Kirkcaldy,S02001790,-0.6456116781487437,Attainment
+Kirkcaldy,S02001791,-0.10827910904421423,Attainment
+Kirkcaldy,S02001792,0.9679851177454154,Attainment
+Kirkcaldy,S02001793,0.43564866386890594,Attainment
+Kirkcaldy,S02001794,-1.0951201018322865,Attainment
+Kirkcaldy,S02001795,-1.8352567884439666,Attainment
+Kirkcaldy,S02001796,-1.2966963656390227,Attainment
 Kirkcaldy,S02001780,0.9134402237478516,Child Poverty
 Kirkcaldy,S02001781,0.07459849356914361,Child Poverty
 Kirkcaldy,S02001782,-2.825092882244481,Child Poverty
@@ -421,23 +421,23 @@ Kirkcaldy,S02001793,-1.9018776945514095,Emergency Admissions
 Kirkcaldy,S02001794,-0.36449274681424915,Emergency Admissions
 Kirkcaldy,S02001795,-0.40378522062521355,Emergency Admissions
 Kirkcaldy,S02001796,0.6074907240197218,Emergency Admissions
-Kirkcaldy,S02001780,2.0067021757984893,Out of Work Benefits
-Kirkcaldy,S02001781,0.7213431061623986,Out of Work Benefits
-Kirkcaldy,S02001782,0.29774738118529703,Out of Work Benefits
-Kirkcaldy,S02001783,0.25403563388842987,Out of Work Benefits
-Kirkcaldy,S02001784,-0.42694882530872635,Out of Work Benefits
-Kirkcaldy,S02001785,-0.16098529512664478,Out of Work Benefits
-Kirkcaldy,S02001786,-1.5853969753540411,Out of Work Benefits
-Kirkcaldy,S02001787,-1.3113542643621239,Out of Work Benefits
-Kirkcaldy,S02001788,-0.5012670773948483,Out of Work Benefits
-Kirkcaldy,S02001789,-0.8588261275619088,Out of Work Benefits
-Kirkcaldy,S02001790,1.1016317260143986,Out of Work Benefits
-Kirkcaldy,S02001791,-0.8229201915159824,Out of Work Benefits
-Kirkcaldy,S02001792,-0.7555589322691197,Out of Work Benefits
-Kirkcaldy,S02001793,1.6327504244362134,Out of Work Benefits
-Kirkcaldy,S02001794,-0.12249028851878717,Out of Work Benefits
-Kirkcaldy,S02001795,-0.2753566640493151,Out of Work Benefits
-Kirkcaldy,S02001796,0.8068941939762714,Out of Work Benefits
+Kirkcaldy,S02001780,1.9467993056294433,Out of Work Benefits
+Kirkcaldy,S02001781,0.1116201977184132,Out of Work Benefits
+Kirkcaldy,S02001782,0.2878059349902092,Out of Work Benefits
+Kirkcaldy,S02001783,0.637224390138684,Out of Work Benefits
+Kirkcaldy,S02001784,-0.6505064247622493,Out of Work Benefits
+Kirkcaldy,S02001785,-0.9798262326112804,Out of Work Benefits
+Kirkcaldy,S02001786,-0.9611614512466201,Out of Work Benefits
+Kirkcaldy,S02001787,-1.500961677803075,Out of Work Benefits
+Kirkcaldy,S02001788,-0.6691308552223809,Out of Work Benefits
+Kirkcaldy,S02001789,-0.25960784631658274,Out of Work Benefits
+Kirkcaldy,S02001790,0.9806263311622105,Out of Work Benefits
+Kirkcaldy,S02001791,-1.684268354824145,Out of Work Benefits
+Kirkcaldy,S02001792,0.85159741945767,Out of Work Benefits
+Kirkcaldy,S02001793,1.3686414680347248,Out of Work Benefits
+Kirkcaldy,S02001794,-0.024292420137965013,Out of Work Benefits
+Kirkcaldy,S02001795,0.4818018746203421,Out of Work Benefits
+Kirkcaldy,S02001796,0.06363834117260199,Out of Work Benefits
 Kirkcaldy,S02001780,1.4184460554950946,Participation Rate
 Kirkcaldy,S02001781,-1.0995169352028349,Participation Rate
 Kirkcaldy,S02001782,-1.3092380892712134,Participation Rate
@@ -455,17 +455,17 @@ Kirkcaldy,S02001793,0.016084090137256476,Participation Rate
 Kirkcaldy,S02001794,-0.6478968089483773,Participation Rate
 Kirkcaldy,S02001795,-0.989703792665937,Participation Rate
 Kirkcaldy,S02001796,-0.3209730125605691,Participation Rate
-Levenmouth,S02001797,-0.5624449081006969,Attainment
-Levenmouth,S02001812,0.21221827973376603,Attainment
-Levenmouth,S02001813,-0.30919941723855865,Attainment
-Levenmouth,S02001814,1.382148489137637,Attainment
-Levenmouth,S02001815,0.1387970971829284,Attainment
-Levenmouth,S02001816,-0.8380081534892281,Attainment
-Levenmouth,S02001817,1.1138532584115581,Attainment
-Levenmouth,S02001818,-0.6635871573064012,Attainment
-Levenmouth,S02001819,0.730208988733789,Attainment
-Levenmouth,S02001820,0.8072874680038103,Attainment
-Levenmouth,S02001821,-2.0112739450686044,Attainment
+Levenmouth,S02001797,-1.8080646942250747,Attainment
+Levenmouth,S02001812,-0.5612494396979602,Attainment
+Levenmouth,S02001813,0.018953988626914917,Attainment
+Levenmouth,S02001814,1.1463796792731675,Attainment
+Levenmouth,S02001815,-0.7192479739866242,Attainment
+Levenmouth,S02001816,0.30878138512897657,Attainment
+Levenmouth,S02001817,1.2088650431754515,Attainment
+Levenmouth,S02001818,0.2970643289192745,Attainment
+Levenmouth,S02001819,0.4574938325026423,Attainment
+Levenmouth,S02001820,0.9806952919437847,Attainment
+Levenmouth,S02001821,-1.3296714416605535,Attainment
 Levenmouth,S02001797,1.5942537109639898,Child Poverty
 Levenmouth,S02001812,0.2897374302116025,Child Poverty
 Levenmouth,S02001813,-0.1998699708299856,Child Poverty
@@ -521,17 +521,17 @@ Levenmouth,S02001818,0.7583245103900471,Emergency Admissions
 Levenmouth,S02001819,-0.8370912366654092,Emergency Admissions
 Levenmouth,S02001820,1.0165203712637663,Emergency Admissions
 Levenmouth,S02001821,1.478856052217372,Emergency Admissions
-Levenmouth,S02001797,0.8546040337148526,Out of Work Benefits
-Levenmouth,S02001812,1.0739397607559344,Out of Work Benefits
-Levenmouth,S02001813,0.008224734597448699,Out of Work Benefits
-Levenmouth,S02001814,-0.4309476542024872,Out of Work Benefits
-Levenmouth,S02001815,-0.11312049283556724,Out of Work Benefits
-Levenmouth,S02001816,-0.7805521743002675,Out of Work Benefits
-Levenmouth,S02001817,0.48284504551972524,Out of Work Benefits
-Levenmouth,S02001818,-0.28749889324971933,Out of Work Benefits
-Levenmouth,S02001819,1.0505710923829747,Out of Work Benefits
-Levenmouth,S02001820,-2.371732570541752,Out of Work Benefits
-Levenmouth,S02001821,0.5136671181588575,Out of Work Benefits
+Levenmouth,S02001797,1.5683079359170182,Out of Work Benefits
+Levenmouth,S02001812,0.6582885205741544,Out of Work Benefits
+Levenmouth,S02001813,-0.5574419614466128,Out of Work Benefits
+Levenmouth,S02001814,0.28272691868947775,Out of Work Benefits
+Levenmouth,S02001815,-0.2102323464198267,Out of Work Benefits
+Levenmouth,S02001816,-0.6833598418771292,Out of Work Benefits
+Levenmouth,S02001817,0.3870373612536604,Out of Work Benefits
+Levenmouth,S02001818,0.5534850871733694,Out of Work Benefits
+Levenmouth,S02001819,0.432764179698242,Out of Work Benefits
+Levenmouth,S02001820,-2.357169330200348,Out of Work Benefits
+Levenmouth,S02001821,-0.0744065233620055,Out of Work Benefits
 Levenmouth,S02001797,2.1132893510057844,Participation Rate
 Levenmouth,S02001812,-0.2561077234265829,Participation Rate
 Levenmouth,S02001813,-0.17256307857477007,Participation Rate
@@ -543,26 +543,26 @@ Levenmouth,S02001818,0.002371584428435391,Participation Rate
 Levenmouth,S02001819,-0.16185833266597296,Participation Rate
 Levenmouth,S02001820,-0.3728147154881356,Participation Rate
 Levenmouth,S02001821,0.34702744948101216,Participation Rate
-North East Fife,S02001822,0.45214771412913873,Attainment
-North East Fife,S02001823,-1.0337739190318542,Attainment
-North East Fife,S02001824,0.2870536467017799,Attainment
-North East Fife,S02001825,1.2417456241848746,Attainment
-North East Fife,S02001826,-0.13331420012768425,Attainment
-North East Fife,S02001827,1.6824903515789467,Attainment
-North East Fife,S02001828,1.0672320969797655,Attainment
-North East Fife,S02001829,-1.0683763971532398,Attainment
-North East Fife,S02001830,-0.12486714596046586,Attainment
-North East Fife,S02001831,0.16317348028340115,Attainment
-North East Fife,S02001832,0.9381505489667891,Attainment
-North East Fife,S02001833,-0.714639872138527,Attainment
-North East Fife,S02001834,0.38359800435451463,Attainment
-North East Fife,S02001835,-2.72345980188844,Attainment
-North East Fife,S02001836,0.5388517542693688,Attainment
-North East Fife,S02001837,0.1996062807442849,Attainment
-North East Fife,S02001838,-0.05442612052742745,Attainment
-North East Fife,S02001839,-0.07932550487661881,Attainment
-North East Fife,S02001840,-1.2574532171017117,Attainment
-North East Fife,S02001841,0.23558667661310526,Attainment
+North East Fife,S02001822,0.7017014433476428,Attainment
+North East Fife,S02001823,-0.8903109049428661,Attainment
+North East Fife,S02001824,0.3141862856604034,Attainment
+North East Fife,S02001825,1.540547531811039,Attainment
+North East Fife,S02001826,-0.0040807671910312645,Attainment
+North East Fife,S02001827,0.8910709935986145,Attainment
+North East Fife,S02001828,0.834803661106122,Attainment
+North East Fife,S02001829,-0.2990495787056941,Attainment
+North East Fife,S02001830,-0.07712975536137444,Attainment
+North East Fife,S02001831,0.296821507768574,Attainment
+North East Fife,S02001832,0.8941880967077114,Attainment
+North East Fife,S02001833,-0.14589211847679823,Attainment
+North East Fife,S02001834,-0.6006654037299738,Attainment
+North East Fife,S02001835,-3.3929429135734273,Attainment
+North East Fife,S02001836,0.0033792281919534767,Attainment
+North East Fife,S02001837,0.06396369027843413,Attainment
+North East Fife,S02001838,-0.19188047726744087,Attainment
+North East Fife,S02001839,0.5946729656641634,Attainment
+North East Fife,S02001840,-0.677808925867536,Attainment
+North East Fife,S02001841,0.14442544098148405,Attainment
 North East Fife,S02001822,0.12161380181181301,Child Poverty
 North East Fife,S02001823,-0.03298741016489595,Child Poverty
 North East Fife,S02001824,0.40437173179812863,Child Poverty
@@ -663,26 +663,26 @@ North East Fife,S02001838,0.6702654254537407,Emergency Admissions
 North East Fife,S02001839,0.688779889129937,Emergency Admissions
 North East Fife,S02001840,1.0642277241095064,Emergency Admissions
 North East Fife,S02001841,0.9219782104734296,Emergency Admissions
-North East Fife,S02001822,-0.5271834241641646,Out of Work Benefits
-North East Fife,S02001823,0.9349391851088232,Out of Work Benefits
-North East Fife,S02001824,-0.6497176164935835,Out of Work Benefits
-North East Fife,S02001825,-0.5957939341193346,Out of Work Benefits
-North East Fife,S02001826,1.5143922851482432,Out of Work Benefits
-North East Fife,S02001827,0.2692504461186439,Out of Work Benefits
-North East Fife,S02001828,-1.90023318262371,Out of Work Benefits
-North East Fife,S02001829,-0.12941652846931923,Out of Work Benefits
-North East Fife,S02001830,-1.5588969133345005,Out of Work Benefits
-North East Fife,S02001831,0.018536563438330267,Out of Work Benefits
-North East Fife,S02001832,-0.9535748754472283,Out of Work Benefits
-North East Fife,S02001833,0.4518113893927223,Out of Work Benefits
-North East Fife,S02001834,1.6808906484841835,Out of Work Benefits
-North East Fife,S02001835,0.7052458446082892,Out of Work Benefits
-North East Fife,S02001836,1.3863774886018947,Out of Work Benefits
-North East Fife,S02001837,-0.27237839973536787,Out of Work Benefits
-North East Fife,S02001838,-0.19051414000231745,Out of Work Benefits
-North East Fife,S02001839,0.7495077823313205,Out of Work Benefits
-North East Fife,S02001840,0.3017798109750787,Out of Work Benefits
-North East Fife,S02001841,-1.2350224298180035,Out of Work Benefits
+North East Fife,S02001822,-0.516692489695276,Out of Work Benefits
+North East Fife,S02001823,0.987714883566365,Out of Work Benefits
+North East Fife,S02001824,-0.3912945685722186,Out of Work Benefits
+North East Fife,S02001825,-0.47551387217316743,Out of Work Benefits
+North East Fife,S02001826,1.4378206946204828,Out of Work Benefits
+North East Fife,S02001827,-0.08232200429381643,Out of Work Benefits
+North East Fife,S02001828,-1.8227047014610265,Out of Work Benefits
+North East Fife,S02001829,0.3122410662085389,Out of Work Benefits
+North East Fife,S02001830,-1.4316805677818867,Out of Work Benefits
+North East Fife,S02001831,-0.8988558765589268,Out of Work Benefits
+North East Fife,S02001832,0.07174513652269801,Out of Work Benefits
+North East Fife,S02001833,0.2610289462646933,Out of Work Benefits
+North East Fife,S02001834,2.029515730776843,Out of Work Benefits
+North East Fife,S02001835,1.449220898176548,Out of Work Benefits
+North East Fife,S02001836,0.17270670137097632,Out of Work Benefits
+North East Fife,S02001837,0.6811954507378074,Out of Work Benefits
+North East Fife,S02001838,-0.6491458557644632,Out of Work Benefits
+North East Fife,S02001839,-0.09785453273655834,Out of Work Benefits
+North East Fife,S02001840,0.27881641413428615,Out of Work Benefits
+North East Fife,S02001841,-1.315941453341899,Out of Work Benefits
 North East Fife,S02001822,-0.09422850131289738,Participation Rate
 North East Fife,S02001823,-0.6594123048061045,Participation Rate
 North East Fife,S02001824,0.47333096577853484,Participation Rate
@@ -703,22 +703,22 @@ North East Fife,S02001838,1.2855123457849467,Participation Rate
 North East Fife,S02001839,-0.41779756505114507,Participation Rate
 North East Fife,S02001840,-0.2486979496012075,Participation Rate
 North East Fife,S02001841,0.42639910810396736,Participation Rate
-South West Fife,S02001738,-0.40839183287802977,Attainment
-South West Fife,S02001739,1.25109535984629,Attainment
-South West Fife,S02001740,1.0067302547698307,Attainment
-South West Fife,S02001741,-0.3674424129860013,Attainment
-South West Fife,S02001742,-1.3577075361277693,Attainment
-South West Fife,S02001743,-0.40974440075717417,Attainment
-South West Fife,S02001759,0.07355451096251751,Attainment
-South West Fife,S02001760,2.5501543215057976,Attainment
-South West Fife,S02001761,0.48785737824023934,Attainment
-South West Fife,S02001762,0.3076081903904759,Attainment
-South West Fife,S02001763,-0.47362952334591557,Attainment
-South West Fife,S02001764,-0.1959170072222873,Attainment
-South West Fife,S02001765,-0.10350122075016681,Attainment
-South West Fife,S02001766,-1.3007496998482149,Attainment
-South West Fife,S02001767,-1.1381479431703971,Attainment
-South West Fife,S02001779,0.07823156137080482,Attainment
+South West Fife,S02001738,-0.5263520077589354,Attainment
+South West Fife,S02001739,1.1277179201087388,Attainment
+South West Fife,S02001740,0.8275141631590365,Attainment
+South West Fife,S02001741,-0.05143200760755714,Attainment
+South West Fife,S02001742,-1.304723017669505,Attainment
+South West Fife,S02001743,-0.5539990515891707,Attainment
+South West Fife,S02001759,-0.7278885650386672,Attainment
+South West Fife,S02001760,1.6891199121431237,Attainment
+South West Fife,S02001761,1.334889378819051,Attainment
+South West Fife,S02001762,1.5891854428663585,Attainment
+South West Fife,S02001763,-0.24649377387974053,Attainment
+South West Fife,S02001764,-0.1509921206166141,Attainment
+South West Fife,S02001765,-0.678809078147613,Attainment
+South West Fife,S02001766,-0.7850137264800591,Attainment
+South West Fife,S02001767,-1.3686857586681684,Attainment
+South West Fife,S02001779,-0.17403770964027804,Attainment
 South West Fife,S02001738,0.674502758323282,Child Poverty
 South West Fife,S02001739,0.29351808519576655,Child Poverty
 South West Fife,S02001740,-2.134581170499768,Child Poverty
@@ -799,22 +799,22 @@ South West Fife,S02001765,-1.7172957249396208,Emergency Admissions
 South West Fife,S02001766,0.36693815386277534,Emergency Admissions
 South West Fife,S02001767,0.16216211400148434,Emergency Admissions
 South West Fife,S02001779,1.3993882927504215,Emergency Admissions
-South West Fife,S02001738,1.1483195184685853,Out of Work Benefits
-South West Fife,S02001739,0.7846193616684782,Out of Work Benefits
-South West Fife,S02001740,-1.5865042968207597,Out of Work Benefits
-South West Fife,S02001741,1.5649936465714163,Out of Work Benefits
-South West Fife,S02001742,0.6265698187457331,Out of Work Benefits
-South West Fife,S02001743,-2.137927761669728,Out of Work Benefits
-South West Fife,S02001759,-0.025439156839800164,Out of Work Benefits
-South West Fife,S02001760,-0.5167976382036767,Out of Work Benefits
-South West Fife,S02001761,-0.22728375388896507,Out of Work Benefits
-South West Fife,S02001762,0.2570854256544511,Out of Work Benefits
-South West Fife,S02001763,-0.2989899524796022,Out of Work Benefits
-South West Fife,S02001764,1.3046114422992132,Out of Work Benefits
-South West Fife,S02001765,0.21226690050361471,Out of Work Benefits
-South West Fife,S02001766,-0.011048021921248265,Out of Work Benefits
-South West Fife,S02001767,-0.15024439532472164,Out of Work Benefits
-South West Fife,S02001779,-0.9442311367629898,Out of Work Benefits
+South West Fife,S02001738,1.2788663126422586,Out of Work Benefits
+South West Fife,S02001739,0.42933016120233963,Out of Work Benefits
+South West Fife,S02001740,-0.6285623091424586,Out of Work Benefits
+South West Fife,S02001741,1.3555913868961778,Out of Work Benefits
+South West Fife,S02001742,-0.18209297242412364,Out of Work Benefits
+South West Fife,S02001743,-2.085704043338769,Out of Work Benefits
+South West Fife,S02001759,0.25672094943589524,Out of Work Benefits
+South West Fife,S02001760,-1.0640628759539434,Out of Work Benefits
+South West Fife,S02001761,-0.5783529807700566,Out of Work Benefits
+South West Fife,S02001762,0.5428456832657029,Out of Work Benefits
+South West Fife,S02001763,-0.8877580115339521,Out of Work Benefits
+South West Fife,S02001764,1.7282307518652653,Out of Work Benefits
+South West Fife,S02001765,0.6146350990980465,Out of Work Benefits
+South West Fife,S02001766,-0.7619084676957173,Out of Work Benefits
+South West Fife,S02001767,-0.05069270034198652,Out of Work Benefits
+South West Fife,S02001779,0.03291401679532106,Out of Work Benefits
 South West Fife,S02001738,0.5309497462541041,Participation Rate
 South West Fife,S02001739,2.1008720512476096,Participation Rate
 South West Fife,S02001740,-0.3875371566286222,Participation Rate

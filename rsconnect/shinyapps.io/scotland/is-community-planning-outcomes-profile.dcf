@@ -5,9 +5,10 @@ account: scotland
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 555443
-bundleId: 3788496
+bundleId: 6601018
 url: https://scotland.shinyapps.io/is-community-planning-outcomes-profile/
-when: 1603816856.38273
+when: 1670360663.72583
+lastSyncTime: 1670360663.72583
 asMultiple: FALSE
 asStatic: FALSE
-ignoredFiles: Aberdeen City.html|CoverPage.html|Glasgow City.html|global - Dev Version.R|MapUpdateExample.R|server - Dev Version.R|ui - Dev Version.R|Duncan_Index_Jul20|Other Code
+ignoredFiles: Aberdeen City.html|CoverPage.html|CPOP_Tool_2021.xlsx|DATA FILES TO UPDATE.R|Glasgow City.html|global - Dev Version.R|MapUpdateExample.R|Potential Improvements.docx|server - Dev Version.R|ui - Dev Version.R
