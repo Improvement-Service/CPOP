@@ -5,7 +5,9 @@ sidebar <- dashboardSidebar(
   
   sidebarMenu(id = "tabs",
               menuItem("Community Map", tabName = "Map1", icon = icon("map")),
-              uiOutput("sidebar"), #placeholder for hidden menu items (shown only when user selects LA)
+              sidebarMenuOutput("firstHalfMenu"), #placeholder for hidden menu items (shown only when user selects LA)
+              uiOutput("communityDropDown"),
+              sidebarMenuOutput("secondHalfMenu"),
               awesomeCheckbox("CBCols", "Colour Blind Colour Scheme", value = FALSE),
               tags$footer(a("Contact us", href = "mailto:benchmarking@improvementservice.org.uk"), style = "position:fixed; bottom:0; margin-left:2px")
   )

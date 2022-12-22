@@ -1,5 +1,5 @@
 shinyServer(function(input, output, session) {
- 
+  
   shinyalert(title = "", 
              text = tags$div(class="header", 
                              checked=NA,
@@ -11,32 +11,42 @@ shinyServer(function(input, output, session) {
                              HTML("<p style = color:#4682B4><b>To get started </b> use the map (or the dropdown in the sidebar) to select a CPP, then use the menu on the left to explore the data.</p>"),
                              ),
              html = TRUE)
-
-  
-  
-  
   
   output$clock <- renderText({
     invalidateLater(5000)
     Sys.time()
   })
   
-  output$sidebar <- renderUI({
-    menu_items <- list(menuItem("CPP Over Time", tabName = "P1", icon = icon("line-chart")),
-                       menuItem("Compare All CPPs", tabName = "P2", icon = icon("bar-chart")),
-                       menuItem("Compare Similar CPPs", tabName = "P3", icon = icon("area-chart")),
-                       menuItem("Inequality Over Time", tabName = "InQ", icon = icon("arrows-v")),
-                       menuItem("Vulnerable Communities", tabName = "Vuln",icon = icon("table")),
-                       menuItem("My Communities", tabName = "MyCom", icon = icon("columns")),
-                       menuItem("Community Profile", tabName = "CP", icon = icon("arrow-down")),
-                       conditionalPanel(condition = "input.tabs == `CP`", uiOutput("CommCP")),
-                       menuItem("All Communities", tabName = "allCom", icon = icon("picture-o")),
-                       menuItem("Data Zone Comparison", tabName = "Map2", icon = icon("globe")),
-                       menuItem("About/ Data Download", tabName = "DtaDL", icon = icon("download"))
-    )
-    if(input$LA1 %in% CPPNames) {
-      sidebarMenu(id = "tabs", menu_items)
-    }
+  #observe FIRST instance of LA1 input, and render the sidebar menu items in two halves (this is to accommodate the
+  #conditional panel (community drop down list) which is rendered between these menu items)
+  observeEvent(input$LA1,{
+
+  output$firstHalfMenu <- renderMenu({
+    firstHalfMenuItems <- list(menuItem("CPP Over Time", tabName = "P1", icon = icon("line-chart")),
+                         menuItem("Compare All CPPs", tabName = "P2", icon = icon("bar-chart")),
+                         menuItem("Compare Similar CPPs", tabName = "P3", icon = icon("area-chart")),
+                         menuItem("Inequality Over Time", tabName = "InQ", icon = icon("arrows-v")),
+                         menuItem("Vulnerable Communities", tabName = "Vuln",icon = icon("table")),
+                         menuItem("My Communities", tabName = "MyCom", icon = icon("columns")),
+                         menuItem("Community Profile", tabName = "CP", icon = icon("arrow-down"))
+                         )
+    sidebarMenu(firstHalfMenuItems)
+    })#close renderMenu (firstHalfMenu)
+  
+  output$secondHalfMenu <- renderMenu({
+    secondHalfMenuItems <- list( menuItem("All Communities", tabName = "allCom", icon = icon("picture-o")),
+                                 menuItem("Data Zone Comparison", tabName = "Map2", icon = icon("globe")),
+                                 menuItem("About/ Data Download", tabName = "DtaDL", icon = icon("download"))
+                                 )
+    sidebarMenu(secondHalfMenuItems)
+    })#close renderMenu (secondHalfMenu)
+  
+  }, once = TRUE)#close observe event
+  
+  #dynamically render the select a community drop down depending on whether the CP is currently selected.
+  output$communityDropDown <- renderMenu({
+    conditionalPanel(condition = 'input.tabs == "CP" && input.LA1 !== null', selectInput("CommunityCP", "Select a Community:", choices = communities_list()))
+
   })
     
   # Create Ui ouputs for CPP over time page - PAGE1------------------------------------------------------
@@ -1048,15 +1058,14 @@ shinyServer(function(input, output, session) {
   
   
   # Create Ui ouputs for Community Profile - Page 8-------------------------------------- 
-  
-  output$CommCP <- renderUI({
-    IGZsubset <- filter(IGZdta, CPP == input$LA1)
-    pickerInput(
-      "CommunityCP", 
-      "Select a Community", 
-      sort(unique(IGZsubset$InterZone_Name)), options = list(size = 8)
-    )
-  })
+    
+    #reactive expression to update communities in sidebar drop down (CommunityCP) when LA1 input is changed
+    communities_list <- eventReactive(input$LA1, {
+      commCP_dropdown_data <- filter(IGZdta, CPP == input$LA1)
+      commCP_dropdown_options <- sort(unique(commCP_dropdown_data$InterZone_Name))
+      return(commCP_dropdown_options)
+      })#end event reactive
+    
   
   output$Descrip <- renderText({
     req(input$LA1)
@@ -1083,7 +1092,7 @@ shinyServer(function(input, output, session) {
   # create table output
   
   output$CommunityProfileTbl <- DT::renderDataTable({
-    req(input$LA1)
+    req(input$LA1, input$CommunityCP)
     IGZsubset <- filter(IGZdta, InterZone_Name == input$CommunityCP & CPP == input$LA1)
     Typology <- first(IGZsubset$Typology_Group)
     
@@ -1322,6 +1331,7 @@ shinyServer(function(input, output, session) {
   # Graphs for Community Profile Page
   
   output$LineChoicesCP <- renderUI({
+    req(input$LA1, input$CommunityCP)
     Choices <- c(input$CommunityCP, input$LA1, "Scotland", "Group Average", "Similar Community")
     awesomeCheckboxGroup(
       "ChoicesCP", 
@@ -1413,10 +1423,11 @@ shinyServer(function(input, output, session) {
   nIndis <- length(IndicatorsCP)
   
   output$CPplots<- renderPlot({
+    req(input$LA1)
+    req(input$CommunityCP)
     plots <- list()
     plots <- lapply(1:nIndis, FUN = function(.x){
-        req(input$LA1)
-        req(input$CommunityCP)
+        
         LineChoiceDta <- LineChoiceDta()
         
         # Y axis 
