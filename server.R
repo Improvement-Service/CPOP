@@ -22,6 +22,7 @@ shinyServer(function(input, output, session) {
   observeEvent(input$LA1,{
 
   output$firstHalfMenu <- renderMenu({
+    req(input$LA1)
     firstHalfMenuItems <- list(menuItem("CPP Over Time", tabName = "P1", icon = icon("line-chart")),
                          menuItem("Compare All CPPs", tabName = "P2", icon = icon("bar-chart")),
                          menuItem("Compare Similar CPPs", tabName = "P3", icon = icon("area-chart")),
@@ -34,6 +35,7 @@ shinyServer(function(input, output, session) {
     })#close renderMenu (firstHalfMenu)
   
   output$secondHalfMenu <- renderMenu({
+    req(input$LA1)
     secondHalfMenuItems <- list( menuItem("All Communities", tabName = "allCom", icon = icon("picture-o")),
                                  menuItem("Data Zone Comparison", tabName = "Map2", icon = icon("globe")),
                                  menuItem("About/ Data Download", tabName = "DtaDL", icon = icon("download"))
