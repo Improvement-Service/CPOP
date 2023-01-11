@@ -1345,7 +1345,7 @@ shinyServer(function(input, output, session) {
     Comm <- filter(IGZdta, InterZone_Name == input$CommunityCP & CPP == input$LA1)
     Group <- Comm$Typology_Group[1]
     Options <- filter(IGZdta, Typology_Group == Group)
-    Options <- filter(Options, InterZone_Name != input$CommunityCP )
+    Options <- filter(Options, InterZone_Name != input$CommunityCP | CPP != input$LA1)
     Options$InterZone_Name <-  paste(Options$CPP, "-",Options$InterZone_Name)
     pickerInput(
       "ChoiceAddComm", 
@@ -1393,7 +1393,7 @@ shinyServer(function(input, output, session) {
     Typology          <- first(IGZsubset$Typology_Group)
     GrpAv             <- filter(IGZdta, Typology_Group == Typology)
     GrpAv <- ddply(GrpAv,. (Indicator, Year), transform, GrpAver = mean(value))
-    GrpAv              <- filter(GrpAv, InterZone_Name == input$CommunityCP)
+    GrpAv              <- filter(GrpAv, InterZone_Name == input$CommunityCP & CPP == input$LA1)
     GrpAv              <- select(GrpAv, -value)
     colnames(GrpAv)[10] <- "value"
     GrpAv$Identifier   <- "Group Average"
