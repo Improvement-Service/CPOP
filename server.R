@@ -11,7 +11,7 @@ shinyServer(function(input, output, session) {
                              HTML("<p style = color:#4682B4><b>To get started </b> use the map (or the dropdown in the sidebar) to select a CPP, then use the menu on the left to explore the data.</p>"),
                              ),
              html = TRUE)
-  
+
   output$clock <- renderText({
     invalidateLater(5000)
     Sys.time()
