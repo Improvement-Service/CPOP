@@ -164,60 +164,6 @@ shinyServer(function(input, output, session) {
         y_max <- y_max + Extra
         
         loopdata <- subset(dta, dta$Indicator == indicators_1[my.i])
-        loopdata_CPP1 <- filter(loopdata, CPP == input$LA1)
-        loopdata_CPP2 <- filter(loopdata, CPP == input$CompLA1)
-        
-        # If statement to determine the colour of the dot
-        # 2 statements to distinguish between high values being positive and high values being negative
-        # compares two selected authorities by the latest value and the improvement rate 
-        
-        coloursDotPos <- if_else(
-          ((last(loopdata_CPP1$value)) > (last(loopdata_CPP2$value)) & 
-             (last(loopdata_CPP1$Improvement_Rate)) > (last(loopdata_CPP2$Improvement_Rate))),
-          "green",
-          if_else(
-            ((last(loopdata_CPP1$value)) > (last(loopdata_CPP2$value)) & 
-               (last(loopdata_CPP1$Improvement_Rate)) < (last(loopdata_CPP2$Improvement_Rate))),
-            "yellow",
-            if_else(
-              ((last(loopdata_CPP1$value)) < (last(loopdata_CPP2$value)) &
-                 (last(loopdata_CPP1$Improvement_Rate)) > (last(loopdata_CPP2$Improvement_Rate))),
-              "yellow",
-              if_else(
-                ((last(loopdata_CPP1$value)) < (last(loopdata_CPP2$value)) & 
-                   (last(loopdata_CPP1$Improvement_Rate)) < (last(loopdata_CPP2$Improvement_Rate))),
-                "red",
-                "black"
-              )
-            )
-          )
-        )
-        
-        coloursDotNeg <- if_else(
-          ((last(loopdata_CPP1$value)) > (last(loopdata_CPP2$value)) &
-             (last(loopdata_CPP1$Improvement_Rate)) > (last(loopdata_CPP2$Improvement_Rate))),
-          "red",
-          if_else(
-            ((last(loopdata_CPP1$value)) > (last(loopdata_CPP2$value)) &
-               (last(loopdata_CPP1$Improvement_Rate)) < (last(loopdata_CPP2$Improvement_Rate))),
-            "yellow",
-            if_else(
-              ((last(loopdata_CPP1$value)) < (last(loopdata_CPP2$value)) &
-                 (last(loopdata_CPP1$Improvement_Rate)) > (last(loopdata_CPP2$Improvement_Rate))),
-              "yellow",
-              if_else(
-                ((last(loopdata_CPP1$value)) < (last(loopdata_CPP2$value)) &
-                   (last(loopdata_CPP1$Improvement_Rate)) < (last(loopdata_CPP2$Improvement_Rate))),
-                "green",
-                "black"
-              )
-            )
-          )
-        )
-        
-        # store unique values of "high is positive?" to determine which coloured dot to use
-        
-        HighValue <- unique(loopdata$`High is Positive?`)
         
         # set x axis labels on plots
         # need a column which stores a numeric series to be used as the break points
@@ -271,7 +217,7 @@ shinyServer(function(input, output, session) {
             y = Inf, 
             label = sprintf('\U25CF'), 
             size = 7, 
-            colour = (if_else(HighValue == "Yes", coloursDotPos, coloursDotNeg)), 
+            colour = trafficLightMarkerColour(loopdata, input$LA1, input$CompLA1),
             hjust = 1, 
             vjust = 1
           )+

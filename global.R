@@ -240,3 +240,27 @@ popOvs <- function(pltnm,Title,Def,Tm,Src, plc = "top", pltHght = "25vh"){
   )
 }
 
+
+#new function ---------
+#determines the colour of the traffic light marker on each plot in tab "P1" 
+trafficLightMarkerColour <- function (data, selected_cpp, comparator_cpp) {
+  selected_cpp_data <- filter(data, CPP == selected_cpp)
+  comparator_cpp_data <- filter(data, CPP == comparator_cpp)
+  
+  highIsPositive <- unique(data$`High is Positive?`)
+  
+  if_else(last(selected_cpp_data$value) > last(comparator_cpp_data$value), 
+          if_else(last(selected_cpp_data$Improvement_Rate) > last(comparator_cpp_data$Improvement_Rate),
+                  if_else(highIsPositive == "Yes",
+                          "green",
+                          "red"),
+                  "yellow"),
+          if_else(last(selected_cpp_data$value) < last(comparator_cpp_data$value),
+                  if_else(last(selected_cpp_data$Improvement_Rate) < last(comparator_cpp_data$Improvement_Rate),
+                          if_else(highIsPositive == "Yes",
+                                  "red",
+                                  "green"),
+                          "yellow"),
+                  "black")
+  )
+}
