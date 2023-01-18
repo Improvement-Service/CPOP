@@ -422,6 +422,7 @@ body <- dashboardBody(
             plotOutput("AllCPlots") %>% withSpinner(type = 6)
           )
   ), #end of All Communities (allCom)
+  
   # Data Zone Comparison ("Map2")----------------
   tabItem(tabName = "Map2",
           fluidPage(

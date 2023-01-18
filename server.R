@@ -1,5 +1,12 @@
 shinyServer(function(input, output, session) {
   
+  
+  output$clock <- renderText({
+    invalidateLater(5000)
+    Sys.time()
+  })
+  
+  #shiny alert pop-up------------------------
   shinyalert(title = "", 
              text = tags$div(class="header", 
                              checked=NA,
@@ -12,11 +19,8 @@ shinyServer(function(input, output, session) {
                              ),
              html = TRUE)
 
-  output$clock <- renderText({
-    invalidateLater(5000)
-    Sys.time()
-  })
   
+  #dynamic sidebar output-----------------------
   #observe FIRST instance of LA1 input, and render the sidebar menu items in two halves (this is to accommodate the
   #conditional panel (community drop down list) which is rendered between these menu items)
   observeEvent(input$LA1,{
@@ -47,11 +51,82 @@ shinyServer(function(input, output, session) {
   
   #dynamically render the select a community drop down depending on whether the CP is currently selected.
   output$communityDropDown <- renderMenu({
+    req(input$LA1)
     conditionalPanel(condition = 'input.tabs == "CP" && input.LA1 !== null', selectInput("CommunityCP", "Select a Community:", choices = communities_list()))
-
   })
+  
+  # "Map1" scotMap ------
     
-  # Create Ui ouputs for CPP over time page - PAGE1------------------------------------------------------
+  output$scotMap <- renderLeaflet({
+    leaflet(SpPolysLA) %>%
+      addTiles() %>%
+      addPolygons(
+        smoothFactor = 1, 
+        weight = 1.5, 
+        fillOpacity = 0.7,
+        layerId = ~NAME,
+        fillColor = "grey", 
+        color = "black",
+        label = SpPolysLA@data$NAME,
+        highlightOptions = highlightOptions(color = "white", weight = 3,bringToFront = TRUE)
+      ) 
+  }) #end of scotmap
+  
+  # "Map1" communityMap ------
+  
+  output$communityMap <- renderLeaflet({
+    req(input$LA1)
+    sbst <- which(SpPolysIZ@data$council %in% input$LA1)
+    dt <- SpPolysIZ[sbst,]
+    selCls <- if(input$CBCols){clrsCB}else{clrs}
+    selPls <- if(input$CBCols){
+      ~communityPalCB(`rank_decs`)
+    }else{~communityPal(`rank_decs`)}
+    topRk <- paste0("Least vulnerable - ",nrow(dt))
+    cp <- leaflet(dt) %>%
+      addTiles() %>%
+      addLegend("bottomright", colors = selCls,
+                labels = c("Most vulnerable - 1", "","","","","",topRk),
+                opacity = 1,
+                title = "") %>%
+      addPolygons(
+        smoothFactor = 0.5, 
+        weight = 1.5, 
+        fillOpacity = 0.7,
+        layerId = ~InterZone, 
+        fillColor = selPls, 
+        color = "black"
+      )
+  }) #end of communityMap
+  
+  # "Map 1" Update selectize input ----------
+  observe({
+    event <- input$scotMap_shape_click
+    if(is.null(event)){
+      return()} 
+    updateSelectizeInput(session,"LA1", label = NULL, choices = NULL, selected = event$id)
+  })
+  
+  # "Map 1" click pop-ups FOR GLOBAL ---------------
+  
+  showIZPopup <- function(group, lat, lng){
+    selectedIZ <- SpPolysIZ@data[SpPolysIZ@data$InterZone == group,]
+    content <- as.character(tagList(
+      tags$h4(as.character(unique(selectedIZ$`IGZ name`)))))
+    leafletProxy("communityMap") %>% addPopups(lng, lat, content, layerId = group)
+  }
+  # Make popup appear and clear old popups
+  observe({
+    leafletProxy("communityMap") %>% clearPopups()
+    event <- input$communityMap_shape_click
+    if(is.null(event)){
+      return()}
+    isolate({
+      showIZPopup(event$id, event$lat, event$lng)
+    })
+  })
+  
+  # "P1"  legend outputs ---------------------------------
   output$CPPLgnd <- renderText({
     txt <- input$LA1
   })
@@ -60,27 +135,15 @@ shinyServer(function(input, output, session) {
     txt <- input$CompLA1
   })
   
-  output$HeaderVuln <- renderText({
-    req(input$LA1)
-    txt <- paste("Have outcomes for the five most vulnerable communities in",input$LA1, "improved faster or slower than the CPP as a whole?")
-  })
   
+  
+  # "P1" selected_dta_1 -------------------
   selected_dta_1 <- reactive({
     CPP_Imp$colourscheme <- ifelse(CPP_Imp$CPP == input$LA1,"A","B")
     dta <- filter(CPP_Imp, CPP %in% c(input$LA1, input$CompLA1))
   })
   
-  # List indicators in the order these are to be presented
-  
-  indicators_1 <- c("Healthy Birthweight", "Primary 1 Body Mass Index", "Child Poverty",
-                    "Attainment", "Positive Destinations", "Employment Rate",
-                    "Median Earnings", "Out of Work Benefits", "Business Survival",
-                    "Crime Rate", "Dwelling Fires", "Carbon Emissions", 
-                    "Emergency Admissions", "Unplanned Hospital Attendances",
-                    "Early Mortality", "Fragility", "Well-being", "Fuel Poverty"
-  )
-  
-  # loop creating a plot for each indicator   
+  # "P1" loop to create plots -------------------  
   
   for(i in seq_along(indicators_1)){
     local({
@@ -228,27 +291,18 @@ shinyServer(function(input, output, session) {
         
       })
     })  
-  }
-  
-  # Create Ui Outputs for CPP all 32 - PAGE2 ------------------------------------------------------------------   
+  } #end of plot for loop
+
+  # "P2" comparator CP drop-down ------------------------------------------------------------------   
   output$CompSelection <- renderUI({
     selectizeInput("OtherCPP", "Select a Comparator CPP", choices =CPPNames[CPPNames!= input$LA1], 
-            options = list(
-             placeholder = "Select a CPP",
-             onInitialize = I('function() { this.setValue(""); }')))
-    })
+                   options = list(
+                     placeholder = "Select a CPP",
+                     onInitialize = I('function() { this.setValue(""); }')))
+  })
   
-#Render all Plots for Page 2===================================
-  
-  # List indicators in the order these are to be presented
-  
-  indis <- c("Healthy Birthweight", "Primary 1 Body Mass Index", "Child Poverty",
-             "Attainment", "Positive Destinations", "Employment Rate",
-             "Median Earnings", "Out of Work Benefits", "Business Survival",
-             "Crime Rate", "Dwelling Fires", "Carbon Emissions", 
-             "Emergency Admissions", "Unplanned Hospital Attendances",
-             "Early Mortality", "Fragility", "Well-being", "Fuel Poverty")
-  
+# "P2" Render compare CPP plots loop-----------------
+
   for(i in seq_along(indis)){
     local({
       this_i <- i
@@ -309,9 +363,20 @@ shinyServer(function(input, output, session) {
           plot.margin = unit(c(2,2,15,2),"mm"))
     })
   })
-  }
+  } #end of plot loop
   
-  # Create Graphs for CPP similar - PAGE3----------------------------------------------------------------
+  # "P2" legend text --------------
+  output$BarLA <- renderText({
+    txt <- input$LA1
+  })
+  output$BarComp <- renderText({
+    txt <- input$OtherCPP
+  })
+  output$BarScot <- renderText({
+    txt <- "Scotland"
+  })
+  
+  # "P3" Create Graphs for CPP similar loop ----------------------------------------------------------------
   for(i in seq_along(indis)){
     local({
       that_i <- i
@@ -364,355 +429,109 @@ shinyServer(function(input, output, session) {
                 panel.grid.minor = element_blank())
       })
     })
-  }
-
-  # Create Ui outputs for Maps - PAGE4&5--------------------------------------------------
-
-  output$IZUI <- renderUI({
-    selectizeInput(
-      "IZ", 
-      "", 
-      choices = sort(unique(CPPMapDta[CPPMapDta$council == input$LA1, 11])),
-      options = list(
-        placeholder = "Select a Community",
-        onInitialize = I('function() { this.setValue(""); }'))
-    )
+  } #end of "P3" for loop
+  
+  # "InQ" legend text --------------
+  output$CompLgndInq <- renderText({
+    txt <- input$InqComp
   })
-  
-  clrs      <- brewer.pal(7, "RdYlGn")
-  clrsCB    <- rev(brewer.pal(7, "YlGnBu"))
-  povPal    <- colorBin(rev(clrs), SpPolysDF@data$povDecs)
-  povPalCB  <- colorBin(rev(clrsCB), SpPolysDF@data$povDecs)
-  tariffPal <- colorBin(clrs, SpPolysDF@data$tariffDecs)
-  tariffPalCB <- colorBin(clrsCB, SpPolysDF@data$tariffDecs)
-  posPal    <- colorBin(clrs, SpPolysDF@data$posDecs)
-  posPalCB  <- colorBin(clrsCB, SpPolysDF@data$posDecs)
-  benPal    <- colorBin(rev(clrs), SpPolysDF@data$benDecs)
-  benPalCB    <- colorBin(rev(clrsCB), SpPolysDF@data$benDecs)
-  crimePal  <- colorBin(rev(clrs), SpPolysDF@data$crimeDecs)
-  crimePalCB  <- colorBin(rev(clrsCB), SpPolysDF@data$crimeDecs)
-  admisPal  <- colorBin(rev(clrs), SpPolysDF@data$admisDecs)
-  admisPalCB  <- colorBin(rev(clrsCB), SpPolysDF@data$admisDecs)
-  
-  
-  
-  plydata <- reactive({
-    desIZ <- which(CPPMapDta$council %in% input$LA1 & CPPMapDta$IZname %in% input$IZ)
-    IZ_dzs <- SpPolysDF[desIZ,]
+  output$CPPLgndInq <- renderText({
+    txt <- input$LA1
   })
-  
-  # create the map
-  
-  output$newplot<-renderLeaflet({
-    mapCols <- if(input$CBCols){~povPalCB(`povDecs`)}else{~povPal(`povDecs`)}
-    p <- leaflet(plydata())%>%
-      
-      # addProviderTiles("OpenStreetMap.HOT")%>% #Humanitarian OpenStreetMap if desired
-      
-      addTiles()%>%
-      addPolygons(
-        smoothFactor = 0.5, 
-        weight = 1.5, 
-        fillOpacity = 0.6,
-        layerId = ~DataZone, 
-        fillColor = mapCols, 
-        color = "black"
-      )
-    return(p)
-  })
-  
-  output$newplot2 <- renderLeaflet({
-    mapCols <- if(input$CBCols){~tariffPalCB(`tariffDecs`)}else{~tariffPal(`tariffDecs`)}
-    
-    p <- leaflet(plydata())%>%
-      addTiles()%>%
-      addPolygons(
-        smoothFactor = 0.5, 
-        weight = 1.5, 
-        fillOpacity = 0.7,
-        layerId = ~DataZone, 
-        fillColor = mapCols,  
-        color = "black"
-      )
-    
-    return(p)
-  })
-  
-  output$newplot3 <- renderLeaflet({
-    mapCols <- if(input$CBCols){~benPalCB(`benDecs`)}else{~benPal(`benDecs`)}
-    p <- leaflet(plydata())%>%
-      addTiles()%>%
-      addPolygons(
-        smoothFactor = 0.5, 
-        weight = 1.5, 
-        fillOpacity = 0.7,
-        layerId = ~DataZone, 
-        fillColor = mapCols, 
-        color = "black"
-      )
-    
-    return(p)
-  })
-  
-  output$newplot4 <- renderLeaflet({
-    mapCols <- if(input$CBCols){~crimePalCB(`crimeDecs`)}else{~crimePal(`crimeDecs`)}
-    p <- leaflet(plydata())%>%
-      addTiles()%>%
-      addPolygons(
-        smoothFactor = 0.5, 
-        weight = 1.5, 
-        fillOpacity = 0.7,
-        layerId = ~DataZone, 
-        fillColor = mapCols, 
-        color = "black"
-      )
-    
-    return(p)
-  })
-  
-  output$newplot5 <- renderLeaflet({
-    mapCols <- if(input$CBCols){~admisPalCB(`admisDecs`)}else{~admisPal(`admisDecs`)}
-    p <- leaflet(plydata())%>%
-      addTiles()%>%
-      addPolygons(
-        smoothFactor = 0.5, 
-        weight = 1.5, 
-        fillOpacity = 0.7,
-        layerId = ~DataZone, 
-        fillColor = mapCols, 
-        color = "black"
-      )
-    
-    return(p)
-  })
-  
-  # Clickable popups for map1
-  
-  showDZPopup <- function(group, lat, lng) {
-    selectedDZ <- CPPMapDta[CPPMapDta$DataZone == group,]
-    content <- as.character(tagList(
-      tags$h4(as.character(unique(selectedDZ$DataZone))),
-      sprintf(
-        "%s: %s",
-        "Children in Poverty (%)", 
-        round(unique(as.numeric(selectedDZ[13])),2)
-      ), 
-      tags$br()
-    ))
-    leafletProxy("newplot") %>% addPopups(lng, lat, content, layerId = group)
-  }
-  
-  # Makes the popups appear and clears old popups
-  
-  observe({
-    leafletProxy("newplot") %>% clearPopups()
-    event <- input$newplot_shape_click
-    if (is.null(event))
-      return()
-    isolate({
-      showDZPopup(event$id, event$lat, event$lng)
-    })
-  })
-  
-  # Clickable popups for map2
-  
-  showDZPopup2 <- function(group, lat, lng) {
-    selectedDZ <- CPPMapDta[CPPMapDta$DataZone == group,]
-    content <- as.character(tagList(
-      tags$h4(as.character(unique(selectedDZ$DataZone))),
-      sprintf(
-        "%s: %s\n",
-        "Average Highest Attainment", 
-        round(unique(selectedDZ[14]),2)
-      ), 
-      tags$br()
-    ))
-    leafletProxy("newplot2") %>% addPopups(lng, lat, content, layerId = group)
-  }
-  
-  # Makes the popups appear and clears old popups
-  
-  observe({
-    leafletProxy("newplot2") %>% clearPopups()
-    event <- input$newplot2_shape_click
-    if (is.null(event))
-      return()
-    isolate({
-      showDZPopup2(event$id, event$lat, event$lng)
-    })
-  })
-  
-  # Clickable popups for map3
-  
-  showDZPopup3 <- function(group, lat, lng) {
-    selectedDZ <- CPPMapDta[CPPMapDta$DataZone == group,]
-    content <- as.character(tagList(
-      tags$h4(as.character(unique(selectedDZ$DataZone))),
-      sprintf(
-        "%s: %s\n",
-        "Out of Work Benefits (%)", 
-        round(unique(selectedDZ[15]),2)
-      ), 
-      tags$br()
-    ))
-    leafletProxy("newplot3") %>% addPopups(lng, lat, content, layerId = group)
-  }
-  
-  # Makes the popups appear and clears old popups
-  
-  observe({
-    leafletProxy("newplot3") %>% clearPopups()
-    event <- input$newplot3_shape_click
-    if (is.null(event))
-      return()
-    isolate({
-      showDZPopup3(event$id, event$lat, event$lng)
-    })
-  })
-  
-  # Clickable popups for map4
-  
-  showDZPopup4 <- function(group, lat, lng) {
-    selectedDZ <- CPPMapDta[CPPMapDta$DataZone == group,]
-    content <- as.character(tagList(
-      tags$h4(as.character(unique(selectedDZ$DataZone))),
-      sprintf(
-        "%s: %s\n",
-        "SIMD Crimes per 10,000", 
-        round(unique(selectedDZ[16]),2)
-      ), 
-      tags$br()
-    ))
-    leafletProxy("newplot4") %>% addPopups(lng, lat, content, layerId = group)
-  }
-  
-  # Makes the popups appear and clears old popups
-  
-  observe({
-    leafletProxy("newplot4") %>% clearPopups()
-    event <- input$newplot4_shape_click
-    if (is.null(event))
-      return()
-    isolate({
-      showDZPopup4(event$id, event$lat, event$lng)
-    })
-  })
-  
-  # Clickable popups for map5
-  
-  showDZPopup5 <- function(group, lat, lng) {
-    selectedDZ <- CPPMapDta[CPPMapDta$DataZone == group,]
-    content <- as.character(tagList(
-      tags$h4(as.character(unique(selectedDZ$DataZone))),
-      sprintf(
-        "%s: %s\n",
-        "Emergency Admissions per 100,000", 
-        round(unique(selectedDZ[17]),2)
-      ), 
-      tags$br()
-    ))
-    leafletProxy("newplot5") %>% addPopups(lng, lat, content, layerId = group)
-  }
-  
-  # Makes the popups appear and clears old popups
-  
-  observe({
-    leafletProxy("newplot5") %>% clearPopups()
-    event <- input$newplot5_shape_click
-    if (is.null(event))
-      return()
-    isolate({
-      showDZPopup5(event$id, event$lat, event$lng)
-    })
-  })
-  
-  # Colours for Community Map
-  
-  communityPal <- colorBin(clrs, SpPolysIZ@data$rank_decs)
-  communityPalCB <- colorBin(clrsCB, SpPolysIZ@data$rank_decs)
-  
-  #Subset IZ Data
-  IZPlys <- reactive({
-    
-  })
-  
-  # Create Community Map
-  
-  output$communityMap <- renderLeaflet({
+   
+  # "InQ" inqTable output --------------
+   output$inqTbl <- function(){
+    #filter dataset
     req(input$LA1)
-    sbst <- which(SpPolysIZ@data$council %in% input$LA1)
-    dt <- SpPolysIZ[sbst,]
-    selCls <- if(input$CBCols){clrsCB}else{clrs}
-    selPls <- if(input$CBCols){
-      ~communityPalCB(`rank_decs`)
-    }else{~communityPal(`rank_decs`)}
-    topRk <- paste0("Least vulnerable - ",nrow(dt))
-    cp <- leaflet(dt) %>%
-      addTiles() %>%
-      addLegend("bottomright", colors = selCls,
-          labels = c("Most vulnerable - 1", "","","","","",topRk),
-          opacity = 1,
-    title = "") %>%
-      addPolygons(
-        smoothFactor = 0.5, 
-        weight = 1.5, 
-        fillOpacity = 0.7,
-        layerId = ~InterZone, 
-        fillColor = selPls, 
-        color = "black"
-      )
-  })
+    dd <- filter(InqDta, CouncilName %in% c(input$LA1, input$InqComp))
+    dd$value <- round(dd$value,1)
+    #remove year column - no longer needed once year filter is removed
+    #dd <- dd[-2]
+    dd <- dd %>% unite(Titles, Indicator, Year, sep = " - ")
+    dd <- spread(dd, Titles, value)
+    dd <- dd[c(2,1,3:10)]
+    dd[2] <- c("Least deprived","Least deprived","Most deprived", "Most deprived")
+    OrdCPPs <-c(input$LA1, input$InqComp)
+    dd <- arrange(dd,match(CouncilName, OrdCPPs), desc(CouncilName))
+    #rownames(dd) <- c("Least deprived","Least deprived","Most deprived", "Most deprived")
+    #    #mutate each column to add a popver showing the year-DOESN'T WORK IN SHINY
+    #   dd <- dd %>% mutate(`Child Poverty (%)` =  cell_spec(`Child Poverty (%)`,popover = spec_popover(content = dd[[1]])))
+    colnames(dd)[1:2] <- c("","")
+    tbl1 <- kable(dd, "html", align = "c", escape = F)%>% 
+      kable_styling("basic")%>%
+      row_spec(0,background = "black", color = "white", font_size = 14, 
+               align = "right") %>%
+      column_spec(1, bold = TRUE, border_right = TRUE) %>%
+      column_spec(2, bold = TRUE) %>%
+      collapse_rows(1,valign = "middle",latex_hline = "major")%>%
+      row_spec(3, extra_css = "border-top: solid 1px")  %>%
+      row_spec(0, align = "c") %>%
+      scroll_box(width = "100%")
+    #group_rows("", 3,4, label_row_css = "background-color: black; height: 3px") 
+    #group_rows("", 1,2, label_row_css = "height:1px")
+    
+    # row_spec(tbl1,1, hline_after = TRUE) 
+  } #end of inqTbl
   
-  output$scotMap <- renderLeaflet({
-    leaflet(SpPolysLA) %>%
-      addTiles() %>%
-      addPolygons(
-        smoothFactor = 1, 
-        weight = 1.5, 
-        fillOpacity = 0.7,
-        layerId = ~NAME,
-        fillColor = "grey", 
-        color = "black",
-        label = SpPolysLA@data$NAME,
-        highlightOptions = highlightOptions(color = "white", weight = 3,bringToFront = TRUE)
-      ) #%>%
-     # addLabelOnlyMarkers(lng = -20.6, lat = 60.3,label = HTML("<h2>Community Planning Outcomes Profile</h2><h3>Tracking improvement in communities across Scotland</h3><h5>To get started use the map to select a CPP</h5><h5>Select ‘help with this page’ in the top right hand corner of every page for an introduction to how to use each page</h5><h5>To explore other parts of the CPOP use the list on the left to navigate the tool</h5>"),
-      #                    labelOptions = labelOptions(noHide = T, direction = 'right', offset = c(0,0), textOnly = T, sticky = FALSE))
-  })
-  
-  ##Click to select the CPP
-  observe({
-    event <- input$scotMap_shape_click
-    if(is.null(event)){
-      return()} 
-      updateSelectizeInput(session,"LA1", label = NULL, choices = NULL, selected = event$id)
-  })
-  
-  # Add click function
-  
-  showIZPopup <- function(group, lat, lng){
-    selectedIZ <- SpPolysIZ@data[SpPolysIZ@data$InterZone == group,]
-    content <- as.character(tagList(
-      tags$h4(as.character(unique(selectedIZ$`IGZ name`)))#,
-      #paste("Community Ranking:", as.character(unique(selectedIZ[14]))),
-     # tags$br()
-    ))
-    leafletProxy("communityMap") %>% addPopups(lng, lat, content, layerId = group)
-  }
-  
-  # Make popup appear and clear old popups
-  
-  observe({
-    leafletProxy("communityMap") %>% clearPopups()
-    event <- input$communityMap_shape_click
-    if(is.null(event)){
-      return()}
-    isolate({
-      showIZPopup(event$id, event$lat, event$lng)
+  # "InQ" InqGrp Plot --------------
+  output$InqGrp <- renderPlot({
+    req(input$LA1)
+    DIdta <- filter(DIdta, la %in% c(input$LA1, input$InqComp)) %>% arrange(ind, match(la, c(input$LA1, input$InqComp)))
+    DIdta <- DIdta[DIdta$ind != "Out of Work Benefits", ]
+    indList <- unique(DIdta$ind)
+    ##get the dot colour
+    DIdta <- setDT(DIdta)[,Higher :=
+                            abs(first(value))<abs(last(value)),
+                          by = list(ind, year)]
+    DIdta <- setDT(DIdta)[,IRHigher :=
+                            first(ImprovementRate)<last(ImprovementRate),
+                          by = list(ind, year)]
+    ##create colourscheme
+    #descText <- "These graphs will help you understand\ninequality in outcomes across the whole of the\nCPP, with 0 indicating perfect equality and\nvalues between 0 and 1 indicating that income\ndeprived people experience poorer outcomes,\n and values between -1 and 0 indicating that\nnon-income deprived people experience\npoorer outcomes."
+    DIdta$coloursch <- ifelse(DIdta$la ==input$LA1, "CPP", "Comp")
+    lstDi <- lapply(1:7,FUN = function(y){
+      dta <- DIdta[DIdta$ind == indList[y],]
+      DDta <- filter(dta, year == last(year))
+      CDot <- if_else(DDta$Higher == T && DDta$IRHigher == T, "green", if_else(DDta$Higher == F && DDta$IRHigher == F, "red", "yellow"))
+      ggplot(dta, aes(x = year, y = value))+
+        geom_line(data = dta[!is.na(dta$value),], aes(group = coloursch, colour = coloursch), size = 1)+
+        ylab("")+
+        xlab("")+
+        annotate(
+          "text", x = Inf, y = Inf,label = sprintf('\U25CF'),size = 7, 
+          colour = CDot, 
+          hjust = 1, 
+          vjust = 1
+        )+
+        ggtitle(indList[y])+
+        theme_bw()+
+        scale_y_continuous(limits = c(-0.23,0.5))+
+        scale_x_continuous(breaks = seq(2008,2020, by  =2))+
+        geom_hline(yintercept = 0)+
+        scale_colour_manual(breaks = c("Comp", "CPP"), values = c("blue", "red"))+
+        guides(colour = "none")+
+        theme(panel.grid.major = element_blank(), 
+              panel.grid.minor = element_blank(), 
+              panel.background = element_blank(), 
+              axis.line = element_line(colour="black"))
     })
+    do.call("plot_grid", c(lstDi, ncol = 4, align = "v"))
+  }) #end of InqGrp
+  
+  #"InQ" render inequality comparator -----------
+  output$ICompUI <- renderUI({
+    CPPNames <- CPPNames[CPPNames != input$LA1]
+    selectInput("InqComp", "Select Comparator",
+                c("Scotland",CPPNames))
   })
   
-  #Create Ui outputs for Vulnerable Communities page - PAGE 6 --------------------------------------------
+  #"Vuln" header text ------------
+  output$HeaderVuln <- renderText({
+    req(input$LA1)
+    txt <- paste("Have outcomes for the five most vulnerable communities in",input$LA1, "improved faster or slower than the CPP as a whole?")
+  })
+  
+  # "Vuln" VulnTable output ------------
   
   output$VulnTable <- function(){
     CPPSelected <- input$LA1
@@ -727,7 +546,7 @@ shinyServer(function(input, output, session) {
     CompleteSet[,3][CompleteSet[,3] == "Faster"] <- cell_spec(CompleteSet[,3][CompleteSet[,3] == "Faster"], color = "white", background = "green")
     CompleteSet[,3][CompleteSet[,3] == "Slower"] <- cell_spec(CompleteSet[,3][CompleteSet[,3] == "Slower"], color = "white", background = "red")
     CompleteSet[,3][CompleteSet[,3] == "No Difference"] <- cell_spec(CompleteSet[,3][CompleteSet[,3] == "No Difference"], color = "black", background = "yellow")
-  
+    
     #move name to front
     CompleteSet <- CompleteSet[c(2,28,3:27)]
     
@@ -738,7 +557,7 @@ shinyServer(function(input, output, session) {
       "Improvement rate compared to the CPP average")
     names(CompleteSet) <-gsub(".+Change", "Improvement rate compared to the CPP average", names(CompleteSet), perl = T)
     names(CompleteSet) <-gsub("(.+_)", "", names(CompleteSet), perl = T)
-
+    
     CompleteSet <- 
       knitr::kable(CompleteSet,"html", escape = F) %>% 
       kable_styling(bootstrap_options = c("bordered", "hover", "responsive"), 
@@ -764,46 +583,24 @@ shinyServer(function(input, output, session) {
       ) %>%
       footnote(symbol = "Crime data is a three year rolled average based on modelled data")%>%
       scroll_box(width = "160%") 
-  }  
+  } #end of VulnTable 
   
-  # Create Ui ouputs for My Communities Page - PAGE 7-----------------------------------------------------
-  
-  
-#  observeEvent(eventExpr = input$IndiAll,
- #              handlerExpr = {
-  #               updateCheckboxGroupInput(session = session,
-  #                                        inputId = "IndiMyCom",
-  #                                        selected = unique(IGZdta$Indicator)
-  #               )
-  #             }
-  #)
-  
-  #observe({
-  #  if(input$IndiClear >0){
-  #    updateCheckboxGroupInput(session = session, 
-  #                             inputId = "IndiMyCom",
-  #                             selected = character(0)
-  #    )
-  #  }
-  #})  
-  
-
- ##create rankings for typology and CPP for use later
+  # "MyCom" reactive object IGZBest() ----------------
   IGZBest <- reactive({
     req(input$LA1)
     
     # rankings for outcomes
-   if(input$LA1 == "Fife" & input$Fife_SA != "All"){
+    if(input$LA1 == "Fife" & input$Fife_SA != "All"){
       IGZBest <- left_join(IGZ_latest, IGZ_latest_Fife, by = c("InterZone", "Indicator")) %>% 
         filter(CPP == "Fife" & `Strategic Area` == input$Fife_SA & Indicator %in% input$IndiMyCom) %>%
         select(-CPPScore)
       IGZBest <-setDT(IGZBest)[, CombinedCPPScore := sum(SAScore), by = InterZone]
       IGZBest <-setDT(IGZBest)[, CombinedTypeScore := sum(TypeScore), by = InterZone]
-      }else{
-    IGZBest <- filter(IGZ_latest, CPP %in% input$LA1 & Indicator %in% input$IndiMyCom)
-    IGZBest <-setDT(IGZBest)[, CombinedCPPScore := sum(CPPScore), by = InterZone]
-    IGZBest <-setDT(IGZBest)[, CombinedTypeScore := sum(TypeScore), by = InterZone]
-      }
+    }else{
+      IGZBest <- filter(IGZ_latest, CPP %in% input$LA1 & Indicator %in% input$IndiMyCom)
+      IGZBest <-setDT(IGZBest)[, CombinedCPPScore := sum(CPPScore), by = InterZone]
+      IGZBest <-setDT(IGZBest)[, CombinedTypeScore := sum(TypeScore), by = InterZone]
+    }
     # Filter data so that combined scores are only displayed once for each IGZ
     
     IGZBest <- setDT(IGZBest)[, FilterRef:= first(Indicator), by = InterZone]
@@ -811,25 +608,25 @@ shinyServer(function(input, output, session) {
     IGZBest$CPPScoreRank <- rank(IGZBest$CombinedCPPScore)
     IGZBest$TypeScoreRank <- rank(IGZBest$CombinedTypeScore)
     return(IGZBest)
-  })
+  }) #end of IGZBest()
   
-  # Table output 
-  
-    output$MyCommunitiesTbl <- DT::renderDataTable({  
-      req(input$LA1)
-      IGZBest <- IGZBest()
+  # "MyCom" MyCommunitiesTbl output --------
+
+  output$MyCommunitiesTbl <- DT::renderDataTable({  
+    req(input$LA1)
+    IGZBest <- IGZBest()
     # rankings for improvement 
-      if(input$LA1 == "Fife" & input$Fife_SA != "All"){
-        IGZImprovement <- left_join(IGZ_change, IGZ_change_Fife, by = c("InterZone", "Indicator")) %>% 
-          filter(CPP == "Fife" & `Strategic.Area` == input$Fife_SA & Indicator %in% input$IndiMyCom) %>%
-          select(-CPPChangeScore)
-        IGZImprovement <- setDT(IGZImprovement)[,CombinedCPPChangeScore := sum(SAChangeScore), by = InterZone]
-        IGZImprovement <- setDT(IGZImprovement)[,CombinedTypeChangeScore := sum(TypeChangeScore), by = InterZone]
-        }else{
-    IGZImprovement <- filter(IGZ_change, CPP %in% input$LA1 & Indicator %in% input$IndiMyCom)
-    IGZImprovement <- setDT(IGZImprovement)[,CombinedCPPChangeScore := sum(CPPChangeScore), by = InterZone]
-    IGZImprovement <- setDT(IGZImprovement)[,CombinedTypeChangeScore := sum(TypeChangeScore), by = InterZone]
-        }
+    if(input$LA1 == "Fife" & input$Fife_SA != "All"){
+      IGZImprovement <- left_join(IGZ_change, IGZ_change_Fife, by = c("InterZone", "Indicator")) %>% 
+        filter(CPP == "Fife" & `Strategic.Area` == input$Fife_SA & Indicator %in% input$IndiMyCom) %>%
+        select(-CPPChangeScore)
+      IGZImprovement <- setDT(IGZImprovement)[,CombinedCPPChangeScore := sum(SAChangeScore), by = InterZone]
+      IGZImprovement <- setDT(IGZImprovement)[,CombinedTypeChangeScore := sum(TypeChangeScore), by = InterZone]
+    }else{
+      IGZImprovement <- filter(IGZ_change, CPP %in% input$LA1 & Indicator %in% input$IndiMyCom)
+      IGZImprovement <- setDT(IGZImprovement)[,CombinedCPPChangeScore := sum(CPPChangeScore), by = InterZone]
+      IGZImprovement <- setDT(IGZImprovement)[,CombinedTypeChangeScore := sum(TypeChangeScore), by = InterZone]
+    }
     # Filter data so that combined scores are only displayed once for each IGZ
     
     IGZImprovement <- setDT(IGZImprovement)[, FilterRef := first(Indicator), by = InterZone]
@@ -1010,7 +807,7 @@ shinyServer(function(input, output, session) {
     names(Top5)[6] <-""
     Bottom5 <- tail(MyCommunitiesDta, Bottom5Rows)
     TopBottom5 <- rbind(Top5, Bottom5)
-   
+    
     
     Display <- input$View
     if(Display == "Top/bottom 10") {MyCommunitiesDta <- TopBottom10}
@@ -1031,7 +828,7 @@ shinyServer(function(input, output, session) {
     ))
     
     # Create table
-        
+    
     datatable(
       MyCommunitiesDta, 
       options = list(
@@ -1056,25 +853,110 @@ shinyServer(function(input, output, session) {
       formatStyle(columns = 3, valueColumns = 9, color = styleEqual(Store_unique1,TxtValue))%>%
       formatStyle(columns = 5, valueColumns = 10, color = styleEqual(Store_unique1,TxtValue))%>%
       formatStyle(columns = 7, valueColumns = 11, color = styleEqual(Store_unique1,TxtValue))
+  }) #end of MyCommunitiesTbl
+  
+  # "MyCom" arrows  ------------
+  output$arr1 <- renderUI({
+    if(input$CBCols){
+      column(1,div(style = "padding-left:0px; float:left",tags$img(style = "max-width:120%",src = "CBArrow1.PNG")))
+    }else{
+      column(1,div(style = "padding-left:0px; float:left",tags$img(style = "max-width:120%",src = "Arrow1.PNG")))
+    }
+  })
+  output$arr2 <- renderUI({
+    if(input$CBCols){
+      column(width = 2, style = "padding-left:2px;padding-right:2px;z-index:1;",tags$img(style = "max-width:120%",src = "CBArrow3.PNG"))
+    }else{
+      column(width = 2, style = "padding-left:2px;padding-right:2px;z-index:1;",tags$img(style = "max-width:120%", src = "Arrow3.PNG"))
+    }
   })
   
+  # "MyCom" Value box for community progress My Communities---------------------
+  output$comProgressBox <- renderValueBox({
+    IGZBest <- IGZBest()
+    pBetter <- round((sum(IGZBest$CombinedTypeScore>0)/nrow(IGZBest))*100,0)
+    bCol <- if(pBetter <50) {"red"}else{"green"}
+    valueBox(
+      paste0(pBetter, "%"), "Communities Performing Better than Expected", icon = icon("percent"),
+      color = bCol, width = NULL
+    )
+  })
   
-  # Create Ui ouputs for Community Profile - Page 8-------------------------------------- 
-    
-    #reactive expression to update communities in sidebar drop down (CommunityCP) when LA1 input is changed
-    communities_list <- eventReactive(input$LA1, {
-      commCP_dropdown_data <- filter(IGZdta, CPP == input$LA1)
-      commCP_dropdown_options <- sort(unique(commCP_dropdown_data$InterZone_Name))
-      return(commCP_dropdown_options)
-      })#end event reactive
-    
+  #"CP" communities_list()--------------------
+  #reactive ex-pression to update communities in sidebar drop down (CommunityCP) when LA1 input is changed
+  communities_list <- eventReactive(input$LA1, {
+    commCP_dropdown_data <- filter(IGZdta, CPP == input$LA1)
+    commCP_dropdown_options <- sort(unique(commCP_dropdown_data$InterZone_Name))
+    return(commCP_dropdown_options)
+  })#end event reactive
   
+  # "CP" reactive object LineChoiceDta() -------------------
+  LineChoiceDta <- reactive({
+    req(input$LA1)
+    req(input$CommunityCP)
+    # need to filter to selected CPP to avoid cases where the 
+    #IGZ name has a duplicate in another CPP
+    Community            <- filter(IGZdta, InterZone_Name == input$CommunityCP& CPP == input$LA1)
+    Community$Identifier <- input$CommunityCP
+    Community$ColourRef  <- "A"
+    Community$Colours    <- "red"
+    Community            <- select(
+      Community, c(-InterZone, -InterZone_Name, -CPP, -Typology_Group, -Typology_Name, -IndicatorFullName) 
+    )
+    
+    Indicators    <- unique(IGZdta$Indicator)
+    LA            <- filter(CPPdta, CPP == input$LA1 & Indicator %in% Indicators)
+    LA$Identifier <- input$LA1
+    LA$ColourRef  <- "B"
+    LA$Colours    <- "green"
+    LA            <- select(LA, c(-CPP, -FG,-IndicatorFullName))
+    
+    Indicators          <- unique(IGZdta$Indicator)
+    Scotland            <- filter(CPPdta, CPP == "Scotland" & Indicator %in% Indicators)
+    Scotland$Identifier <- "Scotland"
+    Scotland$ColourRef  <- "C"
+    Scotland$Colours    <- "blue"
+    Scotland            <- select(Scotland, c(-CPP, -FG,-IndicatorFullName))
+    
+    IGZsubset         <- filter(IGZdta, InterZone_Name == input$CommunityCP& CPP == input$LA1)
+    Typology          <- first(IGZsubset$Typology_Group)
+    GrpAv             <- filter(IGZdta, Typology_Group == Typology)
+    GrpAv <- ddply(GrpAv,. (Indicator, Year), transform, GrpAver = mean(value))
+    GrpAv              <- filter(GrpAv, InterZone_Name == input$CommunityCP & CPP == input$LA1)
+    GrpAv              <- select(GrpAv, -value)
+    colnames(GrpAv)[10] <- "value"
+    GrpAv$Identifier   <- "Group Average"
+    GrpAv$ColourRef    <- "D"
+    GrpAv$Colours      <- "orange"
+    GrpAv              <- select(
+      GrpAv, c(-InterZone, -InterZone_Name, -CPP, -Typology_Group, -Typology_Name,-IndicatorFullName)
+    )
+    
+    SimComm            <- IGZdta
+    SimComm$InterZone_Name <- paste(SimComm$CPP, "-",SimComm$InterZone_Name)
+    SimComm            <- filter(SimComm, InterZone_Name == input$ChoiceAddComm)
+    SimComm$Identifier <- "Similar Community"
+    SimComm$ColourRef  <- "E"
+    SimComm$Colours    <- "purple"
+    SimComm            <- select(
+      SimComm, c(-InterZone, -InterZone_Name, -CPP, -Typology_Group, -Typology_Name,-IndicatorFullName))
+    
+    if(input$ChoiceAddComm == 0){
+      (LineChoiceDta <- rbind(Community, LA, Scotland, GrpAv))
+    }else{
+      (LineChoiceDta <- rbind(Community, LA, Scotland, GrpAv, SimComm))
+    }
+  })#end of LineChoiceDta()
+  
+  #"CP" descrip--------
   output$Descrip <- renderText({
     req(input$LA1)
     IGZsubset <- filter(IGZdta, InterZone_Name == input$CommunityCP & CPP == input$LA1)
     txt <- first(IGZsubset$Typology_Name)
     txt <- paste("Group Description: ", txt)
   })
+  
+  #"CP" GrpSize ----------
   
   output$GrpSize <- renderText({
     req(input$LA1)
@@ -1091,8 +973,8 @@ shinyServer(function(input, output, session) {
     txt <- paste(Size, " other, similar communities in this group")
   })
   
-  # create table output
-  
+  #"CP" CommunityProfileTbl --------------
+
   output$CommunityProfileTbl <- DT::renderDataTable({
     req(input$LA1, input$CommunityCP)
     IGZsubset <- filter(IGZdta, InterZone_Name == input$CommunityCP & CPP == input$LA1)
@@ -1328,10 +1210,9 @@ shinyServer(function(input, output, session) {
       formatStyle(columns = 3, valueColumns = 7, fontWeight = styleEqual(fontlevels,fontvalues))%>%
       formatStyle(columns = 1, valueColumns = 6, border = styleEqual(fontlevels,bordervalues))%>%
       formatStyle(columns = 3, valueColumns = 7, border = styleEqual(fontlevels,bordervalues))
-  })
+  }) #end of CommunityProfileTbl
   
-  # Graphs for Community Profile Page
-  
+  # "CP" LineChoicesCP --------------
   output$LineChoicesCP <- renderUI({
     req(input$LA1, input$CommunityCP)
     Choices <- c(input$CommunityCP, input$LA1, "Scotland", "Group Average", "Similar Community")
@@ -1340,7 +1221,8 @@ shinyServer(function(input, output, session) {
       "Select lines to plot", status = "danger",
       Choices, selected = c(input$CommunityCP, input$LA1, "Scotland", "Group Average"))
   })
-  #outputOptions(output, 'LineChoicesCP', suspendWhenHidden = FALSE)
+  
+  # "CP" AddComm ---------------
   output$AddComm <- renderUI({
     Comm <- filter(IGZdta, InterZone_Name == input$CommunityCP & CPP == input$LA1)
     Group <- Comm$Typology_Group[1]
@@ -1351,77 +1233,20 @@ shinyServer(function(input, output, session) {
       "ChoiceAddComm", 
       "", 
       choices = unique(Options$InterZone_Name), options(size = 10)
-      )
+    )
   })
   
+  #"CP" toggle similar community  ------------------
   observe({
     shinyjs::toggle(id = "AddComm", condition = ("Similar Community" %in% input$ChoicesCP))
   })
   
-  
+#WHAT DOES THIS DO?-------------------
   outputOptions(output, 'AddComm', suspendWhenHidden = FALSE)
+
+  
+  # "CP" Create plot outputs ------------------------
   IndicatorsCP <- unique(IGZdta$Indicator)
-  
-  LineChoiceDta <- reactive({
-    req(input$LA1)
-    req(input$CommunityCP)
-    # need to filter to selected CPP to avoid cases where the 
-    #IGZ name has a duplicate in another CPP
-    Community            <- filter(IGZdta, InterZone_Name == input$CommunityCP& CPP == input$LA1)
-    Community$Identifier <- input$CommunityCP
-    Community$ColourRef  <- "A"
-    Community$Colours    <- "red"
-    Community            <- select(
-      Community, c(-InterZone, -InterZone_Name, -CPP, -Typology_Group, -Typology_Name, -IndicatorFullName) 
-    )
-    
-    Indicators    <- unique(IGZdta$Indicator)
-    LA            <- filter(CPPdta, CPP == input$LA1 & Indicator %in% Indicators)
-    LA$Identifier <- input$LA1
-    LA$ColourRef  <- "B"
-    LA$Colours    <- "green"
-    LA            <- select(LA, c(-CPP, -FG,-IndicatorFullName))
-    
-    Indicators          <- unique(IGZdta$Indicator)
-    Scotland            <- filter(CPPdta, CPP == "Scotland" & Indicator %in% Indicators)
-    Scotland$Identifier <- "Scotland"
-    Scotland$ColourRef  <- "C"
-    Scotland$Colours    <- "blue"
-    Scotland            <- select(Scotland, c(-CPP, -FG,-IndicatorFullName))
-    
-    IGZsubset         <- filter(IGZdta, InterZone_Name == input$CommunityCP& CPP == input$LA1)
-    Typology          <- first(IGZsubset$Typology_Group)
-    GrpAv             <- filter(IGZdta, Typology_Group == Typology)
-    GrpAv <- ddply(GrpAv,. (Indicator, Year), transform, GrpAver = mean(value))
-    GrpAv              <- filter(GrpAv, InterZone_Name == input$CommunityCP & CPP == input$LA1)
-    GrpAv              <- select(GrpAv, -value)
-    colnames(GrpAv)[10] <- "value"
-    GrpAv$Identifier   <- "Group Average"
-    GrpAv$ColourRef    <- "D"
-    GrpAv$Colours      <- "orange"
-    GrpAv              <- select(
-      GrpAv, c(-InterZone, -InterZone_Name, -CPP, -Typology_Group, -Typology_Name,-IndicatorFullName)
-    )
-    
-    SimComm            <- IGZdta
-    SimComm$InterZone_Name <- paste(SimComm$CPP, "-",SimComm$InterZone_Name)
-    SimComm            <- filter(SimComm, InterZone_Name == input$ChoiceAddComm)
-    SimComm$Identifier <- "Similar Community"
-    SimComm$ColourRef  <- "E"
-    SimComm$Colours    <- "purple"
-    SimComm            <- select(
-      SimComm, c(-InterZone, -InterZone_Name, -CPP, -Typology_Group, -Typology_Name,-IndicatorFullName))
-    
-    if(input$ChoiceAddComm == 0){
-      (LineChoiceDta <- rbind(Community, LA, Scotland, GrpAv))
-    }else{
-      (LineChoiceDta <- rbind(Community, LA, Scotland, GrpAv, SimComm))
-    }
-  })
-  
-  # Create plot outputs
-  
-  
   nIndis <- length(IndicatorsCP)
   
   output$CPplots<- renderPlot({
@@ -1429,112 +1254,112 @@ shinyServer(function(input, output, session) {
     req(input$CommunityCP)
     plots <- list()
     plots <- lapply(1:nIndis, FUN = function(.x){
-        
-        LineChoiceDta <- LineChoiceDta()
-        
-        # Y axis 
-        
-        y_rnge_dta <- subset(LineChoiceDta, LineChoiceDta$Indicator == IndicatorsCP[.x])
-        y_min <- min(y_rnge_dta$value, na.rm = TRUE)
-        y_max <- max(y_rnge_dta$value, na.rm = TRUE)
-        Rnge <- y_max - y_min
-        Extra <- Rnge * 0.05
-        y_min <- y_min - Extra
-        y_max <- y_max + Extra
-        
-        # set x axis labels on plots
-        # need a column which stores a numeric series to be used as the break points
-        # need an additional column which specifies the labels, allowing middle years to be blank
-        # the numeric column is also used as a reactive reference point for setting the labels
-        
-        LineChoiceDta$YearLabels <- LineChoiceDta$Year
-        LineChoiceDta$YearLabels <- if_else(
-          LineChoiceDta$Year == FrstYear,
-          LblFrst,
+      
+      LineChoiceDta <- LineChoiceDta()
+      
+      # Y axis 
+      
+      y_rnge_dta <- subset(LineChoiceDta, LineChoiceDta$Indicator == IndicatorsCP[.x])
+      y_min <- min(y_rnge_dta$value, na.rm = TRUE)
+      y_max <- max(y_rnge_dta$value, na.rm = TRUE)
+      Rnge <- y_max - y_min
+      Extra <- Rnge * 0.05
+      y_min <- y_min - Extra
+      y_max <- y_max + Extra
+      
+      # set x axis labels on plots
+      # need a column which stores a numeric series to be used as the break points
+      # need an additional column which specifies the labels, allowing middle years to be blank
+      # the numeric column is also used as a reactive reference point for setting the labels
+      
+      LineChoiceDta$YearLabels <- LineChoiceDta$Year
+      LineChoiceDta$YearLabels <- if_else(
+        LineChoiceDta$Year == FrstYear,
+        LblFrst,
+        if_else(
+          LineChoiceDta$Year == RcntYear, 
+          LblRcnt,
           if_else(
-            LineChoiceDta$Year == RcntYear, 
-            LblRcnt,
-            if_else(
-              LineChoiceDta$Year == ProjYear,
-              LblProj,
-              ""
-            )
+            LineChoiceDta$Year == ProjYear,
+            LblProj,
+            ""
           )
         )
-        
-        
-        LineChoiceDta <- setDT(LineChoiceDta)[,YearPoints := seq(1 : length(Year)), by = list(Indicator, Identifier) ]
-        
-        # filter data to selection and individual indicator
-        
-        LineChoiceDta <- filter(LineChoiceDta, Identifier %in% input$ChoicesCP)
-        
-        if(input$ProjectionsCP == "No"){LineChoiceDta <- filter(
-          LineChoiceDta, Type != "Projected")} 
-        
-        loopdata <- filter(LineChoiceDta, Indicator == IndicatorsCP[.x])
-        
-        ColourRefPnts <- unique(loopdata$ColourRef)
-        LineColours <- unique(loopdata$Colours)
-        
-        YPoints <- unique(loopdata$YearPoints)
-        YPoints <- as.numeric(YPoints)
-        FilterRef <- first(loopdata$Identifier)
-        YLabels <- filter(loopdata, Identifier == FilterRef)
-        YLabels <- YLabels$YearLabels
-        
-        # Seperarate projected data so this can be plotted seperately
-        
-        DashedLine <- loopdata
-        SolidLine <- filter(loopdata, Type != "Projected")
-
-        
-        # Create Plot
-        
-        ggplot()+
-          geom_line(
-            data = DashedLine, 
-            aes(
-              x = YearPoints, 
-              y = value, 
-              group = ColourRef, 
-              colour = ColourRef, 
-              linetype = "2"
-            ),
-            lwd = 1, 
-            show.legend = FALSE
-          )+
-          geom_line(
-            data = SolidLine, 
-            aes(
-              x = YearPoints, 
-              y = value, 
-              group = ColourRef, 
-              colour = ColourRef, 
-              linetype = "1"
-            ),
-            lwd = 1, 
-            show.legend = FALSE
-          )+
-          ggtitle(IndicatorsCP[.x])+
-          scale_colour_manual(breaks = ColourRefPnts, values = LineColours)+
-          scale_x_continuous(breaks = c(1: length(YPoints)), labels = YLabels)+
-          ylim(y_min, y_max)+
-          theme(
-            panel.grid.major = element_blank(), 
-            panel.grid.minor = element_blank(), 
-            panel.background = element_blank(), 
-            axis.line = element_line(colour="black"),
-            axis.text.x = element_text(vjust = 0.3),
-            axis.title.x = element_blank(), 
-            axis.title.y = element_blank()
-          )
-      })
+      )
+      
+      
+      LineChoiceDta <- setDT(LineChoiceDta)[,YearPoints := seq(1 : length(Year)), by = list(Indicator, Identifier) ]
+      
+      # filter data to selection and individual indicator
+      
+      LineChoiceDta <- filter(LineChoiceDta, Identifier %in% input$ChoicesCP)
+      
+      if(input$ProjectionsCP == "No"){LineChoiceDta <- filter(
+        LineChoiceDta, Type != "Projected")} 
+      
+      loopdata <- filter(LineChoiceDta, Indicator == IndicatorsCP[.x])
+      
+      ColourRefPnts <- unique(loopdata$ColourRef)
+      LineColours <- unique(loopdata$Colours)
+      
+      YPoints <- unique(loopdata$YearPoints)
+      YPoints <- as.numeric(YPoints)
+      FilterRef <- first(loopdata$Identifier)
+      YLabels <- filter(loopdata, Identifier == FilterRef)
+      YLabels <- YLabels$YearLabels
+      
+      # Seperarate projected data so this can be plotted seperately
+      
+      DashedLine <- loopdata
+      SolidLine <- filter(loopdata, Type != "Projected")
+      
+      
+      # Create Plot
+      
+      ggplot()+
+        geom_line(
+          data = DashedLine, 
+          aes(
+            x = YearPoints, 
+            y = value, 
+            group = ColourRef, 
+            colour = ColourRef, 
+            linetype = "2"
+          ),
+          lwd = 1, 
+          show.legend = FALSE
+        )+
+        geom_line(
+          data = SolidLine, 
+          aes(
+            x = YearPoints, 
+            y = value, 
+            group = ColourRef, 
+            colour = ColourRef, 
+            linetype = "1"
+          ),
+          lwd = 1, 
+          show.legend = FALSE
+        )+
+        ggtitle(IndicatorsCP[.x])+
+        scale_colour_manual(breaks = ColourRefPnts, values = LineColours)+
+        scale_x_continuous(breaks = c(1: length(YPoints)), labels = YLabels)+
+        ylim(y_min, y_max)+
+        theme(
+          panel.grid.major = element_blank(), 
+          panel.grid.minor = element_blank(), 
+          panel.background = element_blank(), 
+          axis.line = element_line(colour="black"),
+          axis.text.x = element_text(vjust = 0.3),
+          axis.title.x = element_blank(), 
+          axis.title.y = element_blank()
+        )
+    })
+    
+    do.call("plot_grid", c(plots, ncol = 2, align = "v"))
+  }) # end of CPplots
   
-  do.call("plot_grid", c(plots, ncol = 2, align = "v"))
-  })
-  
-  # Create Ui Outputs for All Communities Page - PAGE 9----------------------------------
+  # "allCom" legend text ------------------
   
   output$CommLgnd <- renderText({
     txt <- "Community"
@@ -1548,20 +1373,13 @@ shinyServer(function(input, output, session) {
     txt <- "Scotland"
   })
   
-  output$CompLgndInq <- renderText({
-    txt <- input$InqComp
-  })
-  output$CPPLgndInq <- renderText({
-    txt <- input$LA1
-  })
-  
-  # render plots
-  
+  # "allCom" plot variable ------------------
   myheight <- function(){
     req(input$LA1)
     nrow(unique(IGZdta[IGZdta$CPP == input$LA1,"InterZone_Name"]))*60
   }
   
+  # "allCom"  AllCPlots ---------------------
   output$AllCPlots <- renderPlot({
     req(input$LA1)
     
@@ -1569,7 +1387,7 @@ shinyServer(function(input, output, session) {
                     IGZdta$IndicatorFullName == input$IndiAllC &
                     IGZdta$Type != "Projected",
                   c(2,8,9)
-                  ]
+    ]
     
     nComs <- length(unique(dta$InterZone_Name))
     comList <- unique(dta$InterZone_Name)%>% sort
@@ -1577,12 +1395,12 @@ shinyServer(function(input, output, session) {
                      CPPdta$IndicatorFullName == input$IndiAllC & 
                      CPPdta$Type != "Projected",
                    c(1,4,5)
-                   ]
+    ]
     dta3 <- CPPdta[CPPdta$CPP %in% "Scotland"& 
                      CPPdta$IndicatorFullName == input$IndiAllC &
                      CPPdta$Type != "Projected",
                    c(1,4,5)
-                   ]
+    ]
     
     colnames(dta2) <- colnames(dta)
     colnames(dta3) <- colnames(dta)
@@ -1637,129 +1455,274 @@ shinyServer(function(input, output, session) {
               axis.line = element_line(colour = "black"))
     })
     do.call("plot_grid", c(plts, ncol = 4))
-  }, height = myheight)
-
+  }, 
+  height = myheight) #end of AllCPlots
   
-#colourblind arrows
-  output$arr1 <- renderUI({
-    if(input$CBCols){
-      column(1,div(style = "padding-left:0px; float:left",tags$img(style = "max-width:120%",src = "CBArrow1.PNG")))
-      }else{
-    column(1,div(style = "padding-left:0px; float:left",tags$img(style = "max-width:120%",src = "Arrow1.PNG")))
-      }
-        })
-  output$arr2 <- renderUI({
-    if(input$CBCols){
-      column(width = 2, style = "padding-left:2px;padding-right:2px;z-index:1;",tags$img(style = "max-width:120%",src = "CBArrow3.PNG"))
-    }else{
-      column(width = 2, style = "padding-left:2px;padding-right:2px;z-index:1;",tags$img(style = "max-width:120%", src = "Arrow3.PNG"))
-    }
-  })
-  
-  ##Value box for community progress========
-  output$comProgressBox <- renderValueBox({
-    IGZBest <- IGZBest()
-    pBetter <- round((sum(IGZBest$CombinedTypeScore>0)/nrow(IGZBest))*100,0)
-    bCol <- if(pBetter <50) {"red"}else{"green"}
-    valueBox(
-    paste0(pBetter, "%"), "Communities Performing Better than Expected", icon = icon("percent"),
-    color = bCol, width = NULL
+  # "Map2" select intermediate geography -----------------
+  output$IZUI <- renderUI({
+    selectizeInput(
+      "IZ", 
+      "", 
+      choices = sort(unique(CPPMapDta[CPPMapDta$council == input$LA1, 11])),
+      options = list(
+        placeholder = "Select a Community",
+        onInitialize = I('function() { this.setValue(""); }'))
     )
   })
   
-  # Create Ui Outputs for Inequality Page -------------------------------------------------
-  output$inqTbl <- function(){
-    #filter dataset
-    req(input$LA1)
-    dd <- filter(InqDta, CouncilName %in% c(input$LA1, input$InqComp))
-    dd$value <- round(dd$value,1)
-    #remove year column - no longer needed once year filter is removed
-    #dd <- dd[-2]
-    dd <- dd %>% unite(Titles, Indicator, Year, sep = " - ")
-    dd <- spread(dd, Titles, value)
-    dd <- dd[c(2,1,3:10)]
-    dd[2] <- c("Least deprived","Least deprived","Most deprived", "Most deprived")
-    OrdCPPs <-c(input$LA1, input$InqComp)
-    dd <- arrange(dd,match(CouncilName, OrdCPPs), desc(CouncilName))
-    #rownames(dd) <- c("Least deprived","Least deprived","Most deprived", "Most deprived")
-#    #mutate each column to add a popver showing the year-DOESN'T WORK IN SHINY
- #   dd <- dd %>% mutate(`Child Poverty (%)` =  cell_spec(`Child Poverty (%)`,popover = spec_popover(content = dd[[1]])))
-    colnames(dd)[1:2] <- c("","")
-    tbl1 <- kable(dd, "html", align = "c", escape = F)%>% 
-      kable_styling("basic")%>%
-      row_spec(0,background = "black", color = "white", font_size = 14, 
-               align = "right") %>%
-      column_spec(1, bold = TRUE, border_right = TRUE) %>%
-      column_spec(2, bold = TRUE) %>%
-      collapse_rows(1,valign = "middle",latex_hline = "major")%>%
-      row_spec(3, extra_css = "border-top: solid 1px")  %>%
-      row_spec(0, align = "c") %>%
-      scroll_box(width = "100%")
-    #group_rows("", 3,4, label_row_css = "background-color: black; height: 3px") 
-    #group_rows("", 1,2, label_row_css = "height:1px")
+  # "Map2" plydata() for leaflet outputs --------------
+  plydata <- reactive({
+    desIZ <- which(CPPMapDta$council %in% input$LA1 & CPPMapDta$IZname %in% input$IZ)
+    IZ_dzs <- SpPolysDF[desIZ,]
+  })
+  
+  # "Map2" leaflet outputs (newplot 1 -5) ---------------------
+  
+  output$newplot<-renderLeaflet({
+    mapCols <- if(input$CBCols){~povPalCB(`povDecs`)}else{~povPal(`povDecs`)}
+    p <- leaflet(plydata())%>%
+      
+      # addProviderTiles("OpenStreetMap.HOT")%>% #Humanitarian OpenStreetMap if desired
+      
+      addTiles()%>%
+      addPolygons(
+        smoothFactor = 0.5, 
+        weight = 1.5, 
+        fillOpacity = 0.6,
+        layerId = ~DataZone, 
+        fillColor = mapCols, 
+        color = "black"
+      )
+    return(p)
+  })
+  
+  output$newplot2 <- renderLeaflet({
+    mapCols <- if(input$CBCols){~tariffPalCB(`tariffDecs`)}else{~tariffPal(`tariffDecs`)}
     
-    # row_spec(tbl1,1, hline_after = TRUE) 
+    p <- leaflet(plydata())%>%
+      addTiles()%>%
+      addPolygons(
+        smoothFactor = 0.5, 
+        weight = 1.5, 
+        fillOpacity = 0.7,
+        layerId = ~DataZone, 
+        fillColor = mapCols,  
+        color = "black"
+      )
+    
+    return(p)
+  })
+  
+  output$newplot3 <- renderLeaflet({
+    mapCols <- if(input$CBCols){~benPalCB(`benDecs`)}else{~benPal(`benDecs`)}
+    p <- leaflet(plydata())%>%
+      addTiles()%>%
+      addPolygons(
+        smoothFactor = 0.5, 
+        weight = 1.5, 
+        fillOpacity = 0.7,
+        layerId = ~DataZone, 
+        fillColor = mapCols, 
+        color = "black"
+      )
+    
+    return(p)
+  })
+  
+  output$newplot4 <- renderLeaflet({
+    mapCols <- if(input$CBCols){~crimePalCB(`crimeDecs`)}else{~crimePal(`crimeDecs`)}
+    p <- leaflet(plydata())%>%
+      addTiles()%>%
+      addPolygons(
+        smoothFactor = 0.5, 
+        weight = 1.5, 
+        fillOpacity = 0.7,
+        layerId = ~DataZone, 
+        fillColor = mapCols, 
+        color = "black"
+      )
+    
+    return(p)
+  })
+  
+  output$newplot5 <- renderLeaflet({
+    mapCols <- if(input$CBCols){~admisPalCB(`admisDecs`)}else{~admisPal(`admisDecs`)}
+    p <- leaflet(plydata())%>%
+      addTiles()%>%
+      addPolygons(
+        smoothFactor = 0.5, 
+        weight = 1.5, 
+        fillOpacity = 0.7,
+        layerId = ~DataZone, 
+        fillColor = mapCols, 
+        color = "black"
+      )
+    
+    return(p)
+  })
+  
+  # "Map2" popup functions for DataZone Comparison maps (showDZPopoup to showDZPopup5)--------
+  
+  showDZPopup <- function(group, lat, lng) {
+    selectedDZ <- CPPMapDta[CPPMapDta$DataZone == group,]
+    content <- as.character(tagList(
+      tags$h4(as.character(unique(selectedDZ$DataZone))),
+      sprintf(
+        "%s: %s",
+        "Children in Poverty (%)", 
+        round(unique(as.numeric(selectedDZ[13])),2)
+      ), 
+      tags$br()
+    ))
+    leafletProxy("newplot") %>% addPopups(lng, lat, content, layerId = group)
   }
   
-  output$InqGrp <- renderPlot({
-    req(input$LA1)
-    DIdta <- filter(DIdta, la %in% c(input$LA1, input$InqComp)) %>% arrange(ind, match(la, c(input$LA1, input$InqComp)))
-    DIdta <- DIdta[DIdta$ind != "Out of Work Benefits", ]
-    indList <- unique(DIdta$ind)
-    ##get the dot colour
-    DIdta <- setDT(DIdta)[,Higher :=
-                      abs(first(value))<abs(last(value)),
-                      by = list(ind, year)]
-    DIdta <- setDT(DIdta)[,IRHigher :=
-                            first(ImprovementRate)<last(ImprovementRate),
-                          by = list(ind, year)]
-    ##create colourscheme
-    #descText <- "These graphs will help you understand\ninequality in outcomes across the whole of the\nCPP, with 0 indicating perfect equality and\nvalues between 0 and 1 indicating that income\ndeprived people experience poorer outcomes,\n and values between -1 and 0 indicating that\nnon-income deprived people experience\npoorer outcomes."
-    DIdta$coloursch <- ifelse(DIdta$la ==input$LA1, "CPP", "Comp")
-    lstDi <- lapply(1:7,FUN = function(y){
-      dta <- DIdta[DIdta$ind == indList[y],]
-      DDta <- filter(dta, year == last(year))
-      CDot <- if_else(DDta$Higher == T && DDta$IRHigher == T, "green", if_else(DDta$Higher == F && DDta$IRHigher == F, "red", "yellow"))
-      ggplot(dta, aes(x = year, y = value))+
-        geom_line(data = dta[!is.na(dta$value),], aes(group = coloursch, colour = coloursch), size = 1)+
-        ylab("")+
-        xlab("")+
-        annotate(
-          "text", x = Inf, y = Inf,label = sprintf('\U25CF'),size = 7, 
-          colour = CDot, 
-          hjust = 1, 
-          vjust = 1
-        )+
-        ggtitle(indList[y])+
-        theme_bw()+
-        scale_y_continuous(limits = c(-0.23,0.5))+
-        scale_x_continuous(breaks = seq(2008,2020, by  =2))+
-        geom_hline(yintercept = 0)+
-        scale_colour_manual(breaks = c("Comp", "CPP"), values = c("blue", "red"))+
-        guides(colour = "none")+
-        theme(panel.grid.major = element_blank(), 
-              panel.grid.minor = element_blank(), 
-              panel.background = element_blank(), 
-              axis.line = element_line(colour="black"))
+  # Makes the popups appear and clears old popups
+  
+  observe({
+    leafletProxy("newplot") %>% clearPopups()
+    event <- input$newplot_shape_click
+    if (is.null(event))
+      return()
+    isolate({
+      showDZPopup(event$id, event$lat, event$lng)
     })
-    #lstDI <- list()
-    #lstDI[[1]] <- ggdraw()+draw_text(descText,x = 0.5,y = 0.5, size = 10)
-    #lstDI <- c(lstDI,lstDi)
-    do.call("plot_grid", c(lstDi, ncol = 4, align = "v"))
   })
   
-
+  # Clickable popups for map2
   
-  output$ICompUI <- renderUI({
-    CPPNames <- CPPNames[CPPNames != input$LA1]
-    selectInput("InqComp", "Select Comparator",
-                c("Scotland",CPPNames))
+  showDZPopup2 <- function(group, lat, lng) {
+    selectedDZ <- CPPMapDta[CPPMapDta$DataZone == group,]
+    content <- as.character(tagList(
+      tags$h4(as.character(unique(selectedDZ$DataZone))),
+      sprintf(
+        "%s: %s\n",
+        "Average Highest Attainment", 
+        round(unique(selectedDZ[14]),2)
+      ), 
+      tags$br()
+    ))
+    leafletProxy("newplot2") %>% addPopups(lng, lat, content, layerId = group)
+  }
+  
+  # Makes the popups appear and clears old popups
+  
+  observe({
+    leafletProxy("newplot2") %>% clearPopups()
+    event <- input$newplot2_shape_click
+    if (is.null(event))
+      return()
+    isolate({
+      showDZPopup2(event$id, event$lat, event$lng)
+    })
   })
+  
+  # Clickable popups for map3
+  
+  showDZPopup3 <- function(group, lat, lng) {
+    selectedDZ <- CPPMapDta[CPPMapDta$DataZone == group,]
+    content <- as.character(tagList(
+      tags$h4(as.character(unique(selectedDZ$DataZone))),
+      sprintf(
+        "%s: %s\n",
+        "Out of Work Benefits (%)", 
+        round(unique(selectedDZ[15]),2)
+      ), 
+      tags$br()
+    ))
+    leafletProxy("newplot3") %>% addPopups(lng, lat, content, layerId = group)
+  }
+  
+  # Makes the popups appear and clears old popups
+  
+  observe({
+    leafletProxy("newplot3") %>% clearPopups()
+    event <- input$newplot3_shape_click
+    if (is.null(event))
+      return()
+    isolate({
+      showDZPopup3(event$id, event$lat, event$lng)
+    })
+  })
+  
+  # Clickable popups for map4
+  
+  showDZPopup4 <- function(group, lat, lng) {
+    selectedDZ <- CPPMapDta[CPPMapDta$DataZone == group,]
+    content <- as.character(tagList(
+      tags$h4(as.character(unique(selectedDZ$DataZone))),
+      sprintf(
+        "%s: %s\n",
+        "SIMD Crimes per 10,000", 
+        round(unique(selectedDZ[16]),2)
+      ), 
+      tags$br()
+    ))
+    leafletProxy("newplot4") %>% addPopups(lng, lat, content, layerId = group)
+  }
+  
+  # Makes the popups appear and clears old popups
+  
+  observe({
+    leafletProxy("newplot4") %>% clearPopups()
+    event <- input$newplot4_shape_click
+    if (is.null(event))
+      return()
+    isolate({
+      showDZPopup4(event$id, event$lat, event$lng)
+    })
+  })
+  
+  # Clickable popups for map5
+  
+  showDZPopup5 <- function(group, lat, lng) {
+    selectedDZ <- CPPMapDta[CPPMapDta$DataZone == group,]
+    content <- as.character(tagList(
+      tags$h4(as.character(unique(selectedDZ$DataZone))),
+      sprintf(
+        "%s: %s\n",
+        "Emergency Admissions per 100,000", 
+        round(unique(selectedDZ[17]),2)
+      ), 
+      tags$br()
+    ))
+    leafletProxy("newplot5") %>% addPopups(lng, lat, content, layerId = group)
+  }
+  
+  # Makes the popups appear and clears old popups
+  
+  observe({
+    leafletProxy("newplot5") %>% clearPopups()
+    event <- input$newplot5_shape_click
+    if (is.null(event))
+      return()
+    isolate({
+      showDZPopup5(event$id, event$lat, event$lng)
+    })
+  })
+  
+  # About / Download data ----------------------------
+  #CPP data
+  output$DLDta <- downloadHandler(
+    filename = paste("CPP Data", ".zip", sep = ""),
+    content = function(con) {
+      file.copy("data/CPP Data - Aug 22.zip", con)
+    },
+    contentType = "application/zip"
+  )
+  
+  #IZ data
+  output$DLIZDta <- downloadHandler(
+    filename = paste("IGZ Data", ".zip", sep = ""),
+    content = function(con) {
+      file.copy("data/IGZ Data - Aug 22.zip", con)
+    },
+    contentType = "application/zip"
+  )
+  
+  # code for 'Help' pages ----------------------------------------------
 
-
-  # Work for Help Pages----------------------------------------------
-
-  #Community Map Page
+  # Help "Map1"----------------
   
   observeEvent(input$HelpButton,{
     if(input$tabs == "Map1")
@@ -1796,7 +1759,7 @@ shinyServer(function(input, output, session) {
     size = "l"))
   })
 
-  #CPP Over Time Page
+  # Help "P1"---------------
   
   observeEvent(input$HelpButton,{
     if(input$tabs == "P1")
@@ -1834,7 +1797,7 @@ shinyServer(function(input, output, session) {
       size = "l"))
   })
   
-  #Compare All CPPs page
+  # Help "P2" ---------
   
   observeEvent(input$HelpButton,{
     if(input$tabs == "P2")
@@ -1844,7 +1807,7 @@ shinyServer(function(input, output, session) {
       size = "l"))}
   })
   
-  #Compare Similar CPPs page
+  # Help "P3" ---------
   
   observeEvent(input$HelpButton,{
     if(input$tabs == "P3")
@@ -1854,7 +1817,7 @@ shinyServer(function(input, output, session) {
       size = "l"))}
   })
   
-  #CPP Inequality Page
+  # Help "InQ" ---------
   
   observeEvent(input$HelpButton,{
     if(input$tabs == "InQ")
@@ -1886,7 +1849,8 @@ shinyServer(function(input, output, session) {
                           column(2, actionButton("InQ2", "Next Page"))),
                  size = "l")))
   
-  ##Vulnerable Communities Page
+  
+  # Help "Vuln" ---------
   observeEvent(input$HelpButton,{
     if(input$tabs == "Vuln"){
       showModal(modalDialog(
@@ -1897,7 +1861,7 @@ shinyServer(function(input, output, session) {
     }
   })
   
-  #My Communities Page
+  # Help "MyCom" ---------
   
   observeEvent(input$HelpButton,{
     if(input$tabs == "MyCom")
@@ -1958,7 +1922,7 @@ shinyServer(function(input, output, session) {
     )
   })
   
-  #Community Profile Page
+  # Help "CP" ---------
   
   observeEvent(input$HelpButton,{
     if(input$tabs == "CP")
@@ -1971,6 +1935,18 @@ shinyServer(function(input, output, session) {
           column(2, actionButton("CPP2", "Next Page"))
         ),
         size = "l"))}
+  })
+  
+  observeEvent(input$CPP1,{
+    showModal(
+      modalDialog(
+        title = "Community Profile - Page 1 of 3",
+        fluidRow(tags$img(src = "CPHelp1.PNG")),
+        fluidRow(
+          column(10),
+          column(2, actionButton("CPP2", "Next Page"))
+        ),
+        size = "l"))
   })
   
   observeEvent(input$CPP2,{
@@ -1995,59 +1971,19 @@ shinyServer(function(input, output, session) {
         size = "l"))
   })
   
-  observeEvent(input$CPP1,{
-    showModal(
-      modalDialog(
-        title = "Community Profile - Page 1 of 3",
-        fluidRow(tags$img(src = "CPHelp1.PNG")),
-        fluidRow(
-          column(10),
-          column(2, actionButton("CPP2", "Next Page"))
-        ),
-        size = "l"))
-  })
-  
-  #All Communities Page
+ # Help "allCom" -----------------
   
   observeEvent(input$HelpButton,{
     if(input$tabs == "allCom")
     {showModal(modalDialog(title = "All Communities", tags$img(src = "AllCommHelp.PNG"),size = "l"))}
   })
   
-  #Data Zone Comparison Page
+  # Help "Map2" -----------------
   
   observeEvent(input$HelpButton,{
     if(input$tabs == "Map2")
     {showModal(modalDialog(title = "Data Zone Comparison",tags$img(src = "DZHelp.PNG"), size = "l"))}
   })
   
-  ##legend for compar CPP page
-  output$BarLA <- renderText({
-    txt <- input$LA1
-  })
-  output$BarComp <- renderText({
-      txt <- input$OtherCPP
-  })
-    output$BarScot <- renderText({
-      txt <- "Scotland"
-    })
-    
-  ##Download data buttons============
-    #CPP data
-    output$DLDta <- downloadHandler(
-    filename = paste("CPP Data", ".zip", sep = ""),
-    content = function(con) {
-      file.copy("data/CPP Data - Aug 22.zip", con)
-    },
-    contentType = "application/zip"
-    )
-    #
-    
-    output$DLIZDta <- downloadHandler(
-      filename = paste("IGZ Data", ".zip", sep = ""),
-      content = function(con) {
-        file.copy("data/IGZ Data - Aug 22.zip", con)
-      },
-      contentType = "application/zip"
-    )
+
   })
