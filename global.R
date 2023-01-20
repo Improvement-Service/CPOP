@@ -53,8 +53,13 @@ VulnComm <- as.data.frame(VulnComm)
 SpPolysIZ@data[SpPolysIZ@data$council == "Edinburgh","council"] <- "Edinburgh, City of" 
 SpPolysDF@data[SpPolysDF@data$council == "Edinburgh","council"] <- "Edinburgh, City of" 
 
-##create deciles for colours
-CPPMapDta <- SpPolysDF@data
+#extract data and rename indicator columns (col names will be used directly in leaflet pop-ups in UI)
+CPPMapDta <- SpPolysDF@data  %>%
+  rename("Children in Poverty (%)" = "% of children in poverty", 
+         "Average Highest Attainment" = "Average highest attainment",
+         "Out of Work Benefits (%)" = "% of population (aged 16-64) in receipt of out of work benefits", 
+         "SIMD Crimes per 10,000" = "Number of SIMD crimes per 10,000 of the population", 
+         "Emergency Admissions (65+) per 100,000" = "Emergency admissions (65+) per 100,000 population")
 ##convert to numeric
 CPPMapDta[[15]] <- as.numeric(CPPMapDta[[15]])
 CPPMapDta[[14]] <- as.numeric(CPPMapDta[[14]])
@@ -263,4 +268,19 @@ trafficLightMarkerColour <- function (data, selected_cpp, comparator_cpp) {
                           "yellow"),
                   "black")
   )
+}
+
+showDZpopup <- function(DZdata, group, lat, lng, map_ind, plotId) {
+  selectedDZ <- DZdata[DZdata$DataZone == group,] 
+  colIndex <- grep(map_ind, colnames(selectedDZ))
+  content <- as.character(tagList(
+    tags$h4(as.character(unique(selectedDZ$DataZone))),
+    sprintf(
+      "%s: %s\n",
+      names(selectedDZ[colIndex]), 
+      round(unique(as.numeric(selectedDZ[colIndex])),2)
+    ), 
+    tags$br()
+  ))
+  leafletProxy(plotId) %>% addPopups(lng, lat, content, layerId = group)
 }

@@ -1,6 +1,7 @@
 shinyServer(function(input, output, session) {
   
   
+  
   output$clock <- renderText({
     invalidateLater(5000)
     Sys.time()
@@ -1426,10 +1427,7 @@ shinyServer(function(input, output, session) {
   
   output$newplot<-renderLeaflet({
     mapCols <- if(input$CBCols){~povPalCB(`povDecs`)}else{~povPal(`povDecs`)}
-    p <- leaflet(plydata())%>%
-      
-      # addProviderTiles("OpenStreetMap.HOT")%>% #Humanitarian OpenStreetMap if desired
-      
+    p <- leaflet(plydata()) %>%# addProviderTiles("OpenStreetMap.HOT")%>% #Humanitarian OpenStreetMap if desired
       addTiles()%>%
       addPolygons(
         smoothFactor = 0.5, 
@@ -1507,23 +1505,7 @@ shinyServer(function(input, output, session) {
     return(p)
   })
   
-  # "Map2" popup functions for DataZone Comparison maps (showDZPopoup to showDZPopup5)--------
-  
-  showDZPopup <- function(group, lat, lng) {
-    selectedDZ <- CPPMapDta[CPPMapDta$DataZone == group,]
-    content <- as.character(tagList(
-      tags$h4(as.character(unique(selectedDZ$DataZone))),
-      sprintf(
-        "%s: %s",
-        "Children in Poverty (%)", 
-        round(unique(as.numeric(selectedDZ[13])),2)
-      ), 
-      tags$br()
-    ))
-    leafletProxy("newplot") %>% addPopups(lng, lat, content, layerId = group)
-  }
-  
-  # Makes the popups appear and clears old popups
+  # "Map2" observe events to show/clear pop-ups------------
   
   observe({
     leafletProxy("newplot") %>% clearPopups()
@@ -1531,27 +1513,9 @@ shinyServer(function(input, output, session) {
     if (is.null(event))
       return()
     isolate({
-      showDZPopup(event$id, event$lat, event$lng)
+      showDZpopup(CPPMapDta, event$id, event$lat, event$lng, "Children in Poverty", "newplot")
     })
   })
-  
-  # Clickable popups for map2
-  
-  showDZPopup2 <- function(group, lat, lng) {
-    selectedDZ <- CPPMapDta[CPPMapDta$DataZone == group,]
-    content <- as.character(tagList(
-      tags$h4(as.character(unique(selectedDZ$DataZone))),
-      sprintf(
-        "%s: %s\n",
-        "Average Highest Attainment", 
-        round(unique(selectedDZ[14]),2)
-      ), 
-      tags$br()
-    ))
-    leafletProxy("newplot2") %>% addPopups(lng, lat, content, layerId = group)
-  }
-  
-  # Makes the popups appear and clears old popups
   
   observe({
     leafletProxy("newplot2") %>% clearPopups()
@@ -1559,55 +1523,19 @@ shinyServer(function(input, output, session) {
     if (is.null(event))
       return()
     isolate({
-      showDZPopup2(event$id, event$lat, event$lng)
+      showDZpop_up(CPPMapDta, event$id, event$lat, event$lng, "Average Highest Attainment", "newplot2")
     })
   })
-  
-  # Clickable popups for map3
-  
-  showDZPopup3 <- function(group, lat, lng) {
-    selectedDZ <- CPPMapDta[CPPMapDta$DataZone == group,]
-    content <- as.character(tagList(
-      tags$h4(as.character(unique(selectedDZ$DataZone))),
-      sprintf(
-        "%s: %s\n",
-        "Out of Work Benefits (%)", 
-        round(unique(selectedDZ[15]),2)
-      ), 
-      tags$br()
-    ))
-    leafletProxy("newplot3") %>% addPopups(lng, lat, content, layerId = group)
-  }
-  
-  # Makes the popups appear and clears old popups
-  
+
   observe({
     leafletProxy("newplot3") %>% clearPopups()
     event <- input$newplot3_shape_click
     if (is.null(event))
       return()
     isolate({
-      showDZPopup3(event$id, event$lat, event$lng)
+      showDZpopup(CPPMapDta, event$id, event$lat, event$lng, "Out of Work Benefits", "newplot3")
     })
   })
-  
-  # Clickable popups for map4
-  
-  showDZPopup4 <- function(group, lat, lng) {
-    selectedDZ <- CPPMapDta[CPPMapDta$DataZone == group,]
-    content <- as.character(tagList(
-      tags$h4(as.character(unique(selectedDZ$DataZone))),
-      sprintf(
-        "%s: %s\n",
-        "SIMD Crimes per 10,000", 
-        round(unique(selectedDZ[16]),2)
-      ), 
-      tags$br()
-    ))
-    leafletProxy("newplot4") %>% addPopups(lng, lat, content, layerId = group)
-  }
-  
-  # Makes the popups appear and clears old popups
   
   observe({
     leafletProxy("newplot4") %>% clearPopups()
@@ -1615,27 +1543,9 @@ shinyServer(function(input, output, session) {
     if (is.null(event))
       return()
     isolate({
-      showDZPopup4(event$id, event$lat, event$lng)
+      showDZpop_up(CPPMapDta, event$id, event$lat, event$lng, "SIMD Crimes", "newplot4")
     })
   })
-  
-  # Clickable popups for map5
-  
-  showDZPopup5 <- function(group, lat, lng) {
-    selectedDZ <- CPPMapDta[CPPMapDta$DataZone == group,]
-    content <- as.character(tagList(
-      tags$h4(as.character(unique(selectedDZ$DataZone))),
-      sprintf(
-        "%s: %s\n",
-        "Emergency Admissions per 100,000", 
-        round(unique(selectedDZ[17]),2)
-      ), 
-      tags$br()
-    ))
-    leafletProxy("newplot5") %>% addPopups(lng, lat, content, layerId = group)
-  }
-  
-  # Makes the popups appear and clears old popups
   
   observe({
     leafletProxy("newplot5") %>% clearPopups()
@@ -1643,7 +1553,7 @@ shinyServer(function(input, output, session) {
     if (is.null(event))
       return()
     isolate({
-      showDZPopup5(event$id, event$lat, event$lng)
+      showDZpopup(CPPMapDta, event$id, event$lat, event$lng, "Emergency Admissions", "newplot5")
     })
   })
   
