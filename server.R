@@ -81,12 +81,12 @@ shinyServer(function(input, output, session) {
     dt <- SpPolysIZ[sbst,]
     selCls <- if(input$CBCols){clrsCB}else{clrs}
     selPls <- if(input$CBCols){
-      ~communityPalCB(`rank_decs`)
-    }else{~communityPal(`rank_decs`)}
+      ~HighGoodColourBinsCB(`rank_decs`)
+    }else{~HighGoodColourBins(`rank_decs`)}
     topRk <- paste0("Least vulnerable - ",nrow(dt))
     cp <- leaflet(dt) %>%
       addTiles() %>%
-      addLegend("bottomright", colors = selCls,
+      addLegend("bottomleft", colors = selCls,
                 labels = c("Most vulnerable - 1", "","","","","",topRk),
                 opacity = 1,
                 title = "") %>%
@@ -146,7 +146,7 @@ shinyServer(function(input, output, session) {
   
   # "P1" loop to create plots -------------------  
   
-  for(i in seq_along(indicators_1)){
+  for(i in seq_along(indicators)){
     local({
       my.i <- i
       plotname <- paste("plot", my.i, sep ="_")
@@ -156,7 +156,7 @@ shinyServer(function(input, output, session) {
         
         # Y Axis Range for each plot, based on range of full data set
         
-        y_rnge_dta <- subset(CPP_Imp, CPP_Imp$Indicator == indicators_1[my.i])
+        y_rnge_dta <- subset(CPP_Imp, CPP_Imp$Indicator == indicators[my.i])
         y_min <- min(y_rnge_dta$value, na.rm = TRUE)
         y_max <- max(y_rnge_dta$value, na.rm = TRUE)
         Rnge <- y_max - y_min
@@ -164,7 +164,7 @@ shinyServer(function(input, output, session) {
         y_min <- y_min - Extra
         y_max <- y_max + Extra
         
-        loopdata <- subset(dta, dta$Indicator == indicators_1[my.i])
+        loopdata <- subset(dta, dta$Indicator == indicators[my.i])
         
         # set x axis labels on plots
         # need a column which stores a numeric series to be used as the break points
@@ -211,7 +211,7 @@ shinyServer(function(input, output, session) {
             lwd = 1, show.legend = FALSE
           )+
           scale_color_manual(values = c("red", "blue"))+
-          labs(title  = indicators_1[my.i])+
+          labs(title  = indicators[my.i])+
           annotate(
             "text", 
             x = Inf, 
@@ -250,7 +250,7 @@ shinyServer(function(input, output, session) {
   
 # "P2" Render compare CPP plots loop-----------------
 
-  for(i in seq_along(indis)){
+  for(i in seq_along(indicators)){
     local({
       this_i <- i
       plotnameCPP <- paste("plot_CPP", this_i, sep ="_")
@@ -271,7 +271,7 @@ shinyServer(function(input, output, session) {
     dtaNoScot <- filter(dta, CPP != "Scotland")
   
     #Generate plots
-    indi <- indis
+    indi <- indicators
     ##calculate maximum limit for y axis  
       maxAx <- max(dtaNoScot[dtaNoScot$Indicator == indi[[this_i]],5])*1.05
       minAx <- 0
@@ -324,7 +324,7 @@ shinyServer(function(input, output, session) {
   })
   
   # "P3" Create Graphs for CPP similar loop ----------------------------------------------------------------
-  for(i in seq_along(indis)){
+  for(i in seq_along(indicators)){
     local({
       that_i <- i
       plotnameCPPSim <- paste("plotSimCPP", that_i, sep ="_")
@@ -338,7 +338,7 @@ shinyServer(function(input, output, session) {
         dtaNoScot <- filter(dta, CPP != "Scotland")
         
         #Generate plots
-        indi <- indis
+        indi <- indicators
         ##calculate maximum limit for y axis  
         ScotVal <- filter(CPP_Imp,Year == RcntYear & 
                             Indicator == indi[[that_i]] &
@@ -1426,7 +1426,7 @@ shinyServer(function(input, output, session) {
   # "Map2" leaflet outputs (newplot 1 -5) ---------------------
   
   output$newplot<-renderLeaflet({
-    mapCols <- if(input$CBCols){~povPalCB(`povDecs`)}else{~povPal(`povDecs`)}
+    mapCols <- if(input$CBCols){~LowGoodColourBinsCB(`povDecs`)}else{~LowGoodColourBins(`povDecs`)}
     p <- leaflet(plydata()) %>%# addProviderTiles("OpenStreetMap.HOT")%>% #Humanitarian OpenStreetMap if desired
       addTiles()%>%
       addPolygons(
@@ -1441,7 +1441,7 @@ shinyServer(function(input, output, session) {
   })
   
   output$newplot2 <- renderLeaflet({
-    mapCols <- if(input$CBCols){~tariffPalCB(`tariffDecs`)}else{~tariffPal(`tariffDecs`)}
+    mapCols <- if(input$CBCols){~HighGoodColourBinsCB(`tariffDecs`)}else{~HighGoodColourBins(`tariffDecs`)}
     
     p <- leaflet(plydata())%>%
       addTiles()%>%
@@ -1458,7 +1458,7 @@ shinyServer(function(input, output, session) {
   })
   
   output$newplot3 <- renderLeaflet({
-    mapCols <- if(input$CBCols){~benPalCB(`benDecs`)}else{~benPal(`benDecs`)}
+    mapCols <- if(input$CBCols){~LowGoodColourBinsCB(`benDecs`)}else{~LowGoodColourBins(`benDecs`)}
     p <- leaflet(plydata())%>%
       addTiles()%>%
       addPolygons(
@@ -1474,7 +1474,7 @@ shinyServer(function(input, output, session) {
   })
   
   output$newplot4 <- renderLeaflet({
-    mapCols <- if(input$CBCols){~crimePalCB(`crimeDecs`)}else{~crimePal(`crimeDecs`)}
+    mapCols <- if(input$CBCols){~LowGoodColourBinsCB(`crimeDecs`)}else{~LowGoodColourBins(`crimeDecs`)}
     p <- leaflet(plydata())%>%
       addTiles()%>%
       addPolygons(
@@ -1490,7 +1490,7 @@ shinyServer(function(input, output, session) {
   })
   
   output$newplot5 <- renderLeaflet({
-    mapCols <- if(input$CBCols){~admisPalCB(`admisDecs`)}else{~admisPal(`admisDecs`)}
+    mapCols <- if(input$CBCols){~LowGoodColourBinsCB(`admisDecs`)}else{~LowGoodColourBins(`admisDecs`)}
     p <- leaflet(plydata())%>%
       addTiles()%>%
       addPolygons(
@@ -1523,7 +1523,7 @@ shinyServer(function(input, output, session) {
     if (is.null(event))
       return()
     isolate({
-      showDZpop_up(CPPMapDta, event$id, event$lat, event$lng, "Average Highest Attainment", "newplot2")
+      showDZpopup(CPPMapDta, event$id, event$lat, event$lng, "Average Highest Attainment", "newplot2")
     })
   })
 
@@ -1543,7 +1543,7 @@ shinyServer(function(input, output, session) {
     if (is.null(event))
       return()
     isolate({
-      showDZpop_up(CPPMapDta, event$id, event$lat, event$lng, "SIMD Crimes", "newplot4")
+      showDZpopup(CPPMapDta, event$id, event$lat, event$lng, "SIMD Crimes", "newplot4")
     })
   })
   

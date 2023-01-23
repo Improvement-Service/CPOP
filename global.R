@@ -19,8 +19,6 @@ library(shinyWidgets)
 library(formattable)
 library(shinyalert)
 
-
-
 #Store value for the most recent year data is available, this needs to be changed when data is refreshed annually
 FrstYear <- "2009/10"
 RcntYear <- "2020/21"
@@ -71,7 +69,7 @@ IGZ_change_Fife <- read_csv("data/IGZ_change_Fife.csv")
 
 #global variables (taken from server)------------
 #list of indicators
-indicators_1 <- c("Healthy Birthweight", "Primary 1 Body Mass Index", "Child Poverty",
+indicators <- c("Healthy Birthweight", "Primary 1 Body Mass Index", "Child Poverty",
                   "Attainment", "Positive Destinations", "Employment Rate",
                   "Median Earnings", "Out of Work Benefits", "Business Survival",
                   "Crime Rate", "Dwelling Fires", "Carbon Emissions", 
@@ -79,49 +77,8 @@ indicators_1 <- c("Healthy Birthweight", "Primary 1 Body Mass Index", "Child Pov
                   "Early Mortality", "Fragility", "Well-being", "Fuel Poverty"
 )
 
-indis <- c("Healthy Birthweight", "Primary 1 Body Mass Index", "Child Poverty",
-           "Attainment", "Positive Destinations", "Employment Rate",
-           "Median Earnings", "Out of Work Benefits", "Business Survival",
-           "Crime Rate", "Dwelling Fires", "Carbon Emissions", 
-           "Emergency Admissions", "Unplanned Hospital Attendances",
-           "Early Mortality", "Fragility", "Well-being", "Fuel Poverty")
-
-# "Map2" colours
-clrs      <- brewer.pal(7, "RdYlGn")
-clrsCB    <- rev(brewer.pal(7, "YlGnBu"))
-povPal    <- colorBin(rev(clrs), SpPolysDF@data$povDecs)
-povPalCB  <- colorBin(rev(clrsCB), SpPolysDF@data$povDecs)
-tariffPal <- colorBin(clrs, SpPolysDF@data$tariffDecs)
-tariffPalCB <- colorBin(clrsCB, SpPolysDF@data$tariffDecs)
-posPal    <- colorBin(clrs, SpPolysDF@data$posDecs)
-posPalCB  <- colorBin(clrsCB, SpPolysDF@data$posDecs)
-benPal    <- colorBin(rev(clrs), SpPolysDF@data$benDecs)
-benPalCB    <- colorBin(rev(clrsCB), SpPolysDF@data$benDecs)
-crimePal  <- colorBin(rev(clrs), SpPolysDF@data$crimeDecs)
-crimePalCB  <- colorBin(rev(clrsCB), SpPolysDF@data$crimeDecs)
-admisPal  <- colorBin(rev(clrs), SpPolysDF@data$admisDecs)
-admisPalCB  <- colorBin(rev(clrsCB), SpPolysDF@data$admisDecs)
-
-# Colours for Community Map
-communityPal <- colorBin(clrs, SpPolysIZ@data$rank_decs)
-communityPalCB <- colorBin(clrsCB, SpPolysIZ@data$rank_decs)
-
-
-#family groups=========================
-#read in family group data
-#FGdta <- read_excel("data/Family Groups.xlsx")
-#FGdta[FGdta$X__1 == "Edinburgh City",1] <- "Edinburgh, City of"
-
-##match all FGs to CPP data
-#CPPdta <- left_join(CPPdta, FGdta, by = c("CPP" = "X__1"))
-#CPPdta <- CPPdta[c(1:5,7)]
-#colnames(CPPdta)[[6]] <- "FG"
-
-
-
 #Create list of CPP names for use in UI
 CPPNames <- unique(CPPMapDta[CPPMapDta$council != "Scotland", "council"])
-
 
 ##Read in Duncan Index Scores and calculate whether improving
 DIdta <- read_csv("data/DuncanIndex.csv")
@@ -135,6 +92,18 @@ DIdta <- setDT(DIdta)[, ImprovementRate :=
 InqDta <-readRDS("data/DecileData.rds")
 
 #functions ------------
+
+# Map colour functions
+# These render polygons red-green (or blue-yellow if the colour blindness button is checked).
+# One of seven colours is ascribed depending on a geography's ranking score (1-7) for the given indicator
+clrs      <- brewer.pal(7, "RdYlGn")
+clrsCB    <- rev(brewer.pal(7, "YlGnBu"))
+LowGoodColourBins <- colorBin(rev(clrs), 1:7)
+LowGoodColourBinsCB <- colorBin(rev(clrsCB), 1:7)
+HighGoodColourBins <- colorBin(clrs, 1:7)
+HighGoodColourBinsCB <- colorBin(clrsCB, 1:7)
+
+
 #renders a plot output with associated metadata pop up for a given indicator. 
 # This function is used for the CPP Overt Time, Compare All CPPs, and Compare Similar CPPs tabs.
 plotWithMetadataPopup <- function (metadata, plotName, indicatorTitle, plc = "top", plotHeight = "25vh"){
@@ -185,6 +154,7 @@ trafficLightMarkerColour <- function (data, selected_cpp, comparator_cpp) {
   )
 }
 
+#adds on-click pop-ups to the data zone maps in the "Map2" tab
 showDZpopup <- function(DZdata, group, lat, lng, map_ind, plotId) {
   selectedDZ <- DZdata[DZdata$DataZone == group,] 
   colIndex <- grep(map_ind, colnames(selectedDZ))
