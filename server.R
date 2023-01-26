@@ -108,14 +108,6 @@ shinyServer(function(input, output, session) {
     updateSelectizeInput(session,"LA1", label = NULL, choices = NULL, selected = event$id)
   })
   
-  # "Map 1" click pop-ups FOR GLOBAL ---------------
-  
-  showIZPopup <- function(group, lat, lng){
-    selectedIZ <- SpPolysIZ@data[SpPolysIZ@data$InterZone == group,]
-    content <- as.character(tagList(
-      tags$h4(as.character(unique(selectedIZ$`IGZ name`)))))
-    leafletProxy("communityMap") %>% addPopups(lng, lat, content, layerId = group)
-  }
   # Make popup appear and clear old popups
   observe({
     leafletProxy("communityMap") %>% clearPopups()
@@ -136,12 +128,11 @@ shinyServer(function(input, output, session) {
     txt <- input$CompLA1
   })
   
-  
-  
   # "P1" selected_dta_1 -------------------
   selected_dta_1 <- reactive({
-    CPP_Imp$colourscheme <- ifelse(CPP_Imp$CPP == input$LA1,"A","B")
-    dta <- filter(CPP_Imp, CPP %in% c(input$LA1, input$CompLA1))
+    #CPP_Imp$colourscheme <- ifelse(CPP_Imp$CPP == input$LA1,"A","B")
+    data <- filter(CPP_Imp, CPP %in% c(input$LA1, input$CompLA1)) %>%
+      addColourSchemeColumn(CPP,input$LA1,input$CompLA1)
   })
   
   # "P1" loop to create plots -------------------  
@@ -153,9 +144,7 @@ shinyServer(function(input, output, session) {
       output[[plotname]] <- renderPlot({
         req(input$LA1)
         dta <- selected_dta_1()
-        
         # Y Axis Range for each plot, based on range of full data set
-        
         y_rnge_dta <- subset(CPP_Imp, CPP_Imp$Indicator == indicators[my.i])
         y_min <- min(y_rnge_dta$value, na.rm = TRUE)
         y_max <- max(y_rnge_dta$value, na.rm = TRUE)
@@ -163,14 +152,11 @@ shinyServer(function(input, output, session) {
         Extra <- Rnge * 0.05
         y_min <- y_min - Extra
         y_max <- y_max + Extra
-        
         loopdata <- subset(dta, dta$Indicator == indicators[my.i])
-        
         # set x axis labels on plots
         # need a column which stores a numeric series to be used as the break points
         # need an additional column which specifies the labels, allowing middle years to be blank
         # the numeric column is also used as a reactive reference point for setting the labels
-        
         loopdata <- arrange(loopdata, CPP)
         loopdata <- setDT(loopdata)[, YearBreaks :=(seq(1 : length(Year))), by = CPP]
         loopdata <- setDT(loopdata)[, YearLbls :=Year, by = CPP]
@@ -199,17 +185,15 @@ shinyServer(function(input, output, session) {
             ),
             lwd = 1, show.legend = FALSE
           )+
-          geom_line(
-            data = dtaRaw,
-            aes(
-              x = YearBreaks, 
-              y = value, 
-              group = colourscheme, 
-              colour = colourscheme, 
-              linetype = "1"
-            ), 
-            lwd = 1, show.legend = FALSE
-          )+
+          geom_line(data = dtaRaw,
+                    aes(x = YearBreaks,
+                        y = value, 
+                        group = colourscheme, 
+                        colour = colourscheme, 
+                        linetype = "1"
+                        ), 
+                    lwd = 1, show.legend = FALSE
+                    ) +
           scale_color_manual(values = c("red", "blue"))+
           labs(title  = indicators[my.i])+
           annotate(
@@ -234,7 +218,7 @@ shinyServer(function(input, output, session) {
             axis.text.y = element_text(size = 7),
             axis.title.x = element_blank(),
             axis.title.y = element_blank()
-          )
+          ) #end of ggplot()
         
       })
     })  
@@ -249,6 +233,12 @@ shinyServer(function(input, output, session) {
   })
   
 # "P2" Render compare CPP plots loop-----------------
+  
+  P2_selections_data <- reactive({
+    dta <- CPP_Imp %>%
+      filter( Year == RcntYear) %>%
+      addColourSchemeColumn(CPP, input$LA1, input$OtherCPP)
+  })
 
   for(i in seq_along(indicators)){
     local({
@@ -257,18 +247,9 @@ shinyServer(function(input, output, session) {
       output[[plotnameCPP]] <- renderPlot({
         
     req(input$LA1)
-    dta <- filter(CPP_Imp, Year == RcntYear)
-    if(is.null(input$OtherCPP)){
-      dta$colourscheme <- ifelse(dta$CPP == input$LA1,"Sel1","Other")}
-    else{
-      dta$colourscheme <- ifelse(dta$CPP == input$LA1,"Sel1",ifelse(dta$CPP == input$OtherCPP, "Sel2","Other"))
-      }
-    if(is.null(input$OtherCPP)){
-      sclFll <- scale_fill_manual(values = c("lightblue2","red2"), breaks = c("Other", "Sel1"))}
-    else{sclFll <- scale_fill_manual(values = c("lightblue2","red2", "green4"), breaks = c("Other", "Sel1", "Sel2"))}
-    #filter so that the Scotland value isn't a bar on the plot
-    
-    dtaNoScot <- filter(dta, CPP != "Scotland")
+    # #filter so that the Scotland value isn't a bar on the plot
+
+    dtaNoScot <- P2_selections_data() %>% filter(CPP != "Scotland")
   
     #Generate plots
     indi <- indicators
@@ -286,7 +267,9 @@ shinyServer(function(input, output, session) {
           #colour = "black",
           width = 0.8
         ) +
-        sclFll+
+        #ALTERED
+        #sclFll+
+        scale_fill_manual(values = c("lightblue2","red2", "green4"), breaks = c("C", "A", "B")) +
         #scale_x_discrete(label = function(x) abbreviate(x, minlength = 4))+
         scale_y_continuous(expand = c(0,0), limits = c(minAx, maxAx))+    
         guides(fill = "none") +
@@ -295,7 +278,7 @@ shinyServer(function(input, output, session) {
         ylab("")+
         #    {if(input$ScotCheckbox == TRUE)
         geom_hline(aes(
-          yintercept = filter(dta, CPP == "Scotland" & Indicator == indi[[this_i]])$value
+          yintercept = filter(P2_selections_data(), CPP == "Scotland" & Indicator == indi[[this_i]])$value
           ), colour = "navyblue", size = 1.2
         )+
           #} +
@@ -331,8 +314,9 @@ shinyServer(function(input, output, session) {
       output[[plotnameCPPSim]] <- renderPlot({
         req(input$LA1)
         FGroup <- filter(CPP_Imp, CPP == input$LA1)[[1,7]]
-        dta <- filter(CPP_Imp, Year == RcntYear & FG %in% FGroup)
-        dta$colourscheme <-ifelse(dta$CPP == input$LA1,"Sel1","Other")
+        dta <- filter(CPP_Imp, Year == RcntYear & FG %in% FGroup) %>%
+          addColourSchemeColumn(CPP, input$LA1)
+        #dta$colourscheme <-ifelse(dta$CPP == input$LA1,"Sel1","Other")
         #filter so that the Scotland value isn't a bar on the plot
         
         dtaNoScot <- filter(dta, CPP != "Scotland")
@@ -356,7 +340,7 @@ shinyServer(function(input, output, session) {
           width = 0.5
           ) +
           scale_x_discrete(label = function(x) abbreviate(x, minlength = 10))+
-          scale_fill_manual(values = c("lightblue2","red2"), breaks = c("Other", "Sel1")) +
+          scale_fill_manual(values = c("lightblue2","red2"), breaks = c("C", "A")) +
           guides(fill = "none") +
           scale_y_continuous(expand = c(0,0), limits = c(minAx,maxAx))+       
           ggtitle(indi[[that_i]])+
@@ -433,15 +417,16 @@ shinyServer(function(input, output, session) {
     DIdta <- setDT(DIdta)[,IRHigher :=
                             first(ImprovementRate)<last(ImprovementRate),
                           by = list(ind, year)]
+     DIdta <- DIdta %>% addColourSchemeColumn(la, input$LA1)
     ##create colourscheme
     #descText <- "These graphs will help you understand\ninequality in outcomes across the whole of the\nCPP, with 0 indicating perfect equality and\nvalues between 0 and 1 indicating that income\ndeprived people experience poorer outcomes,\n and values between -1 and 0 indicating that\nnon-income deprived people experience\npoorer outcomes."
-    DIdta$coloursch <- ifelse(DIdta$la ==input$LA1, "CPP", "Comp")
+    #DIdta$coloursch <- ifelse(DIdta$la ==input$LA1, "A", "C")
     lstDi <- lapply(1:7,FUN = function(y){
       dta <- DIdta[DIdta$ind == indList[y],]
       DDta <- filter(dta, year == last(year))
       CDot <- if_else(DDta$Higher == T && DDta$IRHigher == T, "green", if_else(DDta$Higher == F && DDta$IRHigher == F, "red", "yellow"))
       ggplot(dta, aes(x = year, y = value))+
-        geom_line(data = dta[!is.na(dta$value),], aes(group = coloursch, colour = coloursch), size = 1)+
+        geom_line(data = dta[!is.na(dta$value),], aes(group = colourscheme, colour = colourscheme), size = 1)+
         ylab("")+
         xlab("")+
         annotate(
@@ -455,7 +440,7 @@ shinyServer(function(input, output, session) {
         scale_y_continuous(limits = c(-0.23,0.5))+
         scale_x_continuous(breaks = seq(2008,2020, by  =2))+
         geom_hline(yintercept = 0)+
-        scale_colour_manual(breaks = c("Comp", "CPP"), values = c("blue", "red"))+
+        scale_colour_manual(breaks = c("C", "A"), values = c("blue", "red"))+
         guides(colour = "none")+
         theme(panel.grid.major = element_blank(), 
               panel.grid.minor = element_blank(), 
@@ -1351,7 +1336,8 @@ shinyServer(function(input, output, session) {
     
     colnames(dta2) <- colnames(dta)
     colnames(dta3) <- colnames(dta)
-    dta            <- rbind(dta, dta2, dta3)
+    dta            <- rbind(dta, dta2, dta3) %>%
+      addColourSchemeColumn(InterZone_Name, input$LA1, "Scotland")
     
     # Y axis range 
     y_min <- min(dta$value, na.rm = TRUE)
@@ -1360,16 +1346,6 @@ shinyServer(function(input, output, session) {
     Extra <- Rnge * 0.05
     y_min <- y_min - Extra
     y_max <- y_max + Extra
-    
-    dta$colourscheme <-ifelse(
-      dta$InterZone_Name == "Scotland",
-      "Scot",
-      ifelse(
-        dta$InterZone_Name == input$LA1,
-        "CPP",
-        "Com"
-      )
-    )
     
     yrs <- c(dta$Year[[1]], dta$Year[[length(dta$Year)]])
     yrs2 <- gsub("20", "", yrs)
@@ -1392,7 +1368,7 @@ shinyServer(function(input, output, session) {
         scale_x_discrete(breaks = yrs, labels = yrs2, expand = c(0.01,0.01))+
         ylim(y_min, y_max)+
         scale_color_manual(
-          breaks = c("Com", "CPP", "Scot"), 
+          breaks = c("C", "A", "B"), 
           values = c("red", "green4","blue")
         )+
         guides(colour = "none")+
