@@ -18,6 +18,7 @@ library(shinyjs)
 library(shinyWidgets)
 library(formattable)
 library(shinyalert)
+library(plotly)
 
 #Store value for the most recent year data is available, this needs to be changed when data is refreshed annually
 FrstYear <- "2009/10"
@@ -168,4 +169,31 @@ showDZpopup <- function(DZdata, group, lat, lng, map_ind, plotId) {
     tags$br()
   ))
   leafletProxy(plotId) %>% addPopups(lng, lat, content, layerId = group)
+}
+
+#clickable pop-ups for IZ in "Map1"
+showIZPopup <- function(group, lat, lng){
+  selectedIZ <- SpPolysIZ@data[SpPolysIZ@data$InterZone == group,]
+  content <- as.character(tagList(
+    tags$h4(as.character(unique(selectedIZ$`IGZ name`)))))
+  leafletProxy("communityMap") %>% addPopups(lng, lat, content, layerId = group)
+}
+
+addColourSchemeColumn <- function (dataset, colName, input1, input2 = NULL) {
+  colName <- enquo(colName)
+  if(is.null(input2)) 
+  {
+    dta <- dataset %>% 
+      mutate(colourscheme = ifelse(!!colName == input1, "A", "C"))
+  }
+  else
+  {
+    dta <- dataset %>% 
+      mutate(colourscheme = ifelse(!!colName == input1, 
+                                    "A",
+                                    ifelse(!!colName == input2, 
+                                           "B", 
+                                           "C")))
+  }
+  return(dta)
 }
