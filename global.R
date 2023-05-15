@@ -18,8 +18,7 @@ library(shinyjs)
 library(shinyWidgets)
 library(formattable)
 library(shinyalert)
-
-
+library(plotly)
 
 #Store value for the most recent year data is available, this needs to be changed when data is refreshed annually
 FrstYear <- "2009/10"
@@ -53,8 +52,13 @@ VulnComm <- as.data.frame(VulnComm)
 SpPolysIZ@data[SpPolysIZ@data$council == "Edinburgh","council"] <- "Edinburgh, City of" 
 SpPolysDF@data[SpPolysDF@data$council == "Edinburgh","council"] <- "Edinburgh, City of" 
 
-##create deciles for colours
-CPPMapDta <- SpPolysDF@data
+#extract data and rename indicator columns (col names will be used directly in leaflet pop-ups in UI)
+CPPMapDta <- SpPolysDF@data  %>%
+  rename("Children in Poverty (%)" = "% of children in poverty", 
+         "Average Highest Attainment" = "Average highest attainment",
+         "Out of Work Benefits (%)" = "% of population (aged 16-64) in receipt of out of work benefits", 
+         "SIMD Crimes per 10,000" = "Number of SIMD crimes per 10,000 of the population", 
+         "Emergency Admissions (65+) per 100,000" = "Emergency admissions (65+) per 100,000 population")
 ##convert to numeric
 CPPMapDta[[15]] <- as.numeric(CPPMapDta[[15]])
 CPPMapDta[[14]] <- as.numeric(CPPMapDta[[14]])
@@ -66,7 +70,7 @@ IGZ_change_Fife <- read_csv("data/IGZ_change_Fife.csv")
 
 #global variables (taken from server)------------
 #list of indicators
-indicators_1 <- c("Healthy Birthweight", "Primary 1 Body Mass Index", "Child Poverty",
+indicators <- c("Healthy Birthweight", "Primary 1 Body Mass Index", "Child Poverty",
                   "Attainment", "Positive Destinations", "Employment Rate",
                   "Median Earnings", "Out of Work Benefits", "Business Survival",
                   "Crime Rate", "Dwelling Fires", "Carbon Emissions", 
@@ -74,139 +78,8 @@ indicators_1 <- c("Healthy Birthweight", "Primary 1 Body Mass Index", "Child Pov
                   "Early Mortality", "Fragility", "Well-being", "Fuel Poverty"
 )
 
-indis <- c("Healthy Birthweight", "Primary 1 Body Mass Index", "Child Poverty",
-           "Attainment", "Positive Destinations", "Employment Rate",
-           "Median Earnings", "Out of Work Benefits", "Business Survival",
-           "Crime Rate", "Dwelling Fires", "Carbon Emissions", 
-           "Emergency Admissions", "Unplanned Hospital Attendances",
-           "Early Mortality", "Fragility", "Well-being", "Fuel Poverty")
-
-# "Map2" colours
-clrs      <- brewer.pal(7, "RdYlGn")
-clrsCB    <- rev(brewer.pal(7, "YlGnBu"))
-povPal    <- colorBin(rev(clrs), SpPolysDF@data$povDecs)
-povPalCB  <- colorBin(rev(clrsCB), SpPolysDF@data$povDecs)
-tariffPal <- colorBin(clrs, SpPolysDF@data$tariffDecs)
-tariffPalCB <- colorBin(clrsCB, SpPolysDF@data$tariffDecs)
-posPal    <- colorBin(clrs, SpPolysDF@data$posDecs)
-posPalCB  <- colorBin(clrsCB, SpPolysDF@data$posDecs)
-benPal    <- colorBin(rev(clrs), SpPolysDF@data$benDecs)
-benPalCB    <- colorBin(rev(clrsCB), SpPolysDF@data$benDecs)
-crimePal  <- colorBin(rev(clrs), SpPolysDF@data$crimeDecs)
-crimePalCB  <- colorBin(rev(clrsCB), SpPolysDF@data$crimeDecs)
-admisPal  <- colorBin(rev(clrs), SpPolysDF@data$admisDecs)
-admisPalCB  <- colorBin(rev(clrsCB), SpPolysDF@data$admisDecs)
-
-# Colours for Community Map
-communityPal <- colorBin(clrs, SpPolysIZ@data$rank_decs)
-communityPalCB <- colorBin(clrsCB, SpPolysIZ@data$rank_decs)
-
-
-#family groups=========================
-#read in family group data
-#FGdta <- read_excel("data/Family Groups.xlsx")
-#FGdta[FGdta$X__1 == "Edinburgh City",1] <- "Edinburgh, City of"
-
-##match all FGs to CPP data
-#CPPdta <- left_join(CPPdta, FGdta, by = c("CPP" = "X__1"))
-#CPPdta <- CPPdta[c(1:5,7)]
-#colnames(CPPdta)[[6]] <- "FG"
-
-# Create Methodology Popup Notes ---------------------------------------------------------------------
-
-HealthyBW <- filter(Metadata, Indicator == "Healthy Birthweight")
-DefHBW    <- HealthyBW[[1,2]]
-TimeHBW   <- HealthyBW[[1,3]]
-SourceHBW <- HealthyBW[[1,4]]
-
-BMI       <- filter(Metadata, Indicator == "Primary 1 Body Mass Index")
-DefBMI    <- BMI[[1,2]]
-TimeBMI   <- BMI[[1,3]]
-SourceBMI <- BMI[[1,4]]
-
-CPov       <- filter(Metadata, Indicator == "Child Poverty")
-DefCPov    <- CPov[[1,2]]
-TimeCPov   <- CPov[[1,3]]
-SourceCPov <- CPov[[1,4]]
-
-S4T       <- filter(Metadata, Indicator == "Average Highest Attainment")
-DefS4T    <- S4T[[1,2]]
-TimeS4T   <- S4T[[1,3]]
-SourceS4T <- S4T[[1,4]]
-
-PosDes       <- filter(Metadata, Indicator == "Positive Destinations")
-DefPosDes    <- PosDes[[1,2]]
-TimePosDes   <- PosDes[[1,3]]
-SourcePosDes <- PosDes[[1,4]]
-
-EmpRt       <- filter(Metadata, Indicator == "Employment Rate")
-DefEmpRt    <- EmpRt[[1,2]]
-TimeEmpRt   <- EmpRt[[1,3]]
-SourceEmpRt <- EmpRt[[1,4]]
-
-MedEarn       <- filter(Metadata, Indicator == "Median Earnings")
-DefMedEarn    <- MedEarn[[1,2]]
-TimeMedEarn   <- MedEarn[[1,3]]
-SourceMedEarn <- MedEarn[[1,4]]
-
-OWB       <- filter(Metadata, Indicator == "Out of Work Benefits")
-DefOWB    <- OWB[[1,2]]
-TimeOWB   <- OWB[[1,3]]
-SourceOWB <- OWB[[1,4]]
-
-BusSurv       <- filter(Metadata, Indicator == "Business Survival")
-DefBusSurv    <- BusSurv[[1,2]]
-TimeBusSurv   <- BusSurv[[1,3]]
-SourceBusSurv <- BusSurv[[1,4]]
-
-Crime       <- filter(Metadata, Indicator == "Crime Rate")
-DefCrime    <- Crime[[1,2]]
-TimeCrime   <- Crime[[1,3]]
-SourceCrime <- Crime[[1,4]]
-
-Fire       <- filter(Metadata, Indicator == "Dwelling Fires")
-DefFire    <- Fire[[1,2]]
-TimeFire   <- Fire[[1,3]]
-SourceFire <- Fire[[1,4]]
-
-Emiss       <- filter(Metadata, Indicator == "Carbon Emissions")
-DefEmiss    <- Emiss[[1,2]]
-TimeEmiss   <- Emiss[[1,3]]
-SourceEmiss <- Emiss[[1,4]]
-
-EmAd       <- filter(Metadata, Indicator == "Emergency Admissions")
-DefEmAd    <- EmAd[[1,2]]
-TimeEmAd   <- EmAd[[1,3]]
-SourceEmAd <- EmAd[[1,4]]
-
-HospAtt       <- filter(Metadata, Indicator == "Unplanned Hospital Attendances")
-DefHospAtt    <- HospAtt[[1,2]]
-TimeHospAtt   <- HospAtt[[1,3]]
-SourceHospAtt <- HospAtt[[1,4]]
-
-Mort       <- filter(Metadata, Indicator == "Early Mortality")
-DefMort    <- Mort[[1,2]]
-TimeMort   <- Mort[[1,3]]
-SourceMort <- Mort[[1,4]]
-
-Frag       <- filter(Metadata, Indicator == "Fragility")
-DefFrag    <- Frag[[1,2]]
-TimeFrag   <- Frag[[1,3]]
-SourceFrag <- Frag[[1,4]]
-
-WellB       <- filter(Metadata, Indicator == "Well-being")
-DefWellB    <- WellB[[1,2]]
-TimeWellB   <- WellB[[1,3]]
-SourceWellB <- WellB[[1,4]]
-
-FuelPov       <- filter(Metadata, Indicator == "Fuel Poverty")
-DefFuelPov    <- FuelPov[[1,2]]
-TimeFuelPov   <- FuelPov[[1,3]]
-SourceFuelPov <- FuelPov[[1,4]]
-
 #Create list of CPP names for use in UI
 CPPNames <- unique(CPPMapDta[CPPMapDta$council != "Scotland", "council"])
-
 
 ##Read in Duncan Index Scores and calculate whether improving
 DIdta <- read_csv("data/DuncanIndex.csv")
@@ -219,24 +92,108 @@ DIdta <- setDT(DIdta)[, ImprovementRate :=
                                 ]
 InqDta <-readRDS("data/DecileData.rds")
 
-popOvs <- function(pltnm,Title,Def,Tm,Src, plc = "top", pltHght = "25vh"){
-  column(2, style = paste0("margin-left:0px;margin-right:0px;padding-right:0px; padding-left:0px; height:", pltHght,"!important"), plotOutput(pltnm, height= pltHght),
-         bsPopover(id = pltnm,
-                   title = Title, 
+#functions ------------
+
+# Map colour functions
+# These render polygons red-green (or blue-yellow if the colour blindness button is checked).
+# One of seven colours is ascribed depending on a geography's ranking score (1-7) for the given indicator
+clrs      <- brewer.pal(7, "RdYlGn")
+clrsCB    <- rev(brewer.pal(7, "YlGnBu"))
+LowGoodColourBins <- colorBin(rev(clrs), 1:7)
+LowGoodColourBinsCB <- colorBin(rev(clrsCB), 1:7)
+HighGoodColourBins <- colorBin(clrs, 1:7)
+HighGoodColourBinsCB <- colorBin(clrsCB, 1:7)
+
+
+#renders a plot output with associated metadata pop up for a given indicator. 
+# This function is used for the CPP Overt Time, Compare All CPPs, and Compare Similar CPPs tabs.
+plotWithMetadataPopup <- function (metadata, plotName, indicatorTitle, plc = "top", plotHeight = "25vh"){
+  indicatorMetadata <- filter(metadata, Indicator == indicatorTitle)
+  column(2, 
+         style = paste0("margin-left:0px;margin-right:0px;padding-right:0px; padding-left:0px; height:", plotHeight,"!important"),
+         plotOutput(plotName, height= plotHeight),
+         bsPopover(id = plotName,
+                   title = indicatorTitle, 
                    content = paste(
                      "<b>Definition</b></p><p>",
-                     Def,
+                     indicatorMetadata[[1,2]],
                      "</p><p>",
                      "<b>Raw Time Period</b></p><p>",
-                     Tm,
+                     indicatorMetadata[[1,3]],
                      "</p><p>",
                      "<b>Source</b></p><p>",
-                     Src
+                     indicatorMetadata[[1,4]]
                    ),
                    placement = plc,
-                   trigger = "click",
+                   trigger = "hover",
                    options = list(container = "body")
          )
   )
 }
 
+
+#determines the colour of the traffic light marker on each plot in tab "P1" 
+trafficLightMarkerColour <- function (data, selected_cpp, comparator_cpp) {
+  selected_cpp_data <- filter(data, CPP == selected_cpp)
+  comparator_cpp_data <- filter(data, CPP == comparator_cpp)
+  
+  highIsPositive <- unique(data$`High is Positive?`)
+  
+  if_else(last(selected_cpp_data$value) > last(comparator_cpp_data$value), 
+          if_else(last(selected_cpp_data$Improvement_Rate) > last(comparator_cpp_data$Improvement_Rate),
+                  if_else(highIsPositive == "Yes",
+                          "green",
+                          "red"),
+                  "yellow"),
+          if_else(last(selected_cpp_data$value) < last(comparator_cpp_data$value),
+                  if_else(last(selected_cpp_data$Improvement_Rate) < last(comparator_cpp_data$Improvement_Rate),
+                          if_else(highIsPositive == "Yes",
+                                  "red",
+                                  "green"),
+                          "yellow"),
+                  "black")
+  )
+}
+
+#adds on-click pop-ups to the data zone maps in the "Map2" tab
+showDZpopup <- function(DZdata, group, lat, lng, map_ind, plotId) {
+  selectedDZ <- DZdata[DZdata$DataZone == group,] 
+  colIndex <- grep(map_ind, colnames(selectedDZ))
+  content <- as.character(tagList(
+    tags$h4(as.character(unique(selectedDZ$DataZone))),
+    sprintf(
+      "%s: %s\n",
+      names(selectedDZ[colIndex]), 
+      round(unique(as.numeric(selectedDZ[colIndex])),2)
+    ), 
+    tags$br()
+  ))
+  leafletProxy(plotId) %>% addPopups(lng, lat, content, layerId = group)
+}
+
+#clickable pop-ups for IZ in "Map1"
+showIZPopup <- function(group, lat, lng){
+  selectedIZ <- SpPolysIZ@data[SpPolysIZ@data$InterZone == group,]
+  content <- as.character(tagList(
+    tags$h4(as.character(unique(selectedIZ$`IGZ name`)))))
+  leafletProxy("communityMap") %>% addPopups(lng, lat, content, layerId = group)
+}
+
+addColourSchemeColumn <- function (dataset, colName, input1, input2 = NULL) {
+  colName <- enquo(colName)
+  if(is.null(input2)) 
+  {
+    dta <- dataset %>% 
+      mutate(colourscheme = ifelse(!!colName == input1, "A", "C"))
+  }
+  else
+  {
+    dta <- dataset %>% 
+      mutate(colourscheme = ifelse(!!colName == input1, 
+                                    "A",
+                                    ifelse(!!colName == input2, 
+                                           "B", 
+                                           "C")))
+  }
+  return(dta)
+}

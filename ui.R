@@ -111,28 +111,28 @@ body <- dashboardBody(
               ),
       div(style = "margin-top:10px",
                   fluidRow(style = "margin-bottom:0px;margin-right:1px",
-                           popOvs("plot_1", "Healthy Birthweight",DefHBW, TimeHBW, SourceHBW, "bottom"),
-                           popOvs("plot_2", "Primary 1 Body Mass Index",DefBMI, TimeBMI, SourceBMI, "bottom"),
-                           popOvs("plot_3", "Child Poverty",DefCPov, TimeCPov, SourceCPov, "bottom"),
-                           popOvs("plot_4", "Average Highest Attainment",DefS4T, TimeS4T, SourceS4T, "bottom"),
-                           popOvs("plot_5", "Positive Destinations",DefPosDes, TimePosDes, SourcePosDes, "bottom"),
-                           popOvs("plot_6", "Employment Rate",DefEmpRt, TimeEmpRt, SourceEmpRt, "bottom")
+                           plotWithMetadataPopup(Metadata, "plot_1", "Healthy Birthweight", "bottom"),
+                           plotWithMetadataPopup(Metadata, "plot_2", "Primary 1 Body Mass Index", "bottom"),
+                           plotWithMetadataPopup(Metadata, "plot_3", "Child Poverty", "bottom"),
+                           plotWithMetadataPopup(Metadata, "plot_4", "Average Highest Attainment", "bottom"),
+                           plotWithMetadataPopup(Metadata, "plot_5", "Positive Destinations", "bottom"),
+                           plotWithMetadataPopup(Metadata, "plot_6", "Employment Rate", "bottom")
                   ),
                   fluidRow(style = "margin-bottom:0px;margin-right:1px",
-                           popOvs("plot_7", "Median Earnings",DefMedEarn, TimeMedEarn, SourceMedEarn),
-                           popOvs("plot_8", "Out of Work Benefits",DefOWB, TimeOWB, SourceOWB),
-                           popOvs("plot_9", "Business Survival",DefBusSurv, TimeBusSurv, SourceBusSurv),
-                           popOvs("plot_10", "Crime Rate",DefCrime, TimeCrime, SourceCrime),
-                           popOvs("plot_11", "Dwelling Fires",DefFire, TimeFire, SourceFire),
-                           popOvs("plot_12", "Carbon Emissions",DefEmiss, TimeEmiss, SourceEmiss)
+                           plotWithMetadataPopup(Metadata, "plot_7", "Median Earnings"),
+                           plotWithMetadataPopup(Metadata, "plot_8", "Out of Work Benefits"),
+                           plotWithMetadataPopup(Metadata, "plot_9", "Business Survival"),
+                           plotWithMetadataPopup(Metadata, "plot_10", "Crime Rate"),
+                           plotWithMetadataPopup(Metadata, "plot_11", "Dwelling Fires"),
+                           plotWithMetadataPopup(Metadata, "plot_12", "Carbon Emissions")
                   ),
                   fluidRow(style = "margin-bottom:0px;margin-right:1px",
-                           popOvs("plot_13", "Emergency Admissions",DefEmAd, TimeEmAd, SourceEmAd),
-                           popOvs("plot_14", "Unplanned Hospital Attendances",DefHospAtt, TimeHospAtt, SourceHospAtt),
-                           popOvs("plot_15", "Early Mortality",DefMort, TimeMort, SourceMort),
-                           popOvs("plot_16", "Fragility",DefFrag, TimeFrag, SourceFrag),
-                           popOvs("plot_17", "Well-being",DefWellB, TimeWellB, SourceWellB),
-                           popOvs("plot_18", "Fuel Poverty",DefFuelPov, TimeFuelPov, SourceFuelPov)
+                           plotWithMetadataPopup(Metadata, "plot_13", "Emergency Admissions"),
+                           plotWithMetadataPopup(Metadata, "plot_14", "Unplanned Hospital Attendances"),
+                           plotWithMetadataPopup(Metadata, "plot_15", "Early Mortality"),
+                           plotWithMetadataPopup(Metadata, "plot_16", "Fragility"),
+                           plotWithMetadataPopup(Metadata, "plot_17", "Well-being"),
+                           plotWithMetadataPopup(Metadata, "plot_18", "Fuel Poverty")
                   )
               )  
     )), #end of CPP Over Time ("P1")
@@ -152,30 +152,30 @@ body <- dashboardBody(
               )
             ),
               div(style = "margin-top:10px",
-            fluidRow(style = "margin-bottom:0px;margin-right:1px",
-                     popOvs("plot_CPP_1", "Healthy Birthweight",DefHBW, TimeHBW, SourceHBW, "bottom", pltHght = "28vh"),
-                     popOvs("plot_CPP_2", "Primary 1 Body Mass Index",DefBMI, TimeBMI, SourceBMI, "bottom", pltHght = "28vh"),
-                     popOvs("plot_CPP_3", "Child Poverty",DefCPov, TimeCPov, SourceCPov, "bottom", pltHght = "28vh"),
-                     popOvs("plot_CPP_4", "Average Highest Attainment",DefS4T, TimeS4T, SourceS4T, "bottom", pltHght = "28vh"),
-            popOvs("plot_CPP_5", "Positive Destinations",DefPosDes, TimePosDes, SourcePosDes, "bottom", pltHght = "28vh"),
-            popOvs("plot_CPP_6", "Employment Rate",DefEmpRt, TimeEmpRt, SourceEmpRt, "bottom", pltHght = "28vh")
-            ),
-            fluidRow(style = "margin-bottom:0px;margin-right:1px",
-                     popOvs("plot_CPP_7", "Median Earnings",DefMedEarn, TimeMedEarn, SourceMedEarn, pltHght = "28vh"),
-                     popOvs("plot_CPP_8", "Out of Work Benefits",DefOWB, TimeOWB, SourceOWB, pltHght = "28vh"),
-                     popOvs("plot_CPP_9", "Business Survival",DefBusSurv, TimeBusSurv, SourceBusSurv, pltHght = "28vh"),
-                     popOvs("plot_CPP_10", "Crime Rate",DefCrime, TimeCrime, SourceCrime, pltHght = "28vh"),
-                     popOvs("plot_CPP_11", "Dwelling Fires",DefFire, TimeFire, SourceFire, pltHght = "28vh"),
-                     popOvs("plot_CPP_12", "Carbon Emissions",DefEmiss, TimeEmiss, SourceEmiss, pltHght = "28vh")
-            ),
-            fluidRow(style = "margin-bottom:0px;margin-right:1px",
-                     popOvs("plot_CPP_13", "Emergency Admissions",DefEmAd, TimeEmAd, SourceEmAd, pltHght = "28vh"),
-                     popOvs("plot_CPP_14", "Unplanned Hospital Attendances",DefHospAtt, TimeHospAtt, SourceHospAtt, pltHght = "28vh"),
-                     popOvs("plot_CPP_15", "Early Mortality",DefMort, TimeMort, SourceMort, pltHght = "28vh"),
-                     popOvs("plot_CPP_16", "Fragility",DefFrag, TimeFrag, SourceFrag, pltHght = "28vh"),
-                     popOvs("plot_CPP_17", "Well-being",DefWellB, TimeWellB, SourceWellB, pltHght = "28vh"),
-                     popOvs("plot_CPP_18", "Fuel Poverty",DefFuelPov, TimeFuelPov, SourceFuelPov, pltHght = "28vh")
-            )
+                  fluidRow(style = "margin-bottom:0px;margin-right:1px",
+                           plotWithMetadataPopup(Metadata, "plot_CPP_1", "Healthy Birthweight", "bottom", plotHeight = "28vh"),
+                           plotWithMetadataPopup(Metadata, "plot_CPP_2", "Primary 1 Body Mass Index", "bottom", plotHeight = "28vh"),
+                           plotWithMetadataPopup(Metadata, "plot_CPP_3", "Child Poverty", "bottom", plotHeight = "28vh"),
+                           plotWithMetadataPopup(Metadata, "plot_CPP_4", "Average Highest Attainment", "bottom", plotHeight = "28vh"),
+                           plotWithMetadataPopup(Metadata, "plot_CPP_5", "Positive Destinations", "bottom", plotHeight = "28vh"),
+                           plotWithMetadataPopup(Metadata, "plot_CPP_6", "Employment Rate", "bottom", plotHeight = "28vh")
+                  ),
+                  fluidRow(style = "margin-bottom:0px;margin-right:1px",
+                           plotWithMetadataPopup(Metadata, "plot_CPP_7", "Median Earnings", plotHeight = "28vh"),
+                           plotWithMetadataPopup(Metadata, "plot_CPP_8", "Out of Work Benefits", plotHeight = "28vh"),
+                           plotWithMetadataPopup(Metadata, "plot_CPP_9", "Business Survival", plotHeight = "28vh"),
+                           plotWithMetadataPopup(Metadata, "plot_CPP_10", "Crime Rate", plotHeight = "28vh"),
+                           plotWithMetadataPopup(Metadata, "plot_CPP_11", "Dwelling Fires", plotHeight = "28vh"),
+                           plotWithMetadataPopup(Metadata, "plot_CPP_12", "Carbon Emissions", plotHeight = "28vh")
+                  ),
+                  fluidRow(style = "margin-bottom:0px;margin-right:1px",
+                           plotWithMetadataPopup(Metadata, "plot_CPP_13", "Emergency Admissions", plotHeight = "28vh"),
+                           plotWithMetadataPopup(Metadata, "plot_CPP_14", "Unplanned Hospital Attendances", plotHeight = "28vh"),
+                           plotWithMetadataPopup(Metadata, "plot_CPP_15", "Early Mortality", plotHeight = "28vh"),
+                           plotWithMetadataPopup(Metadata, "plot_CPP_16", "Fragility", plotHeight = "28vh"),
+                           plotWithMetadataPopup(Metadata, "plot_CPP_17", "Well-being", plotHeight = "28vh"),
+                           plotWithMetadataPopup(Metadata, "plot_CPP_18", "Fuel Poverty", plotHeight = "28vh")
+                  )
           )
           
     )), #end of Compare All CPPs ("P2")
@@ -185,28 +185,28 @@ body <- dashboardBody(
         fluidPage(
           div(style = "margin-top:5px",
               fluidRow(style = "margin-bottom:0px;margin-right:1px",
-                       popOvs("plotSimCPP_1", "Healthy Birthweight",DefHBW, TimeHBW, SourceHBW, "bottom",pltHght = "30vh"),
-                       popOvs("plotSimCPP_2", "Primary 1 Body Mass Index",DefBMI, TimeBMI, SourceBMI, "bottom",pltHght = "30vh"),
-                       popOvs("plotSimCPP_3", "Child Poverty",DefCPov, TimeCPov, SourceCPov, "bottom",pltHght = "30vh"),
-                       popOvs("plotSimCPP_4", "Average Highest Attainment",DefS4T, TimeS4T, SourceS4T, "bottom",pltHght = "30vh"),
-                       popOvs("plotSimCPP_5", "Positive Destinations",DefPosDes, TimePosDes, SourcePosDes, "bottom",pltHght = "30vh"),
-                       popOvs("plotSimCPP_6", "Employment Rate",DefEmpRt, TimeEmpRt, SourceEmpRt, "bottom",pltHght = "30vh")
+                       plotWithMetadataPopup(Metadata, "plotSimCPP_1", "Healthy Birthweight", "bottom", plotHeight = "30vh"),
+                       plotWithMetadataPopup(Metadata, "plotSimCPP_2", "Primary 1 Body Mass Index", "bottom", plotHeight = "30vh"),
+                       plotWithMetadataPopup(Metadata, "plotSimCPP_3", "Child Poverty", "bottom", plotHeight = "30vh"),
+                       plotWithMetadataPopup(Metadata, "plotSimCPP_4", "Average Highest Attainment", "bottom", plotHeight = "30vh"),
+                       plotWithMetadataPopup(Metadata, "plotSimCPP_5", "Positive Destinations", "bottom", plotHeight = "30vh"),
+                       plotWithMetadataPopup(Metadata, "plotSimCPP_6", "Employment Rate", "bottom", plotHeight = "30vh")
               ),
               fluidRow(style = "margin-bottom:0px;margin-right:1px",
-                       popOvs("plotSimCPP_7", "Median Earnings",DefMedEarn, TimeMedEarn, SourceMedEarn, "bottom",pltHght = "30vh"),
-                       popOvs("plotSimCPP_8", "Out of Work Benefits",DefOWB, TimeOWB, SourceOWB, "bottom",pltHght = "30vh"),
-                       popOvs("plotSimCPP_9", "Business Survival",DefBusSurv, TimeBusSurv, SourceBusSurv, "bottom",pltHght = "30vh"),
-                       popOvs("plotSimCPP_10", "Crime Rate",DefCrime, TimeCrime, SourceCrime, "bottom",pltHght = "30vh"),
-                       popOvs("plotSimCPP_11", "Dwelling Fires",DefFire, TimeFire, SourceFire, "bottom",pltHght = "30vh"),
-                       popOvs("plotSimCPP_12", "Carbon Emissions",DefEmiss, TimeEmiss, SourceEmiss, "bottom",pltHght = "30vh")
+                       plotWithMetadataPopup(Metadata, "plotSimCPP_7", "Median Earnings", "bottom", plotHeight = "30vh"),
+                       plotWithMetadataPopup(Metadata, "plotSimCPP_8", "Out of Work Benefits", "bottom", plotHeight = "30vh"),
+                       plotWithMetadataPopup(Metadata, "plotSimCPP_9", "Business Survival", "bottom", plotHeight = "30vh"),
+                       plotWithMetadataPopup(Metadata, "plotSimCPP_10", "Crime Rate", "bottom", plotHeight = "30vh"),
+                       plotWithMetadataPopup(Metadata, "plotSimCPP_11", "Dwelling Fires", "bottom", plotHeight = "30vh"),
+                       plotWithMetadataPopup(Metadata, "plotSimCPP_12", "Carbon Emissions", "bottom", plotHeight = "30vh")
               ),
               fluidRow(style = "margin-bottom:0px;margin-right:1px",
-                       popOvs("plotSimCPP_13", "Emergency Admissions",DefEmAd, TimeEmAd, SourceEmAd,pltHght = "30vh"),
-                       popOvs("plotSimCPP_14", "Unplanned Hospital Attendances",DefHospAtt, TimeHospAtt, SourceHospAtt,pltHght = "30vh"),
-                       popOvs("plotSimCPP_15", "Early Mortality",DefMort, TimeMort, SourceMort,pltHght = "30vh"),
-                       popOvs("plotSimCPP_16", "Fragility",DefFrag, TimeFrag, SourceFrag,pltHght = "30vh"),
-                       popOvs("plotSimCPP_17", "Well-being",DefWellB, TimeWellB, SourceWellB,pltHght = "30vh"),
-                       popOvs("plotSimCPP_18", "Fuel Poverty",DefFuelPov, TimeFuelPov, SourceFuelPov,pltHght = "30vh")
+                       plotWithMetadataPopup(Metadata, "plotSimCPP_13", "Emergency Admissions", plotHeight = "30vh"),
+                       plotWithMetadataPopup(Metadata, "plotSimCPP_14", "Unplanned Hospital Attendances", plotHeight = "30vh"),
+                       plotWithMetadataPopup(Metadata, "plotSimCPP_15", "Early Mortality", plotHeight = "30vh"),
+                       plotWithMetadataPopup(Metadata, "plotSimCPP_16", "Fragility", plotHeight = "30vh"),
+                       plotWithMetadataPopup(Metadata, "plotSimCPP_17", "Well-being", plotHeight = "30vh"),
+                       plotWithMetadataPopup(Metadata, "plotSimCPP_18", "Fuel Poverty", plotHeight = "30vh")
               )
           ))
     ), #end of Compare All CPPs ("P3")
@@ -408,7 +408,8 @@ body <- dashboardBody(
                 selectInput(
                   "IndiAllC", 
                   "Select Indicator", 
-                  unique(IGZdta$IndicatorFullName)
+                  unique(IGZdta$IndicatorFullName),
+                  selected = "Child Poverty (%)"
                 )
               ),
               column(5, style = "margin-top:1px",div(style = "display:block",tags$img(style = "margin-right:2px",src = "Legend - Selection.png"),

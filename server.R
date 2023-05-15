@@ -1,6 +1,5 @@
 shinyServer(function(input, output, session) {
-  
-  
+
   output$clock <- renderText({
     invalidateLater(5000)
     Sys.time()
@@ -80,12 +79,12 @@ shinyServer(function(input, output, session) {
     dt <- SpPolysIZ[sbst,]
     selCls <- if(input$CBCols){clrsCB}else{clrs}
     selPls <- if(input$CBCols){
-      ~communityPalCB(`rank_decs`)
-    }else{~communityPal(`rank_decs`)}
+      ~HighGoodColourBinsCB(`rank_decs`)
+    }else{~HighGoodColourBins(`rank_decs`)}
     topRk <- paste0("Least vulnerable - ",nrow(dt))
     cp <- leaflet(dt) %>%
       addTiles() %>%
-      addLegend("bottomright", colors = selCls,
+      addLegend("bottomleft", colors = selCls,
                 labels = c("Most vulnerable - 1", "","","","","",topRk),
                 opacity = 1,
                 title = "") %>%
@@ -107,14 +106,6 @@ shinyServer(function(input, output, session) {
     updateSelectizeInput(session,"LA1", label = NULL, choices = NULL, selected = event$id)
   })
   
-  # "Map 1" click pop-ups FOR GLOBAL ---------------
-  
-  showIZPopup <- function(group, lat, lng){
-    selectedIZ <- SpPolysIZ@data[SpPolysIZ@data$InterZone == group,]
-    content <- as.character(tagList(
-      tags$h4(as.character(unique(selectedIZ$`IGZ name`)))))
-    leafletProxy("communityMap") %>% addPopups(lng, lat, content, layerId = group)
-  }
   # Make popup appear and clear old popups
   observe({
     leafletProxy("communityMap") %>% clearPopups()
@@ -135,95 +126,35 @@ shinyServer(function(input, output, session) {
     txt <- input$CompLA1
   })
   
-  
-  
   # "P1" selected_dta_1 -------------------
   selected_dta_1 <- reactive({
-    CPP_Imp$colourscheme <- ifelse(CPP_Imp$CPP == input$LA1,"A","B")
-    dta <- filter(CPP_Imp, CPP %in% c(input$LA1, input$CompLA1))
+    #CPP_Imp$colourscheme <- ifelse(CPP_Imp$CPP == input$LA1,"A","B")
+    data <- filter(CPP_Imp, CPP %in% c(input$LA1, input$CompLA1)) %>%
+      addColourSchemeColumn(CPP,input$LA1,input$CompLA1)
   })
   
   # "P1" loop to create plots -------------------  
   
-  for(i in seq_along(indicators_1)){
+  for(i in seq_along(indicators)){
     local({
       my.i <- i
       plotname <- paste("plot", my.i, sep ="_")
       output[[plotname]] <- renderPlot({
         req(input$LA1)
         dta <- selected_dta_1()
-        
         # Y Axis Range for each plot, based on range of full data set
-        
-        y_rnge_dta <- subset(CPP_Imp, CPP_Imp$Indicator == indicators_1[my.i])
+        y_rnge_dta <- subset(CPP_Imp, CPP_Imp$Indicator == indicators[my.i])
         y_min <- min(y_rnge_dta$value, na.rm = TRUE)
         y_max <- max(y_rnge_dta$value, na.rm = TRUE)
         Rnge <- y_max - y_min
         Extra <- Rnge * 0.05
         y_min <- y_min - Extra
         y_max <- y_max + Extra
-        
-        loopdata <- subset(dta, dta$Indicator == indicators_1[my.i])
-        loopdata_CPP1 <- filter(loopdata, CPP == input$LA1)
-        loopdata_CPP2 <- filter(loopdata, CPP == input$CompLA1)
-        
-        # If statement to determine the colour of the dot
-        # 2 statements to distinguish between high values being positive and high values being negative
-        # compares two selected authorities by the latest value and the improvement rate 
-        
-        coloursDotPos <- if_else(
-          ((last(loopdata_CPP1$value)) > (last(loopdata_CPP2$value)) & 
-             (last(loopdata_CPP1$Improvement_Rate)) > (last(loopdata_CPP2$Improvement_Rate))),
-          "green",
-          if_else(
-            ((last(loopdata_CPP1$value)) > (last(loopdata_CPP2$value)) & 
-               (last(loopdata_CPP1$Improvement_Rate)) < (last(loopdata_CPP2$Improvement_Rate))),
-            "yellow",
-            if_else(
-              ((last(loopdata_CPP1$value)) < (last(loopdata_CPP2$value)) &
-                 (last(loopdata_CPP1$Improvement_Rate)) > (last(loopdata_CPP2$Improvement_Rate))),
-              "yellow",
-              if_else(
-                ((last(loopdata_CPP1$value)) < (last(loopdata_CPP2$value)) & 
-                   (last(loopdata_CPP1$Improvement_Rate)) < (last(loopdata_CPP2$Improvement_Rate))),
-                "red",
-                "black"
-              )
-            )
-          )
-        )
-        
-        coloursDotNeg <- if_else(
-          ((last(loopdata_CPP1$value)) > (last(loopdata_CPP2$value)) &
-             (last(loopdata_CPP1$Improvement_Rate)) > (last(loopdata_CPP2$Improvement_Rate))),
-          "red",
-          if_else(
-            ((last(loopdata_CPP1$value)) > (last(loopdata_CPP2$value)) &
-               (last(loopdata_CPP1$Improvement_Rate)) < (last(loopdata_CPP2$Improvement_Rate))),
-            "yellow",
-            if_else(
-              ((last(loopdata_CPP1$value)) < (last(loopdata_CPP2$value)) &
-                 (last(loopdata_CPP1$Improvement_Rate)) > (last(loopdata_CPP2$Improvement_Rate))),
-              "yellow",
-              if_else(
-                ((last(loopdata_CPP1$value)) < (last(loopdata_CPP2$value)) &
-                   (last(loopdata_CPP1$Improvement_Rate)) < (last(loopdata_CPP2$Improvement_Rate))),
-                "green",
-                "black"
-              )
-            )
-          )
-        )
-        
-        # store unique values of "high is positive?" to determine which coloured dot to use
-        
-        HighValue <- unique(loopdata$`High is Positive?`)
-        
+        loopdata <- subset(dta, dta$Indicator == indicators[my.i])
         # set x axis labels on plots
         # need a column which stores a numeric series to be used as the break points
         # need an additional column which specifies the labels, allowing middle years to be blank
         # the numeric column is also used as a reactive reference point for setting the labels
-        
         loopdata <- arrange(loopdata, CPP)
         loopdata <- setDT(loopdata)[, YearBreaks :=(seq(1 : length(Year))), by = CPP]
         loopdata <- setDT(loopdata)[, YearLbls :=Year, by = CPP]
@@ -252,26 +183,24 @@ shinyServer(function(input, output, session) {
             ),
             lwd = 1, show.legend = FALSE
           )+
-          geom_line(
-            data = dtaRaw,
-            aes(
-              x = YearBreaks, 
-              y = value, 
-              group = colourscheme, 
-              colour = colourscheme, 
-              linetype = "1"
-            ), 
-            lwd = 1, show.legend = FALSE
-          )+
+          geom_line(data = dtaRaw,
+                    aes(x = YearBreaks,
+                        y = value, 
+                        group = colourscheme, 
+                        colour = colourscheme, 
+                        linetype = "1"
+                        ), 
+                    lwd = 1, show.legend = FALSE
+                    ) +
           scale_color_manual(values = c("red", "blue"))+
-          labs(title  = indicators_1[my.i])+
+          labs(title  = indicators[my.i])+
           annotate(
             "text", 
             x = Inf, 
             y = Inf, 
             label = sprintf('\U25CF'), 
             size = 7, 
-            colour = (if_else(HighValue == "Yes", coloursDotPos, coloursDotNeg)), 
+            colour = trafficLightMarkerColour(loopdata, input$LA1, input$CompLA1),
             hjust = 1, 
             vjust = 1
           )+
@@ -287,7 +216,7 @@ shinyServer(function(input, output, session) {
             axis.text.y = element_text(size = 7),
             axis.title.x = element_blank(),
             axis.title.y = element_blank()
-          )
+          ) #end of ggplot()
         
       })
     })  
@@ -302,29 +231,26 @@ shinyServer(function(input, output, session) {
   })
   
 # "P2" Render compare CPP plots loop-----------------
+  
+  P2_selections_data <- reactive({
+    dta <- CPP_Imp %>%
+      filter( Year == RcntYear) %>%
+      addColourSchemeColumn(CPP, input$LA1, input$OtherCPP)
+  })
 
-  for(i in seq_along(indis)){
+  for(i in seq_along(indicators)){
     local({
       this_i <- i
       plotnameCPP <- paste("plot_CPP", this_i, sep ="_")
       output[[plotnameCPP]] <- renderPlot({
         
     req(input$LA1)
-    dta <- filter(CPP_Imp, Year == RcntYear)
-    if(is.null(input$OtherCPP)){
-      dta$colourscheme <- ifelse(dta$CPP == input$LA1,"Sel1","Other")}
-    else{
-      dta$colourscheme <- ifelse(dta$CPP == input$LA1,"Sel1",ifelse(dta$CPP == input$OtherCPP, "Sel2","Other"))
-      }
-    if(is.null(input$OtherCPP)){
-      sclFll <- scale_fill_manual(values = c("lightblue2","red2"), breaks = c("Other", "Sel1"))}
-    else{sclFll <- scale_fill_manual(values = c("lightblue2","red2", "green4"), breaks = c("Other", "Sel1", "Sel2"))}
-    #filter so that the Scotland value isn't a bar on the plot
-    
-    dtaNoScot <- filter(dta, CPP != "Scotland")
+    # #filter so that the Scotland value isn't a bar on the plot
+
+    dtaNoScot <- P2_selections_data() %>% filter(CPP != "Scotland")
   
     #Generate plots
-    indi <- indis
+    indi <- indicators
     ##calculate maximum limit for y axis  
       maxAx <- max(dtaNoScot[dtaNoScot$Indicator == indi[[this_i]],5])*1.05
       minAx <- 0
@@ -339,7 +265,9 @@ shinyServer(function(input, output, session) {
           #colour = "black",
           width = 0.8
         ) +
-        sclFll+
+        #ALTERED
+        #sclFll+
+        scale_fill_manual(values = c("lightblue2","red2", "green4"), breaks = c("C", "A", "B")) +
         #scale_x_discrete(label = function(x) abbreviate(x, minlength = 4))+
         scale_y_continuous(expand = c(0,0), limits = c(minAx, maxAx))+    
         guides(fill = "none") +
@@ -348,7 +276,7 @@ shinyServer(function(input, output, session) {
         ylab("")+
         #    {if(input$ScotCheckbox == TRUE)
         geom_hline(aes(
-          yintercept = filter(dta, CPP == "Scotland" & Indicator == indi[[this_i]])$value
+          yintercept = filter(P2_selections_data(), CPP == "Scotland" & Indicator == indi[[this_i]])$value
           ), colour = "navyblue", size = 1.2
         )+
           #} +
@@ -377,21 +305,22 @@ shinyServer(function(input, output, session) {
   })
   
   # "P3" Create Graphs for CPP similar loop ----------------------------------------------------------------
-  for(i in seq_along(indis)){
+  for(i in seq_along(indicators)){
     local({
       that_i <- i
       plotnameCPPSim <- paste("plotSimCPP", that_i, sep ="_")
       output[[plotnameCPPSim]] <- renderPlot({
         req(input$LA1)
         FGroup <- filter(CPP_Imp, CPP == input$LA1)[[1,7]]
-        dta <- filter(CPP_Imp, Year == RcntYear & FG %in% FGroup)
-        dta$colourscheme <-ifelse(dta$CPP == input$LA1,"Sel1","Other")
+        dta <- filter(CPP_Imp, Year == RcntYear & FG %in% FGroup) %>%
+          addColourSchemeColumn(CPP, input$LA1)
+        #dta$colourscheme <-ifelse(dta$CPP == input$LA1,"Sel1","Other")
         #filter so that the Scotland value isn't a bar on the plot
         
         dtaNoScot <- filter(dta, CPP != "Scotland")
         
         #Generate plots
-        indi <- indis
+        indi <- indicators
         ##calculate maximum limit for y axis  
         ScotVal <- filter(CPP_Imp,Year == RcntYear & 
                             Indicator == indi[[that_i]] &
@@ -409,7 +338,7 @@ shinyServer(function(input, output, session) {
           width = 0.5
           ) +
           scale_x_discrete(label = function(x) abbreviate(x, minlength = 10))+
-          scale_fill_manual(values = c("lightblue2","red2"), breaks = c("Other", "Sel1")) +
+          scale_fill_manual(values = c("lightblue2","red2"), breaks = c("C", "A")) +
           guides(fill = "none") +
           scale_y_continuous(expand = c(0,0), limits = c(minAx,maxAx))+       
           ggtitle(indi[[that_i]])+
@@ -486,15 +415,16 @@ shinyServer(function(input, output, session) {
     DIdta <- setDT(DIdta)[,IRHigher :=
                             first(ImprovementRate)<last(ImprovementRate),
                           by = list(ind, year)]
+     DIdta <- DIdta %>% addColourSchemeColumn(la, input$LA1)
     ##create colourscheme
     #descText <- "These graphs will help you understand\ninequality in outcomes across the whole of the\nCPP, with 0 indicating perfect equality and\nvalues between 0 and 1 indicating that income\ndeprived people experience poorer outcomes,\n and values between -1 and 0 indicating that\nnon-income deprived people experience\npoorer outcomes."
-    DIdta$coloursch <- ifelse(DIdta$la ==input$LA1, "CPP", "Comp")
+    #DIdta$coloursch <- ifelse(DIdta$la ==input$LA1, "A", "C")
     lstDi <- lapply(1:7,FUN = function(y){
       dta <- DIdta[DIdta$ind == indList[y],]
       DDta <- filter(dta, year == last(year))
       CDot <- if_else(DDta$Higher == T && DDta$IRHigher == T, "green", if_else(DDta$Higher == F && DDta$IRHigher == F, "red", "yellow"))
       ggplot(dta, aes(x = year, y = value))+
-        geom_line(data = dta[!is.na(dta$value),], aes(group = coloursch, colour = coloursch), size = 1)+
+        geom_line(data = dta[!is.na(dta$value),], aes(group = colourscheme, colour = colourscheme), size = 1)+
         ylab("")+
         xlab("")+
         annotate(
@@ -508,7 +438,7 @@ shinyServer(function(input, output, session) {
         scale_y_continuous(limits = c(-0.23,0.5))+
         scale_x_continuous(breaks = seq(2008,2020, by  =2))+
         geom_hline(yintercept = 0)+
-        scale_colour_manual(breaks = c("Comp", "CPP"), values = c("blue", "red"))+
+        scale_colour_manual(breaks = c("C", "A"), values = c("blue", "red"))+
         guides(colour = "none")+
         theme(panel.grid.major = element_blank(), 
               panel.grid.minor = element_blank(), 
@@ -1404,7 +1334,8 @@ shinyServer(function(input, output, session) {
     
     colnames(dta2) <- colnames(dta)
     colnames(dta3) <- colnames(dta)
-    dta            <- rbind(dta, dta2, dta3)
+    dta            <- rbind(dta, dta2, dta3) %>%
+      addColourSchemeColumn(InterZone_Name, input$LA1, "Scotland")
     
     # Y axis range 
     y_min <- min(dta$value, na.rm = TRUE)
@@ -1413,16 +1344,6 @@ shinyServer(function(input, output, session) {
     Extra <- Rnge * 0.05
     y_min <- y_min - Extra
     y_max <- y_max + Extra
-    
-    dta$colourscheme <-ifelse(
-      dta$InterZone_Name == "Scotland",
-      "Scot",
-      ifelse(
-        dta$InterZone_Name == input$LA1,
-        "CPP",
-        "Com"
-      )
-    )
     
     yrs <- c(dta$Year[[1]], dta$Year[[length(dta$Year)]])
     yrs2 <- gsub("20", "", yrs)
@@ -1445,7 +1366,7 @@ shinyServer(function(input, output, session) {
         scale_x_discrete(breaks = yrs, labels = yrs2, expand = c(0.01,0.01))+
         ylim(y_min, y_max)+
         scale_color_manual(
-          breaks = c("Com", "CPP", "Scot"), 
+          breaks = c("C", "A", "B"), 
           values = c("red", "green4","blue")
         )+
         guides(colour = "none")+
@@ -1479,11 +1400,8 @@ shinyServer(function(input, output, session) {
   # "Map2" leaflet outputs (newplot 1 -5) ---------------------
   
   output$newplot<-renderLeaflet({
-    mapCols <- if(input$CBCols){~povPalCB(`povDecs`)}else{~povPal(`povDecs`)}
-    p <- leaflet(plydata())%>%
-      
-      # addProviderTiles("OpenStreetMap.HOT")%>% #Humanitarian OpenStreetMap if desired
-      
+    mapCols <- if(input$CBCols){~LowGoodColourBinsCB(`povDecs`)}else{~LowGoodColourBins(`povDecs`)}
+    p <- leaflet(plydata()) %>%# addProviderTiles("OpenStreetMap.HOT")%>% #Humanitarian OpenStreetMap if desired
       addTiles()%>%
       addPolygons(
         smoothFactor = 0.5, 
@@ -1497,7 +1415,7 @@ shinyServer(function(input, output, session) {
   })
   
   output$newplot2 <- renderLeaflet({
-    mapCols <- if(input$CBCols){~tariffPalCB(`tariffDecs`)}else{~tariffPal(`tariffDecs`)}
+    mapCols <- if(input$CBCols){~HighGoodColourBinsCB(`tariffDecs`)}else{~HighGoodColourBins(`tariffDecs`)}
     
     p <- leaflet(plydata())%>%
       addTiles()%>%
@@ -1514,7 +1432,7 @@ shinyServer(function(input, output, session) {
   })
   
   output$newplot3 <- renderLeaflet({
-    mapCols <- if(input$CBCols){~benPalCB(`benDecs`)}else{~benPal(`benDecs`)}
+    mapCols <- if(input$CBCols){~LowGoodColourBinsCB(`benDecs`)}else{~LowGoodColourBins(`benDecs`)}
     p <- leaflet(plydata())%>%
       addTiles()%>%
       addPolygons(
@@ -1530,7 +1448,7 @@ shinyServer(function(input, output, session) {
   })
   
   output$newplot4 <- renderLeaflet({
-    mapCols <- if(input$CBCols){~crimePalCB(`crimeDecs`)}else{~crimePal(`crimeDecs`)}
+    mapCols <- if(input$CBCols){~LowGoodColourBinsCB(`crimeDecs`)}else{~LowGoodColourBins(`crimeDecs`)}
     p <- leaflet(plydata())%>%
       addTiles()%>%
       addPolygons(
@@ -1546,7 +1464,7 @@ shinyServer(function(input, output, session) {
   })
   
   output$newplot5 <- renderLeaflet({
-    mapCols <- if(input$CBCols){~admisPalCB(`admisDecs`)}else{~admisPal(`admisDecs`)}
+    mapCols <- if(input$CBCols){~LowGoodColourBinsCB(`admisDecs`)}else{~LowGoodColourBins(`admisDecs`)}
     p <- leaflet(plydata())%>%
       addTiles()%>%
       addPolygons(
@@ -1561,23 +1479,7 @@ shinyServer(function(input, output, session) {
     return(p)
   })
   
-  # "Map2" popup functions for DataZone Comparison maps (showDZPopoup to showDZPopup5)--------
-  
-  showDZPopup <- function(group, lat, lng) {
-    selectedDZ <- CPPMapDta[CPPMapDta$DataZone == group,]
-    content <- as.character(tagList(
-      tags$h4(as.character(unique(selectedDZ$DataZone))),
-      sprintf(
-        "%s: %s",
-        "Children in Poverty (%)", 
-        round(unique(as.numeric(selectedDZ[13])),2)
-      ), 
-      tags$br()
-    ))
-    leafletProxy("newplot") %>% addPopups(lng, lat, content, layerId = group)
-  }
-  
-  # Makes the popups appear and clears old popups
+  # "Map2" observe events to show/clear pop-ups------------
   
   observe({
     leafletProxy("newplot") %>% clearPopups()
@@ -1585,27 +1487,9 @@ shinyServer(function(input, output, session) {
     if (is.null(event))
       return()
     isolate({
-      showDZPopup(event$id, event$lat, event$lng)
+      showDZpopup(CPPMapDta, event$id, event$lat, event$lng, "Children in Poverty", "newplot")
     })
   })
-  
-  # Clickable popups for map2
-  
-  showDZPopup2 <- function(group, lat, lng) {
-    selectedDZ <- CPPMapDta[CPPMapDta$DataZone == group,]
-    content <- as.character(tagList(
-      tags$h4(as.character(unique(selectedDZ$DataZone))),
-      sprintf(
-        "%s: %s\n",
-        "Average Highest Attainment", 
-        round(unique(selectedDZ[14]),2)
-      ), 
-      tags$br()
-    ))
-    leafletProxy("newplot2") %>% addPopups(lng, lat, content, layerId = group)
-  }
-  
-  # Makes the popups appear and clears old popups
   
   observe({
     leafletProxy("newplot2") %>% clearPopups()
@@ -1613,55 +1497,19 @@ shinyServer(function(input, output, session) {
     if (is.null(event))
       return()
     isolate({
-      showDZPopup2(event$id, event$lat, event$lng)
+      showDZpopup(CPPMapDta, event$id, event$lat, event$lng, "Average Highest Attainment", "newplot2")
     })
   })
-  
-  # Clickable popups for map3
-  
-  showDZPopup3 <- function(group, lat, lng) {
-    selectedDZ <- CPPMapDta[CPPMapDta$DataZone == group,]
-    content <- as.character(tagList(
-      tags$h4(as.character(unique(selectedDZ$DataZone))),
-      sprintf(
-        "%s: %s\n",
-        "Out of Work Benefits (%)", 
-        round(unique(selectedDZ[15]),2)
-      ), 
-      tags$br()
-    ))
-    leafletProxy("newplot3") %>% addPopups(lng, lat, content, layerId = group)
-  }
-  
-  # Makes the popups appear and clears old popups
-  
+
   observe({
     leafletProxy("newplot3") %>% clearPopups()
     event <- input$newplot3_shape_click
     if (is.null(event))
       return()
     isolate({
-      showDZPopup3(event$id, event$lat, event$lng)
+      showDZpopup(CPPMapDta, event$id, event$lat, event$lng, "Out of Work Benefits", "newplot3")
     })
   })
-  
-  # Clickable popups for map4
-  
-  showDZPopup4 <- function(group, lat, lng) {
-    selectedDZ <- CPPMapDta[CPPMapDta$DataZone == group,]
-    content <- as.character(tagList(
-      tags$h4(as.character(unique(selectedDZ$DataZone))),
-      sprintf(
-        "%s: %s\n",
-        "SIMD Crimes per 10,000", 
-        round(unique(selectedDZ[16]),2)
-      ), 
-      tags$br()
-    ))
-    leafletProxy("newplot4") %>% addPopups(lng, lat, content, layerId = group)
-  }
-  
-  # Makes the popups appear and clears old popups
   
   observe({
     leafletProxy("newplot4") %>% clearPopups()
@@ -1669,27 +1517,9 @@ shinyServer(function(input, output, session) {
     if (is.null(event))
       return()
     isolate({
-      showDZPopup4(event$id, event$lat, event$lng)
+      showDZpopup(CPPMapDta, event$id, event$lat, event$lng, "SIMD Crimes", "newplot4")
     })
   })
-  
-  # Clickable popups for map5
-  
-  showDZPopup5 <- function(group, lat, lng) {
-    selectedDZ <- CPPMapDta[CPPMapDta$DataZone == group,]
-    content <- as.character(tagList(
-      tags$h4(as.character(unique(selectedDZ$DataZone))),
-      sprintf(
-        "%s: %s\n",
-        "Emergency Admissions per 100,000", 
-        round(unique(selectedDZ[17]),2)
-      ), 
-      tags$br()
-    ))
-    leafletProxy("newplot5") %>% addPopups(lng, lat, content, layerId = group)
-  }
-  
-  # Makes the popups appear and clears old popups
   
   observe({
     leafletProxy("newplot5") %>% clearPopups()
@@ -1697,7 +1527,7 @@ shinyServer(function(input, output, session) {
     if (is.null(event))
       return()
     isolate({
-      showDZPopup5(event$id, event$lat, event$lng)
+      showDZpopup(CPPMapDta, event$id, event$lat, event$lng, "Emergency Admissions", "newplot5")
     })
   })
   
