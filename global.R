@@ -19,6 +19,7 @@ library(shinyWidgets)
 library(formattable)
 library(shinyalert)
 library(plotly)
+library(heatmaply)
 
 #Store value for the most recent year data is available, this needs to be changed when data is refreshed annually
 FrstYear <- "2009/10"
@@ -197,3 +198,53 @@ addColourSchemeColumn <- function (dataset, colName, input1, input2 = NULL) {
   }
   return(dta)
 }
+
+
+# NEW DATA VIZ SECTION ---------
+
+compare_cpp_data <- CPP_Imp %>%
+  filter(Year == RcntYear) %>%
+  filter(CPP != "Scotland")
+
+outcomes_only <- compare_cpp_data %>%
+  select(CPP, IndicatorFullName, value) %>%
+  pivot_wider(names_from = IndicatorFullName, values_from = value) %>%
+  mutate(CPP = factor(CPP, CPP)) %>%
+  column_to_rownames("CPP")
+
+outcomes_mtx <- round(as.matrix(outcomes_only), digits = 1)
+
+hmm <- round(normalize(outcomes_mtx), digits = 1)
+
+heatmap <- heatmaply(normalize(outcomes_mtx),
+                     colorbar_xanchor='left',
+                     colorbar_yanchor='middle', 
+                     colorbar_xpos=1, 
+                     colorbar_ypos=0.5,
+                     colorbar_len = 0.7,
+                     colorbar_thickness = 10,
+                     dendrogram = "none",
+                     # xlab = "", 
+                     # ylab = "", 
+                     # main = "",
+                     scale = "column",
+                     # grid_color = "white",
+                     #grid_width = 0.5,
+                     #titleX = FALSE,
+                     #hide_colorbar = TRUE,
+                     #branches_lwd = 0.1,
+                     plot_method = "plotly",
+                     label_names = c("Council", "Indicator", "S.D. from mean"),
+                     label_format_fun = round(outcomes_mtx, digits=1),
+                     #fontsize_row = 5, fontsize_col = 5,
+                     labCol = colnames(outcomes_mtx),
+                     labRow = rownames(outcomes_mtx),
+                     heatmap_layers = theme(axis.line=element_blank()),
+                     custom_hovertext = outcomes_mtx
+               
+)
+heatmap
+
+outcomes_only_lookup <- outcomes_only %>%
+  cbind(yref = (32:1)) %>%
+  rownames_to_column("Council")

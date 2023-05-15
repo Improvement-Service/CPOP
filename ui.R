@@ -141,44 +141,19 @@ body <- dashboardBody(
     tabItem(tabName = "P2",
           fluidPage(
             fluidRow(style = "padding-top:10px",
-              column(4,style = "margin-top:3px",uiOutput("CompSelection")),
-              column(5, style = "margin-top:1px",div(style = "display:block",tags$img(style = "margin-right:2px",src = "Legend - Selection.png"),
-                       span(textOutput("BarLA"), style = "font-size:1.4vw;; font-weight:bold; display:inline-block")),
-                     div(style = "display:block",tags$img(style = "margin-right:2px",src = "Legend - Comp.png"),
-                         span(textOutput("BarScot"), style = "font-size:1.4vw;; font-weight:bold; display:inline-block")),
-                     conditionalPanel("input.OtherCPP != ''",
-                                      div(style = "display:block",tags$img(style = "margin-right:2px",src = "Legend - LA.png"),
-                                          span(textOutput("BarComp"), style = "font-size:1.4vw;; font-weight:bold; display:inline-block")))
-              )
-            ),
-              div(style = "margin-top:10px",
-                  fluidRow(style = "margin-bottom:0px;margin-right:1px",
-                           plotWithMetadataPopup(Metadata, "plot_CPP_1", "Healthy Birthweight", "bottom", plotHeight = "28vh"),
-                           plotWithMetadataPopup(Metadata, "plot_CPP_2", "Primary 1 Body Mass Index", "bottom", plotHeight = "28vh"),
-                           plotWithMetadataPopup(Metadata, "plot_CPP_3", "Child Poverty", "bottom", plotHeight = "28vh"),
-                           plotWithMetadataPopup(Metadata, "plot_CPP_4", "Average Highest Attainment", "bottom", plotHeight = "28vh"),
-                           plotWithMetadataPopup(Metadata, "plot_CPP_5", "Positive Destinations", "bottom", plotHeight = "28vh"),
-                           plotWithMetadataPopup(Metadata, "plot_CPP_6", "Employment Rate", "bottom", plotHeight = "28vh")
-                  ),
-                  fluidRow(style = "margin-bottom:0px;margin-right:1px",
-                           plotWithMetadataPopup(Metadata, "plot_CPP_7", "Median Earnings", plotHeight = "28vh"),
-                           plotWithMetadataPopup(Metadata, "plot_CPP_8", "Out of Work Benefits", plotHeight = "28vh"),
-                           plotWithMetadataPopup(Metadata, "plot_CPP_9", "Business Survival", plotHeight = "28vh"),
-                           plotWithMetadataPopup(Metadata, "plot_CPP_10", "Crime Rate", plotHeight = "28vh"),
-                           plotWithMetadataPopup(Metadata, "plot_CPP_11", "Dwelling Fires", plotHeight = "28vh"),
-                           plotWithMetadataPopup(Metadata, "plot_CPP_12", "Carbon Emissions", plotHeight = "28vh")
-                  ),
-                  fluidRow(style = "margin-bottom:0px;margin-right:1px",
-                           plotWithMetadataPopup(Metadata, "plot_CPP_13", "Emergency Admissions", plotHeight = "28vh"),
-                           plotWithMetadataPopup(Metadata, "plot_CPP_14", "Unplanned Hospital Attendances", plotHeight = "28vh"),
-                           plotWithMetadataPopup(Metadata, "plot_CPP_15", "Early Mortality", plotHeight = "28vh"),
-                           plotWithMetadataPopup(Metadata, "plot_CPP_16", "Fragility", plotHeight = "28vh"),
-                           plotWithMetadataPopup(Metadata, "plot_CPP_17", "Well-being", plotHeight = "28vh"),
-                           plotWithMetadataPopup(Metadata, "plot_CPP_18", "Fuel Poverty", plotHeight = "28vh")
-                  )
-          )
-          
-    )), #end of Compare All CPPs ("P2")
+                     column(5,
+                            style = "margin-top:3px",
+                            uiOutput("CompSelection"),
+                            plotlyOutput("box_plot"),
+                            verbatimTextOutput("heatmap_hover"),
+                            plotlyOutput(outputId = "rank_chart")
+                            ),
+                     column(7,
+                            plotlyOutput(outputId = 'CPP_heatmap')
+                            )
+                     )
+            ) #end of fluidPage
+          ), #end of Compare All CPPs ("P2")
 
     # Compare Similar CPPs ("P3")---------------------------------
   tabItem(tabName = "P3",

@@ -1,7 +1,5 @@
 shinyServer(function(input, output, session) {
   
-  
-  
   output$clock <- renderText({
     invalidateLater(5000)
     Sys.time()
@@ -28,33 +26,36 @@ shinyServer(function(input, output, session) {
 
   output$firstHalfMenu <- renderMenu({
     req(input$LA1)
-    firstHalfMenuItems <- list(menuItem("CPP Over Time", tabName = "P1", icon = icon("line-chart")),
+    isolate(firstHalfMenuItems <- list(menuItem("CPP Over Time", tabName = "P1", icon = icon("line-chart")),
                          menuItem("Compare All CPPs", tabName = "P2", icon = icon("bar-chart")),
                          menuItem("Compare Similar CPPs", tabName = "P3", icon = icon("area-chart")),
                          menuItem("Inequality Over Time", tabName = "InQ", icon = icon("arrows-v")),
                          menuItem("Vulnerable Communities", tabName = "Vuln",icon = icon("table")),
                          menuItem("My Communities", tabName = "MyCom", icon = icon("columns")),
                          menuItem("Community Profile", tabName = "CP", icon = icon("arrow-down"))
-                         )
-    sidebarMenu(firstHalfMenuItems)
-    })#close renderMenu (firstHalfMenu)
+                         ))
+    isolate(sidebarMenu(firstHalfMenuItems))
+    }) %>% #close renderMenu (firstHalfMenu)
+    bindEvent(input$LA1, ignoreInit = TRUE, once = TRUE)
   
   output$secondHalfMenu <- renderMenu({
-    req(input$LA1)
-    secondHalfMenuItems <- list( menuItem("All Communities", tabName = "allCom", icon = icon("picture-o")),
+    #req(input$LA1)
+    isolate(secondHalfMenuItems <- list( menuItem("All Communities", tabName = "allCom", icon = icon("picture-o")),
                                  menuItem("Data Zone Comparison", tabName = "Map2", icon = icon("globe")),
                                  menuItem("About/ Data Download", tabName = "DtaDL", icon = icon("download"))
-                                 )
-    sidebarMenu(secondHalfMenuItems)
-    })#close renderMenu (secondHalfMenu)
+                                 ))
+    isolate(sidebarMenu(secondHalfMenuItems))
+    }) %>% #close renderMenu (secondHalfMenu)
+    bindEvent(input$LA1, ignoreInit = TRUE, once = TRUE)
   
   }, once = TRUE)#close observe event
   
   #dynamically render the select a community drop down depending on whether the CP is currently selected.
   output$communityDropDown <- renderMenu({
-    req(input$LA1)
+   #req(input$LA1)
     conditionalPanel(condition = 'input.tabs == "CP" && input.LA1 !== null', selectInput("CommunityCP", "Select a Community:", choices = communities_list()))
-  })
+  }) %>% 
+    bindEvent(input$LA1, ignoreInit = TRUE, once = TRUE)
   
   # "Map1" scotMap ------
     
@@ -232,79 +233,77 @@ shinyServer(function(input, output, session) {
                      onInitialize = I('function() { this.setValue(""); }')))
   })
   
-# "P2" Render compare CPP plots loop-----------------
+# "P2" new data viz-----------------
   
-  P2_selections_data <- reactive({
-    dta <- CPP_Imp %>%
-      filter( Year == RcntYear) %>%
-      addColourSchemeColumn(CPP, input$LA1, input$OtherCPP)
+  output$CPP_heatmap <- renderPlotly({
+    heatmap %>% 
+      layout(width = 750, height = 750) %>%
+      event_register("plotly_click")
+  })
+  
+  bar_click <- NULL
+  selected_cpp_bar <- reactiveVal("")
+  selected_ind <- reactiveVal()
+  selected_cpp <- reactiveVal()
+  
+  observeEvent(event_data("plotly_click", source = "A"),{
+    cell_click_data <- (event_data("plotly_click", source = "A"))
+    selected_ind(colnames(outcomes_mtx)[cell_click_data$x[1]])
+    selected_cpp(outcomes_only_lookup[outcomes_only_lookup$yref == cell_click_data$y[1],]$Council)
+  })
+  
+  output$heatmap_hover <- renderPrint({
+    event_data("plotly_click", source = "rank_chart")
+  })
+  
+  CPP_ind_data <- reactive({
+    data <- outcomes_only_lookup %>%
+      select(Council, selected_ind())%>%
+      rename("Ind" = selected_ind()) %>%
+      mutate(colour = if_else(Council == selected_cpp(), "A", if_else(Council == selected_cpp_bar(), "B", "C")))
+  })
+  
+  output$rank_chart <- renderPlotly({
+    
+    colours <- c("Red", "Grey", "Grey")
+    if(selected_cpp_bar() != "") {
+      colours <- c("Red", "Blue", "Grey")
+    }
+    x <- ggplot(CPP_ind_data(), aes(x=Council, y=Ind, fill = colour)) + 
+      geom_bar(stat = "identity") +
+      scale_fill_manual(values = colours)
+    ggplotly(x, source = "rank_chart") 
+  })
+  
+  output$box_plot <- renderPlotly({
+    x <- ggplot() +
+      # box plot of mtcars (mpg vs cyl)
+      geom_boxplot(data = CPP_ind_data(), 
+                   aes(x= "Council", y= Ind)) +
+      coord_flip() +
+      # points of data.frame literal
+      geom_point(data = filter(CPP_ind_data(), Council == selected_cpp()),
+                 aes(x="Council", y=Ind),
+                 color = 'red',
+                 size = 3) + 
+      geom_point(data = filter(CPP_ind_data(), Council == selected_cpp_bar()),
+                 aes(x="Council", y=Ind),
+                 color = 'blue')
+    ggplotly(x) 
+    
   })
 
-  for(i in seq_along(indicators)){
-    local({
-      this_i <- i
-      plotnameCPP <- paste("plot_CPP", this_i, sep ="_")
-      output[[plotnameCPP]] <- renderPlot({
-        
-    req(input$LA1)
-    # #filter so that the Scotland value isn't a bar on the plot
+   observeEvent(event_data("plotly_click", source = "rank_chart"), {
+     bar_click_data <- (event_data("plotly_click", source = "rank_chart"))
+    selected_cpp_bar(rownames(outcomes_mtx)[bar_click_data$x[1]])
+     
+   })
+  
 
-    dtaNoScot <- P2_selections_data() %>% filter(CPP != "Scotland")
   
-    #Generate plots
-    indi <- indicators
-    ##calculate maximum limit for y axis  
-      maxAx <- max(dtaNoScot[dtaNoScot$Indicator == indi[[this_i]],5])*1.05
-      minAx <- 0
-      ggplot(data = filter(dtaNoScot, Indicator == indi[[this_i]])) +
-        geom_bar(aes(
-          x = if((first(`High is Positive?`))== "Yes"){reorder(CPP, value)}else{reorder(CPP, -value)}, 
-          y = value, 
-          fill = colourscheme
-          ), 
-          stat = "identity",
-          position = "dodge",
-          #colour = "black",
-          width = 0.8
-        ) +
-        #ALTERED
-        #sclFll+
-        scale_fill_manual(values = c("lightblue2","red2", "green4"), breaks = c("C", "A", "B")) +
-        #scale_x_discrete(label = function(x) abbreviate(x, minlength = 4))+
-        scale_y_continuous(expand = c(0,0), limits = c(minAx, maxAx))+    
-        guides(fill = "none") +
-        ggtitle(indi[[this_i]])+
-        xlab("")+
-        ylab("")+
-        #    {if(input$ScotCheckbox == TRUE)
-        geom_hline(aes(
-          yintercept = filter(P2_selections_data(), CPP == "Scotland" & Indicator == indi[[this_i]])$value
-          ), colour = "navyblue", size = 1.2
-        )+
-          #} +
-        
-        theme_bw()+
-        theme(axis.text.x = element_blank(),
-              axis.ticks.x = element_blank(),
-          #axis.text.x = element_text(angle =90, hjust =1, vjust = 0),
-              plot.title = element_text(face = "bold", size = 9),
-              panel.grid.major = element_blank(),
-              panel.grid.minor = element_blank(),
-          plot.margin = unit(c(2,2,15,2),"mm"))
-    })
-  })
-  } #end of plot loop
   
-  # "P2" legend text --------------
-  output$BarLA <- renderText({
-    txt <- input$LA1
-  })
-  output$BarComp <- renderText({
-    txt <- input$OtherCPP
-  })
-  output$BarScot <- renderText({
-    txt <- "Scotland"
-  })
+  
+  
   
   # "P3" Create Graphs for CPP similar loop ----------------------------------------------------------------
   for(i in seq_along(indicators)){
