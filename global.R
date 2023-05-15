@@ -19,6 +19,8 @@ library(shinyWidgets)
 library(formattable)
 library(shinyalert)
 
+
+
 #Store value for the most recent year data is available, this needs to be changed when data is refreshed annually
 FrstYear <- "2009/10"
 RcntYear <- "2020/21"
@@ -61,6 +63,44 @@ CPPMapDta[[14]] <- as.numeric(CPPMapDta[[14]])
 ##read in Fife data for MyCommunity
 IGZ_latest_Fife <- read_csv("data/IGZ_latest_Fife.csv")
 IGZ_change_Fife <- read_csv("data/IGZ_change_Fife.csv")
+
+#global variables (taken from server)------------
+#list of indicators
+indicators_1 <- c("Healthy Birthweight", "Primary 1 Body Mass Index", "Child Poverty",
+                  "Attainment", "Positive Destinations", "Employment Rate",
+                  "Median Earnings", "Out of Work Benefits", "Business Survival",
+                  "Crime Rate", "Dwelling Fires", "Carbon Emissions", 
+                  "Emergency Admissions", "Unplanned Hospital Attendances",
+                  "Early Mortality", "Fragility", "Well-being", "Fuel Poverty"
+)
+
+indis <- c("Healthy Birthweight", "Primary 1 Body Mass Index", "Child Poverty",
+           "Attainment", "Positive Destinations", "Employment Rate",
+           "Median Earnings", "Out of Work Benefits", "Business Survival",
+           "Crime Rate", "Dwelling Fires", "Carbon Emissions", 
+           "Emergency Admissions", "Unplanned Hospital Attendances",
+           "Early Mortality", "Fragility", "Well-being", "Fuel Poverty")
+
+# "Map2" colours
+clrs      <- brewer.pal(7, "RdYlGn")
+clrsCB    <- rev(brewer.pal(7, "YlGnBu"))
+povPal    <- colorBin(rev(clrs), SpPolysDF@data$povDecs)
+povPalCB  <- colorBin(rev(clrsCB), SpPolysDF@data$povDecs)
+tariffPal <- colorBin(clrs, SpPolysDF@data$tariffDecs)
+tariffPalCB <- colorBin(clrsCB, SpPolysDF@data$tariffDecs)
+posPal    <- colorBin(clrs, SpPolysDF@data$posDecs)
+posPalCB  <- colorBin(clrsCB, SpPolysDF@data$posDecs)
+benPal    <- colorBin(rev(clrs), SpPolysDF@data$benDecs)
+benPalCB    <- colorBin(rev(clrsCB), SpPolysDF@data$benDecs)
+crimePal  <- colorBin(rev(clrs), SpPolysDF@data$crimeDecs)
+crimePalCB  <- colorBin(rev(clrsCB), SpPolysDF@data$crimeDecs)
+admisPal  <- colorBin(rev(clrs), SpPolysDF@data$admisDecs)
+admisPalCB  <- colorBin(rev(clrsCB), SpPolysDF@data$admisDecs)
+
+# Colours for Community Map
+communityPal <- colorBin(clrs, SpPolysIZ@data$rank_decs)
+communityPalCB <- colorBin(clrsCB, SpPolysIZ@data$rank_decs)
+
 
 #family groups=========================
 #read in family group data
@@ -199,3 +239,4 @@ popOvs <- function(pltnm,Title,Def,Tm,Src, plc = "top", pltHght = "25vh"){
          )
   )
 }
+
