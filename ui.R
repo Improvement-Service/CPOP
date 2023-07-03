@@ -3,7 +3,6 @@ sidebar <- dashboardSidebar(
   selectizeInput("LA1", "Select a CPP:",
                  choices =CPPNames, options = list(placeholder = "CPP",
                   onInitialize = I('function() { this.setValue(""); }'))),
-  
   sidebarMenu(id = "tabs",
               menuItem("Community Map", tabName = "Map1", icon = icon("map")),
               sidebarMenuOutput("firstHalfMenu"), #placeholder for hidden menu items (shown only when user selects LA)
@@ -31,6 +30,11 @@ body <- dashboardBody(
       background-color: #ffffff;
     }",
       "#comProgressBox{width:80%; padding-right:0px; padding-left:0px}",
+      "#vulnerable_change{width:80vw !important; height:100vh !important}",
+      "#vulnerable_outcomes_plot{width:80vw !important}",
+      "#vulnerable_change_text{width:70vw !important}",
+      "#community_bump_chart{width:80vw !important}",
+      
       "#SimCPP{height:90vh !important}",
       "#CompCPP{height:75vh !important; margin-top:15px}",
       ".main-header .logo {text-align:left; padding-left:0px}",
@@ -139,21 +143,46 @@ body <- dashboardBody(
     
     # Compare All CPPs ("P2")-------------------------------
     tabItem(tabName = "P2",
-          fluidPage(
-            fluidRow(style = "padding-top:10px",
-                     column(5,
-                            style = "margin-top:3px",
-                            uiOutput("CompSelection"),
-                            plotlyOutput("box_plot"),
-                            verbatimTextOutput("heatmap_hover"),
-                            plotlyOutput(outputId = "rank_chart")
-                            ),
-                     column(7,
-                            plotlyOutput(outputId = 'CPP_heatmap')
-                            )
-                     )
-            ) #end of fluidPage
-          ), #end of Compare All CPPs ("P2")
+            fluidPage(
+              fluidRow(style = "padding-top:10px",
+                       column(4,style = "margin-top:3px",uiOutput("CompSelection")),
+                       column(5, style = "margin-top:1px",div(style = "display:block",tags$img(style = "margin-right:2px",src = "Legend - Selection.png"),
+                                                              span(textOutput("BarLA"), style = "font-size:1.4vw;; font-weight:bold; display:inline-block")),
+                              div(style = "display:block",tags$img(style = "margin-right:2px",src = "Legend - Comp.png"),
+                                  span(textOutput("BarScot"), style = "font-size:1.4vw;; font-weight:bold; display:inline-block")),
+                              conditionalPanel("input.OtherCPP != ''",
+                                               div(style = "display:block",tags$img(style = "margin-right:2px",src = "Legend - LA.png"),
+                                                   span(textOutput("BarComp"), style = "font-size:1.4vw;; font-weight:bold; display:inline-block")))
+                       )
+              ),
+              div(style = "margin-top:10px",
+                  fluidRow(style = "margin-bottom:0px;margin-right:1px",
+                           plotWithMetadataPopup(Metadata, "plot_CPP_1", "Healthy Birthweight", "bottom", plotHeight = "28vh"),
+                           plotWithMetadataPopup(Metadata, "plot_CPP_2", "Primary 1 Body Mass Index", "bottom", plotHeight = "28vh"),
+                           plotWithMetadataPopup(Metadata, "plot_CPP_3", "Child Poverty", "bottom", plotHeight = "28vh"),
+                           plotWithMetadataPopup(Metadata, "plot_CPP_4", "Average Highest Attainment", "bottom", plotHeight = "28vh"),
+                           plotWithMetadataPopup(Metadata, "plot_CPP_5", "Positive Destinations", "bottom", plotHeight = "28vh"),
+                           plotWithMetadataPopup(Metadata, "plot_CPP_6", "Employment Rate", "bottom", plotHeight = "28vh")
+                  ),
+                  fluidRow(style = "margin-bottom:0px;margin-right:1px",
+                           plotWithMetadataPopup(Metadata, "plot_CPP_7", "Median Earnings", plotHeight = "28vh"),
+                           plotWithMetadataPopup(Metadata, "plot_CPP_8", "Out of Work Benefits", plotHeight = "28vh"),
+                           plotWithMetadataPopup(Metadata, "plot_CPP_9", "Business Survival", plotHeight = "28vh"),
+                           plotWithMetadataPopup(Metadata, "plot_CPP_10", "Crime Rate", plotHeight = "28vh"),
+                           plotWithMetadataPopup(Metadata, "plot_CPP_11", "Dwelling Fires", plotHeight = "28vh"),
+                           plotWithMetadataPopup(Metadata, "plot_CPP_12", "Carbon Emissions", plotHeight = "28vh")
+                  ),
+                  fluidRow(style = "margin-bottom:0px;margin-right:1px",
+                           plotWithMetadataPopup(Metadata, "plot_CPP_13", "Emergency Admissions", plotHeight = "28vh"),
+                           plotWithMetadataPopup(Metadata, "plot_CPP_14", "Unplanned Hospital Attendances", plotHeight = "28vh"),
+                           plotWithMetadataPopup(Metadata, "plot_CPP_15", "Early Mortality", plotHeight = "28vh"),
+                           plotWithMetadataPopup(Metadata, "plot_CPP_16", "Fragility", plotHeight = "28vh"),
+                           plotWithMetadataPopup(Metadata, "plot_CPP_17", "Well-being", plotHeight = "28vh"),
+                           plotWithMetadataPopup(Metadata, "plot_CPP_18", "Fuel Poverty", plotHeight = "28vh")
+                  )
+              )
+              
+            )), #end of Compare All CPPs ("P2")
 
     # Compare Similar CPPs ("P3")---------------------------------
   tabItem(tabName = "P3",
@@ -209,66 +238,89 @@ body <- dashboardBody(
   # Vulnerable Communities ("Vuln")-------------------------
   tabItem(tabName = "Vuln",
           mainPanel(
-            fluidPage(
+            fluidRow(
+              h2("How have outcomes changed for the 5 most vulnerable communities?"),
+            tabsetPanel(
+              tabPanel("Percentage Change",
               fluidRow(
                 column(12,
-                       textOutput("HeaderVuln"),
-                       tableOutput("VulnTable")
+                     #h1("% Positive Change"),
+                       div(style = "margin-top:5px",
+                           span(style = "font-size:15px;",
+                           htmlOutput("vulnerable_change_text"))
+                       )#end of div
                 )
-              )
+                ), #end of fluidRow
+                fluidRow(
+                column(12,
+                       div(style = "margin-top:10px",
+                           plotlyOutput("vulnerable_change",  height = "100%"))
+                )
+                ), #end of fluidrow
+              
+              ), #end of tabpanel
+              tabPanel("Value Change",
+                       fluidRow(
+                         column(6,
+                                selectizeInput(
+                                  "vuln_indicator",
+                                  "Select indicator:",
+                                  unique(vulnerable_communities_data$Indicator),
+                                  selected = "Attainment"
+                                ))
+                       ),
+                       fluidRow(
+                         column(12,
+                                plotlyOutput("vulnerable_outcomes_plot", height = "100%"))
+                       ))
             )
+          )
           )
   ), #end of Vulnerable Communities ("Vuln")
   # My Communities ("MyCom")---------------
   tabItem(tabName = "MyCom",
-          fluidPage(style = "padding-right:30px,overflow-y: auto;",
-                    tags$head(
-                      tags$style(HTML("
-                              .multicol {
-                              height:90px;
-                              
-                              -webkit-column-count: 3; /* Chrome, Safari, Opera */
-                              
-                              -moz-column-count: 3; /* Firefox */
-                              
-                              column-count: 3;
-                              
-                              }
-                              
-                              "))
+          fluidPage(
+            fluidRow(
+              span(style = "font-size:18px;",
+                   htmlOutput("my_communities_header")
+                   )
+              ),
+            fluidRow(
+              span(style = "font-size:14px;", 
+                   htmlOutput("my_communities_intro")
+                   )
+              ),
+            fluidRow(
+              column(4, 
+                     style = "padding-right:0px; padding-left:5px",
+                     awesomeRadio("View",
+                                  "Show:",
+                                  c("All", "First 5", "First 10"),
+                                  inline = TRUE)),
+              column(1),
+              column(5,
+                     tags$div(
+                       selectizeInput("IndiMyCom",
+                                      "Select indicator:",
+                                      c(unique(IGZdta$Indicator), "All"),
+                                      selected = "All"
+                                      )
+                       )
+                     )
                     ),
-                    fluidRow(
-                      column(
-                        2, style = "padding-right:0px; padding-left:5px",
-                        awesomeRadio(
-                          "View","Select Display",
-                          c("Top/bottom 5","Top/bottom 10","All"),
-                          inline = FALSE)),
-                      column(3, style= "padding-left:0px",valueBoxOutput("comProgressBox"),
-                             checkbox = TRUE
-                      ),
-                      column(
-                        7,
-                        tags$div(
-                          class = "multicol",
-                          awesomeCheckboxGroup(
-                            "IndiMyCom",
-                            "Select indicators",
-                            unique(IGZdta$Indicator),
-                            selected = unique(IGZdta$Indicator)
-                          )
-                          
-                        ))
-                    ),
-                    
-                    fluidRow(
-                      conditionalPanel(condition = "input.LA1 == 'Fife'", selectInput("Fife_SA","Select Strategic Area", choices = c("All","Cowdenbeath", "Dunfermline", "Glenrothes", "Kirkcaldy","Levenmouth", "North East Fife", "South West Fife"))),
-                      uiOutput("arr1"),
-                      column(10,div(style = "margin-left:9px",DT::dataTableOutput("MyCommunitiesTbl"))),
-                      column(1,div(tags$img(style = "max-width:150%; width:150%",src = "Arrow2.PNG")))
-                    )
-                    
-          )
+            fluidRow(
+              conditionalPanel(
+                condition = "input.LA1 == 'Fife'", 
+                selectInput("Fife_SA",
+                            "Select Strategic Area", 
+                            choices = c("All","Cowdenbeath", "Dunfermline", "Glenrothes", "Kirkcaldy","Levenmouth", "North East Fife", "South West Fife")
+                            )
+                ),
+              column(12, 
+                     plotlyOutput("community_bump_chart", width = "100%")%>% withSpinner(type = 6)
+                     )
+              )
+            )
   ), #  end of My Communities ("MyCom")
   
   # Community profile ("CP")-----------------------------
@@ -324,7 +376,7 @@ body <- dashboardBody(
                 column(6,
                        style = "padding-left:0px",box(
                          width = 12, 
-                         plotOutput("CPplots", height = "700px"),
+                         plotOutput("CPplots", height = "700px") %>% withSpinner(type = 6),
                          fluidRow(
                            column(
                              6,
@@ -401,7 +453,9 @@ body <- dashboardBody(
   # Data Zone Comparison ("Map2")----------------
   tabItem(tabName = "Map2",
           fluidPage(
-                                    div(style = "margin-left:40px", uiOutput("IZUI")),
+            div(
+              style = "margin-left:40px", 
+              uiOutput("IZUI")),
             conditionalPanel("input.CPP != ' '", 
                            fluidRow(splitLayout(cellWidths = c("33%", "33%", "33%"),
                         h4("Percentage of Children in Poverty"), 
@@ -487,7 +541,7 @@ dashboardPage(title = "CPOP",
                                     }')
         )
       ),
-      div(style = "padding-right:20px; padding-top:5px",actionBttn("HelpButton", "Help with this page", icon = icon("question-circle"), style = "jelly")))
+      div(style = "padding-right:20px; padding-top:5px",actionBttn("HelpButton", "Help with this page", icon = icon("question-circle", verify_fa = FALSE), style = "jelly")))
     ),
   sidebar,
   body

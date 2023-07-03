@@ -17,9 +17,9 @@ library(kableExtra)
 library(shinyjs)
 library(shinyWidgets)
 library(formattable)
-library(shinyalert)
+library(shinyalert, quietly = TRUE)
 library(plotly)
-library(heatmaply)
+library(ggbump)
 
 #Store value for the most recent year data is available, this needs to be changed when data is refreshed annually
 FrstYear <- "2009/10"
@@ -37,25 +37,28 @@ LblProj <- "23/24"
 SpPolysDF <- read_rds("data/Shapes_decs.rds")
 SpPolysIZ <- read_rds("data/IZshapes_decs.rds")
 SpPolysLA <- read_rds("data/LAShps.rds")
-CPPdta <- read_csv("data/CPPcleandata.csv")
-CPP_Imp <- read_csv("data/Imp_rate_CPP.csv")
-IGZdta <- read_csv("data/IGZcleandata.csv")
-IGZ_latest <- read_csv("data/IGZ_latest.csv")
-IGZ_change <- read_csv("data/IGZ_change.csv")
-Metadata <- read_csv("data/Metadata.csv")
-VulnComm <- read_csv("data/Formatted Vulnerable Communities.csv")
+CPPdta <- read_csv("data/CPPcleandata.csv", show_col_types = FALSE)
+CPP_Imp <- read_csv("data/Imp_rate_CPP.csv", show_col_types = FALSE)
+IGZdta <- read_csv("data/IGZcleandata.csv", show_col_types = FALSE)
+IGZ_latest <- read_csv("data/IGZ_latest.csv", show_col_types = FALSE)
+IGZ_change <- read_csv("data/IGZ_change.csv", show_col_types = FALSE)
+Metadata <- read_csv("data/Metadata.csv", show_col_types = FALSE)
+# VulnComm <- read_csv("data/Formatted Vulnerable Communities.csv", show_col_types = FALSE)
+# 
+# VulnComm$Most_Deprived_Comm[VulnComm$Most_Deprived_Comm == 6] <- ""
+# VulnComm[VulnComm$AreaLabel == "CPP Average", c(4,7,10,13,16,19,22,25,28)] <- ""
+# VulnComm <- as.data.frame(VulnComm)
 
-VulnComm$Most_Deprived_Comm[VulnComm$Most_Deprived_Comm == 6] <- ""
-VulnComm[VulnComm$AreaLabel == "CPP Average", c(4,7,10,13,16,19,22,25,28)] <- ""
-VulnComm <- as.data.frame(VulnComm)
+#NEW VIZ DATA FORMAT (calculations in Other Code/7. Vulnerable community calcs.R)
+vulnerable_communities_data <- read_csv("data/vulnerable_communities_outcomes_and_change.csv", show_col_types = FALSE)
 
 #rename Edinburgh
 SpPolysIZ@data[SpPolysIZ@data$council == "Edinburgh","council"] <- "Edinburgh, City of" 
 SpPolysDF@data[SpPolysDF@data$council == "Edinburgh","council"] <- "Edinburgh, City of" 
 
 #extract data and rename indicator columns (col names will be used directly in leaflet pop-ups in UI)
-CPPMapDta <- SpPolysDF@data  %>%
-  rename("Children in Poverty (%)" = "% of children in poverty", 
+CPPMapDta <- SpPolysDF@data %>%
+  dplyr::rename("Children in Poverty (%)" = "% of children in poverty", 
          "Average Highest Attainment" = "Average highest attainment",
          "Out of Work Benefits (%)" = "% of population (aged 16-64) in receipt of out of work benefits", 
          "SIMD Crimes per 10,000" = "Number of SIMD crimes per 10,000 of the population", 
@@ -66,11 +69,13 @@ CPPMapDta[[14]] <- as.numeric(CPPMapDta[[14]])
 
 
 ##read in Fife data for MyCommunity
-IGZ_latest_Fife <- read_csv("data/IGZ_latest_Fife.csv")
-IGZ_change_Fife <- read_csv("data/IGZ_change_Fife.csv")
+IGZ_latest_Fife <- read_csv("data/IGZ_latest_Fife.csv", show_col_types = FALSE)
+IGZ_change_Fife <- read_csv("data/IGZ_change_Fife.csv", show_col_types = FALSE)
 
 #global variables (taken from server)------------
 #list of indicators
+
+iz_indicators <- unique(IGZ_change$Indicator)
 indicators <- c("Healthy Birthweight", "Primary 1 Body Mass Index", "Child Poverty",
                   "Attainment", "Positive Destinations", "Employment Rate",
                   "Median Earnings", "Out of Work Benefits", "Business Survival",
@@ -83,7 +88,7 @@ indicators <- c("Healthy Birthweight", "Primary 1 Body Mass Index", "Child Pover
 CPPNames <- unique(CPPMapDta[CPPMapDta$council != "Scotland", "council"])
 
 ##Read in Duncan Index Scores and calculate whether improving
-DIdta <- read_csv("data/DuncanIndex.csv")
+DIdta <- read_csv("data/DuncanIndex.csv", show_col_types = FALSE)
 DIdta <- DIdta[,-5]
 DIdta <- gather(DIdta, "ind", "value",3:9) 
 DIdta <- na.omit(DIdta)
@@ -198,53 +203,3 @@ addColourSchemeColumn <- function (dataset, colName, input1, input2 = NULL) {
   }
   return(dta)
 }
-
-
-# NEW DATA VIZ SECTION ---------
-
-compare_cpp_data <- CPP_Imp %>%
-  filter(Year == RcntYear) %>%
-  filter(CPP != "Scotland")
-
-outcomes_only <- compare_cpp_data %>%
-  select(CPP, IndicatorFullName, value) %>%
-  pivot_wider(names_from = IndicatorFullName, values_from = value) %>%
-  mutate(CPP = factor(CPP, CPP)) %>%
-  column_to_rownames("CPP")
-
-outcomes_mtx <- round(as.matrix(outcomes_only), digits = 1)
-
-hmm <- round(normalize(outcomes_mtx), digits = 1)
-
-heatmap <- heatmaply(normalize(outcomes_mtx),
-                     colorbar_xanchor='left',
-                     colorbar_yanchor='middle', 
-                     colorbar_xpos=1, 
-                     colorbar_ypos=0.5,
-                     colorbar_len = 0.7,
-                     colorbar_thickness = 10,
-                     dendrogram = "none",
-                     # xlab = "", 
-                     # ylab = "", 
-                     # main = "",
-                     scale = "column",
-                     # grid_color = "white",
-                     #grid_width = 0.5,
-                     #titleX = FALSE,
-                     #hide_colorbar = TRUE,
-                     #branches_lwd = 0.1,
-                     plot_method = "plotly",
-                     label_names = c("Council", "Indicator", "S.D. from mean"),
-                     label_format_fun = round(outcomes_mtx, digits=1),
-                     #fontsize_row = 5, fontsize_col = 5,
-                     labCol = colnames(outcomes_mtx),
-                     labRow = rownames(outcomes_mtx),
-                     heatmap_layers = theme(axis.line=element_blank()),
-                     custom_hovertext = outcomes_mtx
-               
-)
-heatmap
-
-outcomes_only_lookup <- outcomes_only %>%
-  cbind(yref = (32:1)) %>%
-  rownames_to_column("Council")
