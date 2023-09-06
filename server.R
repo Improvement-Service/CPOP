@@ -5,18 +5,18 @@ shinyServer(function(input, output, session) {
     Sys.time()
   })
   
-  #shiny alert pop-up------------------------
-  shinyalert(title = "", 
-             text = tags$div(class="header", 
-                             checked=NA,
-                             tags$i(class = "fa-solid fa-circle-info", style="font-size: 42px; color:#295D8A; padding: 15px 15px"),
-                             tags$p("Welcome", style = "color:#295D8A; font-size: 26px"),
-                             tags$br(),
-                             tags$p("The Community Planning Outcomes Profiler is for tracking improvement in communities across Scotland.", style="color:#4682B4"),
-                             tags$br(),
-                             HTML("<p style = color:#4682B4><b>To get started </b> use the map (or the dropdown in the sidebar) to select a CPP, then use the menu on the left to explore the data.</p>"),
-                             ),
-             html = TRUE)
+  # #shiny alert pop-up------------------------
+  # shinyalert(title = "", 
+  #            text = tags$div(class="header", 
+  #                            checked=NA,
+  #                            tags$i(class = "fa-solid fa-circle-info", style="font-size: 42px; color:#295D8A; padding: 15px 15px"),
+  #                            tags$p("Welcome", style = "color:#295D8A; font-size: 26px"),
+  #                            tags$br(),
+  #                            tags$p("The Community Planning Outcomes Profiler is for tracking improvement in communities across Scotland.", style="color:#4682B4"),
+  #                            tags$br(),
+  #                            HTML("<p style = color:#4682B4><b>To get started </b> use the map (or the dropdown in the sidebar) to select a CPP, then use the menu on the left to explore the data.</p>"),
+  #                            ),
+  #            html = TRUE)
 
   
   #dynamic sidebar output-----------------------
