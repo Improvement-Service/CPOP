@@ -814,13 +814,13 @@ shinyServer(function(input, output, session) {
     bottom10communities <- my_communities_data$IZ[my_communities_data$Category == "CPP Outcomes" & my_communities_data$Rank >= n_communities - 10]
     
     
-    if(show == "First/Last 5") {
+    if(show == "Most/Least 5") {
       my_communities_data <- my_communities_data %>%
         filter(IZ %in% top10communities[1:5] | IZ %in% bottom10communities[6:10]) %>%
         unique()
       
       
-    } else if (show == "First/Last 10") {
+    } else if (show == "Most/Least 10") {
       my_communities_data <- my_communities_data %>%
         filter(IZ %in% top10communities | IZ %in% bottom10communities) %>%
         unique()
@@ -842,7 +842,7 @@ shinyServer(function(input, output, session) {
       if(input$CBCols){my_comm_colours <- c(rev(RColorBrewer::brewer.pal("YlGnBu", n = 9))[1:9])}
       else{my_comm_colours <- c(RColorBrewer::brewer.pal("RdYlGn", n = 9)[1:9])}
     } 
-    else if (show == "First/Last 10" | show == "First/Last 5") {
+    else if (show == "Most/Least 10" | show == "Most/Least 5") {
       if(input$CBCols){my_comm_colours <- c(rev(RColorBrewer::brewer.pal("YlGnBu", n = 9))[colour_groups])}
       else{my_comm_colours <- c(RColorBrewer::brewer.pal("RdYlGn", n = 9)[colour_groups])}
     }
