@@ -75,7 +75,6 @@ IGZ_change_Fife <- read_csv("data/IGZ_change_Fife.csv", show_col_types = FALSE)
 #global variables (taken from server)------------
 #list of indicators
 
-iz_indicators <- unique(IGZ_change$Indicator)
 indicators <- c("Healthy Birthweight", "Primary 1 Body Mass Index", "Child Poverty",
                   "Attainment", "Positive Destinations", "Employment Rate",
                   "Median Earnings", "Out of Work Benefits", "Business Survival",

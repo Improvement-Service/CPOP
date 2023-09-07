@@ -674,11 +674,11 @@ shinyServer(function(input, output, session) {
     # rankings for outcomes
     if(input$LA1 == "Fife" & input$Fife_SA != "All"){
       IGZBest <- left_join(IGZ_latest, IGZ_latest_Fife, by = c("InterZone", "Indicator")) %>% 
-        filter(CPP == "Fife" & `Strategic Area` == input$Fife_SA & Indicator %in% iz_indicators) %>%
+        filter(CPP == "Fife" & `Strategic Area` == input$Fife_SA & Indicator %in% input$IndiMyCom) %>%
         select(-CPPScore)
       IGZBest <-setDT(IGZBest)[, CombinedCPPScore := sum(SAScore), by = InterZone]
     }else{
-      IGZBest <- filter(IGZ_latest, CPP %in% input$LA1 & Indicator %in% iz_indicators)
+      IGZBest <- filter(IGZ_latest, CPP %in% input$LA1 & Indicator %in% input$IndiMyCom)
       IGZBest <-setDT(IGZBest)[, CombinedCPPScore := sum(CPPScore), by = InterZone]
     }
     # Filter data so that combined scores are only displayed once for each IGZ
@@ -700,13 +700,13 @@ shinyServer(function(input, output, session) {
       IGZImprovement <- left_join(IGZ_change, IGZ_change_Fife, by = c("InterZone", "Indicator")) %>% 
         filter(CPP == "Fife" & 
                  `Strategic.Area` == input$Fife_SA & 
-                 Indicator %in% iz_indicators) %>%
+                 Indicator %in% input$IndiMyCom) %>%
         select(-CPPChangeScore)
       IGZImprovement <- setDT(IGZImprovement)[,CombinedCPPChangeScore := sum(SAChangeScore), by = InterZone]
       IGZImprovement <- setDT(IGZImprovement)[,CombinedTypeChangeScore := sum(TypeChangeScore), by = InterZone]
     }else{
       
-      IGZImprovement <- filter(IGZ_change, CPP %in% input$LA1 & Indicator %in% iz_indicators)
+      IGZImprovement <- filter(IGZ_change, CPP %in% input$LA1 & Indicator %in% input$IndiMyCom)
       IGZImprovement <- setDT(IGZImprovement)[,CombinedCPPChangeScore := sum(CPPChangeScore), by = InterZone]
       IGZImprovement <- setDT(IGZImprovement)[,CombinedTypeChangeScore := sum(TypeChangeScore), by = InterZone]
     }
