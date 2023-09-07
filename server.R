@@ -6,59 +6,59 @@ shinyServer(function(input, output, session) {
   })
   
   #shiny alert pop-up------------------------
-  shinyalert(title = "", 
-             text = tags$div(class="header", 
-                             checked=NA,
-                             tags$i(class = "fa-solid fa-circle-info", style="font-size: 42px; color:#295D8A; padding: 15px 15px"),
-                             tags$p("Welcome", style = "color:#295D8A; font-size: 26px"),
-                             tags$br(),
-                             tags$p("The Community Planning Outcomes Profiler is for tracking improvement in communities across Scotland.", style="color:#4682B4"),
-                             tags$br(),
-                             HTML("<p style = color:#4682B4><b>To get started </b> use the map (or the dropdown in the sidebar) to select a CPP, then use the menu on the left to explore the data.</p>"),
-                             ),
-             html = TRUE)
-
+  # shinyalert(title = "", 
+  #            text = tags$div(class="header", 
+  #                            checked=NA,
+  #                            tags$i(class = "fa-solid fa-circle-info", style="font-size: 42px; color:#295D8A; padding: 15px 15px"),
+  #                            tags$p("Welcome", style = "color:#295D8A; font-size: 26px"),
+  #                            tags$br(),
+  #                            tags$p("The Community Planning Outcomes Profiler is for tracking improvement in communities across Scotland.", style="color:#4682B4"),
+  #                            tags$br(),
+  #                            HTML("<p style = color:#4682B4><b>To get started </b> use the map (or the dropdown in the sidebar) to select a CPP, then use the menu on the left to explore the data.</p>"),
+  #                            ),
+  #            html = TRUE)
+  
   
   #dynamic sidebar output-----------------------
   #observe FIRST instance of LA1 input, and render the sidebar menu items in two halves (this is to accommodate the
   #conditional panel (community drop down list) which is rendered between these menu items)
   observeEvent(input$LA1,{
-
-  output$firstHalfMenu <- renderMenu({
-    req(input$LA1)
-    isolate(firstHalfMenuItems <- list(menuItem("CPP Over Time", tabName = "P1", icon = icon("line-chart", verify_fa = FALSE)),
-                         menuItem("Compare All CPPs", tabName = "P2", icon = icon("chart-column", verify_fa = FALSE)),
-                         menuItem("Compare Similar CPPs", tabName = "P3", icon = icon("chart-simple", verify_fa = FALSE)),
-                         menuItem("Inequality Over Time", tabName = "InQ", icon = icon("arrows-v", verify_fa = FALSE)),
-                         menuItem("Vulnerable Communities", tabName = "Vuln",icon = icon("chart-gantt", verify_fa = FALSE)),
-                         menuItem("My Communities", tabName = "MyCom", icon = icon("bars", class = "fa-rotate-90", verify_fa = FALSE)),
-                         menuItem("Community Profile", tabName = "CP", icon = icon("arrow-down", verify_fa = FALSE))
-                         ))
-    isolate(sidebarMenu(firstHalfMenuItems))
+    
+    output$firstHalfMenu <- renderMenu({
+      req(input$LA1)
+      isolate(firstHalfMenuItems <- list(menuItem("CPP Over Time", tabName = "P1", icon = icon("line-chart", verify_fa = FALSE)),
+                                         menuItem("Compare All CPPs", tabName = "P2", icon = icon("chart-column", verify_fa = FALSE)),
+                                         menuItem("Compare Similar CPPs", tabName = "P3", icon = icon("chart-simple", verify_fa = FALSE)),
+                                         menuItem("Inequality Over Time", tabName = "InQ", icon = icon("arrows-v", verify_fa = FALSE)),
+                                         menuItem("Vulnerable Communities", tabName = "Vuln",icon = icon("chart-gantt", verify_fa = FALSE)),
+                                         menuItem("My Communities", tabName = "MyCom", icon = icon("bars", class = "fa-rotate-90", verify_fa = FALSE)),
+                                         menuItem("Community Profile", tabName = "CP", icon = icon("arrow-down", verify_fa = FALSE))
+      ))
+      isolate(sidebarMenu(firstHalfMenuItems))
     }) %>% #close renderMenu (firstHalfMenu)
-    bindEvent(input$LA1, ignoreInit = TRUE, once = TRUE)
-  
-  output$secondHalfMenu <- renderMenu({
-    #req(input$LA1)
-    isolate(secondHalfMenuItems <- list( menuItem("All Communities", tabName = "allCom", icon = icon("grip", verify_fa = FALSE)),
-                                 menuItem("Data Zone Comparison", tabName = "Map2", icon = icon("globe", verify_fa = FALSE)),
-                                 menuItem("About/ Data Download", tabName = "DtaDL", icon = icon("download", verify_fa = FALSE))
-                                 ))
-    isolate(sidebarMenu(secondHalfMenuItems))
+      bindEvent(input$LA1, ignoreInit = TRUE, once = TRUE)
+    
+    output$secondHalfMenu <- renderMenu({
+      #req(input$LA1)
+      isolate(secondHalfMenuItems <- list( menuItem("All Communities", tabName = "allCom", icon = icon("grip", verify_fa = FALSE)),
+                                           menuItem("Data Zone Comparison", tabName = "Map2", icon = icon("globe", verify_fa = FALSE)),
+                                           menuItem("About/ Data Download", tabName = "DtaDL", icon = icon("download", verify_fa = FALSE))
+      ))
+      isolate(sidebarMenu(secondHalfMenuItems))
     }) %>% #close renderMenu (secondHalfMenu)
-    bindEvent(input$LA1, ignoreInit = TRUE, once = TRUE)
-  
+      bindEvent(input$LA1, ignoreInit = TRUE, once = TRUE)
+    
   }, once = TRUE)#close observe event
   
   #dynamically render the select a community drop down depending on whether the CP is currently selected.
   output$communityDropDown <- renderMenu({
-   #req(input$LA1)
+    #req(input$LA1)
     conditionalPanel(condition = 'input.tabs == "CP" && input.LA1 !== null', selectInput("CommunityCP", "Select a Community:", choices = communities_list()))
   }) %>% 
     bindEvent(input$LA1, ignoreInit = TRUE, once = TRUE)
   
   # "Map1" scotMap ------
-    
+  
   output$scotMap <- renderLeaflet({
     leaflet(SpPolysLA) %>%
       addTiles() %>%
@@ -192,9 +192,9 @@ shinyServer(function(input, output, session) {
                         group = colourscheme, 
                         colour = colourscheme, 
                         linetype = "1"
-                        ), 
+                    ), 
                     lwd = 1, show.legend = FALSE
-                    ) +
+          ) +
           scale_color_manual(values = c("red", "blue"))+
           labs(title  = indicators[my.i])+
           annotate(
@@ -224,7 +224,7 @@ shinyServer(function(input, output, session) {
       })
     })  
   } #end of plot for loop
-
+  
   # "P2" comparator CP drop-down ------------------------------------------------------------------   
   output$CompSelection <- renderUI({
     selectizeInput("OtherCPP", "Select a Comparator CPP", choices =CPPNames[CPPNames!= input$LA1], 
@@ -364,9 +364,9 @@ shinyServer(function(input, output, session) {
   output$CPPLgndInq <- renderText({
     txt <- input$LA1
   })
-   
+  
   # "InQ" inqTable output --------------
-   output$inqTbl <- function(){
+  output$inqTbl <- function(){
     #filter dataset
     req(input$LA1)
     dd <- filter(InqDta, CouncilName %in% c(input$LA1, input$InqComp))
@@ -412,7 +412,7 @@ shinyServer(function(input, output, session) {
     DIdta <- setDT(DIdta)[,IRHigher :=
                             first(ImprovementRate)<last(ImprovementRate),
                           by = list(ind, year)]
-     DIdta <- DIdta %>% addColourSchemeColumn(la, input$LA1)
+    DIdta <- DIdta %>% addColourSchemeColumn(la, input$LA1)
     ##create colourscheme
     #descText <- "These graphs will help you understand\ninequality in outcomes across the whole of the\nCPP, with 0 indicating perfect equality and\nvalues between 0 and 1 indicating that income\ndeprived people experience poorer outcomes,\n and values between -1 and 0 indicating that\nnon-income deprived people experience\npoorer outcomes."
     #DIdta$coloursch <- ifelse(DIdta$la ==input$LA1, "A", "C")
@@ -462,7 +462,7 @@ shinyServer(function(input, output, session) {
   })
   
   # "Vuln" vulnerable percentage change output ------------
-
+  
   output$vulnerable_change <- renderPlotly({
     
     filtered_change_data <- vulnerable_communities_data %>%
@@ -480,30 +480,30 @@ shinyServer(function(input, output, session) {
     names(colours) <- iz_levels
     filtered_change_data$InterZone_Name <- factor(filtered_change_data$InterZone_Name, levels = iz_levels, ordered = TRUE)
     filtered_change_data$group <- factor(filtered_change_data$group, levels = filtered_change_data$group, ordered = TRUE)
-   
+    
     p <- ggplot(filtered_change_data)+
       suppressWarnings(geom_col(aes(group, ChangeAv, 
-                   fill = CPP,
-                   text = paste0(
-                     "% Improvement since ", BaseYear, ": ", round(ChangeAv,1), "%",
-                     "<br>CPP: ", CPP, 
-                     "<br>Indicator: ", Indicator
-                   )), 
-               color = "indianred2",
-               width = 1)) +
+                                    fill = CPP,
+                                    text = paste0(
+                                      "% Improvement since ", BaseYear, ": ", round(ChangeAv,1), "%",
+                                      "<br>CPP: ", CPP, 
+                                      "<br>Indicator: ", Indicator
+                                    )), 
+                                color = "indianred2",
+                                width = 1)) +
       scale_x_discrete(breaks = filtered_change_data$group[filtered_change_data$vulnerability_rank %in% c(3,6)],
                        labels = str_wrap(filtered_change_data$label[filtered_change_data$vulnerability_rank %in% c(3,6)], 11)
-                       )+
+      )+
       geom_segment( aes(x=group, xend=group, y=0, yend=Change, color = InterZone_Name) ) + 
       suppressWarnings(geom_point(aes(x=group, 
-                     y=Change, 
-                     color = InterZone_Name,
-                     text = paste0(
-                       "% Improvement since ", BaseYear, ": ", Change, "%",
-                       "<br> Community: ", InterZone_Name,
-                       "<br> Vulnerability Rank: ", vulnerability_rank,
-                       "<br>Indicator: ", Indicator
-                     )), size=2)) +
+                                      y=Change, 
+                                      color = InterZone_Name,
+                                      text = paste0(
+                                        "% Improvement since ", BaseYear, ": ", Change, "%",
+                                        "<br> Community: ", InterZone_Name,
+                                        "<br> Vulnerability Rank: ", vulnerability_rank,
+                                        "<br>Indicator: ", Indicator
+                                      )), size=2)) +
       scale_y_continuous(limits = c(max(abs(filtered_change_data$Change))*-1-5, 
                                     max(abs(filtered_change_data$Change))+5),
                          breaks = seq(-80, 80, 10)) + 
@@ -519,29 +519,29 @@ shinyServer(function(input, output, session) {
     pl <- ggplotly(p,
                    tooltip = "text",
                    height = 620
-                   ) %>%
+    ) %>%
       highlight(on = "plotly_hover") %>%
       config(displayModeBar = FALSE) %>%
-       layout(
-         title = list(text = paste0("% Improvement for Five Most Vulnerable Communities <br> compared to ", filtered_change_data$CPP[1], " Average"),
-                      automargin = TRUE),
-      margin = list(autoexpand = TRUE,
-                    l = 0,
-                    r = 0,
-                    t = 30,
-                    b = 30,
-                    pad = 20),
-             xaxis = list(autorange = FALSE,
-                          fixedrange = TRUE,
-                          title = list(standoff = 30),
-                          automargin = TRUE
-             ),
-             yaxis = list(autorange = FALSE,
-                          fixedrange = TRUE,
-                          title = list(standoff = 30),
-                          automargin = TRUE
-             ),
-             legend = list(itemclick = "toggle")
+      layout(
+        title = list(text = paste0("% Improvement for Five Most Vulnerable Communities <br> compared to ", filtered_change_data$CPP[1], " Average"),
+                     automargin = TRUE),
+        margin = list(autoexpand = TRUE,
+                      l = 0,
+                      r = 0,
+                      t = 30,
+                      b = 30,
+                      pad = 20),
+        xaxis = list(autorange = FALSE,
+                     fixedrange = TRUE,
+                     title = list(standoff = 30),
+                     automargin = TRUE
+        ),
+        yaxis = list(autorange = FALSE,
+                     fixedrange = TRUE,
+                     title = list(standoff = 30),
+                     automargin = TRUE
+        ),
+        legend = list(itemclick = "toggle")
       )
     
     #ensures that plotly legend items have appropriate value: should be "Community name" not (Community name, 1)
@@ -578,31 +578,31 @@ shinyServer(function(input, output, session) {
     
     vuln_by_ind_plot <- ggplot() +
       suppressWarnings(geom_point(data = filter(indicator_data, vulnerability_rank != 6), 
-                 aes(x=InterZone_Name, y=CommunityValue_BaseYear, color=paste0("Community Outcome: ", BaseYear[1]),
-                     text = paste0("Community: ", InterZone_Name,
-                                   "<br>Vulnerability Rank: ", vulnerability_rank,
-                                   "<br>Year: ", BaseYear,
-                                   "<br>Value: ", CommunityValue_BaseYear)),
-                 size=2.5)) +
+                                  aes(x=InterZone_Name, y=CommunityValue_BaseYear, color=paste0("Community Outcome: ", BaseYear[1]),
+                                      text = paste0("Community: ", InterZone_Name,
+                                                    "<br>Vulnerability Rank: ", vulnerability_rank,
+                                                    "<br>Year: ", BaseYear,
+                                                    "<br>Value: ", CommunityValue_BaseYear)),
+                                  size=2.5)) +
       suppressWarnings(geom_point(data = filter(indicator_data, vulnerability_rank != 6), 
-                 aes(x=InterZone_Name, y=CommunityValue_RecentYear, color=paste0("Community Outcome: ", RcntYear),
-                     text = paste0("Community: ", InterZone_Name,
-                                   "<br>Vulnerability Rank: ", vulnerability_rank,
-                                   "<br>Year: ", RcntYear,
-                                   "<br>Value: ", CommunityValue_RecentYear)),
-                 size=6)) +
+                                  aes(x=InterZone_Name, y=CommunityValue_RecentYear, color=paste0("Community Outcome: ", RcntYear),
+                                      text = paste0("Community: ", InterZone_Name,
+                                                    "<br>Vulnerability Rank: ", vulnerability_rank,
+                                                    "<br>Year: ", RcntYear,
+                                                    "<br>Value: ", CommunityValue_RecentYear)),
+                                  size=6)) +
       suppressWarnings(geom_point(data = filter(indicator_data, vulnerability_rank == 6), 
-                 aes(x=CPP, y=CPPAverage_BaseYear, color=paste0("CPP Outcome: ", BaseYear[1]),
-                     text = paste0("CPP: ", InterZone_Name,
-                                   "<br>Year: ", BaseYear,
-                                   "<br>Value: ", CPPAverage_BaseYear)), 
-                 size=2.5 )) +
+                                  aes(x=CPP, y=CPPAverage_BaseYear, color=paste0("CPP Outcome: ", BaseYear[1]),
+                                      text = paste0("CPP: ", InterZone_Name,
+                                                    "<br>Year: ", BaseYear,
+                                                    "<br>Value: ", CPPAverage_BaseYear)), 
+                                  size=2.5 )) +
       suppressWarnings(geom_point(data = filter(indicator_data, vulnerability_rank == 6), 
-                 aes(x=CPP, y=CPPAverage_RecentYear, color=paste0("CPP Outcome: ", RcntYear),
-                     text = paste0("CPP: ", InterZone_Name,
-                                   "<br>Year: ", RcntYear,
-                                   "<br>Value: ", CPPAverage_RecentYear)), 
-                 size=6 )) +
+                                  aes(x=CPP, y=CPPAverage_RecentYear, color=paste0("CPP Outcome: ", RcntYear),
+                                      text = paste0("CPP: ", InterZone_Name,
+                                                    "<br>Year: ", RcntYear,
+                                                    "<br>Value: ", CPPAverage_RecentYear)), 
+                                  size=6 )) +
       coord_flip(clip = "off")+
       scale_x_discrete(limits = rev(levels(indicator_data$InterZone_Name))) +
       scale_y_continuous(n.breaks = 8) +
@@ -666,15 +666,6 @@ shinyServer(function(input, output, session) {
     plot
   })
   
-  # "MyCom" reactive object IGZBest() ----------------
-  my_comm_indicator <- reactive({
-    req(input$IndiMyCom)
-    if(input$IndiMyCom == "All") {
-      return(iz_indicators)
-    } else {
-      return(input$IndiMyCom)
-    }
-  })
   
   IGZBest <- reactive({
     req(input$LA1)
@@ -682,15 +673,15 @@ shinyServer(function(input, output, session) {
     # rankings for outcomes
     if(input$LA1 == "Fife" & input$Fife_SA != "All"){
       IGZBest <- left_join(IGZ_latest, IGZ_latest_Fife, by = c("InterZone", "Indicator")) %>% 
-        filter(CPP == "Fife" & `Strategic Area` == input$Fife_SA & Indicator %in% my_comm_indicator()) %>%
+        filter(CPP == "Fife" & `Strategic Area` == input$Fife_SA & Indicator %in% iz_indicators) %>%
         select(-CPPScore)
-       IGZBest <-setDT(IGZBest)[, CombinedCPPScore := sum(SAScore), by = InterZone]
+      IGZBest <-setDT(IGZBest)[, CombinedCPPScore := sum(SAScore), by = InterZone]
     }else{
-      IGZBest <- filter(IGZ_latest, CPP %in% input$LA1 & Indicator %in% my_comm_indicator())
-       IGZBest <-setDT(IGZBest)[, CombinedCPPScore := sum(CPPScore), by = InterZone]
+      IGZBest <- filter(IGZ_latest, CPP %in% input$LA1 & Indicator %in% iz_indicators)
+      IGZBest <-setDT(IGZBest)[, CombinedCPPScore := sum(CPPScore), by = InterZone]
     }
     # Filter data so that combined scores are only displayed once for each IGZ
-
+    
     IGZBest <-setDT(IGZBest)[, CombinedTypeScore := sum(TypeScore), by = InterZone]
     IGZBest <- setDT(IGZBest)[, FilterRef:= first(Indicator), by = InterZone]
     IGZBest <- filter(IGZBest, Indicator == FilterRef)
@@ -708,13 +699,13 @@ shinyServer(function(input, output, session) {
       IGZImprovement <- left_join(IGZ_change, IGZ_change_Fife, by = c("InterZone", "Indicator")) %>% 
         filter(CPP == "Fife" & 
                  `Strategic.Area` == input$Fife_SA & 
-                 Indicator %in% my_comm_indicator()) %>%
+                 Indicator %in% iz_indicators) %>%
         select(-CPPChangeScore)
       IGZImprovement <- setDT(IGZImprovement)[,CombinedCPPChangeScore := sum(SAChangeScore), by = InterZone]
       IGZImprovement <- setDT(IGZImprovement)[,CombinedTypeChangeScore := sum(TypeChangeScore), by = InterZone]
     }else{
       
-      IGZImprovement <- filter(IGZ_change, CPP %in% input$LA1 & Indicator %in% my_comm_indicator())
+      IGZImprovement <- filter(IGZ_change, CPP %in% input$LA1 & Indicator %in% iz_indicators)
       IGZImprovement <- setDT(IGZImprovement)[,CombinedCPPChangeScore := sum(CPPChangeScore), by = InterZone]
       IGZImprovement <- setDT(IGZImprovement)[,CombinedTypeChangeScore := sum(TypeChangeScore), by = InterZone]
     }
@@ -758,7 +749,7 @@ shinyServer(function(input, output, session) {
     names(MyCommunitiesDta) <- c("IZ", "IZName", "CPP Outcomes", "Similar Communities Outcomes", "CPP Improvement", "Similar Communities Improvement", "colourIndex" )
     
     #pivot longer with metric to Category and rank to Rank, 
-        # also creates arbitrary year column (which will be used as basis for continous time axis for bump chart before labels replaced)
+    # also creates arbitrary year column (which will be used as basis for continous time axis for bump chart before labels replaced)
     my_comm_long <- MyCommunitiesDta %>%
       pivot_longer(cols = c("CPP Outcomes", "Similar Communities Outcomes", "CPP Improvement", "Similar Communities Improvement"),
                    names_to = "Category",
@@ -773,148 +764,200 @@ shinyServer(function(input, output, session) {
   
   # "MyCom" my_communities_header / my_communities_intro output --------
   
-  output$my_communities_header <- renderUI({
-    req(input$LA1)
-    indicator_text <- if_else(input$IndiMyCom == "All", " across all indicators", paste0(" for ", input$IndiMyCom))
-    HTML(paste0("<b>Which communities have the poorest outcomes and improvement rate in ", input$LA1,
-                indicator_text, "?</b>"))
+  # output$my_communities_header <- renderUI({
+  #   req(input$LA1)
+  #   indicator_text <- if_else(input$IndiMyCom == "All", " across all indicators", paste0(" for ", input$IndiMyCom))
+  #   HTML(paste0("<b>Which communities have the poorest outcomes and improvement rate in ", input$LA1,
+  #               indicator_text, "?</b>"))
+  # })
+  # 
+  # 
+  # output$my_communities_intro <- renderUI({
+  #   req(input$LA1)
+  #   
+  #   indicator_text <- if_else(input$IndiMyCom == "All", " across all indicators", paste0(" in ", input$IndiMyCom))
+  #   HTML(paste0("Here all communities in ", input$LA1," are ordered by their performance ",indicator_text, " by four metrics:<br/>
+  #   <ul><li>outcome (poorest to best outcome)</li>
+  #   <li>improvement since base year (least to most improved)</li>
+  #   <li>outcome compared to similar communities across Scotland (communities ordered by distance below their respective similar community average)</li>
+  #   <li>improvement compared to similar communities across Scotland (communities ordered by distance below their respective similar community average)</li></ul>"))
+  # })
+  
+  # "MyCom" arrows  ------------
+  output$arr1 <- renderUI({
+    if(input$CBCols){
+      column(1,div(style = "padding-left:0px; float:left",tags$img(style = "max-width:120%",src = "CBArrow1.PNG")))
+    }else{
+      column(1,div(style = "padding-left:0px; float:left",tags$img(style = "max-width:120%",src = "Arrow1.PNG")))
+    }
   })
   
-  
-  output$my_communities_intro <- renderUI({
-    req(input$LA1)
-    
-    indicator_text <- if_else(input$IndiMyCom == "All", " across all indicators", paste0(" in ", input$IndiMyCom))
-    HTML(paste0("Here all communities in ", input$LA1," are ordered by their performance ",indicator_text, " by four metrics:<br/>
-    <ul><li>outcome (poorest to best outcome)</li>
-    <li>improvement since base year (least to most improved)</li>
-    <li>outcome compared to similar communities across Scotland (communities ordered by distance below their respective similar community average)</li>
-    <li>improvement compared to similar communities across Scotland (communities ordered by distance below their respective similar community average)</li></ul>"))
+  output$arr2 <- renderUI({
+    if(input$CBCols){
+      column(width = 2, style = "padding-left:2px;padding-right:2px;z-index:1;",tags$img(style = "max-width:120%",src = "CBArrow3.PNG"))
+    }else{
+      column(width = 2, style = "padding-left:2px;padding-right:2px;z-index:1;",tags$img(style = "max-width:120%", src = "Arrow3.PNG"))
+    }
   })
-
+  
   #"My Com" community_bump_chart output-------------------
   output$community_bump_chart <- renderPlotly({
     req(input$LA1)
+    
     my_communities_data <- bump_chart_communities_data()
-
+    n_communities <- length(unique(my_communities_data$IZ))
+    
+    #filter data by first/last 5/10 if selected
+    show <- input$View
+    top10communities <- my_communities_data$IZ[my_communities_data$Category == "CPP Outcomes" & my_communities_data$Rank <= 10]
+    bottom10communities <- my_communities_data$IZ[my_communities_data$Category == "CPP Outcomes" & my_communities_data$Rank >= n_communities - 10]
+    
+    
+    if(show == "First/Last 5") {
+      my_communities_data <- my_communities_data %>%
+        filter(IZ %in% top10communities[1:5] | IZ %in% bottom10communities[6:10]) %>%
+        unique()
+      
+      
+    } else if (show == "First/Last 10") {
+      my_communities_data <- my_communities_data %>%
+        filter(IZ %in% top10communities | IZ %in% bottom10communities) %>%
+        unique()
+      
+    }
+    
+    else if (show == "All") {
+      my_communities_data <- bump_chart_communities_data()
+      
+    }
+    
     #define colour list
     n_colour_groups <- length(unique(my_communities_data$colourIndex))
-    n_communities <- length(unique(my_communities_data$IZ))
-    my_comm_colours <- c(rev(RColorBrewer::brewer.pal("YlGnBu", n = n_colour_groups))[1:n_colour_groups-1], "#FFFFCC")
-
+    colour_groups <- unique(as.numeric(my_communities_data$colourIndex))
+    max_rank <- max(my_communities_data$Rank)
+    
+    
+    if(show == "All") {
+      if(input$CBCols){my_comm_colours <- c(rev(RColorBrewer::brewer.pal("YlGnBu", n = 9))[1:9])}
+      else{my_comm_colours <- c(RColorBrewer::brewer.pal("RdYlGn", n = 9)[1:9])}
+    } 
+    else if (show == "First/Last 10" | show == "First/Last 5") {
+      if(input$CBCols){my_comm_colours <- c(rev(RColorBrewer::brewer.pal("YlGnBu", n = 9))[colour_groups])}
+      else{my_comm_colours <- c(RColorBrewer::brewer.pal("RdYlGn", n = 9)[colour_groups])}
+    }
+    
+    
     #assign colorIndex character levels to colours so that colours are consistent even when top5/top10 selected
-    names(my_comm_colours) <- unique(my_communities_data$colourIndex)# label_levels
+    names(my_comm_colours) <- unique(my_communities_data$colourIndex)# label_levels  
+    
+    # labels for colScale functions for n_colour_groups, minimum two groups (i.e Glasgow City)
+    col_labels <- c(paste0("Poorest Outcome in ", RcntYear), rep(" ", n_colour_groups - 2), paste0("Best Outcome in ", RcntYear))
+    
+    
     #fill colour scale for geom_points
     colScalePoint <- scale_fill_manual(name = " ",#name = "Click legend to view one colour group",
-                                    values = my_comm_colours, 
-                                    labels = c(paste0("Poorest Outcome in ", RcntYear), rep(" ", 10), paste0("Best Outcome in ", RcntYear)),
-                                    guide = guide_legend(
-                                      override.aes = list(
-                                        linetype = rep("solid", 9),
-                                        shape = rep(21, 9)
-                                      )))
+                                       values = my_comm_colours, 
+                                       labels = col_labels,
+                                       guide = guide_legend(
+                                         override.aes = list(
+                                           linetype = rep("solid", n_colour_groups),
+                                           shape = rep(21, n_colour_groups)
+                                         )))
+    
     #line colour scale for geom_bump
     colScaleLine <- scale_color_manual(name = " ", #name = "Hover to highlight one community,<br>double-click white space to deselect ",
-                                  values = my_comm_colours, 
-                                  labels = c(paste0("Poorest Outcome in ", RcntYear), rep(" ", 10), paste0("Best Outcome in ", RcntYear)),
-                                  guide = guide_legend(
-                                    override.aes = list(
-                                      linetype = rep("solid", 9),
-                                      shape = rep(21, 9)
-                                      )))
+                                       values = my_comm_colours, 
+                                       labels = col_labels,
+                                       guide = guide_legend(
+                                         override.aes = list(
+                                           linetype = rep("solid", n_colour_groups),
+                                           shape = rep(21, n_colour_groups)
+                                         )))
     
-    #filter data by first 5/10 if selected
-     show <- input$View
-     top10communities <- my_communities_data$IZ[my_communities_data$Category == "CPP Outcomes" & my_communities_data$Rank <=10]
-     if(show == "First 5") {
-       my_communities_data <- my_communities_data %>%
-         filter(IZ %in% top10communities[1:5])
-         
-     } else if (show == "First 10") {
-       my_communities_data <- my_communities_data %>%
-         filter(IZ %in% top10communities)
-     }
-      
-     
-     #"My Comm" bump chart ggplot ---------------
-     
-     #shared data object - this allows for click highlighting for all plotly traces which use group = IZ aesthetic
-     shared_communities_data <- highlight_key(my_communities_data, ~IZ)
-     
-     p <- ggplot(shared_communities_data, aes(x = Year, 
-                                   y = Rank, 
-                                   group = IZ)) +
-       suppressWarnings(geom_bump(size = 1.5, alpha = 0.7, aes(colour = colourIndex, text = IZName))) +
-       suppressWarnings(geom_point(size = 4, colour="black",pch=21,
-                  aes(fill = colourIndex,
-                      text = paste0("Community: ", IZName,
-                                    "<br>Code: ", IZ,
-                                    "<br>Position: ", Rank, "/", n_communities,
-                                    "<br>Measure: ", Category)))) + 
+    
+    #"My Comm" bump chart ggplot ---------------
+    
+    #shared data object - this allows for click highlighting for all plotly traces which use group = IZ aesthetic
+    shared_communities_data <- highlight_key(my_communities_data, ~IZ)
+    
+    
+    p <- ggplot(shared_communities_data, aes(x = Year, 
+                                             y = Rank, 
+                                             group = IZ)) +
+      suppressWarnings(geom_bump(size = 1.5, alpha = 0.7, aes(colour = colourIndex, text = IZName))) +
+      suppressWarnings(geom_point(size = 4, colour="black",pch=21,
+                                  aes(fill = colourIndex,
+                                      text = paste0("Community: ", IZName,
+                                                    "<br>Code: ", IZ,
+                                                    "<br>Position: ", Rank, "/", n_communities,
+                                                    "<br>Measure: ", Category)))) + 
       scale_y_reverse(name = "Position",
-                      limits = c(n_communities,0),
-                       breaks = seq(0, n_communities,5)) + 
-       scale_x_continuous(name = "",
-                          limits = c(2017.7, 2022.2),
-                          breaks = seq(2018, 2022, 1),
-                          labels = c(" ", "<b>Outcomes\nwithin CPP</b>",
-                          "<b>Outcomes\ncompared to\nSimilar\nCommunities</b>",
-                          "<b>Improvement\nwithin CPP</b>",
-                          "<b>Improvement\ncompared to\nSimilar\nCommunities</b>"),
-                          ) + 
-       colScalePoint +
-       colScaleLine +
-       geom_text(data = filter(my_communities_data, Year == min(Year)),
-                 aes(x = 2018.8, label = IZName), 
-                 size = 3.5, 
-                 hjust = 1, 
-                 vjust = 0.5) +
-       coord_cartesian(clip = "off") + 
-       theme_minimal() + 
-       theme(panel.grid.minor = element_blank())
-     
-#"My Comm" bump chart ggplotly conversion ------------    
-     plot <- ggplotly(p,
-              tooltip = "text",
-              height = max(700,n_communities*18)
-              ) %>% #ensure height dynamically changes with number of IGZs in CPP
-       highlight(on = "plotly_click", 
-                 off = "plotly_doubleclick",
-                 selected = attrs_selected(showlegend = FALSE),
-                 opacityDim = 0.15) %>%
-       style(textposition = "left") %>%
-       config(displayModeBar = FALSE) %>%
-       layout(autosize = TRUE,
-              xaxis = list(autorange = FALSE,
-                           fixedrange = TRUE,
-                           side = "top"
-                           ),
-              yaxis = list(autorange = FALSE,
-                           fixedrange = TRUE),
-              legend = list(itemclick = "toggleothers")
-               )
-
+                      limits = c(max_rank,0),
+                      breaks = seq(0, n_communities,5)) + 
+      scale_x_continuous(name = "",
+                         limits = c(2017.7, 2022.2),
+                         breaks = seq(2018, 2022, 1),
+                         labels = c(" ", "<b>Within CPP which \ncommunities have \nthe poorest outcomes?</b>",
+                                    "<b>Compared to other, \nsimilar communities, \ndo those in CPP fare better \nor worse than expected?</b>",
+                                    "<b>Within CPP which \ncommunities have improved \nthe least?</b>",
+                                    "<b>Within CPP which \ncommunities have improved \n the least relative to other \nsimilar communities?</b>"),
+      ) + 
+      colScalePoint +
+      colScaleLine +
+      geom_text(data = filter(my_communities_data, Year == min(Year)),
+                aes(x = 2018.8, label = IZName), 
+                size = 2.5, 
+                hjust = 1, 
+                vjust = 0.5) +
+      coord_cartesian(clip = "off") + 
+      theme_minimal() + 
+      theme(panel.grid.minor = element_blank())
+    
+    
+    #"My Comm" bump chart ggplotly conversion ------------    
+    plot <- ggplotly(p,
+                     tooltip = "text",
+                     height = max(700,n_communities*18)
+    ) %>% #ensure height dynamically changes with number of IGZs in CPP
+      highlight(on = "plotly_click", 
+                off = "plotly_doubleclick",
+                selected = attrs_selected(showlegend = FALSE),
+                opacityDim = 0.15) %>%
+      style(textposition = "left") %>%
+      config(displayModeBar = FALSE) %>%
+      layout(autosize = TRUE,
+             xaxis = list(autorange = FALSE,
+                          fixedrange = TRUE,
+                          side = "top"
+             ),
+             yaxis = list(autorange = FALSE,
+                          fixedrange = TRUE),
+             legend = list(itemclick = "toggleothers")
+      )
+    
     #replace colourIndex legend labels ("1": "9") with "Poorest Outcome/Best Outcome and blanks
-     for (i in 1:length(plot$x$data)){
-       if (!is.null(plot$x$data[[i]]$name)){
-         if(plot$x$data[[i]]$name == "1"){
-           plot$x$data[[i]]$name <- paste0("Poorest Outcome<br>in ", RcntYear)
-         } else if (gsub("\\(","",str_split(plot$x$data[[i]]$name,",")[[1]][1]) == rev(levels(my_communities_data$colourIndex))[1]) {
-           plot$x$data[[i]]$name <- paste0("Best Outcome<br>in ", RcntYear)
-         }else {
-           plot$x$data[[i]]$name <- " "
-         }
-       }
-       if (!is.null(plot$x$data[[i]]$mode)){
-         if(plot$x$data[[i]]$mode == "markers"){
-           plot$x$data[[i]]$showlegend <- TRUE
-           } else if (plot$x$data[[i]]$mode == "lines") {
-             plot$x$data[[i]]$showlegend <- FALSE
-           }
-         }
-     }
+    for (i in 1:length(plot$x$data)){
+      if (!is.null(plot$x$data[[i]]$name)){
+        if(plot$x$data[[i]]$name == "1"){
+          plot$x$data[[i]]$name <- paste0("Poorest Outcome<br>in ", RcntYear)
+        } else if (gsub("\\(","",str_split(plot$x$data[[i]]$name,",")[[1]][1]) == rev(levels(my_communities_data$colourIndex))[1]) {
+          plot$x$data[[i]]$name <- paste0("Best Outcome<br>in ", RcntYear)
+        }else {
+          plot$x$data[[i]]$name <- " "
+        }
+      }
+      if (!is.null(plot$x$data[[i]]$mode)){
+        if(plot$x$data[[i]]$mode == "markers"){
+          plot$x$data[[i]]$showlegend <- TRUE
+        } else if (plot$x$data[[i]]$mode == "lines") {
+          plot$x$data[[i]]$showlegend <- FALSE
+        }
+      }
+    }
+    
     plot
-     })#end of community bump chart
+    
+  })#end of community bump chart
   
   #"CP" communities_list()--------------------
   #reactive ex-pression to update communities in sidebar drop down (CommunityCP) when LA1 input is changed
@@ -1008,7 +1051,7 @@ shinyServer(function(input, output, session) {
   })
   
   #"CP" CommunityProfileTbl --------------
-
+  
   output$CommunityProfileTbl <- DT::renderDataTable({
     req(input$LA1, input$CommunityCP)
     IGZsubset <- filter(IGZdta, InterZone_Name == input$CommunityCP & CPP == input$LA1)
@@ -1276,9 +1319,9 @@ shinyServer(function(input, output, session) {
     shinyjs::toggle(id = "AddComm", condition = ("Similar Community" %in% input$ChoicesCP))
   })
   
-#WHAT DOES THIS DO?-------------------
+  #WHAT DOES THIS DO?-------------------
   outputOptions(output, 'AddComm', suspendWhenHidden = FALSE)
-
+  
   
   # "CP" Create plot outputs ------------------------
   IndicatorsCP <- unique(IGZdta$Indicator)
@@ -1488,7 +1531,7 @@ shinyServer(function(input, output, session) {
   # "Map2" select intermediate geography -----------------
   output$IZUI <- renderUI({
     req(input$LA1)
-
+    
     selectizeInput(
       "IZ", 
       "Select a Community:", 
@@ -1607,7 +1650,7 @@ shinyServer(function(input, output, session) {
       showDZpopup(CPPMapDta, event$id, event$lat, event$lng, "Average Highest Attainment", "newplot2")
     })
   })
-
+  
   observe({
     leafletProxy("newplot3") %>% clearPopups()
     event <- input$newplot3_shape_click
@@ -1658,7 +1701,7 @@ shinyServer(function(input, output, session) {
   )
   
   # code for 'Help' pages ----------------------------------------------
-
+  
   # Help "Map1"----------------
   
   observeEvent(input$HelpButton,{
@@ -1666,7 +1709,7 @@ shinyServer(function(input, output, session) {
     {showModal(modalDialog(
       title = "Community Map - Page 1 of 2",
       fluidRow(
-      tags$img(src = "MapHelp1.PNG")),
+        tags$img(src = "MapHelp1.PNG")),
       fluidRow(
         column(10),
         column(2,actionButton("Map1P2", "Next Page"))
@@ -1695,7 +1738,7 @@ shinyServer(function(input, output, session) {
     ),
     size = "l"))
   })
-
+  
   # Help "P1"---------------
   
   observeEvent(input$HelpButton,{
@@ -1770,10 +1813,10 @@ shinyServer(function(input, output, session) {
     showModal(
       modalDialog(
         title = "CPP Inequality - Page 2 of 2",
-      fluidRow(tags$img(src = "IneqHelp2.PNG")),
+        fluidRow(tags$img(src = "IneqHelp2.PNG")),
         fluidRow(column(2, actionButton("InQ1", "Previous Page")),
                  column(10)),
-      size = "l"
+        size = "l"
       )
     )
   })
@@ -1811,28 +1854,28 @@ shinyServer(function(input, output, session) {
           column(2, actionButton("MyComP2", "Next Page"))
         ),
         size = "l"
-        )
+      )
     )
-      }
+    }
   })
   
   observeEvent(input$MyComP2,{
-      showModal(
-        modalDialog(
-          title = "My Communities - Page 2 of 3",
-          fluidRow(
+    showModal(
+      modalDialog(
+        title = "My Communities - Page 2 of 3",
+        fluidRow(
           tags$img(src = "MyComHelp2.PNG"),
           size = "l"
-          ),
-          fluidRow(
-            column(2, actionButton("MyComP1", "Previous Page")),
-            column(8),
-            column(2, actionButton("MyComP3", "Next Page"))
-          ),
-          size = "l"
-        )
+        ),
+        fluidRow(
+          column(2, actionButton("MyComP1", "Previous Page")),
+          column(8),
+          column(2, actionButton("MyComP3", "Next Page"))
+        ),
+        size = "l"
       )
-    })
+    )
+  })
   
   observeEvent(input$MyComP3,{
     showModal(
@@ -1908,7 +1951,7 @@ shinyServer(function(input, output, session) {
         size = "l"))
   })
   
- # Help "allCom" -----------------
+  # Help "allCom" -----------------
   
   observeEvent(input$HelpButton,{
     if(input$tabs == "allCom")
@@ -1922,5 +1965,5 @@ shinyServer(function(input, output, session) {
     {showModal(modalDialog(title = "Data Zone Comparison",tags$img(src = "DZHelp.PNG"), size = "l"))}
   })
   
-
-  })
+  
+})
