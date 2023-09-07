@@ -692,7 +692,9 @@ shinyServer(function(input, output, session) {
   }) #end of IGZBest()
   
   #"MyCom" bump_chart_communities_data() ----------
-  bump_chart_communities_data <- reactive({
+  bump_chart_communities_data <- eventReactive(
+    input$checkboxupdate,
+    {
     req(input$LA1)
     req(IGZBest())
     req(input$IndiMyCom)
@@ -761,7 +763,8 @@ shinyServer(function(input, output, session) {
                               Category == "Similar Communities Improvement" ~ 2022))
     
     return(my_comm_long)
-  })
+  },
+  ignoreNULL = FALSE)
   
   # "MyCom" my_communities_header / my_communities_intro output --------
   

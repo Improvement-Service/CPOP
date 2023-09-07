@@ -309,7 +309,10 @@ body <- dashboardBody(
                            unique(IGZdta$Indicator),
                            selected = unique(IGZdta$Indicator))
                        )
-                )
+                    ),
+                column(2, 
+                       actionBttn("checkboxupdate", "Update Indicators", style = "fill", color = "primary")
+                       )
               ),
               fluidRow(
                 conditionalPanel(condition = "input.LA1 == 'Fife'", 
