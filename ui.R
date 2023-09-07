@@ -240,7 +240,7 @@ body <- dashboardBody(
     tabItem(tabName = "Vuln",
             mainPanel(
               fluidRow(
-                h2("How have outcomes changed for the 5 most vulnerable communities?"),
+                h3("How have outcomes changed for the 5 most vulnerable communities?"),
                 tabsetPanel(
                   tabPanel("Percentage Change",
                            fluidRow(
@@ -296,7 +296,7 @@ body <- dashboardBody(
                        style = "padding-right:0px; padding-left:5px",
                        awesomeRadio("View",
                                     "Show:",
-                                    c("All", "First/Last 10", "First/Last 5"),
+                                    c("All", "Most/Least 10", "Most/Least 5"),
                                     inline = TRUE,
                                     selected = "All")),
                 column(1),
