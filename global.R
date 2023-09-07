@@ -22,17 +22,17 @@ library(plotly)
 library(ggbump)
 
 #Store value for the most recent year data is available, this needs to be changed when data is refreshed annually
-FrstYear <- "2009/10"
-RcntYear <- "2020/21"
-ProjYear <- "2023/24"
+FrstYear <- "2010/11"
+RcntYear <- "2021/21"
+ProjYear <- "2024/25"
 
 #First and last years for Duncan Index graphs
 DIFrYr <- substr(FrstYear,1,4)
 DIRcYr <- substr(RcntYear,1,4)
 
-LblFrst <- "09/10"
-LblRcnt <- "20/21"
-LblProj <- "23/24"
+LblFrst <- "10/11"
+LblRcnt <- "21/22"
+LblProj <- "24/25"
 
 SpPolysDF <- read_rds("data/Shapes_decs.rds")
 SpPolysIZ <- read_rds("data/IZshapes_decs.rds")
