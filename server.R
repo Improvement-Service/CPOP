@@ -51,7 +51,7 @@ shinyServer(function(input, output, session) {
   #dynamically render the select a community drop down depending on whether the CP is currently selected.
   output$communityDropDown <- renderMenu({
     req(input$LA1)
-    conditionalPanel(condition = 'input.tabs == "CP" && input.LA1 !== null', selectInput("CommunityCP", "Select a Community:", choices = communities_list()))
+    conditionalPanel(condition = 'input.tabs == "CP" & input.LA1 !== null', selectInput("CommunityCP", "Select a Community:", choices = communities_list()))
   })
   
   # "Map1" scotMap ------
@@ -422,7 +422,7 @@ shinyServer(function(input, output, session) {
     lstDi <- lapply(1:7,FUN = function(y){
       dta <- DIdta[DIdta$ind == indList[y],]
       DDta <- filter(dta, year == last(year))
-      CDot <- if_else(DDta$Higher == T && DDta$IRHigher == T, "green", if_else(DDta$Higher == F && DDta$IRHigher == F, "red", "yellow"))
+      CDot <- if_else(DDta$Higher == T & DDta$IRHigher == T, "green", if_else(DDta$Higher == F & DDta$IRHigher == F, "red", "yellow"))
       ggplot(dta, aes(x = year, y = value))+
         geom_line(data = dta[!is.na(dta$value),], aes(group = colourscheme, colour = colourscheme), size = 1)+
         ylab("")+
