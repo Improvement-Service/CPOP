@@ -17,8 +17,9 @@ library(kableExtra)
 library(shinyjs)
 library(shinyWidgets)
 library(formattable)
-library(shinyalert)
+library(shinyalert, quietly = TRUE)
 library(plotly)
+library(ggbump)
 
 #Store value for the most recent year data is available, this needs to be changed when data is refreshed annually
 FrstYear <- "2009/10"
@@ -36,25 +37,28 @@ LblProj <- "23/24"
 SpPolysDF <- read_rds("data/Shapes_decs.rds")
 SpPolysIZ <- read_rds("data/IZshapes_decs.rds")
 SpPolysLA <- read_rds("data/LAShps.rds")
-CPPdta <- read_csv("data/CPPcleandata.csv")
-CPP_Imp <- read_csv("data/Imp_rate_CPP.csv")
-IGZdta <- read_csv("data/IGZcleandata.csv")
-IGZ_latest <- read_csv("data/IGZ_latest.csv")
-IGZ_change <- read_csv("data/IGZ_change.csv")
-Metadata <- read_csv("data/Metadata.csv")
-VulnComm <- read_csv("data/Formatted Vulnerable Communities.csv")
+CPPdta <- read_csv("data/CPPcleandata.csv", show_col_types = FALSE)
+CPP_Imp <- read_csv("data/Imp_rate_CPP.csv", show_col_types = FALSE)
+IGZdta <- read_csv("data/IGZcleandata.csv", show_col_types = FALSE)
+IGZ_latest <- read_csv("data/IGZ_latest.csv", show_col_types = FALSE)
+IGZ_change <- read_csv("data/IGZ_change.csv", show_col_types = FALSE)
+Metadata <- read_csv("data/Metadata.csv", show_col_types = FALSE)
+# VulnComm <- read_csv("data/Formatted Vulnerable Communities.csv", show_col_types = FALSE)
+# 
+# VulnComm$Most_Deprived_Comm[VulnComm$Most_Deprived_Comm == 6] <- ""
+# VulnComm[VulnComm$AreaLabel == "CPP Average", c(4,7,10,13,16,19,22,25,28)] <- ""
+# VulnComm <- as.data.frame(VulnComm)
 
-VulnComm$Most_Deprived_Comm[VulnComm$Most_Deprived_Comm == 6] <- ""
-VulnComm[VulnComm$AreaLabel == "CPP Average", c(4,7,10,13,16,19,22,25,28)] <- ""
-VulnComm <- as.data.frame(VulnComm)
+#NEW VIZ DATA FORMAT (calculations in Other Code/7. Vulnerable community calcs.R)
+vulnerable_communities_data <- read_csv("data/vulnerable_communities_outcomes_and_change.csv", show_col_types = FALSE)
 
 #rename Edinburgh
 SpPolysIZ@data[SpPolysIZ@data$council == "Edinburgh","council"] <- "Edinburgh, City of" 
 SpPolysDF@data[SpPolysDF@data$council == "Edinburgh","council"] <- "Edinburgh, City of" 
 
 #extract data and rename indicator columns (col names will be used directly in leaflet pop-ups in UI)
-CPPMapDta <- SpPolysDF@data  %>%
-  rename("Children in Poverty (%)" = "% of children in poverty", 
+CPPMapDta <- SpPolysDF@data %>%
+  dplyr::rename("Children in Poverty (%)" = "% of children in poverty", 
          "Average Highest Attainment" = "Average highest attainment",
          "Out of Work Benefits (%)" = "% of population (aged 16-64) in receipt of out of work benefits", 
          "SIMD Crimes per 10,000" = "Number of SIMD crimes per 10,000 of the population", 
@@ -65,11 +69,13 @@ CPPMapDta[[14]] <- as.numeric(CPPMapDta[[14]])
 
 
 ##read in Fife data for MyCommunity
-IGZ_latest_Fife <- read_csv("data/IGZ_latest_Fife.csv")
-IGZ_change_Fife <- read_csv("data/IGZ_change_Fife.csv")
+IGZ_latest_Fife <- read_csv("data/IGZ_latest_Fife.csv", show_col_types = FALSE)
+IGZ_change_Fife <- read_csv("data/IGZ_change_Fife.csv", show_col_types = FALSE)
 
 #global variables (taken from server)------------
 #list of indicators
+
+iz_indicators <- unique(IGZ_change$Indicator)
 indicators <- c("Healthy Birthweight", "Primary 1 Body Mass Index", "Child Poverty",
                   "Attainment", "Positive Destinations", "Employment Rate",
                   "Median Earnings", "Out of Work Benefits", "Business Survival",
@@ -82,7 +88,7 @@ indicators <- c("Healthy Birthweight", "Primary 1 Body Mass Index", "Child Pover
 CPPNames <- unique(CPPMapDta[CPPMapDta$council != "Scotland", "council"])
 
 ##Read in Duncan Index Scores and calculate whether improving
-DIdta <- read_csv("data/DuncanIndex.csv")
+DIdta <- read_csv("data/DuncanIndex.csv", show_col_types = FALSE)
 DIdta <- DIdta[,-5]
 DIdta <- gather(DIdta, "ind", "value",3:9) 
 DIdta <- na.omit(DIdta)
