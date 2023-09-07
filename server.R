@@ -1,11 +1,12 @@
 shinyServer(function(input, output, session) {
-  
+
   output$clock <- renderText({
     invalidateLater(5000)
     Sys.time()
   })
   
-  #shiny alert pop-up------------------------
+
+  # #shiny alert pop-up------------------------
   # shinyalert(title = "", 
   #            text = tags$div(class="header", 
   #                            checked=NA,
@@ -17,7 +18,7 @@ shinyServer(function(input, output, session) {
   #                            HTML("<p style = color:#4682B4><b>To get started </b> use the map (or the dropdown in the sidebar) to select a CPP, then use the menu on the left to explore the data.</p>"),
   #                            ),
   #            html = TRUE)
-  
+
   
   #dynamic sidebar output-----------------------
   #observe FIRST instance of LA1 input, and render the sidebar menu items in two halves (this is to accommodate the
@@ -56,7 +57,7 @@ shinyServer(function(input, output, session) {
     conditionalPanel(condition = 'input.tabs == "CP" && input.LA1 !== null', selectInput("CommunityCP", "Select a Community:", choices = communities_list()))
   }) %>% 
     bindEvent(input$LA1, ignoreInit = TRUE, once = TRUE)
-  
+
   # "Map1" scotMap ------
   
   output$scotMap <- renderLeaflet({
@@ -419,7 +420,7 @@ shinyServer(function(input, output, session) {
     lstDi <- lapply(1:7,FUN = function(y){
       dta <- DIdta[DIdta$ind == indList[y],]
       DDta <- filter(dta, year == last(year))
-      CDot <- if_else(DDta$Higher == T && DDta$IRHigher == T, "green", if_else(DDta$Higher == F && DDta$IRHigher == F, "red", "yellow"))
+      CDot <- if_else(DDta$Higher == T & DDta$IRHigher == T, "green", if_else(DDta$Higher == F & DDta$IRHigher == F, "red", "yellow"))
       ggplot(dta, aes(x = year, y = value))+
         geom_line(data = dta[!is.na(dta$value),], aes(group = colourscheme, colour = colourscheme), size = 1)+
         ylab("")+

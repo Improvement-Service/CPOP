@@ -428,6 +428,7 @@ body <- dashboardBody(
                 )  
               )
             )
+
     ),  #end of Community Profile ("CP")          
     # All Communities ("allCom")-------------------------
     tabItem(tabName = "allCom",
