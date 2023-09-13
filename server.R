@@ -573,9 +573,9 @@ shinyServer(function(input, output, session) {
                  rgb(0.8, 0.3, 0.3, 0.8))
     
     names(colours) <-  c(paste0("Community Outcome: ", indicator_data$BaseYear[1]),
-                         paste0("Community Outcome: ", "2020/21"),
+                         paste0("Community Outcome: ", RcntYear),
                          paste0("CPP Outcome: ", indicator_data$BaseYear[1]),
-                         paste0("CPP Outcome: ", "2020/21"))
+                         paste0("CPP Outcome: ", RcntYear))
     
     vuln_by_ind_plot <- ggplot() +
       suppressWarnings(geom_point(data = filter(indicator_data, vulnerability_rank != 6), 
@@ -1690,7 +1690,7 @@ shinyServer(function(input, output, session) {
   output$DLDta <- downloadHandler(
     filename = paste("CPP Data", ".zip", sep = ""),
     content = function(con) {
-      file.copy("data/CPP Data - Aug 22.zip", con)
+      file.copy("data/CPP Data - Sep 23.zip", con)
     },
     contentType = "application/zip"
   )
@@ -1699,7 +1699,7 @@ shinyServer(function(input, output, session) {
   output$DLIZDta <- downloadHandler(
     filename = paste("IGZ Data", ".zip", sep = ""),
     content = function(con) {
-      file.copy("data/IGZ Data - Aug 22.zip", con)
+      file.copy("data/IGZ Data - Sep 23.zip", con)
     },
     contentType = "application/zip"
   )
