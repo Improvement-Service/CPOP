@@ -23,7 +23,7 @@ library(ggbump)
 
 #Store value for the most recent year data is available, this needs to be changed when data is refreshed annually
 FrstYear <- "2010/11"
-RcntYear <- "2021/21"
+RcntYear <- "2021/22"
 ProjYear <- "2024/25"
 
 #First and last years for Duncan Index graphs
