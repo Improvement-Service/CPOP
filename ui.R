@@ -494,7 +494,7 @@ body <- dashboardBody(
             fluidPage(
               fluidRow(h3("About this tool"), p("The CPOP tool aims to help you assess if the lives of people in your community are improving by providing a set of core measures on important life outcomes including early years, older people, safer/stronger communities, health and wellbeing, and engagement with local communities and a consistent basis for measuring outcomes and inequalities of outcome in your area."), hr()),
               fluidRow(h3("Explainer Video"), HTML('<iframe width="789" height="444" src="https://www.youtube-nocookie.com/embed/rhno_7VMX38?autoplay=0&showinfo=0&loop=1&rel=0" frameborder="0" allow="accelerometer; loop ;encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),hr()),
-              fluidRow(h3("Download the Data"), p("Use these buttons to download all of the data used in this tool. Please note that much of this data is modelled and so may not match exactly with data from other sources. This data was most recently updated on 14/09/2023."),
+              fluidRow(h3("Download the Data"), p("Use these buttons to download all of the data used in this tool. Please note that much of this data is modelled and so may not match exactly with data from other sources. This data was most recently updated in September 2023."),
                        downloadBttn("DLDta",label = "Download All CPP Data"),
                        downloadBttn("DLIZDta", label = "Download All Community Data", style = "fill", color = "success"),
                        hr()),
@@ -519,9 +519,7 @@ body <- dashboardBody(
                          #Link to Scotland's environment
                          tags$li(class= "li-custom", tags$a(href="http://www.environment.gov.scot/", 
                                                             "Scotland's Environment Web",  class="externallink", target = "_blank")),
-                         #Link to Stats.gov
-                         tags$li(class= "li-custom", tags$a(href="https://statistics.gov.scot/home", 
-                                                            "Statistics.gov.scot",  class="externallink", target = "_blank")),
+
                          tags$li(class= "li-custom", tags$a(href="https://www.nomisweb.co.uk/", 
                                                             "NOMIS - Official Labour Market Statistics",  class="externallink", target = "_blank")),
                          tags$li(class= "li-custom", tags$a(href="https://stat-xplore.dwp.gov.uk/webapi/jsf/login.xhtml", 
