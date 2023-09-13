@@ -13,11 +13,11 @@ library(readxl)
 #use for loop to loop through and read every worksheet
 ##CPP data
 
-CPPdta <- read_excel("data/Final data - Aug 2022/Final CPP Data - Aug 22.xlsx",
+CPPdta <- read_excel("data/Final data - Sep 2023/Final CPP Data - Sep 2023.xlsx",
                      sheet = 2)
 
 for (i in 3:21) {
-  CPPdta2 <- read_excel("data/Final data - Aug 2022/Final CPP Data - Aug 22.xlsx",
+  CPPdta2 <- read_excel("data/Final data - Sep 2023/Final CPP Data - Sep 2023.xlsx",
                         sheet = i)
   CPPdta <- merge(CPPdta, CPPdta2)
 }
@@ -44,10 +44,10 @@ CPPdta[CPPdta$Indicator == "Participation Rate", "IndicatorFullName"] <- "Partic
 write_excel_csv(CPPdta ,file = "data/CPPcleandata.csv")
 
 ##IGZ data
-IGZdta <- read_excel("data/Final data - Aug 2022/Final IGZ Data - Aug 22.xlsx",
+IGZdta <- read_excel("data/Final data - Sep 2023/Final IGZ Data - Sep 2023.xlsx",
                      sheet = 2)
 for (i in 3:10) {
-  IGZdta2 <- read_excel("data/Final data - Aug 2022/Final IGZ Data - Aug 22.xlsx",
+  IGZdta2 <- read_excel("data/Final data - Sep 2023/Final IGZ Data - Sep 2023.xlsx",
                         sheet = i)
   IGZdta <- merge(IGZdta, IGZdta2)
 }
@@ -71,10 +71,10 @@ write_excel_csv(IGZdta ,file = "data/IGZcleandata.csv")
 
 
 ##DZ data
-DZdta <- read_excel("data/Final data - Aug 2022/Final DZ Data - Aug 22.xlsx",
+DZdta <- read_excel("data/Final data - Sep 2023/Final DZ Data - Sep 2023.xlsx",
                      sheet = 2)
 for (i in 3:7) {
-  DZdta2 <- read_excel("data/Final data - Aug 2022/Final DZ Data - Aug 22.xlsx",
+  DZdta2 <- read_excel("data/Final data - Sep 2023/Final DZ Data - Sep 2023.xlsx",
                         sheet = i)
   DZdta <- left_join(DZdta, DZdta2, by = "DZ")
 }
