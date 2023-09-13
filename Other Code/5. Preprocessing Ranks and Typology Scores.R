@@ -11,7 +11,7 @@ library(readxl)
 
 #Store value for the start year and most recent year data is available, this needs to be changed when data is refreshed annually
 StrtYear <- "2009/10"
-RcntYear <- "2020/21"
+RcntYear <- "2021/22"
 
 SpPolysDF <- read_rds("data/Shapes.rds")
 SpPolysIZ <- read_rds("data/IZshapes.rds")
@@ -69,7 +69,7 @@ rm(i, x, povDecs, tariffDecs,benDecs,crimeDecs, admisDecs)
 
 # Create CPP Scores and Type Scores for most recent years data----------
 IGZdta <- IGZdta %>% 
-  mutate(`High is Positive?` = case_when(Indicator %in% high_is_negative ~ "No",
+  mutate(`High is Positive` = case_when(Indicator %in% high_is_negative ~ "No",
                                          !Indicator %in% high_is_negative ~ "Yes"))
 
 
@@ -84,8 +84,8 @@ IGZ_latest <- IGZdta %>%
   mutate(StdDev = sd(value)) %>%
   ungroup() %>%
   mutate(ZScore = Differences/StdDev,
-         CPPScore = case_when(High.is.Positive. == "Yes" ~ ZScore,
-                              High.is.Positive. == "No" ~ ZScore*-1)) %>%
+         CPPScore = case_when(`High is Positive` == "Yes" ~ ZScore,
+                              `High is Positive` == "No" ~ ZScore*-1)) %>%
   select(c(-CPPMean, -Differences, -StdDev, -ZScore)) %>%
   group_by(Typology_Group, Indicator) %>%
   mutate(TypeMean = mean(value)) %>%
@@ -95,8 +95,8 @@ IGZ_latest <- IGZdta %>%
   mutate(StdDev = sd(value)) %>%
   ungroup() %>%
   mutate(ZScore = Differences/StdDev,
-         TypeScore = case_when(High.is.Positive. == "Yes" ~ ZScore,
-                               High.is.Positive. == "No" ~ ZScore*-1)) %>%
+         TypeScore = case_when(`High is Positive`  == "Yes" ~ ZScore,
+                                `High is Positive`  == "No" ~ ZScore*-1)) %>%
   select(c(-TypeMean, -Differences, -StdDev, -ZScore))
 
 ##get latest scores for Fife Strategic Areas================
@@ -113,8 +113,8 @@ IGZ_latest_Fife <- IGZ_latest %>%
   mutate(StdDev = sd(value)) %>%
   ungroup() %>%
   mutate(ZScore = Differences/StdDev,
-         CPPScore = case_when(High.is.Positive. == "Yes" ~ ZScore,
-                              High.is.Positive. == "No" ~ ZScore*-1)) %>%
+         CPPScore = case_when(`High is Positive` == "Yes" ~ ZScore,
+                              `High is Positive` == "No" ~ ZScore*-1)) %>%
   select(c(-CPPMean, -Differences, -StdDev, -ZScore))
 
 
@@ -123,8 +123,8 @@ IGZ_change <- IGZdta %>%
   filter(Year %in% c(StrtYear,RcntYear)) %>%
   group_by(InterZone, Indicator) %>%
   mutate(Change = last(value) / first(value) -1, 
-         Change = case_when(High.is.Positive. == "Yes" ~ Change,
-                            High.is.Positive. == "No" ~ Change*-1)) %>%
+         Change = case_when(`High is Positive` == "Yes" ~ Change,
+                            `High is Positive` == "No" ~ Change*-1)) %>%
   filter(Year == RcntYear) %>%
   ungroup() %>%
   group_by(Indicator) %>%
@@ -197,7 +197,7 @@ write_csv(IGZ_latest,"data/IGZ_latest.csv")
 
 #tidy and write Fife files
 IGZ_latest_Fife <- IGZ_latest_Fife %>% select(c(`Strategic Area`, InterZone, CPPScore, Indicator)) %>% rename(SAScore = CPPScore)
-IGZ_change_Fife <- IGZ_change_Fife %>% select(c(`Strategic.Area`, InterZone, CPPChangeScore, Indicator)) %>% rename(SAChangeScore = CPPChangeScore)
+IGZ_change_Fife <- IGZ_change_Fife %>% select(c(`Strategic Area`, InterZone, CPPChangeScore, Indicator)) %>% rename(SAChangeScore = CPPChangeScore)
 write_csv(IGZ_latest_Fife,"data/IGZ_latest_Fife.csv")
 write_csv(IGZ_change_Fife,"data/IGZ_change_Fife.csv")
 
@@ -216,7 +216,7 @@ CPP_dta_current <- setDT(CPP_dta_current)[, Improvement_Rate :=
                                           ]
 
 CPP_dta_current <- CPP_dta_current %>% 
-  mutate(`High is Positive?` = case_when(Indicator %in% high_is_negative ~ "No",
+  mutate(`High is Positive` = case_when(Indicator %in% high_is_negative ~ "No",
                                          !Indicator %in% high_is_negative ~ "Yes"))
 
 write_csv(CPP_dta_current, "data/Imp_rate_CPP.csv")
