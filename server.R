@@ -691,37 +691,42 @@ shinyServer(function(input, output, session) {
     return(IGZBest)
   }) #end of IGZBest()
   
+  IGZImprovement <- reactive({
+    req(input$LA1)
+  if(input$LA1 == "Fife" & input$Fife_SA != "All"){
+    IGZImprovement <- left_join(IGZ_change, IGZ_change_Fife, by = c("InterZone", "Indicator")) %>% 
+      filter(CPP == "Fife" & 
+               `Strategic Area` == input$Fife_SA & 
+               Indicator %in% input$IndiMyCom) %>%
+      select(-CPPChangeScore)
+    IGZImprovement <- setDT(IGZImprovement)[,CombinedCPPChangeScore := sum(SAChangeScore), by = InterZone]
+    IGZImprovement <- setDT(IGZImprovement)[,CombinedTypeChangeScore := sum(TypeChangeScore), by = InterZone]
+  }else{
+    
+    IGZImprovement <- filter(IGZ_change, CPP %in% input$LA1 & Indicator %in% input$IndiMyCom)
+    IGZImprovement <- setDT(IGZImprovement)[,CombinedCPPChangeScore := sum(CPPChangeScore), by = InterZone]
+    IGZImprovement <- setDT(IGZImprovement)[,CombinedTypeChangeScore := sum(TypeChangeScore), by = InterZone]
+  }
+  
+  # Filter data so that combined scores are only displayed once for each IGZ
+  IGZImprovement <- setDT(IGZImprovement)[, FilterRef := first(Indicator), by = InterZone]
+  IGZImprovement <-filter(IGZImprovement, Indicator == FilterRef)
+  IGZImprovement$CPPChangeRank <- rank(IGZImprovement$CombinedCPPChangeScore, ties.method = "min")
+  IGZImprovement$TypeChangeRank <- rank(IGZImprovement$CombinedTypeChangeScore, ties.method = "min")
+  
+  return(IGZImprovement)
+  }) ##end of IGZImprovement
+  
   #"MyCom" bump_chart_communities_data() ----------
   bump_chart_communities_data <- eventReactive(
-    input$checkboxupdate,
+    list(input$checkboxupdate, input$Fife_SA),
     {
     req(input$LA1)
     req(IGZBest())
     req(input$IndiMyCom)
-    if(input$LA1 == "Fife" & input$Fife_SA != "All"){
-      IGZImprovement <- left_join(IGZ_change, IGZ_change_Fife, by = c("InterZone", "Indicator")) %>% 
-        filter(CPP == "Fife" & 
-                 `Strategic.Area` == input$Fife_SA & 
-                 Indicator %in% input$IndiMyCom) %>%
-        select(-CPPChangeScore)
-      IGZImprovement <- setDT(IGZImprovement)[,CombinedCPPChangeScore := sum(SAChangeScore), by = InterZone]
-      IGZImprovement <- setDT(IGZImprovement)[,CombinedTypeChangeScore := sum(TypeChangeScore), by = InterZone]
-    }else{
-      
-      IGZImprovement <- filter(IGZ_change, CPP %in% input$LA1 & Indicator %in% input$IndiMyCom)
-      IGZImprovement <- setDT(IGZImprovement)[,CombinedCPPChangeScore := sum(CPPChangeScore), by = InterZone]
-      IGZImprovement <- setDT(IGZImprovement)[,CombinedTypeChangeScore := sum(TypeChangeScore), by = InterZone]
-    }
-    
-    # Filter data so that combined scores are only displayed once for each IGZ
-    IGZImprovement <- setDT(IGZImprovement)[, FilterRef := first(Indicator), by = InterZone]
-    IGZImprovement <-filter(IGZImprovement, Indicator == FilterRef)
-    IGZImprovement$CPPChangeRank <- rank(IGZImprovement$CombinedCPPChangeScore, ties.method = "min")
-    IGZImprovement$TypeChangeRank <- rank(IGZImprovement$CombinedTypeChangeScore, ties.method = "min")
-    
     # Split Data into 4 individual DataTables for each ranking, then combine into 1 table
     MyCommunitiesDta <- select(IGZBest(), c(InterZone, InterZone_Name, CPPScoreRank, TypeScoreRank)) %>%
-      left_join(select(IGZImprovement, c(InterZone, InterZone_Name, CPPChangeRank, TypeChangeRank))) %>%
+      left_join(select(IGZImprovement(), c(InterZone, InterZone_Name, CPPChangeRank, TypeChangeRank))) %>%
       arrange(CPPScoreRank)
     
     #the following series of steps allocates communities into 1 of 9 colours
