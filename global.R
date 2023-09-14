@@ -19,6 +19,7 @@ library(shinyWidgets)
 library(formattable)
 library(shinyalert, quietly = TRUE)
 library(plotly)
+library(sf)
 library(ggbump)
 
 #Store value for the most recent year data is available, this needs to be changed when data is refreshed annually
@@ -53,16 +54,16 @@ Metadata <- read_csv("data/Metadata.csv", show_col_types = FALSE)
 vulnerable_communities_data <- read_csv("data/vulnerable_communities_outcomes_and_change.csv", show_col_types = FALSE)
 
 #rename Edinburgh
-SpPolysIZ@data[SpPolysIZ@data$council == "Edinburgh","council"] <- "Edinburgh, City of" 
-SpPolysDF@data[SpPolysDF@data$council == "Edinburgh","council"] <- "Edinburgh, City of" 
+SpPolysIZ[SpPolysIZ$council == "Edinburgh","council"] <- "Edinburgh, City of" 
+SpPolysDF[SpPolysDF$council == "Edinburgh","council"] <- "Edinburgh, City of" 
 
 #extract data and rename indicator columns (col names will be used directly in leaflet pop-ups in UI)
-CPPMapDta <- SpPolysDF@data %>%
-  dplyr::rename("Children in Poverty (%)" = "% of children in poverty", 
-         "Average Highest Attainment" = "Average highest attainment",
-         "Out of Work Benefits (%)" = "% of population (aged 16-64) in receipt of out of work benefits", 
-         "SIMD Crimes per 10,000" = "Number of SIMD crimes per 10,000 of the population", 
-         "Emergency Admissions (65+) per 100,000" = "Emergency admissions (65+) per 100,000 population")
+CPPMapDta <- SpPolysDF %>%
+  dplyr::rename("Children in Poverty (%)" = "X..of.children.in.poverty", 
+         "Average Highest Attainment" = "Average.highest.attainment",
+         "Out of Work Benefits (%)" = "X..of.population..aged.16.64..in.receipt.of.out.of.work.benefits", 
+         "SIMD Crimes per 10,000" = "Number.of.SIMD.crimes.per.10.000.of.the.population", 
+         "Emergency Admissions (65+) per 100,000" = "Emergency.admissions..65...per.100.000.population")
 ##convert to numeric
 CPPMapDta[[15]] <- as.numeric(CPPMapDta[[15]])
 CPPMapDta[[14]] <- as.numeric(CPPMapDta[[14]])
@@ -84,7 +85,7 @@ indicators <- c("Healthy Birthweight", "Primary 1 Body Mass Index", "Child Pover
 )
 
 #Create list of CPP names for use in UI
-CPPNames <- unique(CPPMapDta[CPPMapDta$council != "Scotland", "council"])
+CPPNames <- unique(CPPdta[CPPdta$CPP != "Scotland", "CPP"])
 
 ##Read in Duncan Index Scores and calculate whether improving
 DIdta <- read_csv("data/DuncanIndex.csv", show_col_types = FALSE)
@@ -142,7 +143,7 @@ trafficLightMarkerColour <- function (data, selected_cpp, comparator_cpp) {
   selected_cpp_data <- filter(data, CPP == selected_cpp)
   comparator_cpp_data <- filter(data, CPP == comparator_cpp)
   
-  highIsPositive <- unique(data$`High is Positive?`)
+  highIsPositive <- unique(data$`High is Positive`)
   
   if_else(last(selected_cpp_data$value) > last(comparator_cpp_data$value), 
           if_else(last(selected_cpp_data$Improvement_Rate) > last(comparator_cpp_data$Improvement_Rate),
@@ -162,7 +163,7 @@ trafficLightMarkerColour <- function (data, selected_cpp, comparator_cpp) {
 
 #adds on-click pop-ups to the data zone maps in the "Map2" tab
 showDZpopup <- function(DZdata, group, lat, lng, map_ind, plotId) {
-  selectedDZ <- DZdata[DZdata$DataZone == group,] 
+  selectedDZ <- st_drop_geometry(DZdata[DZdata$DataZone == group,]) 
   colIndex <- grep(map_ind, colnames(selectedDZ))
   content <- as.character(tagList(
     tags$h4(as.character(unique(selectedDZ$DataZone))),
@@ -178,9 +179,9 @@ showDZpopup <- function(DZdata, group, lat, lng, map_ind, plotId) {
 
 #clickable pop-ups for IZ in "Map1"
 showIZPopup <- function(group, lat, lng){
-  selectedIZ <- SpPolysIZ@data[SpPolysIZ@data$InterZone == group,]
+  selectedIZ <- SpPolysIZ[SpPolysIZ$InterZone == group,]
   content <- as.character(tagList(
-    tags$h4(as.character(unique(selectedIZ$`IGZ name`)))))
+    tags$h4(as.character(unique(selectedIZ$`IGZ.name`)))))
   leafletProxy("communityMap") %>% addPopups(lng, lat, content, layerId = group)
 }
 
