@@ -79,7 +79,7 @@ shinyServer(function(input, output, session) {
   
   output$communityMap <- renderLeaflet({
     req(input$LA1)
-    sbst <- which(SpPolysIZ@data$council %in% input$LA1)
+    sbst <- which(SpPolysIZ$council %in% input$LA1)
     dt <- SpPolysIZ[sbst,]
     selCls <- if(input$CBCols){clrsCB}else{clrs}
     selPls <- if(input$CBCols){
@@ -260,7 +260,7 @@ shinyServer(function(input, output, session) {
         minAx <- 0
         ggplot(data = filter(dtaNoScot, Indicator == indi[[this_i]])) +
           geom_bar(aes(
-            x = if((first(`High is Positive?`))== "Yes"){reorder(CPP, value)}else{reorder(CPP, -value)}, 
+            x = if((first(`High is Positive`))== "Yes"){reorder(CPP, value)}else{reorder(CPP, -value)}, 
             y = value, 
             fill = colourscheme
           ), 
@@ -327,7 +327,7 @@ shinyServer(function(input, output, session) {
         minAx <- 0
         ggplot(data = filter(dta, Indicator == indi[[that_i]])) +
           geom_bar(aes(
-            x = if(first(`High is Positive?`)== "Yes"){reorder(CPP, value)}else{reorder(CPP, -value)}, 
+            x = if(first(`High is Positive`)== "Yes"){reorder(CPP, value)}else{reorder(CPP, -value)}, 
             y = value, 
             fill = colourscheme
           ), 
@@ -1539,8 +1539,8 @@ shinyServer(function(input, output, session) {
     selectizeInput(
       "IZ", 
       "Select a Community:", 
-      choices = sort(unique(CPPMapDta[CPPMapDta$council == input$LA1, 11])),
-      selected = sort(unique(CPPMapDta[CPPMapDta$council == input$LA1, 11]))[1]
+      choices = sort(unique(pull(IGZdta[IGZdta$CPP == input$LA1, "InterZone_Name"]))),
+      selected = sort(unique(pull(IGZdta[IGZdta$CPP == input$LA1, "InterZone_Name"])))[1]
     )
   })
   
