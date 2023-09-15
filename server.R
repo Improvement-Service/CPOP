@@ -977,7 +977,8 @@ shinyServer(function(input, output, session) {
       paste0(pBetter, "%"), "Communities Performing Better than Expected", icon = icon("percent"),
       color = bCol, width = NULL
     )
-  })
+  }) %>% bindEvent(
+    list(input$checkboxupdate, input$Fife_SA))
   
   
   
