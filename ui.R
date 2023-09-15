@@ -292,16 +292,16 @@ body <- dashboardBody(
               #        )
               #   ),
               fluidRow(
-                column(3, 
+                column(2, 
                        style = "padding-right:0px; padding-left:5px",
                        awesomeRadio("View",
                                     "Show:",
                                     c("All", "Most/Least 10", "Most/Least 5"),
-                                    inline = TRUE,
+                                    inline = FALSE,
                                     selected = "All")),
                 column(2, style= "padding-left:0px",valueBoxOutput("comProgressBox"),
                        checkbox = TRUE),
-                column(5,
+                column(6,
                        tags$div(
                          class = "multicol",
                          awesomeCheckboxGroup(
@@ -309,10 +309,11 @@ body <- dashboardBody(
                            "Select indicators",
                            unique(IGZdta$Indicator),
                            selected = unique(IGZdta$Indicator))
-                       )
+                       ),
+                       h4("Click a community on the graph to highlight it, double click to clear")
                     ),
                 column(2, 
-                       actionBttn("checkboxupdate", "Update Indicators", style = "fill", color = "primary")
+                       actionBttn("checkboxupdate", "Update Indicators", style = "fill", color = "primary", size = "sm")
                        )
               ),
               fluidRow(
@@ -499,7 +500,7 @@ body <- dashboardBody(
                        downloadBttn("DLDta",label = "Download All CPP Data"),
                        downloadBttn("DLIZDta", label = "Download All Community Data", style = "fill", color = "success"),
                        hr()),
-              fluidRow(h3("Methodology"), p("You can find details on the methodology used to collect and prepare all of our indicators", style = "display:inline"), a("here", href = "https://drive.google.com/file/d/1muNlJmWgWj5FA2vU1lYzQ4NMgwuH_vzh/view?usp=sharing", target = "_blank"), hr()),
+              fluidRow(h3("Methodology"), p("You can find details on the methodology used to collect and prepare all of our indicators", style = "display:inline"), a("here", href = "https://impservihub-my.sharepoint.com/:b:/g/personal/nicholas_cassidy_improvementservice_org_uk/EUxelF9on7hHup00jUIW5wwBejWfacYJQvzL_9O1wU4pQg?e=itHSOj", target = "_blank"), hr()),
               fluidRow(h3("Other Profiling Tools and Data Sources"), p("There are a number of other profiling tools available, some of these are listed below.\nYou can also find sources for some of the data used in this tool"),
                        tags$ul( 
                          #Link to ScotPHO
