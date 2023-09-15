@@ -1,0 +1,14 @@
+name: is-community-planning-outcomes-profile
+title: is-community-planning-outcomes-profile
+username:
+account: scotland
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 555443
+bundleId: 6844588
+url: https://scotland.shinyapps.io/is-community-planning-outcomes-profile/
+when: 1676372393.33298
+lastSyncTime: 1676372393.33298
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: Aberdeen City.html|CoverPage.html|CPOP_Tool_2021.xlsx|DATA FILES TO UPDATE.R|Glasgow City.html|global - Dev Version.R|MapUpdateExample.R|Potential Improvements.docx|server - Dev Version.R|ui - Dev Version.R

@@ -46,9 +46,9 @@ dta <- select(dta, -"IZ Name")
 rownames(dta) <- 0:6975
 SpPolysDF <- st_as_sf(SpPolysDF)
 sf_use_s2(FALSE)
-SpPolysDF <- st_simplify(SpPolysDF,  dTolerance = 0.5, preserveTopology = TRUE)
+SpPolysDF <- st_simplify(SpPolysDF,  dTolerance = 0.00005, preserveTopology = TRUE)
 #save
-saveRDS(SpPolysDF, file = "C:/Users/cassidy.nicholas/OneDrive - IS/CPOP/data/Shapes2.rds")
+saveRDS(SpPolysDF, file = "C:/Users/cassidy.nicholas/OneDrive - IS/CPOP/data/Shapes.rds")
 
 
 ## Intermediate Geography Shapes
@@ -74,7 +74,7 @@ rownames(dta) <- 0:1278
 ##simplify to make the size smaller
 SpPolysIZ <- st_as_sf(SpPolysIZ)
 sf_use_s2(FALSE)
-SpPolysIZ <- st_simplify(SpPolysIZ,  dTolerance = 0.5, preserveTopology = TRUE)
+SpPolysIZ <- st_simplify(SpPolysIZ,  dTolerance = 0.00005, preserveTopology = TRUE)
 
 #Save 
-saveRDS(SpPolysIZ, "C:/Users/cassidy.nicholas/OneDrive - IS/CPOP/data/IZshapes2.rds")
+saveRDS(SpPolysIZ, "C:/Users/cassidy.nicholas/OneDrive - IS/CPOP/data/IZshapes.rds")

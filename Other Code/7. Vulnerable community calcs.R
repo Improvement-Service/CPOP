@@ -40,6 +40,10 @@ IGZData <- IGZData_raw %>%
 igz_names <- IGZData_raw %>% 
   select(IGZ, InterZone_Name)
 
+##get list of indicators and first/last year
+nms <- IGZData %>% group_by(Indicator) %>% filter(Year %in% c(first(Year), last(Year))) %>% ungroup() %>% 
+  unite("indis", Indicator:Year) %>% pull(indis) %>% unique()
+
 
 #Calculate Change and CPPChangeScore----------------------------------------------------------------------
 
@@ -131,7 +135,7 @@ CPPScoreData <- TableData %>%
   ))
 
 
-#Seperate out CPPMean only and format
+#Separate out CPPMean only and format
 
 CPPMeanData <- TableData %>%
   select(-c(Change, CombinedCPPChangeScore, HighIsPos, YearRef, value)) %>%
@@ -170,20 +174,12 @@ total <- rbind(TableData2, CPPMeanData) %>%
       AreaLabel == "CPP Average" ~ paste0(CPP, " Average"),
       AreaLabel != "CPP Average" ~ InterZone_Name
     )) %>%
-  select(AreaLabel, CPP, InterZone_Name, Most_Deprived_Comm, CPPScore, `Child Poverty_2014/15`,
-         `Child Poverty_2020/21`, `Child Poverty_2020/21_Change`, `Crime Rate_2009/10`,
-         `Crime Rate_2020/21`, `Crime Rate_2020/21_Change`, `Depopulation_2009/10`,
-         `Depopulation_2020/21`, `Depopulation_2020/21_Change`, `Early Mortality_2010/11`,
-         `Early Mortality_2020/21`, `Early Mortality_2020/21_Change`, `Emergency Admissions_2009/10`,
-         `Emergency Admissions_2020/21`, `Emergency Admissions_2020/21_Change`, `Out of Work Benefits_2012/13`,
-         `Out of Work Benefits_2020/21`, `Out of Work Benefits_2020/21_Change`, `Participation Rate_2015/16`,
-         `Participation Rate_2020/21`, `Participation Rate_2020/21_Change`, `Attainment_2013/14`,
-         `Attainment_2020/21`, `Attainment_2020/21_Change`)
+  select(AreaLabel, CPP, InterZone_Name, Most_Deprived_Comm, CPPScore, all_of(nms))
 
-whole_num_cols <- c("Crime Rate_2009/10","Crime Rate_2020/21",  
-                    "Early Mortality_2010/11","Early Mortality_2020/21", 
-                    "Emergency Admissions_2009/10","Emergency Admissions_2020/21")
-total[,whole_num_cols] <- round(total[,whole_num_cols], 0)
+# whole_num_cols <- c("Crime Rate_2009/10","Crime Rate_2021/22",  
+#                     "Early Mortality_2010/11","Early Mortality_2021/22", 
+#                     "Emergency Admissions_2009/10","Emergency Admissions_2021/22")
+# total[,whole_num_cols] <- round(total[,whole_num_cols], 0)
 total <- lapply(total, function(x) if(is.numeric(x)) round(x, 1) else x) %>%
   as.data.frame()
 
@@ -252,7 +248,7 @@ vul_com_outcomes <- final_new_viz %>%
   pivot_wider(names_from = YearRef, values_from = c(CommunityValue, CPPAverage)) %>%
   fill(c(CommunityValue_BaseYear, CPPAverage_BaseYear), .direction = "down") %>%
   fill(c(CommunityValue_RecentYear, CPPAverage_RecentYear), .direction = "up") %>%
-  filter(is.na(Year) | Year != "2020/21") %>%
+  filter(is.na(Year) | Year != "2021/22" & Year != "2020/21") %>%           ## Update most recent year - 2020/21 can be removed once attainment is updated
   rename("BaseYear" = "Year") %>%
   arrange(vulnerability_rank)
 

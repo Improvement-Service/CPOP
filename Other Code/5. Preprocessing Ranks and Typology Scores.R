@@ -8,13 +8,14 @@ library(tidyverse)
 library(DT)
 library(data.table)
 library(readxl)
+library(sf)
 
 #Store value for the start year and most recent year data is available, this needs to be changed when data is refreshed annually
 StrtYear <- "2009/10"
 RcntYear <- "2021/22"
 
 SpPolysDF <- read_rds("data/Shapes.rds")
-SpPolysIZ <- read_rds("data/IZshapes.rds")
+SpPolysIZ <- read_rds("data/IZshapes.rds") %>% select(-`X.1.is.least.deprived.`)
 CPPdta <- read_csv("data/CPPcleandata.csv")
 IGZdta <- read_csv("data/IGZcleandata.csv")
 DZdta <- read_csv("data/DZcleandata.csv")
@@ -31,39 +32,37 @@ high_is_negative <- c("Dwelling Fires",
                       "Early Mortality")
 
 #Calculate percentiles for map colours------------
-pl <- SpPolysDF@data
-
 povDecs <- c()
-for(i in unique(SpPolysDF@data$council)){
-  x <- ntile(SpPolysDF@data[SpPolysDF@data$council == i, 13], 7)
+for(i in unique(SpPolysDF$council)){
+  x <- ntile(SpPolysDF[SpPolysDF$council == i, 13], 7)
   povDecs <-c(povDecs,x)
 }
 
 tariffDecs <- c()
-for(i in unique(SpPolysDF@data$council)){
-  x <- ntile(SpPolysDF@data[SpPolysDF@data$council == i, 14], 7)
+for(i in unique(SpPolysDF$council)){
+  x <- ntile(SpPolysDF[SpPolysDF$council == i, 14], 7)
   tariffDecs <-c(tariffDecs,x)
 }
 
 benDecs <- c()
-for(i in unique(SpPolysDF@data$council)){
-  x <- ntile(SpPolysDF@data[SpPolysDF@data$council == i, 15], 7)
+for(i in unique(SpPolysDF$council)){
+  x <- ntile(SpPolysDF[SpPolysDF$council == i, 15], 7)
   benDecs <-c(benDecs,x)
 }
 
 crimeDecs <- c()
-for(i in unique(SpPolysDF@data$council)){
-  x <- ntile(SpPolysDF@data[SpPolysDF@data$council == i, 16], 7)
+for(i in unique(SpPolysDF$council)){
+  x <- ntile(SpPolysDF[SpPolysDF$council == i, 16], 7)
   crimeDecs <-c(crimeDecs,x)
 }
 
 admisDecs <- c()
-for(i in unique(SpPolysDF@data$council)){
-  x <- ntile(SpPolysDF@data[SpPolysDF@data$council == i, 17], 7)
+for(i in unique(SpPolysDF$council)){
+  x <- ntile(SpPolysDF[SpPolysDF$council == i, 17], 7)
   admisDecs <-c(admisDecs,x)
 }
 
-SpPolysDF@data <- cbind(SpPolysDF@data, povDecs, tariffDecs,benDecs,crimeDecs, admisDecs)
+SpPolysDF <- cbind(SpPolysDF, povDecs, tariffDecs,benDecs,crimeDecs, admisDecs)
 rm(i, x, povDecs, tariffDecs,benDecs,crimeDecs, admisDecs)
 
 
@@ -184,11 +183,11 @@ decs <-IGZ_latest %>%
          CPPRank = frank(combCPP)) %>%
   select(InterZone, CPPDec,CPPRank)
 
-SpPolysIZ@data <- SpPolysIZ@data %>% 
+SpPolysIZ <- SpPolysIZ %>% 
   left_join(., decs, by = "InterZone") %>% 
-  select(-rank_decs, -`rank-min`)
+  select(-rank_decs, -`rank.min`)
 
-names(SpPolysIZ@data)[c(13,14)] <- c("rank_decs", "rank-min")
+names(SpPolysIZ)[c(13,14)] <- c("rank_decs", "rank-min")
 
 saveRDS(SpPolysDF, "data/Shapes_decs.rds")
 saveRDS(SpPolysIZ, "data/IZshapes_decs.rds")

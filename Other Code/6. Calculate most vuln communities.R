@@ -2,6 +2,7 @@
 #are most vulnerable in the "Vulnerable Communities" page of the CPOP
 #Otherwise it uses 2006 data to calculate the most vulnerable, so this can change it to 2007
 ##Therefore it can be used to replace what is saved in Vulnerable communities - 2006.xlsx
+##THIS IS OPTIONAL AND IS NOT NORMALLY RUN
 
 library(tidyverse)
 library(plyr)
