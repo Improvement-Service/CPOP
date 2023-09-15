@@ -292,14 +292,15 @@ body <- dashboardBody(
               #        )
               #   ),
               fluidRow(
-                column(4, 
+                column(3, 
                        style = "padding-right:0px; padding-left:5px",
                        awesomeRadio("View",
                                     "Show:",
                                     c("All", "Most/Least 10", "Most/Least 5"),
                                     inline = TRUE,
                                     selected = "All")),
-                column(1),
+                column(2, style= "padding-left:0px",valueBoxOutput("comProgressBox"),
+                       checkbox = TRUE),
                 column(5,
                        tags$div(
                          class = "multicol",

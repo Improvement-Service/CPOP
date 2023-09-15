@@ -968,6 +968,19 @@ shinyServer(function(input, output, session) {
     
   })#end of community bump chart
   
+  ##Value box for community progress========
+  output$comProgressBox <- renderValueBox({
+    IGZBest <- IGZBest()
+    pBetter <- round((sum(IGZBest$CombinedTypeScore>0)/nrow(IGZBest))*100,0)
+    bCol <- if(pBetter <50) {"red"}else{"green"}
+    valueBox(
+      paste0(pBetter, "%"), "Communities Performing Better than Expected", icon = icon("percent"),
+      color = bCol, width = NULL
+    )
+  })
+  
+  
+  
   #"CP" communities_list()--------------------
   #reactive ex-pression to update communities in sidebar drop down (CommunityCP) when LA1 input is changed
   communities_list <- eventReactive(input$LA1, {
