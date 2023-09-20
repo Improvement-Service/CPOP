@@ -699,13 +699,13 @@ shinyServer(function(input, output, session) {
                `Strategic Area` == input$Fife_SA & 
                Indicator %in% input$IndiMyCom) %>%
       select(-CPPChangeScore)
-    IGZImprovement <- setDT(IGZImprovement)[,CombinedCPPChangeScore := sum(SAChangeScore), by = InterZone]
-    IGZImprovement <- setDT(IGZImprovement)[,CombinedTypeChangeScore := sum(TypeChangeScore), by = InterZone]
+    IGZImprovement <- setDT(IGZImprovement)[,CombinedCPPChangeScore := sum(SAChangeScore, na.rm= TRUE), by = InterZone]
+    IGZImprovement <- setDT(IGZImprovement)[,CombinedTypeChangeScore := sum(TypeChangeScore, na.rm= TRUE), by = InterZone]
   }else{
     
     IGZImprovement <- filter(IGZ_change, CPP %in% input$LA1 & Indicator %in% input$IndiMyCom)
-    IGZImprovement <- setDT(IGZImprovement)[,CombinedCPPChangeScore := sum(CPPChangeScore), by = InterZone]
-    IGZImprovement <- setDT(IGZImprovement)[,CombinedTypeChangeScore := sum(TypeChangeScore), by = InterZone]
+    IGZImprovement <- setDT(IGZImprovement)[,CombinedCPPChangeScore := sum(CPPChangeScore , na.rm= TRUE), by = InterZone]
+    IGZImprovement <- setDT(IGZImprovement)[,CombinedTypeChangeScore := sum(TypeChangeScore, na.rm= TRUE), by = InterZone]
   }
   
   # Filter data so that combined scores are only displayed once for each IGZ
@@ -906,10 +906,10 @@ shinyServer(function(input, output, session) {
       scale_x_continuous(name = "",
                          limits = c(2017.7, 2022.2),
                          breaks = seq(2018, 2022, 1),
-                         labels = c(" ", "<b>Within CPP which \ncommunities have \nthe poorest outcomes?</b>",
-                                    "<b>Compared to other, \nsimilar communities, \ndo those in CPP fare better \nor worse than expected?</b>",
-                                    "<b>Within CPP which \ncommunities have improved \nthe least?</b>",
-                                    "<b>Within CPP which \ncommunities have improved \n the least relative to other \nsimilar communities?</b>"),
+                         labels = c(" ", "<b>Within CPP which \ncommunities have \nthe poorest \noutcomes?</b>",
+                                    "<b>Compared to \nsimilar communities \noutwith the CPP, \ndo communities \nfare better \nor worse than expected?</b>",
+                                    "<b>Within CPP which \ncommunities improved \nthe least?</b>",
+                                    "<b>Within CPP which \ncommunities improved \n the least relative to \nsimilar communities?</b>"),
       ) + 
       colScalePoint +
       colScaleLine +
@@ -920,7 +920,8 @@ shinyServer(function(input, output, session) {
                 vjust = 0.5) +
       coord_cartesian(clip = "off") + 
       theme_minimal() + 
-      theme(panel.grid.minor = element_blank())
+      theme(panel.grid.minor = element_blank(),
+            legend.position =  "none")
     
     
     #"My Comm" bump chart ggplotly conversion ------------    

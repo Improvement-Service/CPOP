@@ -5,7 +5,7 @@ account: isresearchnc
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 400484
-bundleId:
+bundleId: 7689930
 url: https://isresearchnc.shinyapps.io/CPOP/
 asMultiple: FALSE
 asStatic: FALSE

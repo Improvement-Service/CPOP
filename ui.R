@@ -33,7 +33,7 @@ body <- dashboardBody(
       "#vulnerable_change{width:80vw !important; height:100vh !important}",
       "#vulnerable_outcomes_plot{width:80vw !important}",
       "#vulnerable_change_text{width:70vw !important}",
-      "#community_bump_chart{width:80vw !important}",
+      "#community_bump_chart{width:63vw !important}",
       
       "#SimCPP{height:90vh !important}",
       "#CompCPP{height:75vh !important; margin-top:15px}",
@@ -310,10 +310,10 @@ body <- dashboardBody(
                            unique(IGZdta$Indicator),
                            selected = unique(IGZdta$Indicator))
                        ),
-                       h4("Click a community on the graph to highlight it, double click to clear")
+                       h4("Click a community on the graph to highlight it, double click or click Refresh Graph button to clear")
                     ),
                 column(2, 
-                       actionBttn("checkboxupdate", "Update Indicators", style = "fill", color = "primary", size = "sm")
+                       actionBttn("checkboxupdate", "Refresh Graph", style = "fill", color = "primary", size = "sm")
                        )
               ),
               fluidRow(
@@ -324,7 +324,7 @@ body <- dashboardBody(
               fluidRow(
                 uiOutput("arr1"),
                 column(10, 
-                       plotlyOutput("community_bump_chart", width = "100%")%>% withSpinner(type = 6)
+                       plotlyOutput("community_bump_chart", width = "50%")%>% withSpinner(type = 6)
                 ),
                 column(1, div(tags$img(style = "max-width:120%; width:120%",src = "Arrow2.PNG")))
               )

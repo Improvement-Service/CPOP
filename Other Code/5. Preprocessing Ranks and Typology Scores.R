@@ -11,7 +11,7 @@ library(readxl)
 library(sf)
 
 #Store value for the start year and most recent year data is available, this needs to be changed when data is refreshed annually
-StrtYear <- "2009/10"
+StrtYear <- "2010/11"
 RcntYear <- "2021/22"
 
 SpPolysDF <- read_rds("data/Shapes.rds")
@@ -119,6 +119,8 @@ IGZ_latest_Fife <- IGZ_latest %>%
 
 # Create CPP Scores & Typology Scores for the change from start to finish year--------------
 IGZ_change <- IGZdta %>%
+  ##replace all 0 values with NA
+  mutate(across(value, ~na_if(.,0))) %>%
   filter(Year %in% c(StrtYear,RcntYear)) %>%
   group_by(InterZone, Indicator) %>%
   mutate(Change = last(value) / first(value) -1, 
@@ -127,20 +129,20 @@ IGZ_change <- IGZdta %>%
   filter(Year == RcntYear) %>%
   ungroup() %>%
   group_by(Indicator) %>%
-  mutate(OverallMean = mean(Change)) %>%
+  mutate(OverallMean = mean(Change, na.rm= TRUE)) %>%
   ungroup() %>%
   mutate(Differences = Change - OverallMean) %>%
   group_by(Indicator) %>%
-  mutate(StdDev = sd(Change))%>%
+  mutate(StdDev = sd(Change, na.rm= TRUE))%>%
   ungroup() %>%
-  mutate(OverallZScore = Differences - StdDev) %>%
+  mutate(OverallZScore = Differences/StdDev) %>%
   select(c(-OverallMean, -Differences, -StdDev)) %>%
   group_by(CPP, Indicator) %>%
-  mutate(CPPMean = mean(OverallZScore)) %>%
+  mutate(CPPMean = mean(OverallZScore, na.rm= TRUE)) %>%
   ungroup() %>%
   mutate(Differences = OverallZScore - CPPMean) %>%
   group_by(CPP, Indicator) %>%
-  mutate(StdDev = sd(OverallZScore)) %>%
+  mutate(StdDev = sd(OverallZScore, na.rm= TRUE)) %>%
   ungroup() %>%
   mutate(CPPChangeScore = Differences/StdDev)%>%
   select(c(-CPPMean, -Differences, -StdDev))
@@ -150,11 +152,11 @@ IGZ_change_Fife <- IGZ_change %>%
   filter(CPP == "Fife") %>% 
   left_join(fife_sa[c(1,4)], by = c(InterZone = "AreaCode")) %>%
   group_by(`Strategic Area`, Indicator) %>%
-  mutate(CPPMean = mean(OverallZScore)) %>%
+  mutate(CPPMean = mean(OverallZScore, na.rm= TRUE)) %>%
   ungroup() %>%
   mutate(Differences = OverallZScore - CPPMean) %>%
   group_by(`Strategic Area`, Indicator) %>%
-  mutate(StdDev = sd(OverallZScore)) %>%
+  mutate(StdDev = sd(OverallZScore, na.rm= TRUE)) %>%
   ungroup() %>%
   mutate(CPPChangeScore = Differences/StdDev) %>%
   ungroup() %>%
@@ -163,11 +165,11 @@ IGZ_change_Fife <- IGZ_change %>%
 # Calculate Typology Change Score
 IGZ_change <-IGZ_change %>%
   group_by(Typology_Group, Indicator) %>%
-  mutate(TypeMean = mean(OverallZScore)) %>%
+  mutate(TypeMean = mean(OverallZScore, na.rm= TRUE)) %>%
   ungroup() %>%
   mutate(Differences = OverallZScore - TypeMean) %>%
   group_by(Typology_Group, Indicator) %>%
-  mutate(StdDev = sd(OverallZScore)) %>%
+  mutate(StdDev = sd(OverallZScore, na.rm= TRUE)) %>%
   ungroup() %>%
   mutate(TypeChangeScore = Differences/StdDev) %>%
   select(c(-TypeMean, -Differences, -StdDev))
