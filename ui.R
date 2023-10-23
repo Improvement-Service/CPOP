@@ -496,7 +496,7 @@ body <- dashboardBody(
             fluidPage(
               fluidRow(h3("About this tool"), p("The CPOP tool aims to help you assess if the lives of people in your community are improving by providing a set of core measures on important life outcomes including early years, older people, safer/stronger communities, health and wellbeing, and engagement with local communities and a consistent basis for measuring outcomes and inequalities of outcome in your area."), hr()),
               fluidRow(h3("Explainer Video"), HTML('<iframe width="789" height="444" src="https://www.youtube-nocookie.com/embed/rhno_7VMX38?autoplay=0&showinfo=0&loop=1&rel=0" frameborder="0" allow="accelerometer; loop ;encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),hr()),
-              fluidRow(h3("Download the Data"), p("Use these buttons to download all of the data used in this tool. Please note that much of this data is modelled and so may not match exactly with data from other sources. This data was most recently updated in September 2023."),
+              fluidRow(h3("Download the Data"), p("Use these buttons to download all of the data used in this tool. Please note that much of this data is modelled and so may not match exactly with data from other sources. This data was most recently updated in October 2023."),
                        downloadBttn("DLDta",label = "Download All CPP Data"),
                        downloadBttn("DLIZDta", label = "Download All Community Data", style = "fill", color = "success"),
                        hr()),
@@ -528,6 +528,23 @@ body <- dashboardBody(
                                                             "DWP - Stat-Xplore",  class="externallink", target = "_blank"))
                          
                          
+                       ), hr()),
+              
+              ##Unordered list with updates and versions
+              fluidRow(h3("Version History"), 
+                       tags$ul(
+                         tags$li("October 2023 - error with Child Poverty CPP data amended"),
+                         tags$li("August 2023 - 2021/22 data added"),
+                         tags$li("August 2022 - 2020/21 data added, positive destinations replaced by participation rate"),
+                         tags$li("August 2021 - 2019/20 data added"),
+                         tags$li("August 2020 - 2018/19 data added"),
+                         tags$li("March 2019 - New fuel poverty data added"),
+                         tags$li("February 2019 - 2017/18 data added including new attainment data"),
+                         tags$li("February 2019 - Vulnerable Communities Tab added"),
+                         #Inequalities
+                         tags$li("October 2018 - Inequality Tab added"),
+                         ##Version 1
+                         tags$li("August 2018 - Shiny app launched")
                        ))
             )
     ) #end of About/Data Download ("DtaDL")
