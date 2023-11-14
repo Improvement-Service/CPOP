@@ -62,7 +62,7 @@ CPPMapDta <- SpPolysDF %>%
   dplyr::rename("Children in Poverty (%)" = "X..of.children.in.poverty", 
          "Average Highest Attainment" = "Average.highest.attainment",
          "Out of Work Benefits (%)" = "X..of.population..aged.16.64..in.receipt.of.out.of.work.benefits", 
-         "SIMD Crimes per 10,000" = "Number.of.SIMD.crimes.per.10.000.of.the.population", 
+         "Crimes per 10,000" = "Number.of.crimes.per.10.000.of.the.population", 
          "Emergency Admissions (65+) per 100,000" = "Emergency.admissions..65...per.100.000.population")
 ##convert to numeric
 CPPMapDta[[15]] <- as.numeric(CPPMapDta[[15]])

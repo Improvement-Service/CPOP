@@ -1691,7 +1691,7 @@ shinyServer(function(input, output, session) {
     if (is.null(event))
       return()
     isolate({
-      showDZpopup(CPPMapDta, event$id, event$lat, event$lng, "SIMD Crimes", "newplot4")
+      showDZpopup(CPPMapDta, event$id, event$lat, event$lng, "Crimes per", "newplot4")
     })
   })
   

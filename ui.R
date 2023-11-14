@@ -479,7 +479,7 @@ body <- dashboardBody(
               conditionalPanel("input.CPP != 'Select a CPP'",
                                fluidRow(
                                  splitLayout(cellWidths = c("33%", "33%", "33%"),
-                                             h4("Number of SIMD Crimes per 10,000 People"), 
+                                             h4("Number of Crimes per 10,000 People"), 
                                              h4("Emergency Hospital Admissions per 100,000 people aged 65+"))
                                ),  
                                fluidRow(
@@ -500,7 +500,7 @@ body <- dashboardBody(
                        downloadBttn("DLDta",label = "Download All CPP Data"),
                        downloadBttn("DLIZDta", label = "Download All Community Data", style = "fill", color = "success"),
                        hr()),
-              fluidRow(h3("Methodology"), p("You can find details on the methodology used to collect and prepare all of our indicators", style = "display:inline"), a("here", href = "https://impservihub-my.sharepoint.com/:b:/g/personal/nicholas_cassidy_improvementservice_org_uk/EUxelF9on7hHup00jUIW5wwBejWfacYJQvzL_9O1wU4pQg?e=itHSOj", target = "_blank"), hr()),
+              fluidRow(h3("Methodology"), p("You can find details on the methodology used to collect and prepare all of our indicators", style = "display:inline"), a("here", href = "https://impservihub-my.sharepoint.com/:b:/g/personal/nicholas_cassidy_improvementservice_org_uk/EUxelF9on7hHup00jUIW5wwB39odoSOcPn6xcIvMGy8y-A?e=LTj5Be", target = "_blank"), hr()),
               fluidRow(h3("Other Profiling Tools and Data Sources"), p("There are a number of other profiling tools available, some of these are listed below.\nYou can also find sources for some of the data used in this tool"),
                        tags$ul( 
                          #Link to ScotPHO
