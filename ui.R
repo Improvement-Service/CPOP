@@ -9,7 +9,7 @@ sidebar <- dashboardSidebar(
               uiOutput("communityDropDown"),
               sidebarMenuOutput("secondHalfMenu"),
               awesomeCheckbox("CBCols", "Colour Blind Colour Scheme", value = FALSE),
-              tags$footer(a("Contact us", href = "mailto:benchmarking@improvementservice.org.uk"), style = "position:fixed; bottom:0; margin-left:2px")
+              tags$footer(a("Contact us", href = "mailto:research@improvementservice.org.uk"), style = "position:fixed; bottom:0; margin-left:2px")
   )
 ) #end of sidebar
 
@@ -496,11 +496,11 @@ body <- dashboardBody(
             fluidPage(
               fluidRow(h3("About this tool"), p("The CPOP tool aims to help you assess if the lives of people in your community are improving by providing a set of core measures on important life outcomes including early years, older people, safer/stronger communities, health and wellbeing, and engagement with local communities and a consistent basis for measuring outcomes and inequalities of outcome in your area."), hr()),
               fluidRow(h3("Explainer Video"), HTML('<iframe width="789" height="444" src="https://www.youtube-nocookie.com/embed/rhno_7VMX38?autoplay=0&showinfo=0&loop=1&rel=0" frameborder="0" allow="accelerometer; loop ;encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),hr()),
-              fluidRow(h3("Download the Data"), p("Use these buttons to download all of the data used in this tool. Please note that much of this data is modelled and so may not match exactly with data from other sources. This data was most recently updated in October 2023."),
+              fluidRow(h3("Download the Data"), p("Use these buttons to download all of the data used in this tool. Please note that much of this data is modelled and so may not match exactly with data from other sources. This data was most recently updated in October 2024. Please also note that CPP population data is rebased estimates as published by NRS. IZ and DZ reuses 2021 data for 2022."),
                        downloadBttn("DLDta",label = "Download All CPP Data"),
                        downloadBttn("DLIZDta", label = "Download All Community Data", style = "fill", color = "success"),
                        hr()),
-              fluidRow(h3("Methodology"), p("You can find details on the methodology used to collect and prepare all of our indicators", style = "display:inline"), a("here", href = "https://impservihub-my.sharepoint.com/:b:/g/personal/nicholas_cassidy_improvementservice_org_uk/EUxelF9on7hHup00jUIW5wwB39odoSOcPn6xcIvMGy8y-A?e=LTj5Be", target = "_blank"), hr()),
+              fluidRow(h3("Methodology"), p("You can find details on the methodology used to collect and prepare all of our indicators", style = "display:inline"), a("here", href = "https://impservihub-my.sharepoint.com/:b:/g/personal/nicholas_cassidy_improvementservice_org_uk/EU1tkNjZeK9CueORxY3hdaEBybQItzRLhWSkmGnfb6PT1g?e=yiaJea", target = "_blank"), hr()),
               fluidRow(h3("Other Profiling Tools and Data Sources"), p("There are a number of other profiling tools available, some of these are listed below.\nYou can also find sources for some of the data used in this tool"),
                        tags$ul( 
                          #Link to ScotPHO
@@ -533,6 +533,7 @@ body <- dashboardBody(
               ##Unordered list with updates and versions
               fluidRow(h3("Version History"), 
                        tags$ul(
+                         tags$li("October 2024 - 2022/23 data added"),
                          tags$li("October 2023 - error with Child Poverty CPP data amended"),
                          tags$li("August 2023 - 2021/22 data added"),
                          tags$li("August 2022 - 2020/21 data added, positive destinations replaced by participation rate"),

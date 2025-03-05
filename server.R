@@ -468,6 +468,8 @@ shinyServer(function(input, output, session) {
     
     filtered_change_data <- vulnerable_communities_data %>%
       filter(CPP == input$LA1) %>%
+      group_by(IGZ,Indicator) %>%
+      ungroup() %>%
       #select(-value, -CPPAverage) %>%
       arrange(Indicator, vulnerability_rank)
     
@@ -480,7 +482,7 @@ shinyServer(function(input, output, session) {
     colours <- c(rev(RColorBrewer::brewer.pal(7, "Blues"))[1:5], "white")
     names(colours) <- iz_levels
     filtered_change_data$InterZone_Name <- factor(filtered_change_data$InterZone_Name, levels = iz_levels, ordered = TRUE)
-    filtered_change_data$group <- factor(filtered_change_data$group, levels = filtered_change_data$group, ordered = TRUE)
+    filtered_change_data$group <- factor(filtered_change_data$group, levels = unique(filtered_change_data$group), ordered = TRUE)
     
     p <- ggplot(filtered_change_data)+
       suppressWarnings(geom_col(aes(group, ChangeAv, 
@@ -507,7 +509,7 @@ shinyServer(function(input, output, session) {
                                       )), size=2)) +
       scale_y_continuous(limits = c(max(abs(filtered_change_data$Change))*-1-5, 
                                     max(abs(filtered_change_data$Change))+5),
-                         breaks = seq(-80, 80, 10)) + 
+                         breaks = seq(-100, 100, 10)) + 
       scale_color_manual("Vulnerable Community", values = colours) +
       scale_fill_manual("",values =c("indianred2"),
                         guide = guide_legend(override.aes = list(
@@ -565,7 +567,7 @@ shinyServer(function(input, output, session) {
              CPP == input$LA1) %>%
       arrange(vulnerability_rank)
     
-    indicator_data$InterZone_Name <- factor(indicator_data$InterZone_Name, levels = indicator_data$InterZone_Name, ordered = TRUE)
+    indicator_data$InterZone_Name <- factor(indicator_data$InterZone_Name, levels = unique(indicator_data$InterZone_Name), ordered = TRUE)
     
     colours <- c(rgb(0.25, 0.57, 0.77, 0.5), 
                  rgb(0.25, 0.57, 0.77, 0.8), 
@@ -713,7 +715,6 @@ shinyServer(function(input, output, session) {
   IGZImprovement <-filter(IGZImprovement, Indicator == FilterRef)
   IGZImprovement$CPPChangeRank <- rank(IGZImprovement$CombinedCPPChangeScore, ties.method = "min")
   IGZImprovement$TypeChangeRank <- rank(IGZImprovement$CombinedTypeChangeScore, ties.method = "min")
-  
   return(IGZImprovement)
   }) ##end of IGZImprovement
   
@@ -1710,7 +1711,7 @@ shinyServer(function(input, output, session) {
   output$DLDta <- downloadHandler(
     filename = paste("CPP Data", ".zip", sep = ""),
     content = function(con) {
-      file.copy("data/CPP Data - Oct 23.zip", con)
+      file.copy("data/CPP Data - Oct 2024.zip", con)
     },
     contentType = "application/zip"
   )
@@ -1719,7 +1720,7 @@ shinyServer(function(input, output, session) {
   output$DLIZDta <- downloadHandler(
     filename = paste("IGZ Data", ".zip", sep = ""),
     content = function(con) {
-      file.copy("data/IGZ Data - Sep 23.zip", con)
+      file.copy("data/IGZ Data - Oct 2024.zip", con)
     },
     contentType = "application/zip"
   )
