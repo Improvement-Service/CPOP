@@ -1,10 +1,5 @@
 shinyServer(function(input, output, session) {
 
-  output$clock <- renderText({
-    invalidateLater(5000)
-    Sys.time()
-  })
-  
 
   # #shiny alert pop-up------------------------
   # shinyalert(title = "", 
