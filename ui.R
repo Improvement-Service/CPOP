@@ -9,6 +9,12 @@ sidebar <- dashboardSidebar(
               uiOutput("communityDropDown"),
               sidebarMenuOutput("secondHalfMenu"),
               awesomeCheckbox("CBCols", "Colour Blind Colour Scheme", value = FALSE),
+              div(style = "padding-left: 5px;",
+                tags$hr(),
+                paste("Last update:", lst_update),
+                tags$br(),
+                paste("Next scheduled:", nxt_update)),
+             # infoBox("Last Update", lst_update, icon = icon("calendar"), fill = TRUE),
               tags$footer(a("Contact us", href = "mailto:research@improvementservice.org.uk"), style = "position:fixed; bottom:0; margin-left:2px")
   )
 ) #end of sidebar

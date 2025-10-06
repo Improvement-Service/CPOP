@@ -204,4 +204,13 @@ addColourSchemeColumn <- function (dataset, colName, input1, input2 = NULL) {
   return(dta)
 }
 
+##Add strings for most recent and next update schedule
+lst_update <- "October 2024"
+nxt_update <- "September 2025"
 
+# Convert data frames to data tables
+setDT(CPP_Imp)
+setDT(IGZdta)
+setDT(CPPdta)
+setDT(IGZ_latest)
+setDT(IGZ_change)
