@@ -6,6 +6,7 @@ library(readxl)
 library(dplyr)
 library(dplyr)
 library(sf)
+library(rmapshaper)
 #read shapefiles
 SpPolysDF<-read_rds("C:/Users/cassidy.nicholas/OneDrive - IS/Data/Shapefiles/DZ11.rds")
 
@@ -22,7 +23,7 @@ colnames(SpPolysDF@data)[12] <- "council"
 #SpPolysDF@data[SpPolysDF@data$INTZONE_NAME %in% dups, 10] <- paste(SpPolysDF@data[SpPolysDF@data$INTZONE_NAME %in% dups, 10], abbreviate(SpPolysDF@data[SpPolysDF@data$INTZONE_NAME %in% dups, 7],6), sep = " ")
 
 #Read the data zone indicator data
-indDta <- read_excel("C:/Users/cassidy.nicholas/OneDrive - IS/CPOP/data/Final data - Sep 2023/datazone data for maps.xlsx")
+indDta <- read_excel("C:/Users/cassidy.nicholas/OneDrive - IS/CPOP/data/Final data - Sep 2025/datazone data for maps.xlsx")
 SpPolysDF@data <- left_join(SpPolysDF@data, indDta[c(1,3,4,5,6,7,8)], by = c("DataZone" = "Datazone"))
 #remove old Intzone name column
 SpPolysDF@data$IZname <- SpPolysDF@data$IGZ
@@ -39,14 +40,17 @@ SpPolysDF@data[SpPolysDF@data$council == "Na h-Eileanan an Iar",12] <- "Eilean S
 SpPolysDF@data[SpPolysDF@data$council == "City of Edinburgh",12] <- "Edinburgh"
 dta <- SpPolysDF@data
 ##read in West Dun and East L. names and replace in all data
-wDNms <- read_excel("data/Intermediate Geography Names.xlsx", sheet = 2)
+wDNms <- read_excel("C:/Users/cassidy.nicholas/OneDrive - IS/CPOP/data/Intermediate Geography Names.xlsx", sheet = 2)
 dta <- left_join(dta,wDNms[c(1,3)], by = c("DataZone"))
 dta$IZname <- dta$`IZ Name`
 dta <- select(dta, -"IZ Name")
 rownames(dta) <- 0:6975
+SpPolysDF@data <- dta
 SpPolysDF <- st_as_sf(SpPolysDF)
-sf_use_s2(FALSE)
-SpPolysDF <- st_simplify(SpPolysDF,  dTolerance = 0.00005, preserveTopology = TRUE)
+##capture column order
+nm_order <- names(SpPolysDF)
+SpPolysDF <- ms_simplify(SpPolysDF, keep = 0.1)
+SpPolysDF <- SpPolysDF %>% select(all_of(nm_order))
 #save
 saveRDS(SpPolysDF, file = "C:/Users/cassidy.nicholas/OneDrive - IS/CPOP/data/Shapes.rds")
 
