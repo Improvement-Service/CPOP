@@ -23,17 +23,17 @@ library(sf)
 library(ggbump)
 
 #Store value for the most recent year data is available, this needs to be changed when data is refreshed annually
-FrstYear <- "2011/12"
-RcntYear <- "2022/23"
-ProjYear <- "2025/26"
+FrstYear <- "2012/13"
+RcntYear <- "2023/24"
+ProjYear <- "2026/27"
 
 #First and last years for Duncan Index graphs
 DIFrYr <- substr(FrstYear,1,4)
 DIRcYr <- substr(RcntYear,1,4)
 
-LblFrst <- "11/12"
-LblRcnt <- "22/23"
-LblProj <- "25/26"
+LblFrst <- "12/13"
+LblRcnt <- "23/24"
+LblProj <- "26/27"
 
 SpPolysDF <- read_rds("data/Shapes_decs.rds")
 SpPolysIZ <- read_rds("data/IZshapes_decs.rds")
@@ -205,8 +205,8 @@ addColourSchemeColumn <- function (dataset, colName, input1, input2 = NULL) {
 }
 
 ##Add strings for most recent and next update schedule
-lst_update <- "October 2024"
-nxt_update <- "September 2025"
+lst_update <- "October 2025"
+nxt_update <- "October 2026"
 
 # Convert data frames to data tables
 setDT(CPP_Imp)

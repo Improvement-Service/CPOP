@@ -502,11 +502,11 @@ body <- dashboardBody(
             fluidPage(
               fluidRow(h3("About this tool"), p("The CPOP tool aims to help you assess if the lives of people in your community are improving by providing a set of core measures on important life outcomes including early years, older people, safer/stronger communities, health and wellbeing, and engagement with local communities and a consistent basis for measuring outcomes and inequalities of outcome in your area."), hr()),
               fluidRow(h3("Explainer Video"), HTML('<iframe width="789" height="444" src="https://www.youtube-nocookie.com/embed/rhno_7VMX38?autoplay=0&showinfo=0&loop=1&rel=0" frameborder="0" allow="accelerometer; loop ;encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),hr()),
-              fluidRow(h3("Download the Data"), p("Use these buttons to download all of the data used in this tool. Please note that much of this data is modelled and so may not match exactly with data from other sources. This data was most recently updated in October 2024. Please also note that CPP population data is rebased estimates as published by NRS. IZ and DZ reuses 2021 data for 2022."),
+              fluidRow(h3("Download the Data"), p("Use these buttons to download all of the data used in this tool. Please note that much of this data is modelled and so may not match exactly with data from other sources. This data was most recently updated in October 2025. Please also note that CPP and IZ population data is rebased estimates as published by NRS. IZ and DZ reuses 2022 data for 2023."),
                        downloadBttn("DLDta",label = "Download All CPP Data"),
                        downloadBttn("DLIZDta", label = "Download All Community Data", style = "fill", color = "success"),
                        hr()),
-              fluidRow(h3("Methodology"), p("You can find details on the methodology used to collect and prepare all of our indicators", style = "display:inline"), a("here", href = "https://impservihub-my.sharepoint.com/:b:/g/personal/nicholas_cassidy_improvementservice_org_uk/EU1tkNjZeK9CueORxY3hdaEBybQItzRLhWSkmGnfb6PT1g?e=yiaJea", target = "_blank"), hr()),
+              fluidRow(h3("Methodology"), p("You can find details on the methodology used to collect and prepare all of our indicators", style = "display:inline"), a("here", href = "https://impservihub-my.sharepoint.com/:b:/g/personal/nicholas_cassidy_improvementservice_org_uk/EeB1B6fxRlpIt_BVm3k5ccABpH7-cNbnS3lR4jXMS4t7Jw?e=ExRNUF", target = "_blank"), hr()),
               fluidRow(h3("Other Profiling Tools and Data Sources"), p("There are a number of other profiling tools available, some of these are listed below.\nYou can also find sources for some of the data used in this tool"),
                        tags$ul( 
                          #Link to ScotPHO
@@ -516,8 +516,8 @@ body <- dashboardBody(
                          tags$li(class= "li-custom", tags$a(href="http://www.understandingglasgow.com/",
                                                             "Glasgow Centre for Population Health (GCPH)",  class="externallink", target = "_blank")), 
                          #Link to Fife
-                         tags$li(class= "li-custom", tags$a(href="https://knowfife.fife.gov.uk/",
-                                                            "KnowFife Dataset",  class="externallink", target = "_blank")), 
+                         tags$li(class= "li-custom", tags$a(href="https://know.fife.scot/",
+                                                            "KnowFife",  class="externallink", target = "_blank")), 
                          #Link to NRS
                          tags$li(class= "li-custom", tags$a(href="https://www.nrscotland.gov.uk/statistics-and-data/statistics/stats-at-a-glance/council-area-profiles", 
                                                             "National Records of Scotland (NRS) Council Area Profiles",  class="externallink", target = "_blank")), 
@@ -539,6 +539,7 @@ body <- dashboardBody(
               ##Unordered list with updates and versions
               fluidRow(h3("Version History"), 
                        tags$ul(
+                         tags$li("October 2025 - 2023/24 data added"),
                          tags$li("October 2024 - 2022/23 data added"),
                          tags$li("October 2023 - error with Child Poverty CPP data amended"),
                          tags$li("August 2023 - 2021/22 data added"),
