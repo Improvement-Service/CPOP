@@ -5,8 +5,10 @@ account: isresearchnc
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 400484
-bundleId: 7689930
-url: https://isresearchnc.shinyapps.io/CPOP/
+bundleId: 9296803
+url: https://isshinyapps.shinyapps.io/CPOP/
+when: 1730376120.61786
+lastSyncTime: 1730376120.61788
 asMultiple: FALSE
 asStatic: FALSE
-ignoredFiles: Aberdeen City.html|CoverPage.html|CPOP Data - for PHS.xlsx|CPOP_Tool_2021.xlsx|DATA FILES TO UPDATE.R|Glasgow City.html|global - Dev Version.R|MapUpdateExample.R|Potential Improvements.docx|README.md|server - Dev Version.R|ui - Dev Version.R
+ignoredFiles: CPOP Data - for PHS.xlsx|CPOP_Tool_2021.xlsx|DATA FILES TO UPDATE.R|MapUpdateExample.R|Potential Improvements.docx|README.md

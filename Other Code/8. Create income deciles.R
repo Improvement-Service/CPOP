@@ -6,7 +6,7 @@ setwd("C:/Users/cassidy.nicholas/OneDrive - IS/CPOP")
 library(readxl)
 library(dplyr)
 library(readr)
-detach(package:plyr)
+#detach(package:plyr)
 ##read dataset
 DZdta <- read_excel("C:/Users/cassidy.nicholas/OneDrive - IS/CPOP/data/DZ & IGZ income data.xlsx", sheet = 2)
 IGZdta <- read_excel("C:/Users/cassidy.nicholas/OneDrive - IS/CPOP/data/DZ & IGZ income data.xlsx", sheet = 3)[-4]

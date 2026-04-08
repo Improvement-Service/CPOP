@@ -11,8 +11,8 @@ library(readxl)
 library(sf)
 
 #Store value for the start year and most recent year data is available, this needs to be changed when data is refreshed annually
-StrtYear <- "2010/11"
-RcntYear <- "2021/22"
+StrtYear <- "2012/13"
+RcntYear <- "2023/24"
 
 SpPolysDF <- read_rds("data/Shapes.rds")
 SpPolysIZ <- read_rds("data/IZshapes.rds") %>% select(-`X.1.is.least.deprived.`)

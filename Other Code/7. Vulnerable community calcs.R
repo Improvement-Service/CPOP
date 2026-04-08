@@ -2,7 +2,7 @@
 ##Note that the IGZs selected as most vulnerable do not change, but they can be updated to reflect
 ##new data using the "Calculate most vuln communities.R" code
 
-#setwd("C:/Users/cassidy.nicholas/OneDrive - IS/CPOP")
+setwd("C:/Users/cassidy.nicholas/OneDrive - IS/CPOP")
 
 library(dplyr)
 library(tidyr)
@@ -49,7 +49,9 @@ nms <- IGZData %>% group_by(Indicator) %>% filter(Year %in% c(first(Year), last(
 
 #Calculate % change from base year, CPPAverage for each indicator and CombinedCPPChangeScore 
     #(the sum of z scores for the IZ % change)
+IGZData$value <- na_if(IGZData$value, 0)  ##replace 0s with NA for simplicity and to avoid divide by 0 error
 percentage_change_data <- IGZData %>%
+  ##remove any 0s and replace with NA
   group_by(Indicator) %>% 
   filter(Year %in% c(first(Year), last(Year))) %>%
   mutate(HighIsPos = ifelse(Indicator %in% c("Attainment", "Participation Rate"), 
@@ -80,7 +82,7 @@ TableData <- percentage_change_data %>%
   select(-CPPChangeMean, -CPPChangeSD) %>%
   group_by(IGZ, YearRef) %>%
   #Calculate combined change scores, combining the individual scores for each outcome
-  mutate(CombinedCPPChangeScore = sum(CPPChangeScore)) %>%
+  mutate(CombinedCPPChangeScore = sum(CPPChangeScore, na.rm = T)) %>%
   select(-CPPChangeScore) %>%
   group_by(CPP, Indicator, YearRef) %>%
   mutate(CPPAverage = mean(value)) %>%#Add in CPP average of values to include as bottom row
@@ -248,9 +250,10 @@ vul_com_outcomes <- final_new_viz %>%
   pivot_wider(names_from = YearRef, values_from = c(CommunityValue, CPPAverage)) %>%
   fill(c(CommunityValue_BaseYear, CPPAverage_BaseYear), .direction = "down") %>%
   fill(c(CommunityValue_RecentYear, CPPAverage_RecentYear), .direction = "up") %>%
-  filter(is.na(Year) | Year != "2021/22" & Year != "2020/21") %>%           ## Update most recent year - 2020/21 can be removed once attainment is updated
+  filter(is.na(Year) | Year!= "2023/24") %>%           ## Update most recent year
   rename("BaseYear" = "Year") %>%
   arrange(vulnerability_rank)
+
 
 vul_com_outcomes$CommunityValue_RecentYear[vul_com_outcomes$vulnerability_rank == 6] <- vul_com_outcomes$CommunityValue_RecentYear[vul_com_outcomes$vulnerability_rank == 5]
 vul_com_outcomes$CPPAverage_RecentYear[vul_com_outcomes$vulnerability_rank == 6] <- vul_com_outcomes$CPPAverage_RecentYear[vul_com_outcomes$vulnerability_rank == 5]

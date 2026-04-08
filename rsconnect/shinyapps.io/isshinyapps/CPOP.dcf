@@ -1,0 +1,14 @@
+name: CPOP
+title:
+username:
+account: isshinyapps
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 400484
+bundleId: 11112687
+url: https://improvementservice.shinyapps.io/CPOP/
+when: 1761910061.51114
+lastSyncTime: 1761910061.51115
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: CPN Presentation.pptx|CPOP Data - for PHS.xlsx|CPOP_Tool_2021.xlsx|DATA FILES TO UPDATE.R|Improvement/CPOP Focus Group Questions.docx|Improvement/CPOP Focus Group Transcript.docx|Improvement/Focus Group Summary.docx|Improvement/PHS-IS Collaboration.docx|Improvement/Potential Improvements.docx|MapUpdateExample.R|old codes/Dev Version - global.R|old codes/Dev Version server.R|old codes/Dev Version user interface.R|README.md

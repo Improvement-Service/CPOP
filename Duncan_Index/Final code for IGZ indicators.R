@@ -48,9 +48,10 @@ sco18a <- read.csv('DIData/2018 IGZ1.csv')
 sco19a <- read.csv('DIData/2019 IGZ1.csv')
 sco20a <- read.csv('DIData/2020 IGZ1.csv')
 sco21a <- read.csv('DIData/2021 IGZ1.csv')
+sco22a <- read.csv('DIData/2022 IGZ1.csv')
+sco23a <- read.csv('DIData/2023 IGZ1.csv')
 
-
-combined.tab <- rbind(sco09a, sco10a, sco11a, sco12a, sco13a, sco14a, sco15a, sco16a, sco17a,sco18a,sco19a, sco20a, sco21a)
+combined.tab <- rbind(sco11a, sco12a, sco13a, sco14a, sco15a, sco16a, sco17a,sco18a,sco19a, sco20a, sco21a, sco22a, sco23a)
 
 ##  Step 3) Calculate the duncan index for every combination of year and ttwa / la
 
@@ -68,6 +69,6 @@ la.tab <- combined.tab %>%
   )
 
 la.tab
-la.tab %>% write.csv('DIData/Duncan index by FINALSep23.csv')
+la.tab %>% write.csv('DIData/Duncan index by FINALSep25.csv')
 
 ##  End
