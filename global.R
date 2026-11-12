@@ -23,20 +23,20 @@ library(sf)
 library(ggbump)
 
 #Store value for the most recent year data is available, this needs to be changed when data is refreshed annually
-FrstYear <- "2012/13"
-RcntYear <- "2023/24"
-ProjYear <- "2026/27"
+FrstYear <- "2013/14"
+RcntYear <- "2024/25"
+ProjYear <- "2027/28"
 
 #First and last years for Duncan Index graphs
 DIFrYr <- substr(FrstYear,1,4)
 DIRcYr <- substr(RcntYear,1,4)
 
-LblFrst <- "12/13"
-LblRcnt <- "23/24"
-LblProj <- "26/27"
+LblFrst <- "13/14"
+LblRcnt <- "24/25"
+LblProj <- "27/28"
 
 SpPolysDF <- read_rds("data/Shapes_decs.rds")
-SpPolysIZ <- read_rds("data/IZshapes_decs.rds")
+SpPolysIZ <- read_rds("data/IZshapes_decs.rds") 
 SpPolysLA <- read_rds("data/LAShps.rds")
 CPPdta <- read_csv("data/CPPcleandata.csv", show_col_types = FALSE)
 CPP_Imp <- read_csv("data/Imp_rate_CPP.csv", show_col_types = FALSE)
@@ -59,14 +59,11 @@ SpPolysDF[SpPolysDF$council == "Edinburgh","council"] <- "Edinburgh, City of"
 
 #extract data and rename indicator columns (col names will be used directly in leaflet pop-ups in UI)
 CPPMapDta <- SpPolysDF %>%
-  dplyr::rename("Children in Poverty (%)" = "X..of.children.in.poverty", 
-         "Average Highest Attainment" = "Average.highest.attainment",
-         "Out of Work Benefits (%)" = "X..of.population..aged.16.64..in.receipt.of.out.of.work.benefits", 
-         "Crimes per 10,000" = "Number.of.crimes.per.10.000.of.the.population", 
-         "Emergency Admissions (65+) per 100,000" = "Emergency.admissions..65...per.100.000.population")
-##convert to numeric
-CPPMapDta[[15]] <- as.numeric(CPPMapDta[[15]])
-CPPMapDta[[14]] <- as.numeric(CPPMapDta[[14]])
+  dplyr::rename("Children in Poverty (%)" = "% of children in poverty", 
+         "Average Highest Attainment" = "Average highest attainment",
+         "Out of Work Benefits (%)" = "% of population (aged 16-64) in receipt of out of work benefits", 
+         "Crimes per 10,000" = "Number of crimes per 10,000 of the population", 
+         "Emergency Admissions (65+) per 100,000" = "Emergency admissions (65+) per 100,000 population")
 
 
 ##read in Fife data for MyCommunity
@@ -181,7 +178,7 @@ showDZpopup <- function(DZdata, group, lat, lng, map_ind, plotId) {
 showIZPopup <- function(group, lat, lng){
   selectedIZ <- SpPolysIZ[SpPolysIZ$InterZone == group,]
   content <- as.character(tagList(
-    tags$h4(as.character(unique(selectedIZ$`IGZ.name`)))))
+    tags$h4(as.character(unique(selectedIZ$`IGZ name`)))))
   leafletProxy("communityMap") %>% addPopups(lng, lat, content, layerId = group)
 }
 
@@ -205,8 +202,8 @@ addColourSchemeColumn <- function (dataset, colName, input1, input2 = NULL) {
 }
 
 ##Add strings for most recent and next update schedule
-lst_update <- "October 2025"
-nxt_update <- "October 2026"
+lst_update <- "November 2026"
+nxt_update <- "October 2027"
 
 # Convert data frames to data tables
 setDT(CPP_Imp)

@@ -1,7 +1,7 @@
 ##File for data prep. 
 
 #RUN AFTER clean data.R and AddFGtoData.R and ShapefileCode.R
-setwd("C:/Users/cassidy.nicholas/OneDrive - IS/CPOP")
+setwd("C:/Users/cassidy.nicholas/OneDrive - Improvement Service Company/CPOP")
 
 library(dplyr)
 library(tidyverse)
@@ -11,17 +11,17 @@ library(readxl)
 library(sf)
 
 #Store value for the start year and most recent year data is available, this needs to be changed when data is refreshed annually
-StrtYear <- "2012/13"
-RcntYear <- "2023/24"
+StrtYear <- "2013/14"
+RcntYear <- "2024/25"
 
 SpPolysDF <- read_rds("data/Shapes.rds")
-SpPolysIZ <- read_rds("data/IZshapes.rds") %>% select(-`X.1.is.least.deprived.`)
+SpPolysIZ <- read_rds("data/IZshapes.rds")
 CPPdta <- read_csv("data/CPPcleandata.csv")
 IGZdta <- read_csv("data/IGZcleandata.csv")
 DZdta <- read_csv("data/DZcleandata.csv")
 
 #read Fife strategic areas for bespoke analysis
-fife_sa <- read_excel("data/Fife Strategic Areas.xlsx")
+fife_sa <- read_excel("data/Fife Strategic Areas.xlsx", sheet = 1)
 
 high_is_negative <- c("Dwelling Fires", 
                       "Unplanned Hospital Attendances",
@@ -32,39 +32,12 @@ high_is_negative <- c("Dwelling Fires",
                       "Early Mortality")
 
 #Calculate percentiles for map colours------------
-povDecs <- c()
-for(i in unique(SpPolysDF$council)){
-  x <- ntile(SpPolysDF[SpPolysDF$council == i, 13], 7)
-  povDecs <-c(povDecs,x)
-}
-
-tariffDecs <- c()
-for(i in unique(SpPolysDF$council)){
-  x <- ntile(SpPolysDF[SpPolysDF$council == i, 14], 7)
-  tariffDecs <-c(tariffDecs,x)
-}
-
-benDecs <- c()
-for(i in unique(SpPolysDF$council)){
-  x <- ntile(SpPolysDF[SpPolysDF$council == i, 15], 7)
-  benDecs <-c(benDecs,x)
-}
-
-crimeDecs <- c()
-for(i in unique(SpPolysDF$council)){
-  x <- ntile(SpPolysDF[SpPolysDF$council == i, 16], 7)
-  crimeDecs <-c(crimeDecs,x)
-}
-
-admisDecs <- c()
-for(i in unique(SpPolysDF$council)){
-  x <- ntile(SpPolysDF[SpPolysDF$council == i, 17], 7)
-  admisDecs <-c(admisDecs,x)
-}
-
-SpPolysDF <- cbind(SpPolysDF, povDecs, tariffDecs,benDecs,crimeDecs, admisDecs)
-rm(i, x, povDecs, tariffDecs,benDecs,crimeDecs, admisDecs)
-
+SpPolysDF <- SpPolysDF %>% group_by(council) %>% mutate(povDecs = ntile(`% of children in poverty`, 7)) %>%
+  mutate(tariffDecs = ntile(`Average highest attainment`, 7)) %>%
+  mutate(benDecs = ntile(`% of population (aged 16-64) in receipt of out of work benefits`, 7)) %>%
+  mutate(crimeDecs = ntile(`Number of crimes per 10,000 of the population`, 7)) %>%
+  mutate(admisDecs = ntile(`Emergency admissions (65+) per 100,000 population`, 7)) %>%
+  ungroup()
 
 # Create CPP Scores and Type Scores for most recent years data----------
 IGZdta <- IGZdta %>% 
@@ -175,9 +148,12 @@ IGZ_change <-IGZ_change %>%
   select(c(-TypeMean, -Differences, -StdDev))
 
 
-# Add Z score column to SpPolysDF to allow ranking in this DataFrame --------------------- 
+# Add Z score column to SpPolysIZ to allow ranking in this DataFrame --------------------- 
+
+##temporary fix - as there is no data for early mortality exclude it from the calculations
 
 decs <-IGZ_latest %>%
+  filter_out(Indicator == "Early Mortality") %>% ##REMOVE once early mortality data is available!!!
   group_by(InterZone, CPP) %>%
   summarise(combCPP = sum(CPPScore)) %>%
   group_by(CPP) %>%
@@ -186,10 +162,10 @@ decs <-IGZ_latest %>%
   select(InterZone, CPPDec,CPPRank)
 
 SpPolysIZ <- SpPolysIZ %>% 
-  left_join(., decs, by = "InterZone") %>% 
-  select(-rank_decs, -`rank.min`)
+  left_join(., decs, by = c("InterZone" = "InterZone")) %>% 
+  select( -`rank-min`)
 
-names(SpPolysIZ)[c(13,14)] <- c("rank_decs", "rank-min")
+SpPolysIZ <- SpPolysIZ %>% rename(., "rank_decs" = "CPPDec", "rank-min" = "CPPRank") ##this renames "CPPRank" and "CPPdec"
 
 saveRDS(SpPolysDF, "data/Shapes_decs.rds")
 saveRDS(SpPolysIZ, "data/IZshapes_decs.rds")

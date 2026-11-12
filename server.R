@@ -70,7 +70,7 @@ shinyServer(function(input, output, session) {
         layerId = ~NAME,
         fillColor = "grey", 
         color = "black",
-        label = SpPolysLA@data$NAME,
+        label = SpPolysLA$NAME,
         highlightOptions = highlightOptions(color = "white", weight = 3,bringToFront = TRUE)
       ) 
   }) #end of scotmap
@@ -973,6 +973,7 @@ shinyServer(function(input, output, session) {
   ##Value box for community progress========
   output$comProgressBox <- renderValueBox({
     IGZBest <- IGZBest()
+
     pBetter <- round((sum(IGZBest$CombinedTypeScore>0)/nrow(IGZBest))*100,0)
     bCol <- if(pBetter <50) {"red"}else{"green"}
     valueBox(
@@ -1088,9 +1089,11 @@ shinyServer(function(input, output, session) {
       IGZ_latest, 
       Typology_Group == Typology & 
         Indicator %in% input$IndiCP
-    )
+    ) 
     
-    IGZBest <- setDT(IGZBest)[,CombinedTypeScore := (sum(TypeScore)), by = InterZone]
+
+    
+    IGZBest <- setDT(IGZBest)[,CombinedTypeScore := (sum(TypeScore, na.rm = TRUE)), by = InterZone]
     IGZBest <- setDT(IGZBest)[,FilterRef := (first(Indicator)), by = InterZone]
     IGZBest <- filter(IGZBest, Indicator == FilterRef)
     IGZBest$TypeScoreRank <- rank(IGZBest$CombinedTypeScore)
@@ -1568,7 +1571,7 @@ shinyServer(function(input, output, session) {
   # "Map2" plydata() for leaflet outputs --------------
   plydata <- reactive({
     req(input$LA1)
-    desIZ <- which(CPPMapDta$council %in% input$LA1 & CPPMapDta$IZname %in% input$IZ)
+    desIZ <- which(CPPMapDta$council %in% input$LA1 & CPPMapDta$`IZ Name` %in% input$IZ)
     IZ_dzs <- SpPolysDF[desIZ,]
   })
   
@@ -1711,7 +1714,7 @@ shinyServer(function(input, output, session) {
   output$DLDta <- downloadHandler(
     filename = paste("CPP Data", ".zip", sep = ""),
     content = function(con) {
-      file.copy("data/CPP Data - Sep 2025.zip", con)
+      file.copy("data/CPP Data - Oct 2026.zip", con)
     },
     contentType = "application/zip"
   )
@@ -1720,7 +1723,7 @@ shinyServer(function(input, output, session) {
   output$DLIZDta <- downloadHandler(
     filename = paste("IGZ Data", ".zip", sep = ""),
     content = function(con) {
-      file.copy("data/IGZ Data - Sep 2025.zip", con)
+      file.copy("data/IGZ Data - Oct 2026.zip", con)
     },
     contentType = "application/zip"
   )

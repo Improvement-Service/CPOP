@@ -2,11 +2,10 @@
 ##Note that the IGZs selected as most vulnerable do not change, but they can be updated to reflect
 ##new data using the "Calculate most vuln communities.R" code
 
-setwd("C:/Users/cassidy.nicholas/OneDrive - IS/CPOP")
+setwd("C:/Users/cassidy.nicholas/OneDrive - Improvement Service Company/CPOP")
 
 library(dplyr)
 library(tidyr)
-library(magrittr)
 library(readr)
 #read in data and define global variables ---------------
 CPPNames <- c("Aberdeen City", "Aberdeenshire", "Angus", "Argyll and Bute",
@@ -21,7 +20,7 @@ CPPNames <- c("Aberdeen City", "Aberdeenshire", "Angus", "Argyll and Bute",
               "Stirling", "West Dunbartonshire", "West Lothian")
 
 #obtain the 5 most vulnerable communities for each CPP
-DeprivedCommData <- read_csv("data/Vulnerable communities - 2006.csv", show_col_types = FALSE) %>%
+DeprivedCommData <- readRDS("data/IGZRanks.rds") %>%
   filter(revRank %in% 1:5) %>%
   select(c("revRank","InterZone")) %>%
   dplyr::rename(IGZ = InterZone, Most_Deprived_Comm = revRank)
@@ -250,7 +249,7 @@ vul_com_outcomes <- final_new_viz %>%
   pivot_wider(names_from = YearRef, values_from = c(CommunityValue, CPPAverage)) %>%
   fill(c(CommunityValue_BaseYear, CPPAverage_BaseYear), .direction = "down") %>%
   fill(c(CommunityValue_RecentYear, CPPAverage_RecentYear), .direction = "up") %>%
-  filter(is.na(Year) | Year!= "2023/24") %>%           ## Update most recent year
+  filter_out(Year %in% c("2024/25", "2023/24")) %>%    ## UPDATE MOST RECENT YEAR
   rename("BaseYear" = "Year") %>%
   arrange(vulnerability_rank)
 
@@ -259,7 +258,6 @@ vul_com_outcomes$CommunityValue_RecentYear[vul_com_outcomes$vulnerability_rank =
 vul_com_outcomes$CPPAverage_RecentYear[vul_com_outcomes$vulnerability_rank == 6] <- vul_com_outcomes$CPPAverage_RecentYear[vul_com_outcomes$vulnerability_rank == 5]
 vul_com_outcomes$BaseYear[vul_com_outcomes$vulnerability_rank ==6] <- vul_com_outcomes$BaseYear[vul_com_outcomes$vulnerability_rank ==5]
 vul_com_outcomes$InterZone_Name[vul_com_outcomes$vulnerability_rank ==6] <- vul_com_outcomes$CPP[vul_com_outcomes$vulnerability_rank ==6]
-
 
 
 

@@ -1,17 +1,17 @@
 ##This needs to be run before vulnerable community calcs if we want to update the IGZs that
 #are most vulnerable in the "Vulnerable Communities" page of the CPOP
-#Otherwise it uses 2006 data to calculate the most vulnerable, so this can change it to 2007
+#Otherwise it uses 2006 data to calculate the most vulnerable, so this can change it to e.g. 2007
 ##Therefore it can be used to replace what is saved in Vulnerable communities - 2006.xlsx
 ##THIS IS OPTIONAL AND IS NOT NORMALLY RUN
 
 library(tidyverse)
-library(plyr)
+#library(plyr)
 library(DT)
 library(data.table)
 
 #Store value for the start year and most recent year data is available, this needs to be changed when data is refreshed annually
-StrtYear <- "2008/09"
-RcntYear <- "2019/20"
+StrtYear <- "2013/14"
+RcntYear <- "2024/25"
 
 CPPdta <- read_csv("data/CPPcleandata.csv")
 IGZdta <- read_csv("data/IGZcleandata.csv")
@@ -25,26 +25,26 @@ IGZdta$`High is Positive?`[IGZdta$Indicator %in% c("Child Poverty","Out of Work 
                                                    "Crime Rate", "Emergency Admissions", 
                                                    "Early Mortality", "Depopulation")] <- "No"
 
-
 IGZ_latest <- filter(IGZdta, Year == StrtYear)
+
+##replace NA with 0
+IGZ_latest <- IGZ_latest %>%
+  mutate(value = replace(value, is.na(value), 0))
 
 # CPP Score
 
-IGZ_latest <- ddply(
-  IGZ_latest,. 
-  (CPP, Indicator), 
-  transform, 
-  CPPMean = (mean(value))
-)
+IGZ_latest <- IGZ_latest %>%
+  group_by(CPP, Indicator) %>%
+  mutate(CPPMean = mean(value)) %>%
+  ungroup()
 
 IGZ_latest$Differences <- IGZ_latest$value - IGZ_latest$CPPMean
 
-IGZ_latest <- ddply(
-  IGZ_latest,. 
-  (CPP, Indicator), 
-  transform, 
-  StdDev = (sd(value))
-)
+IGZ_latest <- IGZ_latest %>%
+  group_by(CPP, Indicator) %>%
+  mutate(StdDev = sd(value)) %>%
+  ungroup()
+
 
 IGZ_latest$ZScore <- IGZ_latest$Differences / IGZ_latest$StdDev
 
@@ -57,9 +57,12 @@ IGZ_latest$CPPScore[IGZ_latest$`High is Positive?` == "No"] <-
 
 IGZ_latest <- select(IGZ_latest, c(-CPPMean, -Differences, -StdDev, -ZScore))
 
-IGZ_latest_sum <- IGZ_latest %>% group_by(InterZone) %>% dplyr::summarise(total = sum(CPPScore)) %>%
-  left_join(IGZ_latest[1:3], by = "InterZone")
-IGZ_latest_sum <- unique(IGZ_latest_sum) %>% group_by(CPP)%>%
-  dplyr::mutate(rank = dense_rank(desc(total))) %>% dplyr::mutate(revRank = dense_rank(total)) 
+##Until Early mortality is updated remove this from the ranking
 
-saveRDS(IGZ_latest_sum, "C:/Users/cassidy.nicholas/Desktop/IGZRanks.rds")
+IGZ_latest_sum <- IGZ_latest %>% filter_out(Indicator %in% c("Depopulation","Early Mortality")) %>%
+  group_by(InterZone) %>% dplyr::summarise(total = sum(CPPScore)) %>%
+  left_join(IGZ_latest[1:3], by = "InterZone") %>% ungroup()
+IGZ_latest_sum <- unique(IGZ_latest_sum) %>% group_by(CPP)%>%
+  dplyr::mutate(rank = dense_rank(desc(total))) %>% dplyr::mutate(revRank = dense_rank(total)) %>% ungroup()
+
+saveRDS(IGZ_latest_sum, "data/IGZRanks.rds")

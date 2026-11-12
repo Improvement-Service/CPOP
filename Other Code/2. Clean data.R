@@ -4,20 +4,19 @@
 
 ##After this run "AddFGtoData.R"
 
-setwd("C:/Users/cassidy.nicholas/OneDrive - IS/CPOP")
+setwd("C:/Users/cassidy.nicholas/OneDrive - Improvement Service Company/CPOP")
 
-library(plyr)
+#library(plyr)
 library(tidyverse)
 library(readxl)
 
 #use for loop to loop through and read every worksheet
 ##CPP data
 
-CPPdta <- read_excel("data/Final data - Sep 2025/Final CPP Data - Sep 2025.xlsx",
+CPPdta <- read_excel("data/Final Data - Oct 2026/Final CPP Data - Oct 2026.xlsx",
                      sheet = 2)
-
 for (i in 3:21) {
-  CPPdta2 <- read_excel("data/Final data - Sep 2025/Final CPP Data - Sep 2025.xlsx",
+  CPPdta2 <- read_excel("data/Final data - Oct 2026/Final CPP Data - Oct 2026.xlsx",
                         sheet = i)
   CPPdta <- merge(CPPdta, CPPdta2)
 }
@@ -44,10 +43,10 @@ CPPdta[CPPdta$Indicator == "Participation Rate", "IndicatorFullName"] <- "Partic
 write_excel_csv(CPPdta ,file = "data/CPPcleandata.csv")
 
 ##IGZ data
-IGZdta <- read_excel("data/Final data - Sep 2025/Final IGZ Data - Sep 2025.xlsx",
+IGZdta <- read_excel("data/Final data - Oct 2026/Final IGZ Data - Oct 2026.xlsx",
                      sheet = 2)
 for (i in 3:10) {
-  IGZdta2 <- read_excel("data/Final data - Sep 2025/Final IGZ Data - Sep 2025.xlsx",
+  IGZdta2 <- read_excel("data/Final data - Oct 2026/Final IGZ Data - Oct 2026.xlsx",
                         sheet = i)
   IGZdta <- merge(IGZdta, IGZdta2)
 }
@@ -66,23 +65,26 @@ IGZdta[IGZdta$Indicator =="Out of Work Benefits","IndicatorFullName"] <- "Out of
 IGZdta[IGZdta$Indicator =="Participation Rate","IndicatorFullName"] <- "Participation Rate (%)"     
 IGZdta[IGZdta$Indicator =="Depopulation","IndicatorFullName"] <- "Depopulation Index"
 IGZdta[IGZdta$Indicator == "Attainment", "IndicatorFullName"] <- "Average Highest Attainment"
+
+
+
 #save CSV data file
 write_excel_csv(IGZdta ,file = "data/IGZcleandata.csv")
 
 
-##DZ data
-DZdta <- read_excel("data/Final data - Sep 2025/Final DZ Data - Sep 2025.xlsx",
-                     sheet = 2)
-for (i in 3:7) {
-  DZdta2 <- read_excel("data/Final data - Sep 2025/Final DZ Data - Sep 2025.xlsx",
-                        sheet = i)
-  DZdta <- left_join(DZdta, DZdta2, by = "DZ")
-}
-
-#combine columns into 1 long variable
-DZdta <- gather(DZdta, Indicator_Type_Year, value, -1,-2,-3,-4)
-#separate 1 column into 3
-DZdta <- separate(DZdta, Indicator_Type_Year, c("Indicator","Type","Year"), sep = "_")
-#save CSV data file
-write_excel_csv(DZdta ,file = "data/DZcleandata.csv")
+# ##DZ data
+# DZdta <- read_excel("data/Final data - Sep 2025/Final DZ Data - Sep 2025.xlsx",
+#                      sheet = 2)
+# for (i in 3:7) {
+#   DZdta2 <- read_excel("data/Final data - Sep 2025/Final DZ Data - Sep 2025.xlsx",
+#                         sheet = i)
+#   DZdta <- left_join(DZdta, DZdta2, by = "DZ")
+# }
+# 
+# #combine columns into 1 long variable
+# DZdta <- gather(DZdta, Indicator_Type_Year, value, -1,-2,-3,-4)
+# #separate 1 column into 3
+# DZdta <- separate(DZdta, Indicator_Type_Year, c("Indicator","Type","Year"), sep = "_")
+# #save CSV data file
+# write_excel_csv(DZdta ,file = "data/DZcleandata.csv")
 
